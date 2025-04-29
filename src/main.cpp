@@ -1,43 +1,33 @@
+#include "cpr/api.h"
 #include <dotenv.h>
 #include <dpp/dpp.h>
-
-#include "cpr/api.h"
-#include "cpr/response.h"
 
 using namespace dotenv;
 
 int main()
 {
-    // get bot token
     env.load_dotenv();
     const std::string BOT_TOKEN = env["ODYSSEUS_TOKEN"];
 
-    // load api data in memory
     cpr::Response res =
         cpr::Get(cpr::Url{"https://api.arcaneodyssey.net/items"});
-
     dpp::json api_data = dpp::json::parse(res.text);
 
-    // initialize bot
     dpp::cluster bot(BOT_TOKEN);
     bot.on_log(dpp::utility::cout_logger());
 
-    // on ready
     bot.on_ready(
         [&bot](const dpp::ready_t &)
         {
             if (dpp::run_once<struct register_bot_commands>())
             {
-                bot.set_presence(dpp::presence(dpp::presence_status::ps_online,
-                                               dpp::activity_type::at_game,
+                bot.set_presence(dpp::presence(dpp::ps_online, dpp::at_game,
                                                "Arcane Odyssey"));
 
                 bot.global_command_create(
                     dpp::slashcommand("about", "About Odysseus", bot.me.id));
-
                 bot.global_command_create(
                     dpp::slashcommand("ping", "Ping pong!", bot.me.id));
-
                 bot.global_command_create(
                     dpp::slashcommand("item", "Get info about an item",
                                       bot.me.id)
@@ -46,9 +36,8 @@ int main()
                                                         true)
                                         .set_auto_complete(true)));
 
-                bot.log(dpp::loglevel::ll_info,
-                        "Logged in as " + bot.me.username + "#" +
-                            std::to_string(bot.me.discriminator));
+                bot.log(dpp::ll_info, "Logged in as " + bot.me.username + "#" +
+                                          std::to_string(bot.me.discriminator));
             }
         });
 
@@ -57,7 +46,7 @@ int main()
         {
             if (event.command.get_command_name() == "about")
             {
-                const dpp::embed embed =
+                dpp::embed embed =
                     dpp::embed()
                         .set_color(dpp::colors::blue_diamond)
                         .set_title("About Odysseus")
@@ -72,17 +61,14 @@ int main()
                                         .set_icon(bot.me.get_avatar_url())
                                         .set_text("Odysseus - Made with <3"));
 
-                const dpp::message msg(event.command.channel_id, embed);
-                event.reply(msg);
+                event.reply(dpp::message(event.command.channel_id, embed));
             }
-
-            if (event.command.get_command_name() == "ping")
+            else if (event.command.get_command_name() == "ping")
             {
                 event.reply(":ping_pong: Pong! " +
                             std::to_string(bot.rest_ping).substr(0, 5) + "ms");
             }
-
-            if (event.command.get_command_name() == "item")
+            else if (event.command.get_command_name() == "item")
             {
                 // TODO
             }
@@ -91,58 +77,44 @@ int main()
     bot.on_autocomplete(
         [&bot, &api_data](const dpp::autocomplete_t &event)
         {
-            for (auto &opt : event.options)
+            for (const auto &opt : event.options)
             {
                 if (opt.focused)
                 {
                     std::string uservalue = std::get<std::string>(opt.value);
-
                     if (uservalue.empty())
                     {
-                        auto response = dpp::interaction_response(
-                            dpp::ir_autocomplete_reply);
-
                         bot.interaction_response_create(
-                            event.command.id, event.command.token, response);
+                            event.command.id, event.command.token,
+                            dpp::interaction_response(
+                                dpp::ir_autocomplete_reply));
                         break;
                     }
 
                     std::vector<dpp::json> results;
-
-                    for (auto &elem : api_data)
+                    for (const auto &elem : api_data)
                     {
                         if (results.size() == 10)
-                        {
                             break;
-                        }
-
-                        std::string name =
-                            static_cast<std::string>(elem["name"]);
-                        std::string type =
-                            static_cast<std::string>(elem["mainType"]);
-
-                        if (name.starts_with(uservalue) && type != "Enchant" &&
-                            type != "Modifier")
+                        if (elem["name"].starts_with(uservalue) &&
+                            elem["mainType"] != "Enchant" &&
+                            elem["mainType"] != "Modifier")
                         {
                             results.push_back(elem);
                         }
                     }
 
-                    auto response =
-                        dpp::interaction_response(dpp::ir_autocomplete_reply);
-
-                    int i = 0;
-                    for (auto &result : results)
+                    dpp::interaction_response response(
+                        dpp::ir_autocomplete_reply);
+                    for (size_t i = 0; i < results.size(); ++i)
                     {
                         response.add_autocomplete_choice(
-                            dpp::command_option_choice(result["name"],
+                            dpp::command_option_choice(results[i]["name"],
                                                        std::to_string(i)));
-                        i++;
                     }
 
                     bot.interaction_response_create(
                         event.command.id, event.command.token, response);
-
                     break;
                 }
             }
