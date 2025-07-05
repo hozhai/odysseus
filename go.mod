@@ -2,10 +2,7 @@ module github.com/hozhai/odysseus
 
 go 1.23
 
-require (
-	github.com/disgoorg/disgo v0.18.15
-	github.com/joho/godotenv v1.5.1
-)
+require github.com/disgoorg/disgo v0.18.15
 
 require (
 	github.com/disgoorg/json v1.2.0 // indirect
