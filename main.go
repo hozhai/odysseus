@@ -39,6 +39,7 @@ type Item struct {
 		Drawback     int `json:"drawback,omitempty"`
 		Regeneration int `json:"regeneration,omitempty"`
 		Piercing     int `json:"piercing,omitempty"`
+		Resistance   int `json:"resistance,omitempty"`
 	} `json:"statsPerLevel,omitempty"`
 
 	ValidModifiers []string `json:"validModifiers,omitempty"`
