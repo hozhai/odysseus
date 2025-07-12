@@ -148,38 +148,53 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 
 		var statsString string
 
-		lastStats := item.StatsPerLevel[len(item.StatsPerLevel)-1]
+		if item.StatsPerLevel != nil && len(item.StatsPerLevel) > 0 {
 
-		if lastStats.Power != 0 {
-			statsString = statsString + fmt.Sprintf("<:power:1392363667059904632> %d\n", lastStats.Power)
-		}
+			lastStats := item.StatsPerLevel[len(item.StatsPerLevel)-1]
 
-		if lastStats.Defense != 0 {
-			statsString = statsString + fmt.Sprintf("<:defense:1392364201262977054> %d\n", lastStats.Defense)
-		}
+			if lastStats.Power != 0 {
+				statsString = statsString + fmt.Sprintf("<:power:1392363667059904632> %d\n", lastStats.Power)
+			}
 
-		if lastStats.Agility != 0 {
-			statsString = statsString + fmt.Sprintf("<:agility:1392364894573297746> %d\n", lastStats.Agility)
-		}
+			if lastStats.Defense != 0 {
+				statsString = statsString + fmt.Sprintf("<:defense:1392364201262977054> %d\n", lastStats.Defense)
+			}
 
-		if lastStats.AttackSpeed != 0 {
-			statsString = statsString + fmt.Sprintf("<:attackspeed:1392364933722804274> %d\n", lastStats.AttackSpeed)
-		}
+			if lastStats.Agility != 0 {
+				statsString = statsString + fmt.Sprintf("<:agility:1392364894573297746> %d\n", lastStats.Agility)
+			}
 
-		if lastStats.AttackSize != 0 {
-			statsString = statsString + fmt.Sprintf("<:attacksize:1392364917616807956> %d\n", lastStats.AttackSize)
-		}
+			if lastStats.AttackSpeed != 0 {
+				statsString = statsString + fmt.Sprintf("<:attackspeed:1392364933722804274> %d\n", lastStats.AttackSpeed)
+			}
 
-		if lastStats.Intensity != 0 {
-			statsString = statsString + fmt.Sprintf("<:intensity:1392365008049934377> %d\n", lastStats.Intensity)
-		}
+			if lastStats.AttackSize != 0 {
+				statsString = statsString + fmt.Sprintf("<:attacksize:1392364917616807956> %d\n", lastStats.AttackSize)
+			}
 
-		if lastStats.Drawback != 0 {
-			statsString = statsString + fmt.Sprintf("<:drawback:1392364965905563698> %d\n", lastStats.Drawback)
-		}
+			if lastStats.Intensity != 0 {
+				statsString = statsString + fmt.Sprintf("<:intensity:1392365008049934377> %d\n", lastStats.Intensity)
+			}
 
-		if lastStats.Warding != 0 {
-			statsString = statsString + fmt.Sprintf("<:warding:1392366478560596039> %d\n", lastStats.Warding)
+			if lastStats.Regeneration != 0 {
+				statsString = statsString + fmt.Sprintf("<:regeneration:1392365064010469396> %d\n", lastStats.Regeneration)
+			}
+
+			if lastStats.Piercing != 0 {
+				statsString = statsString + fmt.Sprintf("<:piercing:1392365031705808986> %d\n", lastStats.Piercing)
+			}
+
+			if lastStats.Resistance != 0 {
+				statsString = statsString + fmt.Sprintf("<:resistance:1393458741009186907> %d\n", lastStats.Resistance)
+			}
+
+			if lastStats.Drawback != 0 {
+				statsString = statsString + fmt.Sprintf("<:drawback:1392364965905563698> %d\n", lastStats.Drawback)
+			}
+
+			if lastStats.Warding != 0 {
+				statsString = statsString + fmt.Sprintf("<:warding:1392366478560596039> %d\n", lastStats.Warding)
+			}
 		}
 
 		fields = append(fields, discord.EmbedField{
@@ -188,10 +203,6 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		}, discord.EmbedField{
 			Name:  "Stats",
 			Value: statsString,
-		}, discord.EmbedField{
-			Name:   "ID",
-			Value:  item.ID,
-			Inline: ptrTrue,
 		}, discord.EmbedField{
 			Name:   "Type",
 			Value:  item.MainType,
@@ -225,11 +236,26 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 			}
 		}
 
+		if item.MinLevel != 0 || item.MaxLevel != 0 {
+			fields = append(fields, discord.EmbedField{
+				Name:   "Level Range",
+				Value:  fmt.Sprintf("%d - %d", item.MinLevel, item.MaxLevel),
+				Inline: ptrTrue,
+			})
+		}
+
+		var imageURL string
+
+		// some data has imageID set to "NO_IMAGE" instead of empty string
+		if item.ImageID != "" && item.ImageID != "NO_IMAGE" {
+			imageURL = item.ImageID
+		}
+
 		err := e.CreateMessage(
 			discord.NewMessageCreateBuilder().AddEmbeds(
 				discord.NewEmbedBuilder().
-					SetTitle(item.Name).
-					SetThumbnail(item.ImageID).
+					SetTitle(fmt.Sprintf("%v (%v)", item.Name, item.ID)).
+					SetThumbnail(imageURL).
 					SetFields(
 						fields...,
 					).
@@ -243,5 +269,34 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		if err != nil {
 			slog.Error("Error sending message", slog.Any("err", err))
 		}
+	}
+
+	if e.Data.CommandName() == "loadbuild" {
+		url := e.SlashCommandInteractionData().String("url")
+
+		if !strings.HasPrefix(url, "https://tools.arcaneodyssey.net/gearBuilder#") {
+			err := e.CreateMessage(
+				discord.NewMessageCreateBuilder().SetContent("Invalid URL! Please provide a valid Arcane Odyssey build URL.").Build(),
+			)
+
+			if err != nil {
+				slog.Error("error sending message", slog.Any("err", err))
+			}
+			return
+		}
+
+		e := e.DeferCreateMessage(true)
+
+		if e != nil {
+			slog.Error("error deferring message", slog.Any("err", e))
+			return
+		}
+
+		//hash := strings.TrimPrefix(url, "https://tools.arcaneodyssey.net/gearBuilder#")
+
+		// TODO
+		/*
+			LEVEL,POINTS_VITALITY,POINTS_MAGIC,POINTS_STRENGTH,POINT_WEAPONS|MAGIC_ENUM,MAGIC_ENUM_OPTIONAL|FIGHTING_STYLE_ENUM,FIGHTING_STYLE_ENUM_OPTIONAL||ACCESSORY_ONE,ENCHANTMENT,MODIFIER,GEM,GEM,GEM_OPTIONAL,LEVEL|
+		*/
 	}
 }

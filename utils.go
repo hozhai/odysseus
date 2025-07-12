@@ -62,3 +62,7 @@ func GetData() error {
 	slog.Info("finished fetching data from API")
 	return nil
 }
+
+func UnhashBuildCode(code string) {
+
+}

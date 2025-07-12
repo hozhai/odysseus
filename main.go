@@ -105,6 +105,17 @@ var (
 			Description: "About Odysseus.",
 		},
 		discord.SlashCommandCreate{
+			Name:        "loadbuild",
+			Description: "Show build from URL.",
+			Options: []discord.ApplicationCommandOption{
+				discord.ApplicationCommandOptionString{
+					Name:        "url",
+					Description: "URL of the build.",
+					Required:    true,
+				},
+			},
+		},
+		discord.SlashCommandCreate{
 			Name:        "item",
 			Description: "Get information about an item.",
 			Options: []discord.ApplicationCommandOption{
@@ -167,6 +178,7 @@ func main() {
 		panic(APIErr)
 	}
 
+	slog.Info("successfully logged in. ctrl-c to exit")
 	s := make(chan os.Signal, 1)
 	signal.Notify(s, syscall.SIGINT, syscall.SIGTERM)
 	<-s
