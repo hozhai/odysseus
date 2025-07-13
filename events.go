@@ -142,53 +142,56 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		var color int
 
 		var statsString string
+		var builder strings.Builder
 
 		if len(item.StatsPerLevel) > 0 {
 			lastStats := item.StatsPerLevel[len(item.StatsPerLevel)-1]
 
 			if lastStats.Power != 0 {
-				statsString = statsString + fmt.Sprintf("<:power:1392363667059904632> %d\n", lastStats.Power)
+				builder.WriteString(fmt.Sprintf("<:power:1392363667059904632> %d\n", lastStats.Power))
 			}
 
 			if lastStats.Defense != 0 {
-				statsString = statsString + fmt.Sprintf("<:defense:1392364201262977054> %d\n", lastStats.Defense)
+				builder.WriteString(fmt.Sprintf("<:defense:1392364201262977054> %d\n", lastStats.Defense))
 			}
 
 			if lastStats.Agility != 0 {
-				statsString = statsString + fmt.Sprintf("<:agility:1392364894573297746> %d\n", lastStats.Agility)
+				builder.WriteString(fmt.Sprintf("<:agility:1392364894573297746> %d\n", lastStats.Agility))
 			}
 
 			if lastStats.AttackSpeed != 0 {
-				statsString = statsString + fmt.Sprintf("<:attackspeed:1392364933722804274> %d\n", lastStats.AttackSpeed)
+				builder.WriteString(fmt.Sprintf("<:attackspeed:1392364933722804274> %d\n", lastStats.AttackSpeed))
 			}
 
 			if lastStats.AttackSize != 0 {
-				statsString = statsString + fmt.Sprintf("<:attacksize:1392364917616807956> %d\n", lastStats.AttackSize)
+				builder.WriteString(fmt.Sprintf("<:attacksize:1392364917616807956> %d\n", lastStats.AttackSize))
 			}
 
 			if lastStats.Intensity != 0 {
-				statsString = statsString + fmt.Sprintf("<:intensity:1392365008049934377> %d\n", lastStats.Intensity)
+				builder.WriteString(fmt.Sprintf("<:intensity:1392365008049934377> %d\n", lastStats.Intensity))
 			}
 
 			if lastStats.Regeneration != 0 {
-				statsString = statsString + fmt.Sprintf("<:regeneration:1392365064010469396> %d\n", lastStats.Regeneration)
+				builder.WriteString(fmt.Sprintf("<:regeneration:1392365064010469396> %d\n", lastStats.Regeneration))
 			}
 
 			if lastStats.Piercing != 0 {
-				statsString = statsString + fmt.Sprintf("<:piercing:1392365031705808986> %d\n", lastStats.Piercing)
+				builder.WriteString(fmt.Sprintf("<:piercing:1392365031705808986> %d\n", lastStats.Piercing))
 			}
 
 			if lastStats.Resistance != 0 {
-				statsString = statsString + fmt.Sprintf("<:resistance:1393458741009186907> %d\n", lastStats.Resistance)
+				builder.WriteString(fmt.Sprintf("<:resistance:1393458741009186907> %d\n", lastStats.Resistance))
 			}
 
 			if lastStats.Drawback != 0 {
-				statsString = statsString + fmt.Sprintf("<:drawback:1392364965905563698> %d\n", lastStats.Drawback)
+				builder.WriteString(fmt.Sprintf("<:drawback:1392364965905563698> %d\n", lastStats.Drawback))
 			}
 
 			if lastStats.Warding != 0 {
-				statsString = statsString + fmt.Sprintf("<:warding:1392366478560596039> %d\n", lastStats.Warding)
+				builder.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", lastStats.Warding))
 			}
+
+			statsString = builder.String()
 		}
 
 		fields = append(fields, discord.EmbedField{
