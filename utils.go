@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log/slog"
+	"math"
 	"net/http"
 	"os"
 	"strconv"
@@ -80,6 +81,81 @@ var (
 	}
 )
 
+type Item struct {
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	Legend   string `json:"legend"`
+	MainType string `json:"mainType"`
+	Rarity   string `json:"rarity"`
+	ImageID  string `json:"imageId"`
+	Deleted  bool   `json:"deleted"`
+	SubType  string `json:"subType,omitempty"`
+	GemNo    int    `json:"gemNo,omitempty"`
+	MinLevel int    `json:"minLevel,omitempty"`
+	MaxLevel int    `json:"maxLevel,omitempty"`
+
+	StatType      string `json:"statType,omitempty"`
+	StatsPerLevel []struct {
+		Level        int `json:"level"`
+		Power        int `json:"power,omitempty"`
+		Agility      int `json:"agility,omitempty"`
+		Defense      int `json:"defense,omitempty"`
+		AttackSpeed  int `json:"attackSpeed,omitempty"`
+		AttackSize   int `json:"attackSize,omitempty"`
+		Intensity    int `json:"intensity,omitempty"`
+		Warding      int `json:"warding,omitempty"`
+		Drawback     int `json:"drawback,omitempty"`
+		Regeneration int `json:"regeneration,omitempty"`
+		Piercing     int `json:"piercing,omitempty"`
+		Resistance   int `json:"resistance,omitempty"`
+	} `json:"statsPerLevel,omitempty"`
+
+	ValidModifiers []string `json:"validModifiers,omitempty"`
+
+	EnchantTypes struct {
+		Gear struct {
+			DefenseIncrement int `json:"defenseIncrement"`
+			PowerIncrement   int `json:"powerIncrement"`
+		} `json:"gear,omitempty"`
+		Ship struct {
+			Hull struct {
+				Durability int `json:"durability"`
+			} `json:"hull,omitempty"`
+			Ram struct {
+				Durability int `json:"durability"`
+			} `json:"ram,omitempty"`
+		} `json:"ship"`
+	} `json:"enchantTypes,omitempty"`
+
+	PowerIncrement        float64 `json:"powerIncrement,omitempty"`
+	DefenseIncrement      float64 `json:"defenseIncrement,omitempty"`
+	AgilityIncrement      float64 `json:"agilityIncrement,omitempty"`
+	AttackSpeedIncrement  float64 `json:"attackSpeedIncrement,omitempty"`
+	AttackSizeIncrement   float64 `json:"attackSizeIncrement,omitempty"`
+	IntensityIncrement    float64 `json:"intensityIncrement,omitempty"`
+	RegenerationIncrement float64 `json:"regenerationIncrement,omitempty"`
+	PiercingIncrement     float64 `json:"piercingIncrement,omitempty"`
+	ResistanceIncrement   float64 `json:"resistanceIncrement,omitempty"`
+
+	Insanity     int `json:"insanity,omitempty"`
+	Warding      int `json:"warding,omitempty"`
+	Agility      int `json:"agility,omitempty"`
+	AttackSize   int `json:"attackSize,omitempty"`
+	Defense      int `json:"defense,omitempty"`
+	Drawback     int `json:"drawback,omitempty"`
+	Power        int `json:"power,omitempty"`
+	AttackSpeed  int `json:"attackSpeed,omitempty"`
+	Intensity    int `json:"intensity,omitempty"`
+	Piercing     int `json:"piercing,omitempty"`
+	Regeneration int `json:"regeneration,omitempty"`
+	Resistance   int `json:"resistance,omitempty"`
+	Durability   int `json:"durability,omitempty"`
+	Speed        int `json:"speed,omitempty"`
+	Stability    int `json:"stability,omitempty"`
+	Turning      int `json:"turning,omitempty"`
+	RamDefense   int `json:"ramDefense,omitempty"`
+}
+
 type Player struct {
 	Level          int
 	VitalityPoints int
@@ -99,6 +175,21 @@ type Slot struct {
 	Enchantment string
 	Modifier    string
 	Level       int
+}
+
+type TotalStats struct {
+	Power        int
+	Defense      int
+	Agility      int
+	AttackSpeed  int
+	AttackSize   int
+	Intensity    int
+	Regeneration int
+	Piercing     int
+	Resistance   int
+	Insanity     int
+	Warding      int
+	Drawback     int
 }
 
 func BoolToPtr(b bool) *bool {
@@ -467,7 +558,7 @@ func ModifierIntoEmoji(item *Item) string {
 		return "<:abyssal:1393733751279718591>"
 	case "Archaic":
 		return "<:archaic:1393733752877744178>"
-	case "Atlantean":
+	case "Atlantean Essence":
 		return "<:atlantean:1393733755088404665>"
 	case "Blasted":
 		return "<:blasted:1393733757537882144>"
@@ -529,4 +620,190 @@ func GemIntoEmoji(item *Item) string {
 	default:
 		return ""
 	}
+}
+
+func CalculateTotalStats(player Player) TotalStats {
+	var total TotalStats
+
+	// helper function to add item stats
+	addItemStats := func(slot Slot) {
+		if slot.Item == "AAA" || slot.Item == "AAB" || slot.Item == "AAC" {
+			return // skip empty slots
+		}
+
+		var slotStats TotalStats
+
+		item := FindByID(slot.Item)
+		enchantment := FindByID(slot.Enchantment)
+		modifier := FindByID(slot.Modifier)
+
+		level := math.Floor(float64(slot.Level)/10) * 10
+		multiplier := math.Floor(float64(slot.Level) / 10)
+
+		// base item stats (at the slot's level)
+		if len(item.StatsPerLevel) > 0 {
+			// find the appropriate stats for the item level
+			for _, v := range item.StatsPerLevel {
+				if v.Level == int(level) {
+					slotStats.Agility += v.Agility
+					slotStats.AttackSize += v.AttackSize
+					slotStats.AttackSpeed += v.AttackSpeed
+					slotStats.Defense += v.Defense
+					slotStats.Drawback += v.Drawback
+					slotStats.Intensity += v.Intensity
+					slotStats.Piercing += v.Piercing
+					slotStats.Power += v.Power
+					slotStats.Regeneration += v.Regeneration
+					slotStats.Resistance += v.Resistance
+					slotStats.Warding += v.Warding
+				}
+			}
+		}
+
+		// Fixed item stats
+		slotStats.Power += item.Power
+		slotStats.Defense += item.Defense
+		slotStats.Agility += item.Agility
+		slotStats.AttackSpeed += item.AttackSpeed
+		slotStats.AttackSize += item.AttackSize
+		slotStats.Intensity += item.Intensity
+		slotStats.Regeneration += item.Regeneration
+		slotStats.Piercing += item.Piercing
+		slotStats.Resistance += item.Resistance
+		slotStats.Insanity += item.Insanity
+		slotStats.Warding += item.Warding
+		slotStats.Drawback += item.Drawback
+
+		// Enchantment stats
+		if enchantment.ID != "AAD" { // Not "None"
+
+			slotStats.Power += int(math.Floor(enchantment.PowerIncrement * multiplier))
+			slotStats.Defense += int(math.Floor(enchantment.DefenseIncrement * multiplier))
+			slotStats.Agility += int(math.Floor(enchantment.AgilityIncrement * multiplier))
+			slotStats.AttackSpeed += int(math.Floor(enchantment.AttackSpeedIncrement * multiplier))
+			slotStats.AttackSize += int(math.Floor(enchantment.AttackSizeIncrement * multiplier))
+			slotStats.Intensity += int(math.Floor(enchantment.IntensityIncrement * multiplier))
+			slotStats.Regeneration += int(math.Floor(enchantment.RegenerationIncrement * multiplier))
+			slotStats.Piercing += int(math.Floor(enchantment.PiercingIncrement * multiplier))
+			slotStats.Resistance += int(math.Floor(enchantment.ResistanceIncrement * multiplier))
+			slotStats.Warding += enchantment.Warding
+		}
+
+		// Gem stats
+		for _, gemID := range slot.Gems {
+			if gemID == "AAF" || gemID == "" { // Skip "None" gems
+				continue
+			}
+			gem := FindByID(gemID)
+			slotStats.Power += gem.Power
+			slotStats.Defense += gem.Defense
+			slotStats.Agility += gem.Agility
+			slotStats.AttackSpeed += gem.AttackSpeed
+			slotStats.AttackSize += gem.AttackSize
+			slotStats.Intensity += gem.Intensity
+			slotStats.Regeneration += gem.Regeneration
+			slotStats.Piercing += gem.Piercing
+			slotStats.Resistance += gem.Resistance
+			slotStats.Drawback += gem.Drawback
+		}
+
+		// modifier incremental stats
+		if modifier.Name != "Atlantean Essence" {
+			slotStats.Agility += int(math.Floor(modifier.AgilityIncrement * multiplier))
+			slotStats.AttackSize += int(math.Floor(modifier.AttackSizeIncrement * multiplier))
+			slotStats.AttackSpeed += int(math.Floor(modifier.AttackSpeedIncrement * multiplier))
+			slotStats.Defense += int(math.Floor(modifier.DefenseIncrement * multiplier))
+			slotStats.Intensity += int(math.Floor(modifier.IntensityIncrement * multiplier))
+			slotStats.Piercing += int(math.Floor(modifier.PiercingIncrement * multiplier))
+			slotStats.Power += int(math.Floor(modifier.PowerIncrement * multiplier))
+			slotStats.Regeneration += int(math.Floor(modifier.RegenerationIncrement * multiplier))
+			slotStats.Resistance += int(math.Floor(modifier.ResistanceIncrement * multiplier))
+		} else {
+			slotStats.Insanity += 1
+			if slotStats.Power == 0 {
+				slotStats.Power += 1 * int(multiplier)
+			} else if slotStats.Defense == 0 {
+				slotStats.Defense += int(math.Floor(9.07 * multiplier))
+			} else if slotStats.AttackSize == 0 {
+				slotStats.AttackSize += 3 * int(multiplier)
+			} else if slotStats.AttackSpeed == 0 {
+				slotStats.AttackSpeed += 3 * int(multiplier)
+			} else if slotStats.Agility == 0 {
+				slotStats.Agility += 3 * int(multiplier)
+			} else if slotStats.Intensity == 0 {
+				slotStats.Intensity += 3 * int(multiplier)
+			} else {
+				slotStats.Power += 1 * int(multiplier)
+			}
+		}
+
+		total.Power += slotStats.Power
+		total.Defense += slotStats.Defense
+		total.Agility += slotStats.Agility
+		total.AttackSpeed += slotStats.AttackSpeed
+		total.AttackSize += slotStats.AttackSize
+		total.Intensity += slotStats.Intensity
+		total.Regeneration += slotStats.Regeneration
+		total.Piercing += slotStats.Piercing
+		total.Resistance += slotStats.Resistance
+		total.Insanity += slotStats.Insanity
+		total.Warding += slotStats.Warding
+		total.Drawback += slotStats.Drawback
+	}
+
+	// Calculate stats for all equipped items
+	for _, accessory := range player.Accessories {
+		addItemStats(accessory)
+	}
+	addItemStats(player.Chestplate)
+	addItemStats(player.Boots)
+
+	return total
+}
+
+func FormatTotalStats(stats TotalStats) string {
+	var result strings.Builder
+
+	if stats.Power > 0 {
+		result.WriteString(fmt.Sprintf("<:power:1392363667059904632> %d\n", stats.Power))
+	}
+	if stats.Defense > 0 {
+		result.WriteString(fmt.Sprintf("<:defense:1392364201262977054> %d\n", stats.Defense))
+	}
+	if stats.Agility > 0 {
+		result.WriteString(fmt.Sprintf("<:agility:1392364894573297746> %d\n", stats.Agility))
+	}
+	if stats.AttackSpeed > 0 {
+		result.WriteString(fmt.Sprintf("<:attackspeed:1392364933722804274> %d\n", stats.AttackSpeed))
+	}
+	if stats.AttackSize > 0 {
+		result.WriteString(fmt.Sprintf("<:attacksize:1392364917616807956> %d\n", stats.AttackSize))
+	}
+	if stats.Intensity > 0 {
+		result.WriteString(fmt.Sprintf("<:intensity:1392365008049934377> %d\n", stats.Intensity))
+	}
+	if stats.Regeneration > 0 {
+		result.WriteString(fmt.Sprintf("<:regeneration:1392365064010469396> %d\n", stats.Regeneration))
+	}
+	if stats.Piercing > 0 {
+		result.WriteString(fmt.Sprintf("<:piercing:1392365031705808986> %d\n", stats.Piercing))
+	}
+	if stats.Resistance > 0 {
+		result.WriteString(fmt.Sprintf("<:resistance:1393458741009186907> %d\n", stats.Resistance))
+	}
+	if stats.Drawback > 0 {
+		result.WriteString(fmt.Sprintf("<:drawback:1392364965905563698> %d\n", stats.Drawback))
+	}
+	if stats.Warding > 0 {
+		result.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", stats.Warding))
+	}
+	if stats.Insanity > 0 {
+		result.WriteString(fmt.Sprintf("<:insanity:1392364984658301031> %d\n", stats.Insanity))
+	}
+
+	if result.Len() == 0 {
+		return "No stats"
+	}
+
+	return result.String()
 }

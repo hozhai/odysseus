@@ -126,20 +126,14 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		)
 
 		if err != nil {
-			slog.Error("Error sending message", slog.Any("err", err))
+			slog.Error("error sending message", slog.Any("err", err))
 		}
 	}
 
 	if e.Data.CommandName() == "item" {
 		id := e.SlashCommandInteractionData().String("name")
-		var item Item
 
-		for _, i := range APIData {
-			if i.ID == id {
-				item = i
-				break
-			}
-		}
+		item := *FindByID(id)
 
 		ptrTrue := BoolToPtr(true)
 
@@ -350,13 +344,13 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 
 			var gems string
 			for _, v := range v.Gems {
-				gems = gems + GemIntoEmoji(FindByID(v)) + " "
+				gems = gems + GemIntoEmoji(FindByID(v))
 			}
 
 			fields = append(fields, discord.EmbedField{
 				Name: "Accessory",
 				Value: fmt.Sprintf(
-					"%v %v %v\n%v",
+					"%v\n%v%v\n%v",
 					FindByID(v.Item).Name,
 					EnchantmentIntoEmoji(enchantmentItem),
 					ModifierIntoEmoji(modifierItem),
@@ -384,7 +378,7 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 			fields = append(fields, discord.EmbedField{
 				Name: "Chestplate",
 				Value: fmt.Sprintf(
-					"%v %v %v\n%v",
+					"%v\n%v%v\n%v",
 					FindByID(player.Chestplate.Item).Name,
 					EnchantmentIntoEmoji(enchantmentItem),
 					ModifierIntoEmoji(modifierItem),
@@ -412,7 +406,7 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 			fields = append(fields, discord.EmbedField{
 				Name: "Boots",
 				Value: fmt.Sprintf(
-					"%v %v %v\n%v",
+					"%v\n%v%v\n%v",
 					FindByID(player.Boots.Item).Name,
 					EnchantmentIntoEmoji(enchantmentItem),
 					ModifierIntoEmoji(modifierItem),
@@ -422,11 +416,12 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 			})
 		}
 
-		// calculations here
+		totalStats := CalculateTotalStats(player)
+		statsString := FormatTotalStats(totalStats)
 
 		fields = append(fields, discord.EmbedField{
 			Name:   "Total Stats",
-			Value:  "egg",
+			Value:  statsString,
 			Inline: ptrTrue,
 		})
 
