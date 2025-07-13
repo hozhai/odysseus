@@ -9,12 +9,22 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 
 	"github.com/disgoorg/json"
 )
 
 type Magic int64
 type FightingStyle int64
+
+const (
+	EmptyAccessoryID   = "AAA"
+	EmptyChestplateID  = "AAB"
+	EmptyBootsID       = "AAC"
+	EmptyEnchantmentID = "AAD"
+	EmptyModifierID    = "AAE"
+	EmptyGemID         = "AAF"
+)
 
 const (
 	Acid Magic = iota
@@ -448,6 +458,33 @@ func FindByID(id string) *Item {
 	return &Item{}
 }
 
+// add caching to repeated lookups
+type ItemCache struct {
+	cache map[string]*Item
+	mu    sync.RWMutex
+}
+
+var itemCache = &ItemCache{
+	cache: make(map[string]*Item),
+}
+
+func FindByIDCached(id string) *Item {
+	itemCache.mu.RLock()
+	if item, exists := itemCache.cache[id]; exists {
+		itemCache.mu.RUnlock()
+		return item
+	}
+	itemCache.mu.RUnlock()
+
+	// not in cache, find and cache it
+	item := FindByID(id)
+	itemCache.mu.Lock()
+	itemCache.cache[id] = item
+	itemCache.mu.Unlock()
+
+	return item
+}
+
 func MagicFsIntoEmoji[k Magic | FightingStyle](content k) string {
 	switch content {
 	// magic cases
@@ -627,7 +664,7 @@ func CalculateTotalStats(player Player) TotalStats {
 
 	// helper function to add item stats
 	addItemStats := func(slot Slot) {
-		if slot.Item == "AAA" || slot.Item == "AAB" || slot.Item == "AAC" {
+		if slot.Item == EmptyAccessoryID || slot.Item == EmptyChestplateID || slot.Item == EmptyBootsID {
 			return // skip empty slots
 		}
 
@@ -675,7 +712,7 @@ func CalculateTotalStats(player Player) TotalStats {
 		slotStats.Drawback += item.Drawback
 
 		// Enchantment stats
-		if enchantment.ID != "AAD" { // Not "None"
+		if enchantment.ID != EmptyEnchantmentID { // Not "None"
 
 			slotStats.Power += int(math.Floor(enchantment.PowerIncrement * multiplier))
 			slotStats.Defense += int(math.Floor(enchantment.DefenseIncrement * multiplier))
@@ -691,7 +728,7 @@ func CalculateTotalStats(player Player) TotalStats {
 
 		// Gem stats
 		for _, gemID := range slot.Gems {
-			if gemID == "AAF" || gemID == "" { // Skip "None" gems
+			if gemID == EmptyGemID || gemID == "" { // Skip "None" gems
 				continue
 			}
 			gem := FindByID(gemID)
@@ -762,48 +799,40 @@ func CalculateTotalStats(player Player) TotalStats {
 }
 
 func FormatTotalStats(stats TotalStats) string {
-	var result strings.Builder
+	var builder strings.Builder
+	builder.Grow(200) // Estimate capacity
 
-	if stats.Power > 0 {
-		result.WriteString(fmt.Sprintf("<:power:1392363667059904632> %d\n", stats.Power))
+	statMap := map[string]interface{}{
+		"<:power:1392363667059904632>":        stats.Power,
+		"<:defense:1392364201262977054>":      stats.Defense,
+		"<:agility:1392364894573297746>":      stats.Agility,
+		"<:attackspeed:1392364933722804274>":  stats.AttackSpeed,
+		"<:attacksize:1392364917616807956>":   stats.AttackSize,
+		"<:intensity:1392365008049934377>":    stats.Intensity,
+		"<:regeneration:1392365064010469396>": stats.Regeneration,
+		"<:piercing:1392365031705808986>":     stats.Piercing,
+		"<:resistance:1393458741009186907>":   stats.Resistance,
 	}
-	if stats.Defense > 0 {
-		result.WriteString(fmt.Sprintf("<:defense:1392364201262977054> %d\n", stats.Defense))
+
+	for emoji, value := range statMap {
+		if val, ok := value.(float64); ok && val > 0 {
+			builder.WriteString(fmt.Sprintf("%s %.1f\n", emoji, val))
+		}
 	}
-	if stats.Agility > 0 {
-		result.WriteString(fmt.Sprintf("<:agility:1392364894573297746> %d\n", stats.Agility))
-	}
-	if stats.AttackSpeed > 0 {
-		result.WriteString(fmt.Sprintf("<:attackspeed:1392364933722804274> %d\n", stats.AttackSpeed))
-	}
-	if stats.AttackSize > 0 {
-		result.WriteString(fmt.Sprintf("<:attacksize:1392364917616807956> %d\n", stats.AttackSize))
-	}
-	if stats.Intensity > 0 {
-		result.WriteString(fmt.Sprintf("<:intensity:1392365008049934377> %d\n", stats.Intensity))
-	}
-	if stats.Regeneration > 0 {
-		result.WriteString(fmt.Sprintf("<:regeneration:1392365064010469396> %d\n", stats.Regeneration))
-	}
-	if stats.Piercing > 0 {
-		result.WriteString(fmt.Sprintf("<:piercing:1392365031705808986> %d\n", stats.Piercing))
-	}
-	if stats.Resistance > 0 {
-		result.WriteString(fmt.Sprintf("<:resistance:1393458741009186907> %d\n", stats.Resistance))
-	}
+
 	if stats.Drawback > 0 {
-		result.WriteString(fmt.Sprintf("<:drawback:1392364965905563698> %d\n", stats.Drawback))
+		builder.WriteString(fmt.Sprintf("<:drawback:1392364965905563698> %d\n", stats.Drawback))
 	}
 	if stats.Warding > 0 {
-		result.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", stats.Warding))
+		builder.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", stats.Warding))
 	}
 	if stats.Insanity > 0 {
-		result.WriteString(fmt.Sprintf("<:insanity:1392364984658301031> %d\n", stats.Insanity))
+		builder.WriteString(fmt.Sprintf("🔴 Insanity: %d\n", stats.Insanity))
 	}
 
-	if result.Len() == 0 {
+	if builder.Len() == 0 {
 		return "No stats"
 	}
 
-	return result.String()
+	return builder.String()
 }

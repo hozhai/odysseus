@@ -16,7 +16,7 @@ import (
 func onReady(e *events.Ready) {
 	slog.Info(
 		fmt.Sprintf(
-			"Logged in as %s#%s (%s)\n",
+			"logged in as %s#%s (%s)\n",
 			e.User.Username,
 			e.User.Discriminator,
 			e.Client().ApplicationID(),
@@ -133,7 +133,7 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 	if e.Data.CommandName() == "item" {
 		id := e.SlashCommandInteractionData().String("name")
 
-		item := *FindByID(id)
+		item := *FindByIDCached(id)
 
 		ptrTrue := BoolToPtr(true)
 
@@ -285,7 +285,7 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 
 		if err != nil {
 			err := e.CreateMessage(
-				discord.NewMessageCreateBuilder().SetContent(fmt.Sprintf("Error parsing build code: %v", err)).Build(),
+				discord.NewMessageCreateBuilder().SetContent(fmt.Sprintf("error parsing build code: %v", err)).Build(),
 			)
 			if err != nil {
 				slog.Error("error sending error message", slog.Any("err", err))
@@ -293,21 +293,27 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 			return
 		}
 
-		var fields []discord.EmbedField
+		fields := make([]discord.EmbedField, 0, 8) // Estimate: 3 base + 3 accessories + chestplate + boots
 		ptrTrue := BoolToPtr(true)
 
 		var magicfs string
+		var builder strings.Builder
+		builder.Grow(len(player.Magics)*20 + len(player.FightingStyles)*20)
 
 		for _, v := range player.Magics {
-			magicfs = magicfs + MagicFsIntoEmoji(v) + " "
+			builder.WriteString(MagicFsIntoEmoji(v))
+			builder.WriteString(" ")
 		}
 
 		for _, v := range player.FightingStyles {
-			magicfs = magicfs + MagicFsIntoEmoji(v) + " "
+			builder.WriteString(MagicFsIntoEmoji(v))
+			builder.WriteString(" ")
 		}
 
-		if magicfs == "" {
+		if builder.Len() == 0 {
 			magicfs = "None"
+		} else {
+			magicfs = builder.String()
 		}
 
 		fields = append(fields,
@@ -318,7 +324,7 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 			},
 			discord.EmbedField{
 				Name:   "Stat Allocation",
-				Value:  fmt.Sprintf("🟩 %v 🟦 %v 🟥 %v 🟨 %v", player.VitalityPoints, player.MagicPoints, player.StrengthPoints, player.WeaponPoints),
+				Value:  fmt.Sprintf("🟩 %v 🟦 %v\n🟥 %v 🟨 %v", player.VitalityPoints, player.MagicPoints, player.StrengthPoints, player.WeaponPoints),
 				Inline: ptrTrue,
 			},
 			discord.EmbedField{
@@ -329,8 +335,7 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		)
 
 		for _, v := range player.Accessories {
-			// "AAA" is nothing
-			if v.Item == "AAA" {
+			if v.Item == EmptyAccessoryID {
 				fields = append(fields, discord.EmbedField{
 					Name:   "Accessory",
 					Value:  "None",
@@ -339,12 +344,12 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 				continue
 			}
 
-			enchantmentItem := FindByID(v.Enchantment)
-			modifierItem := FindByID(v.Modifier)
+			enchantmentItem := FindByIDCached(v.Enchantment)
+			modifierItem := FindByIDCached(v.Modifier)
 
 			var gems string
 			for _, v := range v.Gems {
-				gems = gems + GemIntoEmoji(FindByID(v))
+				gems = gems + GemIntoEmoji(FindByIDCached(v))
 			}
 
 			fields = append(fields, discord.EmbedField{
@@ -369,17 +374,17 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		} else {
 			var gems string
 			for _, v := range player.Chestplate.Gems {
-				gems = gems + GemIntoEmoji(FindByID(v))
+				gems = gems + GemIntoEmoji(FindByIDCached(v))
 			}
 
-			enchantmentItem := FindByID(player.Chestplate.Enchantment)
-			modifierItem := FindByID(player.Chestplate.Modifier)
+			enchantmentItem := FindByIDCached(player.Chestplate.Enchantment)
+			modifierItem := FindByIDCached(player.Chestplate.Modifier)
 
 			fields = append(fields, discord.EmbedField{
 				Name: "Chestplate",
 				Value: fmt.Sprintf(
 					"%v\n%v%v\n%v",
-					FindByID(player.Chestplate.Item).Name,
+					FindByIDCached(player.Chestplate.Item).Name,
 					EnchantmentIntoEmoji(enchantmentItem),
 					ModifierIntoEmoji(modifierItem),
 					gems,
@@ -397,17 +402,17 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		} else {
 			var gems string
 			for _, v := range player.Boots.Gems {
-				gems = gems + GemIntoEmoji(FindByID(v))
+				gems = gems + GemIntoEmoji(FindByIDCached(v))
 			}
 
-			enchantmentItem := FindByID(player.Boots.Enchantment)
-			modifierItem := FindByID(player.Boots.Modifier)
+			enchantmentItem := FindByIDCached(player.Boots.Enchantment)
+			modifierItem := FindByIDCached(player.Boots.Modifier)
 
 			fields = append(fields, discord.EmbedField{
 				Name: "Boots",
 				Value: fmt.Sprintf(
 					"%v\n%v%v\n%v",
-					FindByID(player.Boots.Item).Name,
+					FindByIDCached(player.Boots.Item).Name,
 					EnchantmentIntoEmoji(enchantmentItem),
 					ModifierIntoEmoji(modifierItem),
 					gems,
