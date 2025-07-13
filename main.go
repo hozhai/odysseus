@@ -31,8 +31,8 @@ var (
 			Description: "About Odysseus.",
 		},
 		discord.SlashCommandCreate{
-			Name:        "loadbuild",
-			Description: "Show build from URL.",
+			Name:        "build",
+			Description: "Loads a GearBuilder build from URL.",
 			Options: []discord.ApplicationCommandOption{
 				discord.ApplicationCommandOptionString{
 					Name:        "url",

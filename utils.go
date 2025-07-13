@@ -18,6 +18,14 @@ type Magic int64
 type FightingStyle int64
 
 const (
+	ColorDefault  = 0x93b1e3
+	ColorCommon   = 0xffffff
+	ColorUncommon = 0x7f734c
+	ColorRare     = 0x6765e4
+	ColorExotic   = 0xea3323
+)
+
+const (
 	EmptyAccessoryID   = "AAA"
 	EmptyChestplateID  = "AAB"
 	EmptyBootsID       = "AAC"
@@ -202,6 +210,60 @@ type TotalStats struct {
 	Drawback     int
 }
 
+// add caching to repeated lookups
+type ItemCache struct {
+	cache map[string]*Item
+	mu    sync.RWMutex
+}
+
+var itemCache = &ItemCache{
+	cache: make(map[string]*Item),
+}
+
+func InitializeItemCache() {
+	itemCache.mu.Lock()
+	defer itemCache.mu.Unlock()
+
+	if len(APIData) == 0 {
+		slog.Warn("APIData is empty, cache not initialized")
+		return
+	}
+
+	itemCache.cache = make(map[string]*Item, len(APIData))
+	for i := range APIData {
+		itemCache.cache[APIData[i].ID] = &APIData[i]
+	}
+
+	slog.Info("item cahche initialized", "items", len(itemCache.cache))
+}
+
+func FindByIDCached(id string) *Item {
+	itemCache.mu.RLock()
+	defer itemCache.mu.RUnlock()
+
+	if item, exists := itemCache.cache[id]; exists {
+		return item
+	}
+
+	// Return empty item if not found
+	return &Item{Name: "Unknown", ID: id}
+}
+
+func GetRarityColor(rarity string) int {
+	switch rarity {
+	case "Common":
+		return ColorCommon
+	case "Uncommon":
+		return ColorUncommon
+	case "Rare":
+		return ColorRare
+	case "Exotic":
+		return ColorExotic
+	default:
+		return ColorDefault
+	}
+}
+
 func BoolToPtr(b bool) *bool {
 	return &b
 }
@@ -216,6 +278,7 @@ func GetData() error {
 			slog.Warn("failed to decode, falling back to fetching api...")
 		} else {
 			slog.Info("succesfully decoded json")
+			InitializeItemCache()
 			return nil
 		}
 	} else if os.IsNotExist(err) {
@@ -253,6 +316,7 @@ func GetData() error {
 	}
 
 	slog.Info("finished fetching data from API")
+	InitializeItemCache()
 	return nil
 }
 
@@ -448,43 +512,6 @@ func parseItem(slotCodeArray []string) (Slot, error) {
 	return Slot{}, fmt.Errorf("failed to determine gem slot amount")
 }
 
-func FindByID(id string) *Item {
-	for _, v := range APIData {
-		if v.ID == id {
-			return &v
-		}
-	}
-
-	return &Item{}
-}
-
-// add caching to repeated lookups
-type ItemCache struct {
-	cache map[string]*Item
-	mu    sync.RWMutex
-}
-
-var itemCache = &ItemCache{
-	cache: make(map[string]*Item),
-}
-
-func FindByIDCached(id string) *Item {
-	itemCache.mu.RLock()
-	if item, exists := itemCache.cache[id]; exists {
-		itemCache.mu.RUnlock()
-		return item
-	}
-	itemCache.mu.RUnlock()
-
-	// not in cache, find and cache it
-	item := FindByID(id)
-	itemCache.mu.Lock()
-	itemCache.cache[id] = item
-	itemCache.mu.Unlock()
-
-	return item
-}
-
 func MagicFsIntoEmoji[k Magic | FightingStyle](content k) string {
 	switch content {
 	// magic cases
@@ -670,9 +697,9 @@ func CalculateTotalStats(player Player) TotalStats {
 
 		var slotStats TotalStats
 
-		item := FindByID(slot.Item)
-		enchantment := FindByID(slot.Enchantment)
-		modifier := FindByID(slot.Modifier)
+		item := FindByIDCached(slot.Item)
+		enchantment := FindByIDCached(slot.Enchantment)
+		modifier := FindByIDCached(slot.Modifier)
 
 		level := math.Floor(float64(slot.Level)/10) * 10
 		multiplier := math.Floor(float64(slot.Level) / 10)
@@ -731,7 +758,7 @@ func CalculateTotalStats(player Player) TotalStats {
 			if gemID == EmptyGemID || gemID == "" { // Skip "None" gems
 				continue
 			}
-			gem := FindByID(gemID)
+			gem := FindByIDCached(gemID)
 			slotStats.Power += gem.Power
 			slotStats.Defense += gem.Defense
 			slotStats.Agility += gem.Agility
@@ -800,23 +827,27 @@ func CalculateTotalStats(player Player) TotalStats {
 
 func FormatTotalStats(stats TotalStats) string {
 	var builder strings.Builder
-	builder.Grow(200) // Estimate capacity
+	builder.Grow(200)
 
-	statMap := map[string]interface{}{
-		"<:power:1392363667059904632>":        stats.Power,
-		"<:defense:1392364201262977054>":      stats.Defense,
-		"<:agility:1392364894573297746>":      stats.Agility,
-		"<:attackspeed:1392364933722804274>":  stats.AttackSpeed,
-		"<:attacksize:1392364917616807956>":   stats.AttackSize,
-		"<:intensity:1392365008049934377>":    stats.Intensity,
-		"<:regeneration:1392365064010469396>": stats.Regeneration,
-		"<:piercing:1392365031705808986>":     stats.Piercing,
-		"<:resistance:1393458741009186907>":   stats.Resistance,
+	// Define stats with their emojis in order
+	statEntries := []struct {
+		emoji string
+		value int
+	}{
+		{"<:power:1392363667059904632>", stats.Power},
+		{"<:defense:1392364201262977054>", stats.Defense},
+		{"<:agility:1392364894573297746>", stats.Agility},
+		{"<:attackspeed:1392364933722804274>", stats.AttackSpeed},
+		{"<:attacksize:1392364917616807956>", stats.AttackSize},
+		{"<:intensity:1392365008049934377>", stats.Intensity},
+		{"<:regeneration:1392365064010469396>", stats.Regeneration},
+		{"<:piercing:1392365031705808986>", stats.Piercing},
+		{"<:resistance:1393458741009186907>", stats.Resistance},
 	}
 
-	for emoji, value := range statMap {
-		if val, ok := value.(float64); ok && val > 0 {
-			builder.WriteString(fmt.Sprintf("%s %.1f\n", emoji, val))
+	for _, entry := range statEntries {
+		if entry.value > 0 {
+			builder.WriteString(fmt.Sprintf("%s %d\n", entry.emoji, entry.value))
 		}
 	}
 
@@ -827,7 +858,7 @@ func FormatTotalStats(stats TotalStats) string {
 		builder.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", stats.Warding))
 	}
 	if stats.Insanity > 0 {
-		builder.WriteString(fmt.Sprintf("🔴 Insanity: %d\n", stats.Insanity))
+		builder.WriteString(fmt.Sprintf("<:insanity:1392364984658301031> %d\n", stats.Insanity))
 	}
 
 	if builder.Len() == 0 {
@@ -835,4 +866,10 @@ func FormatTotalStats(stats TotalStats) string {
 	}
 
 	return builder.String()
+}
+
+func IsCacheInitialized() bool {
+	itemCache.mu.RLock()
+	defer itemCache.mu.RUnlock()
+	return len(itemCache.cache) > 0
 }
