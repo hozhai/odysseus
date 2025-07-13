@@ -3,13 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
+	"log/slog"
+	"strings"
+	"time"
+
 	"github.com/disgoorg/disgo/discord"
 	"github.com/disgoorg/disgo/events"
 	"github.com/disgoorg/disgo/gateway"
 	"github.com/disgoorg/json"
-	"log/slog"
-	"strings"
-	"time"
 )
 
 func onReady(e *events.Ready) {
@@ -148,8 +149,7 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 
 		var statsString string
 
-		if item.StatsPerLevel != nil && len(item.StatsPerLevel) > 0 {
-
+		if len(item.StatsPerLevel) > 0 {
 			lastStats := item.StatsPerLevel[len(item.StatsPerLevel)-1]
 
 			if lastStats.Power != 0 {
@@ -285,18 +285,166 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 			return
 		}
 
-		e := e.DeferCreateMessage(true)
+		hash := strings.TrimPrefix(url, "https://tools.arcaneodyssey.net/gearBuilder#")
 
-		if e != nil {
-			slog.Error("error deferring message", slog.Any("err", e))
+		player, err := UnhashBuildCode(hash)
+
+		if err != nil {
+			err := e.CreateMessage(
+				discord.NewMessageCreateBuilder().SetContent(fmt.Sprintf("Error parsing build code: %v", err)).Build(),
+			)
+			if err != nil {
+				slog.Error("error sending error message", slog.Any("err", err))
+			}
 			return
 		}
 
-		//hash := strings.TrimPrefix(url, "https://tools.arcaneodyssey.net/gearBuilder#")
+		var fields []discord.EmbedField
+		ptrTrue := BoolToPtr(true)
 
-		// TODO
-		/*
-			LEVEL,POINTS_VITALITY,POINTS_MAGIC,POINTS_STRENGTH,POINT_WEAPONS|MAGIC_ENUM,MAGIC_ENUM_OPTIONAL|FIGHTING_STYLE_ENUM,FIGHTING_STYLE_ENUM_OPTIONAL||ACCESSORY_ONE,ENCHANTMENT,MODIFIER,GEM,GEM,GEM_OPTIONAL,LEVEL|
-		*/
+		var magicfs string
+
+		for _, v := range player.Magics {
+			magicfs = magicfs + MagicFsIntoEmoji(v) + " "
+		}
+
+		for _, v := range player.FightingStyles {
+			magicfs = magicfs + MagicFsIntoEmoji(v) + " "
+		}
+
+		if magicfs == "" {
+			magicfs = "None"
+		}
+
+		fields = append(fields,
+			discord.EmbedField{
+				Name:   "Level",
+				Value:  fmt.Sprint(player.Level),
+				Inline: ptrTrue,
+			},
+			discord.EmbedField{
+				Name:   "Stat Allocation",
+				Value:  fmt.Sprintf("🟩 %v 🟦 %v 🟥 %v 🟨 %v", player.VitalityPoints, player.MagicPoints, player.StrengthPoints, player.WeaponPoints),
+				Inline: ptrTrue,
+			},
+			discord.EmbedField{
+				Name:   "Magics/Fighting Styles",
+				Value:  magicfs,
+				Inline: ptrTrue,
+			},
+		)
+
+		for _, v := range player.Accessories {
+			// "AAA" is nothing
+			if v.Item == "AAA" {
+				fields = append(fields, discord.EmbedField{
+					Name:   "Accessory",
+					Value:  "None",
+					Inline: ptrTrue,
+				})
+				continue
+			}
+
+			enchantmentItem := FindByID(v.Enchantment)
+			modifierItem := FindByID(v.Modifier)
+
+			var gems string
+			for _, v := range v.Gems {
+				gems = gems + GemIntoEmoji(FindByID(v)) + " "
+			}
+
+			fields = append(fields, discord.EmbedField{
+				Name: "Accessory",
+				Value: fmt.Sprintf(
+					"%v %v %v\n%v",
+					FindByID(v.Item).Name,
+					EnchantmentIntoEmoji(enchantmentItem),
+					ModifierIntoEmoji(modifierItem),
+					gems,
+				),
+				Inline: ptrTrue,
+			})
+		}
+
+		if player.Chestplate.Item == "AAB" {
+			fields = append(fields, discord.EmbedField{
+				Name:   "Chestplate",
+				Value:  "None",
+				Inline: ptrTrue,
+			})
+		} else {
+			var gems string
+			for _, v := range player.Chestplate.Gems {
+				gems = gems + GemIntoEmoji(FindByID(v))
+			}
+
+			enchantmentItem := FindByID(player.Chestplate.Enchantment)
+			modifierItem := FindByID(player.Chestplate.Modifier)
+
+			fields = append(fields, discord.EmbedField{
+				Name: "Chestplate",
+				Value: fmt.Sprintf(
+					"%v %v %v\n%v",
+					FindByID(player.Chestplate.Item).Name,
+					EnchantmentIntoEmoji(enchantmentItem),
+					ModifierIntoEmoji(modifierItem),
+					gems,
+				),
+				Inline: ptrTrue,
+			})
+		}
+
+		if player.Boots.Item == "AAC" {
+			fields = append(fields, discord.EmbedField{
+				Name:   "Boots",
+				Value:  "None",
+				Inline: ptrTrue,
+			})
+		} else {
+			var gems string
+			for _, v := range player.Boots.Gems {
+				gems = gems + GemIntoEmoji(FindByID(v))
+			}
+
+			enchantmentItem := FindByID(player.Boots.Enchantment)
+			modifierItem := FindByID(player.Boots.Modifier)
+
+			fields = append(fields, discord.EmbedField{
+				Name: "Boots",
+				Value: fmt.Sprintf(
+					"%v %v %v\n%v",
+					FindByID(player.Boots.Item).Name,
+					EnchantmentIntoEmoji(enchantmentItem),
+					ModifierIntoEmoji(modifierItem),
+					gems,
+				),
+				Inline: ptrTrue,
+			})
+		}
+
+		// calculations here
+
+		fields = append(fields, discord.EmbedField{
+			Name:   "Total Stats",
+			Value:  "egg",
+			Inline: ptrTrue,
+		})
+
+		err = e.CreateMessage(
+			discord.NewMessageCreateBuilder().
+				AddEmbeds(
+					discord.NewEmbedBuilder().
+						SetTitle(fmt.Sprintf("%v's Build", e.User().Username)).
+						SetFields(fields...).
+						SetFooter("Odysseus - Made with love <3", "").
+						SetTimestamp(time.Now()).
+						Build(),
+				).Build(),
+		)
+
+		if err != nil {
+			slog.Error("error", slog.Any("err", err))
+			return
+		}
 	}
 }
