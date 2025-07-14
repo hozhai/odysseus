@@ -219,6 +219,10 @@ type ItemCache struct {
 	mu    sync.RWMutex
 }
 
+var ListOfGems []string
+var ListOfEnchants []string
+var ListOfModifiers []string
+
 var itemCache = &ItemCache{
 	cache: make(map[string]*Item),
 }
@@ -243,10 +247,18 @@ func InitializeItemCache() {
 
 	itemCache.cache = make(map[string]*Item, len(APIData))
 	for i := range APIData {
-		itemCache.cache[APIData[i].ID] = &APIData[i]
+		item := APIData[i]
+
+		itemCache.cache[item.ID] = &item
+
+		// TODO!!!!
+
+		if item.MainType == "Gem" {
+			ListOfGems = append(ListOfGems, APIData[i].ID)
+		}
 	}
 
-	slog.Info("item cahche initialized", "items", len(itemCache.cache))
+	slog.Info("item cache initialized", "items", len(itemCache.cache))
 }
 
 func FindByIDCached(id string) *Item {

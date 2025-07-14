@@ -24,7 +24,7 @@ func onReady(e *events.Ready) {
 
 	err := e.Client().SetPresence(context.TODO(), gateway.WithPlayingActivity("Arcane Odyssey"))
 	if err != nil {
-		slog.Error("Error setting playing activity", slog.Any("err", err))
+		slog.Error("error setting playing activity", slog.Any("err", err))
 	}
 }
 
@@ -35,7 +35,7 @@ func onAutocompleteInteractionCreate(e *events.AutocompleteInteractionCreate) {
 				var value string
 
 				if err := json.Unmarshal(option.Value, &value); err != nil {
-					slog.Error("Error unmarshaling option value", slog.Any("err", err))
+					slog.Error("error unmarshaling option value", slog.Any("err", err))
 					return
 				}
 
@@ -77,5 +77,16 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		CommandBuild(e)
 	case "wiki":
 		CommandWiki(e)
+	}
+}
+
+func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
+	switch e.ButtonInteractionData().CustomID() {
+	case "item_add_gems":
+
+		e.UpdateMessage(discord.NewMessageUpdateBuilder().AddEmbeds(e.Message.Embeds[0]).AddActionRow(discord.NewStringSelectMenu("item_gem_select", "Candelaria", discord.StringSelectMenuOption{
+			Label: "Test",
+			Value: "test",
+		})).Build())
 	}
 }

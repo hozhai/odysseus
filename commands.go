@@ -196,7 +196,8 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 	err := e.CreateMessage(
 		discord.NewMessageCreateBuilder().AddEmbeds(
 			discord.NewEmbedBuilder().
-				SetTitle(fmt.Sprintf("%v (%v)", item.Name, item.ID)).
+				SetAuthor(item.ID, "", "").
+				SetTitle(item.Name).
 				SetThumbnail(imageURL).
 				SetFields(
 					fields...,
@@ -205,7 +206,12 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 				SetTimestamp(time.Now()).
 				SetColor(GetRarityColor(item.Rarity)).
 				Build(),
-		).Build(),
+		).AddActionRow(
+			discord.NewSecondaryButton("Add Gems", "item_add_gems"),
+			discord.NewSecondaryButton("Add Modifier", "item_add_modifier"),
+			discord.NewSecondaryButton("Add Enchantment", "item_add_enchantment"),
+		).
+			Build(),
 	)
 
 	if err != nil {

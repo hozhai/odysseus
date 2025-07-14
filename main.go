@@ -89,6 +89,7 @@ func main() {
 		bot.WithEventListenerFunc(onReady),
 		bot.WithEventListenerFunc(onApplicationCommandInteractionCreate),
 		bot.WithEventListenerFunc(onAutocompleteInteractionCreate),
+		bot.WithEventListenerFunc(onComponentInteractionCreate),
 	)
 
 	if err != nil {
