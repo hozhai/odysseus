@@ -65,6 +65,7 @@ func CommandHelp(e *events.ApplicationCommandInteractionCreate) {
 					discord.EmbedField{Name: "/about", Value: "About Odysseus"},
 					discord.EmbedField{Name: "/ping", Value: "Returns the API latency"},
 					discord.EmbedField{Name: "/item", Value: "Displays an item along with stats and additional info"},
+					discord.EmbedField{Name: "/build", Value: "Loads a build from GearBuilder using the URL"},
 				).
 				SetFooter(EmbedFooter, "").
 				SetTimestamp(time.Now()).
