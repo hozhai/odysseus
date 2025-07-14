@@ -94,8 +94,9 @@ var (
 	ListOfFightingStyles []FightingStyle = []FightingStyle{
 		BasicCombat,
 		Boxing,
-		CannonFist,
+		// id 2 is iron leg (FOR SOME FUCKING REASON)
 		IronLeg,
+		CannonFist,
 		SailorStyle,
 		ThermoFist,
 	}

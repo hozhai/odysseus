@@ -75,5 +75,7 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		CommandItem(e)
 	case "build":
 		CommandBuild(e)
+	case "wiki":
+		CommandWiki(e)
 	}
 }

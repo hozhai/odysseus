@@ -31,6 +31,17 @@ var (
 			Description: "About Odysseus.",
 		},
 		discord.SlashCommandCreate{
+			Name:        "wiki",
+			Description: "Searches the wiki",
+			Options: []discord.ApplicationCommandOption{
+				discord.ApplicationCommandOptionString{
+					Name:        "query",
+					Description: "What to search for on the wiki",
+					Required:    true,
+				},
+			},
+		},
+		discord.SlashCommandCreate{
 			Name:        "build",
 			Description: "Loads a GearBuilder build from URL.",
 			Options: []discord.ApplicationCommandOption{

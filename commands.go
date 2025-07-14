@@ -3,11 +3,15 @@ package main
 import (
 	"fmt"
 	"log/slog"
+	"net/http"
+	"net/url"
+	"regexp"
 	"strings"
 	"time"
 
 	"github.com/disgoorg/disgo/discord"
 	"github.com/disgoorg/disgo/events"
+	"golang.org/x/net/html"
 )
 
 const (
@@ -17,6 +21,12 @@ const (
 	ItemNotFoundMsg = "Item not found!"
 	DefaultColor    = 0x93b1e3
 )
+
+type WikiSearchResult struct {
+	Title       string
+	Description string
+	URL         string
+}
 
 func CommandPing(e *events.ApplicationCommandInteractionCreate) {
 	embed := discord.NewEmbedBuilder().
@@ -64,8 +74,9 @@ func CommandHelp(e *events.ApplicationCommandInteractionCreate) {
 					discord.EmbedField{Name: "/help", Value: "Displays this message :)"},
 					discord.EmbedField{Name: "/about", Value: "About Odysseus"},
 					discord.EmbedField{Name: "/ping", Value: "Returns the API latency"},
-					discord.EmbedField{Name: "/item", Value: "Displays an item along with stats and additional info"},
-					discord.EmbedField{Name: "/build", Value: "Loads a build from GearBuilder using the URL"},
+					discord.EmbedField{Name: "/item <name>", Value: "Displays an item along with stats and additional info"},
+					discord.EmbedField{Name: "/build <url>", Value: "Loads a build from GearBuilder using the URL"},
+					discord.EmbedField{Name: "/wiki <query>", Value: "Searches the AO Wiki"},
 				).
 				SetFooter(EmbedFooter, "").
 				SetTimestamp(time.Now()).
@@ -304,4 +315,188 @@ func CommandBuild(e *events.ApplicationCommandInteractionCreate) {
 		return
 	}
 
+}
+
+func CommandWiki(e *events.ApplicationCommandInteractionCreate) {
+	query := e.SlashCommandInteractionData().String("query")
+
+	if err := e.DeferCreateMessage(false); err != nil {
+		slog.Error("error deferring message", slog.Any("err", err))
+		return
+	}
+
+	results, err := searchWiki(query)
+	if err != nil {
+		if _, err := e.Client().Rest().CreateFollowupMessage(e.ApplicationID(), e.Token(), discord.MessageCreate{
+			Content: fmt.Sprintf("Error searching wiki: %v", err),
+		}); err != nil {
+			slog.Error("error updating interaction response", slog.Any("err", err))
+		}
+		return
+	}
+
+	if len(results) == 0 {
+		if _, err := e.Client().Rest().CreateFollowupMessage(e.ApplicationID(), e.Token(), discord.MessageCreate{
+			Content: fmt.Sprintf("No results found for '%s'", query),
+		}); err != nil {
+			slog.Error("error updating interaction response", slog.Any("err", err))
+		}
+		return
+	}
+
+	// build embed with results
+	fields := make([]discord.EmbedField, 0, min(len(results), 5)) // Limit to 5 results
+	ptrFalse := BoolToPtr(false)
+
+	for i, result := range results {
+		if i >= 5 {
+			break
+		}
+
+		description := result.Description
+		if len(description) > 200 {
+			description = description[:200] + "..."
+		}
+
+		fields = append(fields, discord.EmbedField{
+			Name:   result.Title,
+			Value:  fmt.Sprintf("%s\n[Read more](%s)", description, result.URL),
+			Inline: ptrFalse,
+		})
+	}
+
+	embed := discord.NewEmbedBuilder().
+		SetTitle(fmt.Sprintf("Wiki Search Results for '%s'", query)).
+		SetURL(fmt.Sprintf("https://roblox-arcane-odyssey.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true&query=%s", url.QueryEscape(query))).
+		SetFields(fields...).
+		SetFooter(EmbedFooter, "").
+		SetTimestamp(time.Now()).
+		SetColor(DefaultColor).
+		Build()
+
+	if _, err := e.Client().Rest().CreateFollowupMessage(e.ApplicationID(), e.Token(), discord.MessageCreate{
+		Embeds: []discord.Embed{embed},
+	}); err != nil {
+		slog.Error("error updating interaction response", slog.Any("err", err))
+	}
+}
+
+func searchWiki(query string) ([]WikiSearchResult, error) {
+	// encode the query
+	encodedQuery := url.QueryEscape(query)
+	searchURL := fmt.Sprintf("https://roblox-arcane-odyssey.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true&query=%s", encodedQuery)
+
+	// make HTTP request
+	resp, err := httpClient.Get(searchURL)
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch search results: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("search request failed with status: %d", resp.StatusCode)
+	}
+
+	// parse HTML
+	doc, err := html.Parse(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse HTML: %w", err)
+	}
+
+	// extract search results
+	results := extractSearchResults(doc)
+	return results, nil
+}
+
+func extractSearchResults(n *html.Node) []WikiSearchResult {
+	var results []WikiSearchResult
+
+	// find search results - fandom uses different classes but typically contains "unified-search__result"
+	if n.Type == html.ElementNode && n.Data == "li" {
+		for _, attr := range n.Attr {
+			if attr.Key == "class" && strings.Contains(attr.Val, "unified-search__result") {
+				result := parseSearchResult(n)
+				if result.Title != "" {
+					results = append(results, result)
+				}
+				break
+			}
+		}
+	}
+
+	// recursively search child nodes
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		results = append(results, extractSearchResults(c)...)
+	}
+
+	return results
+}
+
+func parseSearchResult(n *html.Node) WikiSearchResult {
+	var result WikiSearchResult
+
+	// find title link
+	titleLink := findElementWithClass(n, "a", "unified-search__result__title")
+	if titleLink != nil {
+		result.Title = getTextContent(titleLink)
+		for _, attr := range titleLink.Attr {
+			if attr.Key == "href" {
+				if strings.HasPrefix(attr.Val, "/") {
+					result.URL = "https://roblox-arcane-odyssey.fandom.com" + attr.Val
+				} else {
+					result.URL = attr.Val
+				}
+				break
+			}
+		}
+	}
+
+	// find description
+	descElement := findElementWithClass(n, "p", "unified-search__result__snippet")
+	if descElement != nil {
+		result.Description = getTextContent(descElement)
+		// clean up description
+		result.Description = strings.TrimSpace(result.Description)
+		result.Description = regexp.MustCompile(`\s+`).ReplaceAllString(result.Description, " ")
+	}
+
+	return result
+}
+
+func findElementWithClass(n *html.Node, tagName, className string) *html.Node {
+	if n.Type == html.ElementNode && n.Data == tagName {
+		for _, attr := range n.Attr {
+			if attr.Key == "class" && strings.Contains(attr.Val, className) {
+				return n
+			}
+		}
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		if result := findElementWithClass(c, tagName, className); result != nil {
+			return result
+		}
+	}
+
+	return nil
+}
+
+func getTextContent(n *html.Node) string {
+	if n.Type == html.TextNode {
+		return n.Data
+	}
+
+	var result strings.Builder
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		result.WriteString(getTextContent(c))
+	}
+
+	return result.String()
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
