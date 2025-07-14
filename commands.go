@@ -271,91 +271,11 @@ func CommandBuild(e *events.ApplicationCommandInteractionCreate) {
 	)
 
 	for _, v := range player.Accessories {
-		if v.Item == EmptyAccessoryID {
-			fields = append(fields, discord.EmbedField{
-				Name:   "Accessory",
-				Value:  "None",
-				Inline: ptrTrue,
-			})
-			continue
-		}
-
-		enchantmentItem := FindByIDCached(v.Enchantment)
-		modifierItem := FindByIDCached(v.Modifier)
-
-		var gems string
-		for _, v := range v.Gems {
-			gems = gems + GemIntoEmoji(FindByIDCached(v))
-		}
-
-		fields = append(fields, discord.EmbedField{
-			Name: "Accessory",
-			Value: fmt.Sprintf(
-				"%v\n%v%v\n%v",
-				FindByIDCached(v.Item).Name,
-				EnchantmentIntoEmoji(enchantmentItem),
-				ModifierIntoEmoji(modifierItem),
-				gems,
-			),
-			Inline: ptrTrue,
-		})
+		fields = append(fields, BuildSlotField("Accessory", v, EmptyAccessoryID))
 	}
 
-	if player.Chestplate.Item == "AAB" {
-		fields = append(fields, discord.EmbedField{
-			Name:   "Chestplate",
-			Value:  "None",
-			Inline: ptrTrue,
-		})
-	} else {
-		var gems string
-		for _, v := range player.Chestplate.Gems {
-			gems = gems + GemIntoEmoji(FindByIDCached(v))
-		}
-
-		enchantmentItem := FindByIDCached(player.Chestplate.Enchantment)
-		modifierItem := FindByIDCached(player.Chestplate.Modifier)
-
-		fields = append(fields, discord.EmbedField{
-			Name: "Chestplate",
-			Value: fmt.Sprintf(
-				"%v\n%v%v\n%v",
-				FindByIDCached(player.Chestplate.Item).Name,
-				EnchantmentIntoEmoji(enchantmentItem),
-				ModifierIntoEmoji(modifierItem),
-				gems,
-			),
-			Inline: ptrTrue,
-		})
-	}
-
-	if player.Boots.Item == "AAC" {
-		fields = append(fields, discord.EmbedField{
-			Name:   "Boots",
-			Value:  "None",
-			Inline: ptrTrue,
-		})
-	} else {
-		var gems string
-		for _, v := range player.Boots.Gems {
-			gems = gems + GemIntoEmoji(FindByIDCached(v))
-		}
-
-		enchantmentItem := FindByIDCached(player.Boots.Enchantment)
-		modifierItem := FindByIDCached(player.Boots.Modifier)
-
-		fields = append(fields, discord.EmbedField{
-			Name: "Boots",
-			Value: fmt.Sprintf(
-				"%v\n%v%v\n%v",
-				FindByIDCached(player.Boots.Item).Name,
-				EnchantmentIntoEmoji(enchantmentItem),
-				ModifierIntoEmoji(modifierItem),
-				gems,
-			),
-			Inline: ptrTrue,
-		})
-	}
+	fields = append(fields, BuildSlotField("Chestplate", player.Chestplate, EmptyChestplateID))
+	fields = append(fields, BuildSlotField("Boots", player.Boots, EmptyBootsID))
 
 	totalStats := CalculateTotalStats(player)
 	statsString := FormatTotalStats(totalStats)

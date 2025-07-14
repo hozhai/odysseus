@@ -10,7 +10,9 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 
+	"github.com/disgoorg/disgo/discord"
 	"github.com/disgoorg/json"
 )
 
@@ -220,6 +222,15 @@ var itemCache = &ItemCache{
 	cache: make(map[string]*Item),
 }
 
+var httpClient = &http.Client{
+	Timeout: 30 * time.Second,
+	Transport: &http.Transport{
+		MaxIdleConns:        100,
+		MaxIdleConnsPerHost: 100,
+		IdleConnTimeout:     90 * time.Second,
+	},
+}
+
 func InitializeItemCache() {
 	itemCache.mu.Lock()
 	defer itemCache.mu.Unlock()
@@ -288,7 +299,7 @@ func GetData() error {
 		return err
 	}
 
-	resp, err := http.Get("https://api.arcaneodyssey.net/items")
+	resp, err := httpClient.Get("https://api.arcaneodyssey.net/items")
 	if err != nil {
 		return fmt.Errorf("cannot fetch items: %w", err)
 	}
@@ -872,4 +883,43 @@ func IsCacheInitialized() bool {
 	itemCache.mu.RLock()
 	defer itemCache.mu.RUnlock()
 	return len(itemCache.cache) > 0
+}
+
+func BuildSlotField(name string, slot Slot, emptyID string) discord.EmbedField {
+	if slot.Item == emptyID {
+		return discord.EmbedField{
+			Name:   name,
+			Value:  "None",
+			Inline: BoolToPtr(true),
+		}
+	}
+
+	item := FindByIDCached(slot.Item)
+	enchantment := FindByIDCached(slot.Enchantment)
+	modifier := FindByIDCached(slot.Modifier)
+
+	var builder strings.Builder
+	builder.Grow(100)
+
+	// Item name
+	builder.WriteString(item.Name)
+	builder.WriteString("\n")
+
+	// Enchantment and modifier
+	builder.WriteString(EnchantmentIntoEmoji(enchantment))
+	builder.WriteString(ModifierIntoEmoji(modifier))
+	builder.WriteString("\n")
+
+	// Gems
+	for _, gemID := range slot.Gems {
+		if gemID != EmptyGemID && gemID != "" {
+			builder.WriteString(GemIntoEmoji(FindByIDCached(gemID)))
+		}
+	}
+
+	return discord.EmbedField{
+		Name:   name,
+		Value:  builder.String(),
+		Inline: BoolToPtr(true),
+	}
 }
