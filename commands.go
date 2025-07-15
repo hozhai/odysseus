@@ -193,6 +193,15 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 		imageURL = item.ImageID
 	}
 
+	var actionRow []discord.InteractiveComponent
+	if item.MainType == "Accessory" || item.MainType == "Chestplate" || item.MainType == "Pants" {
+		actionRow = append(actionRow, discord.NewSecondaryButton("Add Enchant", "item_add_enchant"), discord.NewSecondaryButton("Add Modifier", "item_add_modifier"))
+	}
+
+	if item.GemNo > 0 {
+		actionRow = append(actionRow, discord.NewSecondaryButton("Add Gem", "item_add_gem"))
+	}
+
 	err := e.CreateMessage(
 		discord.NewMessageCreateBuilder().AddEmbeds(
 			discord.NewEmbedBuilder().
@@ -207,9 +216,7 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 				SetColor(GetRarityColor(item.Rarity)).
 				Build(),
 		).AddActionRow(
-			discord.NewSecondaryButton("Add Gems", "item_add_gems"),
-			discord.NewSecondaryButton("Add Modifier", "item_add_modifier"),
-			discord.NewSecondaryButton("Add Enchantment", "item_add_enchantment"),
+			actionRow...,
 		).
 			Build(),
 	)

@@ -14,6 +14,7 @@ import (
 
 	"github.com/disgoorg/disgo/discord"
 	"github.com/disgoorg/json"
+	"github.com/disgoorg/snowflake/v2"
 )
 
 type Magic int64
@@ -251,13 +252,15 @@ func InitializeItemCache() {
 
 		itemCache.cache[item.ID] = &item
 
-		// TODO!!!!
-
-		if item.MainType == "Gem" {
-			ListOfGems = append(ListOfGems, APIData[i].ID)
+		switch item.MainType {
+		case "Gem":
+			ListOfGems = append(ListOfGems, item.ID)
+		case "Modifier":
+			ListOfModifiers = append(ListOfModifiers, item.ID)
+		case "Enchant":
+			ListOfEnchants = append(ListOfEnchants, item.ID)
 		}
 	}
-
 	slog.Info("item cache initialized", "items", len(itemCache.cache))
 }
 
@@ -935,4 +938,17 @@ func BuildSlotField(name string, slot Slot, emptyID string) discord.EmbedField {
 		Value:  builder.String(),
 		Inline: BoolToPtr(true),
 	}
+}
+
+func StringToEmoji(str string) snowflake.ID {
+	parts := strings.Split(str, ":")
+	if len(parts) != 3 {
+		return 0
+	}
+	idStr := strings.TrimSuffix(parts[2], ">")
+	id, err := strconv.ParseInt(idStr, 10, 64)
+	if err != nil {
+		return 0
+	}
+	return snowflake.ID(id)
 }

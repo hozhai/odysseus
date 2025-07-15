@@ -37,4 +37,4 @@ But you must:
 
 ## Contributing
 
-Contributions are welcome! By contributing, you agree that your contributions will be licensed under the same AGPL-3.0 license. Feel free to open issues or pull requests. You're welcome to join the [Discord](https://discord.gg/JwRCsJSH85)
+Contributions are welcome! By contributing, you agree that your contributions will be licensed under the same AGPL-3.0 license. Feel free to open issues or pull requests. You're welcome to join the [Discord](https://discord.gg/JwRCsJSH85) as well.

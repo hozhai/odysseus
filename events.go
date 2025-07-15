@@ -81,12 +81,52 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 }
 
 func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
-	switch e.ButtonInteractionData().CustomID() {
-	case "item_add_gems":
+	switch e.ComponentInteraction.Data.Type() {
+	case discord.ComponentTypeButton:
+		switch e.ButtonInteractionData().CustomID() {
+		case "item_add_gem":
+			var items []discord.StringSelectMenuOption
 
-		e.UpdateMessage(discord.NewMessageUpdateBuilder().AddEmbeds(e.Message.Embeds[0]).AddActionRow(discord.NewStringSelectMenu("item_gem_select", "Candelaria", discord.StringSelectMenuOption{
-			Label: "Test",
-			Value: "test",
-		})).Build())
+			for _, v := range ListOfGems {
+				item := FindByIDCached(v)
+
+				items = append(items,
+					discord.StringSelectMenuOption{
+						Label: item.Name,
+						Value: v,
+						Emoji: &discord.ComponentEmoji{
+							Name: item.Name,
+						},
+					},
+				)
+
+				slog.Info(fmt.Sprint(StringToEmoji(GemIntoEmoji(item))))
+			}
+
+			err := e.UpdateMessage(
+				discord.NewMessageUpdateBuilder().
+					AddEmbeds(e.Message.Embeds[0]).
+					AddActionRow(discord.NewStringSelectMenu("item_set_gem", "Select a gem...", items...)).
+					Build(),
+			)
+			if err != nil {
+				slog.Error("failed to update message", slog.Any("err", err))
+			}
+		}
+
+	case discord.ComponentTypeStringSelectMenu:
+		switch e.StringSelectMenuInteractionData().CustomID() {
+		case "item_set_gem":
+			// TODO: implement logic to add gem to item build
+			err := e.UpdateMessage(
+				discord.NewMessageUpdateBuilder().
+					SetContent("Gem selection not implemented yet.").
+					AddActionRow().
+					Build(),
+			)
+			if err != nil {
+				slog.Error("failed to update message", slog.Any("err", err))
+			}
+		}
 	}
 }
