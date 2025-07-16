@@ -43,20 +43,23 @@ func CommandPing(e *events.ApplicationCommandInteractionCreate) {
 
 func CommandAbout(e *events.ApplicationCommandInteractionCreate) {
 	err := e.CreateMessage(
-		discord.NewMessageCreateBuilder().AddEmbeds(
-			discord.NewEmbedBuilder().
-				SetTitle("About Odysseus v0.1.0").
-				SetDescription(`
+		discord.NewMessageCreateBuilder().
+			AddEmbeds(
+				discord.NewEmbedBuilder().
+					SetTitle("About Odysseus v0.1.2").
+					SetDescription(`
 						Odysseus is a general-purpose utility bot for Arcane Odyssey, a Roblox game where you embark through an epic journey through the War Seas.
 
 						This is a side project by <@360235359746916352> and an excuse to learn Go. Here's the [source code](https://github.com/hozhai/odysseus) of the project.
+
+						Join our [Discord](https://discord.gg/Z3uKnGHvMN) server for suggestions, bugs, and support!
 						`).
-				SetImage("https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp").
-				SetFooter(EmbedFooter, "").
-				SetTimestamp(time.Now()).
-				SetColor(DefaultColor).
-				Build(),
-		).Build(),
+					SetImage("https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp").
+					SetFooter(EmbedFooter, "").
+					SetTimestamp(time.Now()).
+					SetColor(DefaultColor).
+					Build(),
+			).Build(),
 	)
 
 	if err != nil {
@@ -71,12 +74,12 @@ func CommandHelp(e *events.ApplicationCommandInteractionCreate) {
 			discord.NewEmbedBuilder().
 				SetTitle("Help").
 				SetFields(
-					discord.EmbedField{Name: "/help", Value: "Displays this message :)"},
-					discord.EmbedField{Name: "/about", Value: "About Odysseus"},
-					discord.EmbedField{Name: "/ping", Value: "Returns the API latency"},
-					discord.EmbedField{Name: "/item <name>", Value: "Displays an item along with stats and additional info"},
-					discord.EmbedField{Name: "/build <url>", Value: "Loads a build from GearBuilder using the URL"},
-					discord.EmbedField{Name: "/wiki <query>", Value: "Searches the AO Wiki"},
+					discord.EmbedField{Name: "</help:1371529758495608853>", Value: "Displays this message :)"},
+					discord.EmbedField{Name: "</about:1366598377147465791>", Value: "Displays an about page where you can also join our Discord!"},
+					discord.EmbedField{Name: "</ping:1366258542704594974>", Value: "Returns the API latency"},
+					discord.EmbedField{Name: "</item:1371980876799410238>", Value: "Displays an item along with stats and additional info"},
+					discord.EmbedField{Name: "</build:1394100657706893453>", Value: "Loads a build from GearBuilder using the URL"},
+					discord.EmbedField{Name: "</wiki:1394143370452144129>", Value: "Searches the AO Wiki"},
 				).
 				SetFooter(EmbedFooter, "").
 				SetTimestamp(time.Now()).
@@ -145,6 +148,90 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 
 		if lastStats.Warding != 0 {
 			builder.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", lastStats.Warding))
+		}
+
+		statsString = builder.String()
+	} else if item.MainType == "Gem" {
+		if item.Power != 0 {
+			builder.WriteString(fmt.Sprintf("<:power:1392363667059904632> %d\n", item.Power))
+		}
+
+		if item.Defense != 0 {
+			builder.WriteString(fmt.Sprintf("<:defense:1392364201262977054> %d\n", item.Defense))
+		}
+
+		if item.Agility != 0 {
+			builder.WriteString(fmt.Sprintf("<:agility:1392364894573297746> %d\n", item.Agility))
+		}
+
+		if item.AttackSpeed != 0 {
+			builder.WriteString(fmt.Sprintf("<:attackspeed:1392364933722804274> %d\n", item.AttackSpeed))
+		}
+
+		if item.AttackSize != 0 {
+			builder.WriteString(fmt.Sprintf("<:attacksize:1392364917616807956> %d\n", item.AttackSize))
+		}
+
+		if item.Intensity != 0 {
+			builder.WriteString(fmt.Sprintf("<:intensity:1392365008049934377> %d\n", item.Intensity))
+		}
+
+		if item.Regeneration != 0 {
+			builder.WriteString(fmt.Sprintf("<:regeneration:1392365064010469396> %d\n", item.Regeneration))
+		}
+
+		if item.Piercing != 0 {
+			builder.WriteString(fmt.Sprintf("<:piercing:1392365031705808986> %d\n", item.Piercing))
+		}
+
+		if item.Resistance != 0 {
+			builder.WriteString(fmt.Sprintf("<:resistance:1393458741009186907> %d\n", item.Resistance))
+		}
+
+		if item.Drawback != 0 {
+			builder.WriteString(fmt.Sprintf("<:drawback:1392364965905563698> %d\n", item.Drawback))
+		}
+
+		if item.Warding != 0 {
+			builder.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", item.Warding))
+		}
+
+		statsString = builder.String()
+	} else if item.MainType == "Enchant" {
+		if item.PowerIncrement != 0 {
+			builder.WriteString(fmt.Sprintf("<:power:1392363667059904632> %f per 10 levels\n", item.PowerIncrement))
+		}
+
+		if item.DefenseIncrement != 0 {
+			builder.WriteString(fmt.Sprintf("<:defense:1392364201262977054> %f per 10 levels\n", item.DefenseIncrement))
+		}
+
+		if item.AgilityIncrement != 0 {
+			builder.WriteString(fmt.Sprintf("<:agility:1392364894573297746> %f per 10 levels\n", item.AgilityIncrement))
+		}
+
+		if item.AttackSpeedIncrement != 0 {
+			builder.WriteString(fmt.Sprintf("<:attackspeed:1392364933722804274> %f per 10 levels\n", item.AttackSpeedIncrement))
+		}
+
+		if item.AttackSizeIncrement != 0 {
+			builder.WriteString(fmt.Sprintf("<:attacksize:1392364917616807956> %f per 10 levels\n", item.AttackSizeIncrement))
+		}
+
+		if item.IntensityIncrement != 0 {
+			builder.WriteString(fmt.Sprintf("<:intensity:1392365008049934377> %f per 10 levels\n", item.IntensityIncrement))
+		}
+
+		if item.RegenerationIncrement != 0 {
+			builder.WriteString(fmt.Sprintf("<:regeneration:1392365064010469396> %f per 10 levels\n", item.RegenerationIncrement))
+		}
+
+		if item.PiercingIncrement != 0 {
+			builder.WriteString(fmt.Sprintf("<:piercing:1392365031705808986> %f per 10 levels\n", item.PiercingIncrement))
+		}
+
+		if item.ResistanceIncrement != 0 {
+			builder.WriteString(fmt.Sprintf("<:resistance:1393458741009186907> %f per 10 levels\n", item.ResistanceIncrement))
 		}
 
 		statsString = builder.String()

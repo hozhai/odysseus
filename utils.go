@@ -256,11 +256,17 @@ func InitializeItemCache() {
 
 		switch item.MainType {
 		case "Gem":
-			ListOfGems = append(ListOfGems, item.ID)
+			if item.ID != EmptyGemID {
+				ListOfGems = append(ListOfGems, item.ID)
+			}
 		case "Modifier":
-			ListOfModifiers = append(ListOfModifiers, item.ID)
+			if item.ID != EmptyModifierID {
+				ListOfModifiers = append(ListOfModifiers, item.ID)
+			}
 		case "Enchant":
-			ListOfEnchants = append(ListOfEnchants, item.ID)
+			if item.ID != EmptyEnchantmentID {
+				ListOfEnchants = append(ListOfEnchants, item.ID)
+			}
 		}
 	}
 	slog.Info("item cache initialized", "items", len(itemCache.cache))
@@ -274,7 +280,7 @@ func FindByIDCached(id string) *Item {
 		return item
 	}
 
-	// Return empty item if not found
+	// return empty item if not found
 	return &Item{Name: "Unknown", ID: id}
 }
 
@@ -636,8 +642,8 @@ func EnchantIntoEmoji(item *Item) string {
 		return "<:hasty:1393732148699332718>"
 	case "Healing":
 		return "<:healing:1393732150288711690>"
-	case "Resilient":
-		return "<:resilient:1393732207155216404>"
+	case "Resilience":
+		return "<:resilience:1393732207155216404>"
 	case "Piercing":
 		return "<:piercing:1393732154491408507>"
 	default:
@@ -747,7 +753,7 @@ func EmojiIntoGem(emoji string) *Item {
 
 func AddItemStats(slot Slot, total *TotalStats) {
 	if slot.Item == EmptyAccessoryID || slot.Item == EmptyChestplateID || slot.Item == EmptyBootsID {
-		return // skip empty slots
+		return
 	}
 
 	var slotStats TotalStats
@@ -759,11 +765,15 @@ func AddItemStats(slot Slot, total *TotalStats) {
 	level := math.Floor(float64(slot.Level)/10) * 10
 	multiplier := math.Floor(float64(slot.Level) / 10)
 
+	var levelStatsFound bool
+
 	// base item stats (at the slot's level)
 	if len(item.StatsPerLevel) > 0 {
 		// find the appropriate stats for the item level
+		// FIXME what if item max level isn't 140 but for example 100? like in the case of item d7S
 		for _, v := range item.StatsPerLevel {
 			if v.Level == int(level) {
+				levelStatsFound = true
 				slotStats.Agility += v.Agility
 				slotStats.AttackSize += v.AttackSize
 				slotStats.AttackSpeed += v.AttackSpeed
@@ -776,6 +786,22 @@ func AddItemStats(slot Slot, total *TotalStats) {
 				slotStats.Resistance += v.Resistance
 				slotStats.Warding += v.Warding
 			}
+		}
+
+		if !levelStatsFound {
+			lastStatPerLevel := item.StatsPerLevel[len(item.StatsPerLevel)-1]
+			slotStats.Agility += lastStatPerLevel.Agility
+			slotStats.AttackSize += lastStatPerLevel.AttackSize
+			slotStats.AttackSpeed += lastStatPerLevel.AttackSpeed
+			slotStats.Defense += lastStatPerLevel.Defense
+			slotStats.Drawback += lastStatPerLevel.Drawback
+			slotStats.Intensity += lastStatPerLevel.Intensity
+			slotStats.Piercing += lastStatPerLevel.Piercing
+			slotStats.Power += lastStatPerLevel.Power
+			slotStats.Regeneration += lastStatPerLevel.Regeneration
+			slotStats.Resistance += lastStatPerLevel.Resistance
+			slotStats.Warding += lastStatPerLevel.Warding
+
 		}
 	}
 
@@ -1010,17 +1036,32 @@ func EmbedToSlot(embed discord.Embed) Slot {
 		}
 	}
 
-	gemEmojis := strings.Split(gemsField.Value, " ")
-
-	for _, v := range gemEmojis {
-		if v == "" {
-			continue
+	if gemsField.Value != "" && gemsField.Value != "None" {
+		gemEmojis := strings.Split(gemsField.Value, " ")
+		for _, v := range gemEmojis {
+			if v == "" {
+				continue
+			}
+			gemItem := EmojiIntoGem(v)
+			if gemItem != nil && gemItem.ID != "" {
+				slot.Gems = append(slot.Gems, gemItem.ID)
+			}
 		}
-		slot.Gems = append(slot.Gems, EmojiIntoGem(v).ID)
 	}
 
-	slot.Enchant = EmojiIntoEnchant(enchantsField.Value).ID
-	slot.Modifier = EmojiIntoModifier(modifierField.Value).ID
+	if enchantsField.Value != "" {
+		enchantItem := EmojiIntoEnchant(enchantsField.Value)
+		if enchantItem != nil {
+			slot.Enchant = enchantItem.ID
+		}
+	}
+
+	if modifierField.Value != "" {
+		modifierItem := EmojiIntoModifier(modifierField.Value)
+		if modifierItem != nil {
+			slot.Modifier = modifierItem.ID
+		}
+	}
 
 	return slot
 }

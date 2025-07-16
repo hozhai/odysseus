@@ -94,6 +94,9 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 					discord.StringSelectMenuOption{
 						Label: enchantItem.Name,
 						Value: v,
+						Emoji: &discord.ComponentEmoji{
+							ID: StringToEmoji(EnchantIntoEmoji(enchantItem)),
+						},
 					},
 				)
 			}
@@ -125,6 +128,9 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 				items = append(items, discord.StringSelectMenuOption{
 					Label: modifierItem.Name,
 					Value: modifierItem.ID,
+					Emoji: &discord.ComponentEmoji{
+						ID: StringToEmoji(ModifierIntoEmoji(&modifierItem)),
+					},
 				})
 			}
 
@@ -149,6 +155,9 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 					discord.StringSelectMenuOption{
 						Label: gemItem.Name,
 						Value: v,
+						Emoji: &discord.ComponentEmoji{
+							ID: StringToEmoji(GemIntoEmoji(gemItem)),
+						},
 					},
 				)
 			}
@@ -174,7 +183,7 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 			if slot.Modifier == EmptyModifierID || slot.Modifier == "" {
 				buttons = append(buttons, discord.NewSecondaryButton("Add Modifier", "item_add_modifier"))
 			}
-			if len(slot.Gems) == 0 {
+			if len(slot.Gems) == 0 && FindByIDCached(slot.Item).GemNo > 0 {
 				buttons = append(buttons, discord.NewSecondaryButton("Add Gems", "item_add_gem"))
 			}
 
@@ -197,13 +206,14 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 	case discord.ComponentTypeStringSelectMenu:
 		switch e.StringSelectMenuInteractionData().CustomID() {
 		case "item_set_gem":
-			slot := EmbedToSlot(e.Message.Embeds[0])
+			oldEmbed := e.Message.Embeds[0]
+
+			slot := EmbedToSlot(oldEmbed)
 			item := FindByIDCached(slot.Item)
 
 			slot.Gems = append(slot.Gems, e.StringSelectMenuInteractionData().Values[0])
 
 			var total TotalStats
-			oldEmbed := e.Message.Embeds[0]
 
 			AddItemStats(slot, &total)
 
@@ -411,7 +421,111 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 				slog.Error("error updating enchants message", slog.Any("err", err))
 			}
 		case "item_set_modifier":
-			// TODO!!!
+			slot := EmbedToSlot(e.Message.Embeds[0])
+			item := FindByIDCached(slot.Item)
+
+			slot.Modifier = e.StringSelectMenuInteractionData().Values[0]
+
+			var total TotalStats
+			oldEmbed := e.Message.Embeds[0]
+
+			AddItemStats(slot, &total)
+
+			var fields []discord.EmbedField
+
+			ptrTrue := BoolToPtr(true)
+
+			fields = append(fields, discord.EmbedField{
+				Name:  "Description",
+				Value: item.Legend,
+			}, discord.EmbedField{
+				Name:  "Stats",
+				Value: FormatTotalStats(total),
+			}, discord.EmbedField{
+				Name:   "Type",
+				Value:  item.MainType,
+				Inline: ptrTrue,
+			})
+
+			if item.SubType != "" {
+				fields = append(fields, discord.EmbedField{
+					Name:   "Sub Type",
+					Value:  item.SubType,
+					Inline: ptrTrue,
+				})
+			}
+
+			if item.Rarity != "" {
+				fields = append(fields, discord.EmbedField{
+					Name:   "Rarity",
+					Value:  item.Rarity,
+					Inline: ptrTrue,
+				})
+			}
+
+			if item.MinLevel != 0 || item.MaxLevel != 0 {
+				fields = append(fields, discord.EmbedField{
+					Name:   "Level Range",
+					Value:  fmt.Sprintf("%d - %d", item.MinLevel, item.MaxLevel),
+					Inline: ptrTrue,
+				})
+			}
+
+			if slot.Enchant != EmptyEnchantmentID && slot.Enchant != "" {
+				enchantItem := FindByIDCached(slot.Enchant)
+
+				fields = append(fields, discord.EmbedField{
+					Name:   "Enchant",
+					Value:  EnchantIntoEmoji(enchantItem),
+					Inline: ptrTrue,
+				})
+			}
+
+			modifierItem := FindByIDCached(slot.Modifier)
+
+			fields = append(fields, discord.EmbedField{
+				Name:   "Modifier",
+				Value:  ModifierIntoEmoji(modifierItem),
+				Inline: ptrTrue,
+			})
+
+			if len(slot.Gems) > 0 {
+				var gems strings.Builder
+
+				for _, v := range slot.Gems {
+					gems.WriteString(GemIntoEmoji(FindByIDCached(v)))
+					gems.WriteString(" ")
+				}
+
+				fields = append(fields, discord.EmbedField{
+					Name:   "Gems",
+					Value:  gems.String(),
+					Inline: ptrTrue,
+				})
+			}
+
+			message := discord.NewMessageUpdateBuilder().AddEmbeds(
+				discord.NewEmbedBuilder().
+					SetAuthor(oldEmbed.Author.Name, "", "").
+					SetThumbnail(oldEmbed.Thumbnail.URL).
+					SetFields(
+						fields...,
+					).
+					SetTimestamp(*oldEmbed.Timestamp).
+					SetFooter(EmbedFooter, "").
+					SetColor(oldEmbed.Color).
+					Build(),
+			)
+
+			if slot.Modifier != EmptyModifierID {
+				message.AddActionRow(discord.NewSuccessButton("Done", "item_done"))
+			}
+
+			err := e.UpdateMessage(message.Build())
+
+			if err != nil {
+				slog.Error("error updating modifier message", slog.Any("err", err))
+			}
 		}
 	}
 }
