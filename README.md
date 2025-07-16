@@ -1,4 +1,4 @@
-![Odysseus Banner](https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp)
+<img align="center" src="https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp">
 
 <h1 align="center">🔮 Odysseus 🔮</h1>
 <h3 align="center">🛠️ An Arcane Odyssey utility bot 🛠️</h3>
