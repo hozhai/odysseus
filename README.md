@@ -1,9 +1,9 @@
 ![Odysseus Banner](https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp)
 
-<h1 align="center">Odysseus</h1>
-<h3 align="center">An Arcane Odyssey utility bot</h3>
+<h1 align="center">🔮 Odysseus 🔮</h1>
+<h3 align="center">🛠️ An Arcane Odyssey utility bot 🛠️</h3>
 
-## Building
+## 🔨 Building
 
 Clone the repository
 
@@ -19,7 +19,7 @@ go build .
 ./odysseus --token <TOKEN HERE>
 ```
 
-## License
+## 🪪 License
 
 This project is licensed under the GNU Affero General Public License v3.0 - see the [LICENSE](LICENSE.md) file for details.
 
@@ -35,6 +35,6 @@ But you must:
 - 📝 Provide source code with any distribution
 - 📝 Make source available if running as a network service
 
-## Contributing
+## ✨ Contributing
 
 Contributions are welcome! By contributing, you agree that your contributions will be licensed under the same AGPL-3.0 license. Feel free to open issues or pull requests. You're welcome to join the [Discord](https://discord.gg/JwRCsJSH85) as well.
