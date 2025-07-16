@@ -202,7 +202,7 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 		actionRow = append(actionRow, discord.NewSecondaryButton("Add Gem", "item_add_gem"))
 	}
 
-	err := e.CreateMessage(
+	message :=
 		discord.NewMessageCreateBuilder().AddEmbeds(
 			discord.NewEmbedBuilder().
 				SetAuthor(item.ID, "", "").
@@ -215,9 +215,14 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 				SetTimestamp(time.Now()).
 				SetColor(GetRarityColor(item.Rarity)).
 				Build(),
-		).AddActionRow(
-			actionRow...,
-		).
+		)
+
+	if len(actionRow) > 0 {
+		message.AddActionRow(actionRow...)
+	}
+
+	err := e.CreateMessage(
+		message.
 			Build(),
 	)
 
@@ -317,7 +322,7 @@ func CommandBuild(e *events.ApplicationCommandInteractionCreate) {
 				discord.NewEmbedBuilder().
 					SetTitle(fmt.Sprintf("%v's Build", e.User().Username)).
 					SetFields(fields...).
-					SetFooter("Odysseus - Made with love <3", "").
+					SetFooter(EmbedFooter, "").
 					SetTimestamp(time.Now()).
 					Build(),
 			).Build(),

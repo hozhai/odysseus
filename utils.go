@@ -20,6 +20,8 @@ import (
 type Magic int64
 type FightingStyle int64
 
+const MaxLevel = 140
+
 const (
 	ColorDefault  = 0x93b1e3
 	ColorCommon   = 0xffffff
@@ -192,11 +194,11 @@ type Player struct {
 }
 
 type Slot struct {
-	Item        string
-	Gems        []string
-	Enchantment string
-	Modifier    string
-	Level       int
+	Item     string
+	Gems     []string
+	Enchant  string
+	Modifier string
+	Level    int
 }
 
 type TotalStats struct {
@@ -476,7 +478,7 @@ func parseItem(slotCodeArray []string) (Slot, error) {
 	}
 
 	slot.Item = slotCodeArray[0]
-	slot.Enchantment = slotCodeArray[1]
+	slot.Enchant = slotCodeArray[1]
 	slot.Modifier = slotCodeArray[2]
 
 	// 3 gem slots
@@ -600,7 +602,7 @@ func MagicFsIntoEmoji[k Magic | FightingStyle](content k) string {
 	}
 }
 
-func EnchantmentIntoEmoji(item *Item) string {
+func EnchantIntoEmoji(item *Item) string {
 	switch item.Name {
 	case "Strong":
 		return "<:strong:1393732208673685615>"
@@ -713,141 +715,170 @@ func GemIntoEmoji(item *Item) string {
 	}
 }
 
+func EmojiIntoEnchant(emoji string) *Item {
+	for _, enchantID := range ListOfEnchants {
+		enchantItem := FindByIDCached(enchantID)
+		if EnchantIntoEmoji(enchantItem) == emoji {
+			return enchantItem
+		}
+	}
+	return &Item{Name: "Unknown"}
+}
+
+func EmojiIntoModifier(emoji string) *Item {
+	for _, modifierID := range ListOfModifiers {
+		modifierItem := FindByIDCached(modifierID)
+		if ModifierIntoEmoji(modifierItem) == emoji {
+			return modifierItem
+		}
+	}
+	return &Item{Name: "Unknown"}
+}
+
+func EmojiIntoGem(emoji string) *Item {
+	for _, gemID := range ListOfGems {
+		gemItem := FindByIDCached(gemID)
+		if GemIntoEmoji(gemItem) == emoji {
+			return gemItem
+		}
+	}
+	return &Item{Name: "Unknown"}
+}
+
+func AddItemStats(slot Slot, total *TotalStats) {
+	if slot.Item == EmptyAccessoryID || slot.Item == EmptyChestplateID || slot.Item == EmptyBootsID {
+		return // skip empty slots
+	}
+
+	var slotStats TotalStats
+
+	item := FindByIDCached(slot.Item)
+	enchantment := FindByIDCached(slot.Enchant)
+	modifier := FindByIDCached(slot.Modifier)
+
+	level := math.Floor(float64(slot.Level)/10) * 10
+	multiplier := math.Floor(float64(slot.Level) / 10)
+
+	// base item stats (at the slot's level)
+	if len(item.StatsPerLevel) > 0 {
+		// find the appropriate stats for the item level
+		for _, v := range item.StatsPerLevel {
+			if v.Level == int(level) {
+				slotStats.Agility += v.Agility
+				slotStats.AttackSize += v.AttackSize
+				slotStats.AttackSpeed += v.AttackSpeed
+				slotStats.Defense += v.Defense
+				slotStats.Drawback += v.Drawback
+				slotStats.Intensity += v.Intensity
+				slotStats.Piercing += v.Piercing
+				slotStats.Power += v.Power
+				slotStats.Regeneration += v.Regeneration
+				slotStats.Resistance += v.Resistance
+				slotStats.Warding += v.Warding
+			}
+		}
+	}
+
+	// Fixed item stats
+	slotStats.Power += item.Power
+	slotStats.Defense += item.Defense
+	slotStats.Agility += item.Agility
+	slotStats.AttackSpeed += item.AttackSpeed
+	slotStats.AttackSize += item.AttackSize
+	slotStats.Intensity += item.Intensity
+	slotStats.Regeneration += item.Regeneration
+	slotStats.Piercing += item.Piercing
+	slotStats.Resistance += item.Resistance
+	slotStats.Insanity += item.Insanity
+	slotStats.Warding += item.Warding
+	slotStats.Drawback += item.Drawback
+
+	// Enchantment stats
+	if enchantment.ID != EmptyEnchantmentID { // Not "None"
+
+		slotStats.Power += int(math.Floor(enchantment.PowerIncrement * multiplier))
+		slotStats.Defense += int(math.Floor(enchantment.DefenseIncrement * multiplier))
+		slotStats.Agility += int(math.Floor(enchantment.AgilityIncrement * multiplier))
+		slotStats.AttackSpeed += int(math.Floor(enchantment.AttackSpeedIncrement * multiplier))
+		slotStats.AttackSize += int(math.Floor(enchantment.AttackSizeIncrement * multiplier))
+		slotStats.Intensity += int(math.Floor(enchantment.IntensityIncrement * multiplier))
+		slotStats.Regeneration += int(math.Floor(enchantment.RegenerationIncrement * multiplier))
+		slotStats.Piercing += int(math.Floor(enchantment.PiercingIncrement * multiplier))
+		slotStats.Resistance += int(math.Floor(enchantment.ResistanceIncrement * multiplier))
+		slotStats.Warding += enchantment.Warding
+	}
+
+	// Gem stats
+	for _, gemID := range slot.Gems {
+		if gemID == EmptyGemID || gemID == "" { // Skip "None" gems
+			continue
+		}
+		gem := FindByIDCached(gemID)
+		slotStats.Power += gem.Power
+		slotStats.Defense += gem.Defense
+		slotStats.Agility += gem.Agility
+		slotStats.AttackSpeed += gem.AttackSpeed
+		slotStats.AttackSize += gem.AttackSize
+		slotStats.Intensity += gem.Intensity
+		slotStats.Regeneration += gem.Regeneration
+		slotStats.Piercing += gem.Piercing
+		slotStats.Resistance += gem.Resistance
+		slotStats.Drawback += gem.Drawback
+	}
+
+	// modifier incremental stats
+	if modifier.Name != "Atlantean Essence" {
+		slotStats.Agility += int(math.Floor(modifier.AgilityIncrement * multiplier))
+		slotStats.AttackSize += int(math.Floor(modifier.AttackSizeIncrement * multiplier))
+		slotStats.AttackSpeed += int(math.Floor(modifier.AttackSpeedIncrement * multiplier))
+		slotStats.Defense += int(math.Floor(modifier.DefenseIncrement * multiplier))
+		slotStats.Intensity += int(math.Floor(modifier.IntensityIncrement * multiplier))
+		slotStats.Piercing += int(math.Floor(modifier.PiercingIncrement * multiplier))
+		slotStats.Power += int(math.Floor(modifier.PowerIncrement * multiplier))
+		slotStats.Regeneration += int(math.Floor(modifier.RegenerationIncrement * multiplier))
+		slotStats.Resistance += int(math.Floor(modifier.ResistanceIncrement * multiplier))
+	} else {
+		slotStats.Insanity += 1
+		if slotStats.Power == 0 {
+			slotStats.Power += 1 * int(multiplier)
+		} else if slotStats.Defense == 0 {
+			slotStats.Defense += int(math.Floor(9.07 * multiplier))
+		} else if slotStats.AttackSize == 0 {
+			slotStats.AttackSize += 3 * int(multiplier)
+		} else if slotStats.AttackSpeed == 0 {
+			slotStats.AttackSpeed += 3 * int(multiplier)
+		} else if slotStats.Agility == 0 {
+			slotStats.Agility += 3 * int(multiplier)
+		} else if slotStats.Intensity == 0 {
+			slotStats.Intensity += 3 * int(multiplier)
+		} else {
+			slotStats.Power += 1 * int(multiplier)
+		}
+	}
+
+	total.Power += slotStats.Power
+	total.Defense += slotStats.Defense
+	total.Agility += slotStats.Agility
+	total.AttackSpeed += slotStats.AttackSpeed
+	total.AttackSize += slotStats.AttackSize
+	total.Intensity += slotStats.Intensity
+	total.Regeneration += slotStats.Regeneration
+	total.Piercing += slotStats.Piercing
+	total.Resistance += slotStats.Resistance
+	total.Insanity += slotStats.Insanity
+	total.Warding += slotStats.Warding
+	total.Drawback += slotStats.Drawback
+}
+
 func CalculateTotalStats(player Player) TotalStats {
 	var total TotalStats
 
-	// helper function to add item stats
-	addItemStats := func(slot Slot) {
-		if slot.Item == EmptyAccessoryID || slot.Item == EmptyChestplateID || slot.Item == EmptyBootsID {
-			return // skip empty slots
-		}
-
-		var slotStats TotalStats
-
-		item := FindByIDCached(slot.Item)
-		enchantment := FindByIDCached(slot.Enchantment)
-		modifier := FindByIDCached(slot.Modifier)
-
-		level := math.Floor(float64(slot.Level)/10) * 10
-		multiplier := math.Floor(float64(slot.Level) / 10)
-
-		// base item stats (at the slot's level)
-		if len(item.StatsPerLevel) > 0 {
-			// find the appropriate stats for the item level
-			for _, v := range item.StatsPerLevel {
-				if v.Level == int(level) {
-					slotStats.Agility += v.Agility
-					slotStats.AttackSize += v.AttackSize
-					slotStats.AttackSpeed += v.AttackSpeed
-					slotStats.Defense += v.Defense
-					slotStats.Drawback += v.Drawback
-					slotStats.Intensity += v.Intensity
-					slotStats.Piercing += v.Piercing
-					slotStats.Power += v.Power
-					slotStats.Regeneration += v.Regeneration
-					slotStats.Resistance += v.Resistance
-					slotStats.Warding += v.Warding
-				}
-			}
-		}
-
-		// Fixed item stats
-		slotStats.Power += item.Power
-		slotStats.Defense += item.Defense
-		slotStats.Agility += item.Agility
-		slotStats.AttackSpeed += item.AttackSpeed
-		slotStats.AttackSize += item.AttackSize
-		slotStats.Intensity += item.Intensity
-		slotStats.Regeneration += item.Regeneration
-		slotStats.Piercing += item.Piercing
-		slotStats.Resistance += item.Resistance
-		slotStats.Insanity += item.Insanity
-		slotStats.Warding += item.Warding
-		slotStats.Drawback += item.Drawback
-
-		// Enchantment stats
-		if enchantment.ID != EmptyEnchantmentID { // Not "None"
-
-			slotStats.Power += int(math.Floor(enchantment.PowerIncrement * multiplier))
-			slotStats.Defense += int(math.Floor(enchantment.DefenseIncrement * multiplier))
-			slotStats.Agility += int(math.Floor(enchantment.AgilityIncrement * multiplier))
-			slotStats.AttackSpeed += int(math.Floor(enchantment.AttackSpeedIncrement * multiplier))
-			slotStats.AttackSize += int(math.Floor(enchantment.AttackSizeIncrement * multiplier))
-			slotStats.Intensity += int(math.Floor(enchantment.IntensityIncrement * multiplier))
-			slotStats.Regeneration += int(math.Floor(enchantment.RegenerationIncrement * multiplier))
-			slotStats.Piercing += int(math.Floor(enchantment.PiercingIncrement * multiplier))
-			slotStats.Resistance += int(math.Floor(enchantment.ResistanceIncrement * multiplier))
-			slotStats.Warding += enchantment.Warding
-		}
-
-		// Gem stats
-		for _, gemID := range slot.Gems {
-			if gemID == EmptyGemID || gemID == "" { // Skip "None" gems
-				continue
-			}
-			gem := FindByIDCached(gemID)
-			slotStats.Power += gem.Power
-			slotStats.Defense += gem.Defense
-			slotStats.Agility += gem.Agility
-			slotStats.AttackSpeed += gem.AttackSpeed
-			slotStats.AttackSize += gem.AttackSize
-			slotStats.Intensity += gem.Intensity
-			slotStats.Regeneration += gem.Regeneration
-			slotStats.Piercing += gem.Piercing
-			slotStats.Resistance += gem.Resistance
-			slotStats.Drawback += gem.Drawback
-		}
-
-		// modifier incremental stats
-		if modifier.Name != "Atlantean Essence" {
-			slotStats.Agility += int(math.Floor(modifier.AgilityIncrement * multiplier))
-			slotStats.AttackSize += int(math.Floor(modifier.AttackSizeIncrement * multiplier))
-			slotStats.AttackSpeed += int(math.Floor(modifier.AttackSpeedIncrement * multiplier))
-			slotStats.Defense += int(math.Floor(modifier.DefenseIncrement * multiplier))
-			slotStats.Intensity += int(math.Floor(modifier.IntensityIncrement * multiplier))
-			slotStats.Piercing += int(math.Floor(modifier.PiercingIncrement * multiplier))
-			slotStats.Power += int(math.Floor(modifier.PowerIncrement * multiplier))
-			slotStats.Regeneration += int(math.Floor(modifier.RegenerationIncrement * multiplier))
-			slotStats.Resistance += int(math.Floor(modifier.ResistanceIncrement * multiplier))
-		} else {
-			slotStats.Insanity += 1
-			if slotStats.Power == 0 {
-				slotStats.Power += 1 * int(multiplier)
-			} else if slotStats.Defense == 0 {
-				slotStats.Defense += int(math.Floor(9.07 * multiplier))
-			} else if slotStats.AttackSize == 0 {
-				slotStats.AttackSize += 3 * int(multiplier)
-			} else if slotStats.AttackSpeed == 0 {
-				slotStats.AttackSpeed += 3 * int(multiplier)
-			} else if slotStats.Agility == 0 {
-				slotStats.Agility += 3 * int(multiplier)
-			} else if slotStats.Intensity == 0 {
-				slotStats.Intensity += 3 * int(multiplier)
-			} else {
-				slotStats.Power += 1 * int(multiplier)
-			}
-		}
-
-		total.Power += slotStats.Power
-		total.Defense += slotStats.Defense
-		total.Agility += slotStats.Agility
-		total.AttackSpeed += slotStats.AttackSpeed
-		total.AttackSize += slotStats.AttackSize
-		total.Intensity += slotStats.Intensity
-		total.Regeneration += slotStats.Regeneration
-		total.Piercing += slotStats.Piercing
-		total.Resistance += slotStats.Resistance
-		total.Insanity += slotStats.Insanity
-		total.Warding += slotStats.Warding
-		total.Drawback += slotStats.Drawback
-	}
-
-	// Calculate stats for all equipped items
+	// calculate stats for all equipped items
 	for _, accessory := range player.Accessories {
-		addItemStats(accessory)
+		AddItemStats(accessory, &total)
 	}
-	addItemStats(player.Chestplate)
-	addItemStats(player.Boots)
+	AddItemStats(player.Chestplate, &total)
+	AddItemStats(player.Boots, &total)
 
 	return total
 }
@@ -856,7 +887,7 @@ func FormatTotalStats(stats TotalStats) string {
 	var builder strings.Builder
 	builder.Grow(200)
 
-	// Define stats with their emojis in order
+	// define stats with their emojis in order
 	statEntries := []struct {
 		emoji string
 		value int
@@ -911,7 +942,7 @@ func BuildSlotField(name string, slot Slot, emptyID string) discord.EmbedField {
 	}
 
 	item := FindByIDCached(slot.Item)
-	enchantment := FindByIDCached(slot.Enchantment)
+	enchantment := FindByIDCached(slot.Enchant)
 	modifier := FindByIDCached(slot.Modifier)
 
 	var builder strings.Builder
@@ -922,7 +953,7 @@ func BuildSlotField(name string, slot Slot, emptyID string) discord.EmbedField {
 	builder.WriteString("\n")
 
 	// Enchantment and modifier
-	builder.WriteString(EnchantmentIntoEmoji(enchantment))
+	builder.WriteString(EnchantIntoEmoji(enchantment))
 	builder.WriteString(ModifierIntoEmoji(modifier))
 	builder.WriteString("\n")
 
@@ -946,9 +977,50 @@ func StringToEmoji(str string) snowflake.ID {
 		return 0
 	}
 	idStr := strings.TrimSuffix(parts[2], ">")
-	id, err := strconv.ParseInt(idStr, 10, 64)
+	id, err := strconv.Atoi(idStr)
 	if err != nil {
 		return 0
 	}
 	return snowflake.ID(id)
+}
+
+func EmbedToSlot(embed discord.Embed) Slot {
+	var slot Slot
+	item := FindByIDCached(embed.Author.Name)
+
+	slot.Item = item.ID
+	slot.Level = MaxLevel
+
+	var gemsField discord.EmbedField
+	var enchantsField discord.EmbedField
+	var modifierField discord.EmbedField
+
+	for _, v := range embed.Fields {
+		if v.Name == "Gems" {
+			gemsField = v
+			continue
+		}
+		if v.Name == "Enchant" {
+			enchantsField = v
+			continue
+		}
+		if v.Name == "Modifier" {
+			modifierField = v
+			continue
+		}
+	}
+
+	gemEmojis := strings.Split(gemsField.Value, " ")
+
+	for _, v := range gemEmojis {
+		if v == "" {
+			continue
+		}
+		slot.Gems = append(slot.Gems, EmojiIntoGem(v).ID)
+	}
+
+	slot.Enchant = EmojiIntoEnchant(enchantsField.Value).ID
+	slot.Modifier = EmojiIntoModifier(modifierField.Value).ID
+
+	return slot
 }
