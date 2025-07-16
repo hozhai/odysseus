@@ -1,4 +1,6 @@
-<img align="center" src="https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp">
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp">
+</p>
 
 <h1 align="center">🔮 Odysseus 🔮</h1>
 <h3 align="center">🛠️ An Arcane Odyssey utility bot 🛠️</h3>
