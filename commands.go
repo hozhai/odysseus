@@ -1,5 +1,3 @@
-// TODO: fix /item with no item.ImageIDs
-
 package main
 
 import (
@@ -22,6 +20,7 @@ const (
 	InvalidURLMsg   = "Invalid URL! Please provide a valid GearBuilder build URL."
 	ItemNotFoundMsg = "Item not found!"
 	DefaultColor    = 0x93b1e3
+	Version         = "v0.1.4"
 )
 
 var cleanDescriptionRegex = regexp.MustCompile(`\s+`)
@@ -50,7 +49,7 @@ func CommandAbout(e *events.ApplicationCommandInteractionCreate) {
 		discord.NewMessageCreateBuilder().
 			AddEmbeds(
 				discord.NewEmbedBuilder().
-					SetTitle("About Odysseus v0.1.3").
+					SetTitle(fmt.Sprintf("About Odysseus %v", Version)).
 					SetDescription(`
 						Odysseus is a general-purpose utility bot for Arcane Odyssey, a Roblox game where you embark through an epic journey through the War Seas.
 

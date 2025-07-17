@@ -1161,6 +1161,9 @@ func buildEmbedFields(item *Item, slot Slot, total TotalStats) []discord.EmbedFi
 	if item.Rarity != "" {
 		fields = append(fields, discord.EmbedField{Name: "Rarity", Value: item.Rarity, Inline: ptrTrue})
 	}
+	if item.MinLevel != 0 && item.MaxLevel != 0 {
+		fields = append(fields, discord.EmbedField{Name: "Level Range", Value: fmt.Sprintf("%d - %d", item.MinLevel, item.MaxLevel), Inline: ptrTrue})
+	}
 
 	if slot.Enchant != EmptyEnchantmentID && slot.Enchant != "" {
 		enchantEmoji := EnchantIntoEmoji(FindByIDCached(slot.Enchant))
