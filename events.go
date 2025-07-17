@@ -83,6 +83,15 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 	switch e.ComponentInteraction.Data.Type() {
 	case discord.ComponentTypeButton:
+		if strings.Split(e.Message.Embeds[0].Author.Name, " | ")[0] != e.User().Username {
+			e.CreateMessage(
+				discord.NewMessageCreateBuilder().
+					SetContent("You cannot modify items displayed by others! Display your own item and change its properties by using </item:1371980876799410238>.").
+					SetEphemeral(true).
+					Build(),
+			)
+			return
+		}
 		switch e.ButtonInteractionData().CustomID() {
 		case "item_add_enchant":
 			var items []discord.StringSelectMenuOption
@@ -114,7 +123,7 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 			}
 		case "item_add_modifier":
 			var items []discord.StringSelectMenuOption
-			item := FindByIDCached(e.Message.Embeds[0].Author.Name)
+			item := FindByIDCached(strings.Split(e.Message.Embeds[0].Author.Name, " | ")[1])
 
 			for _, name := range item.ValidModifiers {
 				var modifierItem Item
@@ -290,17 +299,21 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 				Inline: ptrTrue,
 			})
 
+			embed := discord.NewEmbedBuilder().
+				SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
+				SetFields(
+					fields...,
+				).
+				SetTimestamp(*oldEmbed.Timestamp).
+				SetFooter(EmbedFooter, "").
+				SetColor(oldEmbed.Color)
+
+			if item.ImageID != "NO_IMAGE" && item.ImageID != "" {
+				embed.SetThumbnail(oldEmbed.Thumbnail.URL)
+			}
+
 			message := discord.NewMessageUpdateBuilder().AddEmbeds(
-				discord.NewEmbedBuilder().
-					SetAuthor(oldEmbed.Author.Name, "", "").
-					SetThumbnail(oldEmbed.Thumbnail.URL).
-					SetFields(
-						fields...,
-					).
-					SetTimestamp(*oldEmbed.Timestamp).
-					SetFooter(EmbedFooter, "").
-					SetColor(oldEmbed.Color).
-					Build(),
+				embed.Build(),
 			)
 
 			if len(slot.Gems) == item.GemNo {
@@ -398,17 +411,21 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 				})
 			}
 
+			embed := discord.NewEmbedBuilder().
+				SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
+				SetFields(
+					fields...,
+				).
+				SetTimestamp(*oldEmbed.Timestamp).
+				SetFooter(EmbedFooter, "").
+				SetColor(oldEmbed.Color)
+
+			if item.ImageID != "NO_IMAGE" && item.ImageID != "" {
+				embed.SetThumbnail(oldEmbed.Thumbnail.URL)
+			}
+
 			message := discord.NewMessageUpdateBuilder().AddEmbeds(
-				discord.NewEmbedBuilder().
-					SetAuthor(oldEmbed.Author.Name, "", "").
-					SetThumbnail(oldEmbed.Thumbnail.URL).
-					SetFields(
-						fields...,
-					).
-					SetTimestamp(*oldEmbed.Timestamp).
-					SetFooter(EmbedFooter, "").
-					SetColor(oldEmbed.Color).
-					Build(),
+				embed.Build(),
 			)
 
 			if slot.Enchant != EmptyEnchantmentID {
@@ -504,17 +521,21 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 				})
 			}
 
+			embed := discord.NewEmbedBuilder().
+				SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
+				SetFields(
+					fields...,
+				).
+				SetTimestamp(*oldEmbed.Timestamp).
+				SetFooter(EmbedFooter, "").
+				SetColor(oldEmbed.Color)
+
+			if item.ImageID != "NO_IMAGE" && item.ImageID != "" {
+				embed.SetThumbnail(oldEmbed.Thumbnail.URL)
+			}
+
 			message := discord.NewMessageUpdateBuilder().AddEmbeds(
-				discord.NewEmbedBuilder().
-					SetAuthor(oldEmbed.Author.Name, "", "").
-					SetThumbnail(oldEmbed.Thumbnail.URL).
-					SetFields(
-						fields...,
-					).
-					SetTimestamp(*oldEmbed.Timestamp).
-					SetFooter(EmbedFooter, "").
-					SetColor(oldEmbed.Color).
-					Build(),
+				embed.Build(),
 			)
 
 			if slot.Modifier != EmptyModifierID {

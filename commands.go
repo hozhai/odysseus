@@ -46,7 +46,7 @@ func CommandAbout(e *events.ApplicationCommandInteractionCreate) {
 		discord.NewMessageCreateBuilder().
 			AddEmbeds(
 				discord.NewEmbedBuilder().
-					SetTitle("About Odysseus v0.1.2").
+					SetTitle("About Odysseus v0.1.3").
 					SetDescription(`
 						Odysseus is a general-purpose utility bot for Arcane Odyssey, a Roblox game where you embark through an epic journey through the War Seas.
 
@@ -292,7 +292,7 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 	message :=
 		discord.NewMessageCreateBuilder().AddEmbeds(
 			discord.NewEmbedBuilder().
-				SetAuthor(item.ID, "", "").
+				SetAuthor(fmt.Sprintf("%v | %v", e.User().Username, item.ID), "", *e.User().AvatarURL()).
 				SetTitle(item.Name).
 				SetThumbnail(imageURL).
 				SetFields(
@@ -407,6 +407,7 @@ func CommandBuild(e *events.ApplicationCommandInteractionCreate) {
 		discord.NewMessageCreateBuilder().
 			AddEmbeds(
 				discord.NewEmbedBuilder().
+					SetAuthor(e.User().Username, "", *e.User().AvatarURL()).
 					SetTitle(fmt.Sprintf("%v's Build", e.User().Username)).
 					SetFields(fields...).
 					SetFooter(EmbedFooter, "").

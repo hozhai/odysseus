@@ -1012,9 +1012,9 @@ func StringToEmoji(str string) snowflake.ID {
 
 func EmbedToSlot(embed discord.Embed) Slot {
 	var slot Slot
-	item := FindByIDCached(embed.Author.Name)
+	itemID := strings.Split(embed.Author.Name, " | ")[1]
 
-	slot.Item = item.ID
+	slot.Item = itemID
 	slot.Level = MaxLevel
 
 	var gemsField discord.EmbedField
