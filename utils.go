@@ -1125,15 +1125,17 @@ func BuildItemEditorResponse(slot Slot, user discord.User) discord.MessageUpdate
 	embed := discord.NewEmbedBuilder().
 		SetAuthor(fmt.Sprintf("%s | %s", user.Username, item.ID), "", user.EffectiveAvatarURL()).
 		SetTitle(item.Name).
-		SetThumbnail(item.ImageID).
 		SetFields(fields...).
 		SetTimestamp(time.Now()).
 		SetFooter(EmbedFooter, "").
-		SetColor(GetRarityColor(item.Rarity)).
-		Build()
+		SetColor(GetRarityColor(item.Rarity))
+
+	if item.ImageID != "NO_IMAGE" && item.ImageID != "" {
+		embed.SetThumbnail(item.ImageID)
+	}
 
 	update := discord.NewMessageUpdateBuilder().
-		AddEmbeds(embed).
+		AddEmbeds(embed.Build()).
 		ClearContainerComponents()
 
 	buttons := getAvailableActionButtons(slot, item)
@@ -1160,36 +1162,37 @@ func buildEmbedFields(item *Item, slot Slot, total TotalStats) []discord.EmbedFi
 		fields = append(fields, discord.EmbedField{Name: "Rarity", Value: item.Rarity, Inline: ptrTrue})
 	}
 
-	enchantEmoji := EnchantIntoEmoji(FindByIDCached(slot.Enchant))
-	if enchantEmoji == "" {
-		enchantEmoji = "None"
+	if slot.Enchant != EmptyEnchantmentID && slot.Enchant != "" {
+		enchantEmoji := EnchantIntoEmoji(FindByIDCached(slot.Enchant))
+		if enchantEmoji == "" {
+			enchantEmoji = "None"
+		}
+		fields = append(fields, discord.EmbedField{Name: "Enchant", Value: enchantEmoji, Inline: ptrTrue})
 	}
-	fields = append(fields, discord.EmbedField{Name: "Enchant", Value: enchantEmoji, Inline: ptrTrue})
 
-	modifierEmoji := ModifierIntoEmoji(FindByIDCached(slot.Modifier))
-	if modifierEmoji == "" {
-		modifierEmoji = "None"
+	if slot.Modifier != EmptyModifierID && slot.Modifier != "" {
+		modifierEmoji := ModifierIntoEmoji(FindByIDCached(slot.Modifier))
+		if modifierEmoji == "" {
+			modifierEmoji = "None"
+		}
+		fields = append(fields, discord.EmbedField{Name: "Modifier", Value: modifierEmoji, Inline: ptrTrue})
 	}
-	fields = append(fields, discord.EmbedField{Name: "Modifier", Value: modifierEmoji, Inline: ptrTrue})
 
-	var gems strings.Builder
-	if item.GemNo > 0 {
-		displayGems := make([]string, item.GemNo)
-		copy(displayGems, slot.Gems)
-		for _, gemID := range displayGems {
-			if gemID != "" && gemID != EmptyGemID {
-				gems.WriteString(GemIntoEmoji(FindByIDCached(gemID)))
-			} else {
-				gems.WriteString("<:emptygem:1394063998834315294>")
+	if len(slot.Gems) > 0 {
+		var gems strings.Builder
+		if item.GemNo > 0 {
+			displayGems := make([]string, item.GemNo)
+			copy(displayGems, slot.Gems)
+			for _, gemID := range displayGems {
+				if gemID != "" && gemID != EmptyGemID {
+					gems.WriteString(GemIntoEmoji(FindByIDCached(gemID)))
+				}
+				gems.WriteString(" ")
 			}
-			gems.WriteString(" ")
+
+			fields = append(fields, discord.EmbedField{Name: "Gems", Value: gems.String(), Inline: ptrTrue})
 		}
 	}
-	if gems.Len() == 0 {
-		gems.WriteString("N/A")
-	}
-	fields = append(fields, discord.EmbedField{Name: "Gems", Value: strings.TrimSpace(gems.String()), Inline: ptrTrue})
-
 	return fields
 }
 
