@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"strconv"
 	"strings"
 
 	"github.com/disgoorg/disgo/discord"
@@ -81,472 +82,105 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 }
 
 func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
+	authorUsername := strings.Split(e.Message.Embeds[0].Author.Name, " | ")[0]
+	if authorUsername != e.User().Username {
+		e.CreateMessage(
+			discord.NewMessageCreateBuilder().
+				SetContent("You cannot modify items displayed by others! Display your own item and change its properties by using </item:1371980876799410238>.").
+				SetEphemeral(true).
+				Build(),
+		)
+		return
+	}
+
 	switch e.ComponentInteraction.Data.Type() {
 	case discord.ComponentTypeButton:
-		if strings.Split(e.Message.Embeds[0].Author.Name, " | ")[0] != e.User().Username {
-			e.CreateMessage(
-				discord.NewMessageCreateBuilder().
-					SetContent("You cannot modify items displayed by others! Display your own item and change its properties by using </item:1371980876799410238>.").
-					SetEphemeral(true).
-					Build(),
-			)
-			return
-		}
-		switch e.ButtonInteractionData().CustomID() {
-		case "item_add_enchant":
-			var items []discord.StringSelectMenuOption
-
-			for _, v := range ListOfEnchants {
-				enchantItem := FindByIDCached(v)
-
-				items = append(items,
-					discord.StringSelectMenuOption{
-						Label: enchantItem.Name,
-						Value: v,
-						Emoji: &discord.ComponentEmoji{
-							ID: StringToEmoji(EnchantIntoEmoji(enchantItem)),
-						},
-					},
-				)
-			}
-
-			err := e.UpdateMessage(
-				discord.NewMessageUpdateBuilder().
-					AddEmbeds(e.Message.Embeds[0]).
-					AddActionRow(discord.NewStringSelectMenu("item_set_enchant", "Select an enchant", items...)).
-					AddActionRow(discord.NewSuccessButton("Done", "item_done")).
-					Build(),
-			)
-
-			if err != nil {
-				slog.Error("error updating message", slog.Any("err", err))
-			}
-		case "item_add_modifier":
-			var items []discord.StringSelectMenuOption
-			item := FindByIDCached(strings.Split(e.Message.Embeds[0].Author.Name, " | ")[1])
-
-			for _, name := range item.ValidModifiers {
-				var modifierItem Item
-				for _, id := range ListOfModifiers {
-					itemTarget := FindByIDCached(id)
-					if itemTarget.Name == name {
-						modifierItem = *itemTarget
-					}
-				}
-
-				items = append(items, discord.StringSelectMenuOption{
-					Label: modifierItem.Name,
-					Value: modifierItem.ID,
-					Emoji: &discord.ComponentEmoji{
-						ID: StringToEmoji(ModifierIntoEmoji(&modifierItem)),
-					},
-				})
-			}
-
-			err := e.UpdateMessage(
-				discord.NewMessageUpdateBuilder().
-					AddEmbeds(e.Message.Embeds[0]).
-					AddActionRow(discord.NewStringSelectMenu("item_set_modifier", "Select a modifier", items...)).
-					AddActionRow(discord.NewSuccessButton("Done", "item_done")).
-					Build(),
-			)
-
-			if err != nil {
-				slog.Error("failed to update message", slog.Any("err", err))
-			}
-		case "item_add_gem":
-			var items []discord.StringSelectMenuOption
-
-			for _, v := range ListOfGems {
-				gemItem := FindByIDCached(v)
-
-				items = append(items,
-					discord.StringSelectMenuOption{
-						Label: gemItem.Name,
-						Value: v,
-						Emoji: &discord.ComponentEmoji{
-							ID: StringToEmoji(GemIntoEmoji(gemItem)),
-						},
-					},
-				)
-			}
-
-			err := e.UpdateMessage(
-				discord.NewMessageUpdateBuilder().
-					AddEmbeds(e.Message.Embeds[0]).
-					AddActionRow(discord.NewStringSelectMenu("item_set_gem", "Select a gem", items...)).
-					AddActionRow(discord.NewSuccessButton("Done", "item_done")).
-					Build(),
-			)
-			if err != nil {
-				slog.Error("failed to update message", slog.Any("err", err))
-			}
-		case "item_done":
-			slot := EmbedToSlot(e.Message.Embeds[0])
-
-			var buttons []discord.InteractiveComponent
-
-			if slot.Enchant == EmptyEnchantmentID || slot.Enchant == "" {
-				buttons = append(buttons, discord.NewSecondaryButton("Add Enchant", "item_add_enchant"))
-			}
-			if slot.Modifier == EmptyModifierID || slot.Modifier == "" {
-				buttons = append(buttons, discord.NewSecondaryButton("Add Modifier", "item_add_modifier"))
-			}
-			if len(slot.Gems) == 0 && FindByIDCached(slot.Item).GemNo > 0 {
-				buttons = append(buttons, discord.NewSecondaryButton("Add Gems", "item_add_gem"))
-			}
-
-			update := discord.NewMessageUpdateBuilder().
-				AddEmbeds(e.Message.Embeds[0])
-
-			if len(buttons) > 0 {
-				update.AddActionRow(buttons...)
-			} else {
-				update.ClearContainerComponents()
-			}
-
-			err := e.UpdateMessage(update.Build())
-
-			if err != nil {
-				slog.Error("error updating done message", slog.Any("err", err))
-			}
-		}
-
+		handleButtonInteraction(e)
 	case discord.ComponentTypeStringSelectMenu:
-		switch e.StringSelectMenuInteractionData().CustomID() {
-		case "item_set_gem":
-			oldEmbed := e.Message.Embeds[0]
+		handleSelectInteraction(e)
+	}
+}
 
-			slot := EmbedToSlot(oldEmbed)
-			item := FindByIDCached(slot.Item)
+func handleSelectInteraction(e *events.ComponentInteractionCreate) {
+	slot := EmbedToSlot(e.Message.Embeds[0])
+	customID := e.StringSelectMenuInteractionData().CustomID()
+	selectedValue := e.StringSelectMenuInteractionData().Values[0]
 
-			slot.Gems = append(slot.Gems, e.StringSelectMenuInteractionData().Values[0])
+	switch {
+	case customID == "item_set_enchant":
+		slot.Enchant = selectedValue
+	case customID == "item_set_modifier":
+		slot.Modifier = selectedValue
+	case strings.HasPrefix(customID, "item_set_gem_"):
+		item := FindByIDCached(slot.Item)
+		slotIndex, _ := strconv.Atoi(strings.TrimPrefix(customID, "item_set_gem_"))
 
-			var total TotalStats
+		if len(slot.Gems) < item.GemNo {
+			newGems := make([]string, item.GemNo)
+			copy(newGems, slot.Gems)
+			slot.Gems = newGems
+		}
+		if slotIndex < len(slot.Gems) {
+			slot.Gems[slotIndex] = selectedValue
+		}
+	}
 
-			AddItemStats(slot, &total)
+	err := e.UpdateMessage(BuildItemEditorResponse(slot, e.User()))
+	if err != nil {
+		slog.Error("failed to update message after select", "err", err, "customID", customID)
+	}
+}
 
-			var fields []discord.EmbedField
+func handleButtonInteraction(e *events.ComponentInteractionCreate) {
+	customID := e.ButtonInteractionData().CustomID()
+	slot := EmbedToSlot(e.Message.Embeds[0])
+	item := FindByIDCached(slot.Item)
 
-			ptrTrue := BoolToPtr(true)
+	var update *discord.MessageUpdateBuilder
 
-			fields = append(fields, discord.EmbedField{
-				Name:  "Description",
-				Value: item.Legend,
-			}, discord.EmbedField{
-				Name:  "Stats",
-				Value: FormatTotalStats(total),
-			}, discord.EmbedField{
-				Name:   "Type",
-				Value:  item.MainType,
-				Inline: ptrTrue,
-			})
+	switch customID {
+	case "item_add_enchant", "item_add_modifier", "item_add_gem":
+		update = discord.NewMessageUpdateBuilder().
+			AddEmbeds(e.Message.Embeds[0]).
+			ClearContainerComponents()
 
-			if item.SubType != "" {
-				fields = append(fields, discord.EmbedField{
-					Name:   "Sub Type",
-					Value:  item.SubType,
-					Inline: ptrTrue,
-				})
+		switch customID {
+		case "item_add_enchant":
+			var options []discord.StringSelectMenuOption
+			for _, id := range ListOfEnchants {
+				enchant := FindByIDCached(id)
+				options = append(options, discord.StringSelectMenuOption{Label: enchant.Name, Value: id})
 			}
+			update.AddActionRow(discord.NewStringSelectMenu("item_set_enchant", "Select an enchant", options...))
 
-			if item.Rarity != "" {
-				fields = append(fields, discord.EmbedField{
-					Name:   "Rarity",
-					Value:  item.Rarity,
-					Inline: ptrTrue,
-				})
-			}
-
-			if item.MinLevel != 0 || item.MaxLevel != 0 {
-				fields = append(fields, discord.EmbedField{
-					Name:   "Level Range",
-					Value:  fmt.Sprintf("%d - %d", item.MinLevel, item.MaxLevel),
-					Inline: ptrTrue,
-				})
-			}
-
-			if slot.Enchant != EmptyEnchantmentID && slot.Enchant != "" {
-				enchantItem := FindByIDCached(slot.Enchant)
-
-				fields = append(fields, discord.EmbedField{
-					Name:   "Enchant",
-					Value:  EnchantIntoEmoji(enchantItem),
-					Inline: ptrTrue,
-				})
-			}
-
-			if slot.Modifier != EmptyModifierID && slot.Modifier != "" {
-				modifierItem := FindByIDCached(slot.Modifier)
-
-				fields = append(fields, discord.EmbedField{
-					Name:   "Modifier",
-					Value:  ModifierIntoEmoji(modifierItem),
-					Inline: ptrTrue,
-				})
-			}
-
-			var gems strings.Builder
-
-			for _, v := range slot.Gems {
-				gems.WriteString(GemIntoEmoji(FindByIDCached(v)))
-				gems.WriteString(" ")
-			}
-
-			fields = append(fields, discord.EmbedField{
-				Name:   "Gems",
-				Value:  gems.String(),
-				Inline: ptrTrue,
-			})
-
-			embed := discord.NewEmbedBuilder().
-				SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
-				SetFields(
-					fields...,
-				).
-				SetTimestamp(*oldEmbed.Timestamp).
-				SetFooter(EmbedFooter, "").
-				SetColor(oldEmbed.Color)
-
-			if item.ImageID != "NO_IMAGE" && item.ImageID != "" {
-				embed.SetThumbnail(oldEmbed.Thumbnail.URL)
-			}
-
-			message := discord.NewMessageUpdateBuilder().AddEmbeds(
-				embed.Build(),
-			)
-
-			if len(slot.Gems) == item.GemNo {
-				message.AddActionRow(discord.NewSuccessButton("Done", "item_done"))
-			}
-
-			err := e.UpdateMessage(message.Build())
-
-			if err != nil {
-				slog.Error("error updating gems message", slog.Any("err", err))
-			}
-
-		case "item_set_enchant":
-			slot := EmbedToSlot(e.Message.Embeds[0])
-			item := FindByIDCached(slot.Item)
-
-			slot.Enchant = e.StringSelectMenuInteractionData().Values[0]
-
-			var total TotalStats
-
-			oldEmbed := e.Message.Embeds[0]
-
-			AddItemStats(slot, &total)
-
-			var fields []discord.EmbedField
-
-			ptrTrue := BoolToPtr(true)
-
-			fields = append(fields, discord.EmbedField{
-				Name:  "Description",
-				Value: item.Legend,
-			}, discord.EmbedField{
-				Name:  "Stats",
-				Value: FormatTotalStats(total),
-			}, discord.EmbedField{
-				Name:   "Type",
-				Value:  item.MainType,
-				Inline: ptrTrue,
-			})
-
-			if item.SubType != "" {
-				fields = append(fields, discord.EmbedField{
-					Name:   "Sub Type",
-					Value:  item.SubType,
-					Inline: ptrTrue,
-				})
-			}
-
-			if item.Rarity != "" {
-				fields = append(fields, discord.EmbedField{
-					Name:   "Rarity",
-					Value:  item.Rarity,
-					Inline: ptrTrue,
-				})
-			}
-
-			if item.MinLevel != 0 || item.MaxLevel != 0 {
-				fields = append(fields, discord.EmbedField{
-					Name:   "Level Range",
-					Value:  fmt.Sprintf("%d - %d", item.MinLevel, item.MaxLevel),
-					Inline: ptrTrue,
-				})
-			}
-
-			enchantItem := FindByIDCached(slot.Enchant)
-
-			fields = append(fields, discord.EmbedField{
-				Name:   "Enchant",
-				Value:  EnchantIntoEmoji(enchantItem),
-				Inline: ptrTrue,
-			})
-
-			if slot.Modifier != "" && slot.Modifier != EmptyModifierID {
-				modifierItem := FindByIDCached(slot.Modifier)
-
-				fields = append(fields, discord.EmbedField{
-					Name:   "Modifier",
-					Value:  ModifierIntoEmoji(modifierItem),
-					Inline: ptrTrue,
-				})
-			}
-
-			if len(slot.Gems) > 0 {
-				var gems strings.Builder
-
-				for _, v := range slot.Gems {
-					gems.WriteString(GemIntoEmoji(FindByIDCached(v)))
-					gems.WriteString(" ")
+		case "item_add_modifier":
+			var options []discord.StringSelectMenuOption
+			for _, name := range item.ValidModifiers {
+				mod := FindByNameCached(name) // assuming FindByName is implemented
+				if mod != nil {
+					options = append(options, discord.StringSelectMenuOption{Label: mod.Name, Value: mod.ID})
 				}
-
-				fields = append(fields, discord.EmbedField{
-					Name:   "Gems",
-					Value:  gems.String(),
-					Inline: ptrTrue,
-				})
 			}
+			update.AddActionRow(discord.NewStringSelectMenu("item_set_modifier", "Select a modifier", options...))
 
-			embed := discord.NewEmbedBuilder().
-				SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
-				SetFields(
-					fields...,
-				).
-				SetTimestamp(*oldEmbed.Timestamp).
-				SetFooter(EmbedFooter, "").
-				SetColor(oldEmbed.Color)
-
-			if item.ImageID != "NO_IMAGE" && item.ImageID != "" {
-				embed.SetThumbnail(oldEmbed.Thumbnail.URL)
+		case "item_add_gem":
+			var options []discord.StringSelectMenuOption
+			for _, id := range ListOfGems {
+				gem := FindByIDCached(id)
+				options = append(options, discord.StringSelectMenuOption{Label: gem.Name, Value: id})
 			}
-
-			message := discord.NewMessageUpdateBuilder().AddEmbeds(
-				embed.Build(),
-			)
-
-			if slot.Enchant != EmptyEnchantmentID {
-				message.AddActionRow(discord.NewSuccessButton("Done", "item_done"))
-			}
-
-			err := e.UpdateMessage(message.Build())
-
-			if err != nil {
-				slog.Error("error updating enchants message", slog.Any("err", err))
-			}
-		case "item_set_modifier":
-			slot := EmbedToSlot(e.Message.Embeds[0])
-			item := FindByIDCached(slot.Item)
-
-			slot.Modifier = e.StringSelectMenuInteractionData().Values[0]
-
-			var total TotalStats
-			oldEmbed := e.Message.Embeds[0]
-
-			AddItemStats(slot, &total)
-
-			var fields []discord.EmbedField
-
-			ptrTrue := BoolToPtr(true)
-
-			fields = append(fields, discord.EmbedField{
-				Name:  "Description",
-				Value: item.Legend,
-			}, discord.EmbedField{
-				Name:  "Stats",
-				Value: FormatTotalStats(total),
-			}, discord.EmbedField{
-				Name:   "Type",
-				Value:  item.MainType,
-				Inline: ptrTrue,
-			})
-
-			if item.SubType != "" {
-				fields = append(fields, discord.EmbedField{
-					Name:   "Sub Type",
-					Value:  item.SubType,
-					Inline: ptrTrue,
-				})
-			}
-
-			if item.Rarity != "" {
-				fields = append(fields, discord.EmbedField{
-					Name:   "Rarity",
-					Value:  item.Rarity,
-					Inline: ptrTrue,
-				})
-			}
-
-			if item.MinLevel != 0 || item.MaxLevel != 0 {
-				fields = append(fields, discord.EmbedField{
-					Name:   "Level Range",
-					Value:  fmt.Sprintf("%d - %d", item.MinLevel, item.MaxLevel),
-					Inline: ptrTrue,
-				})
-			}
-
-			if slot.Enchant != EmptyEnchantmentID && slot.Enchant != "" {
-				enchantItem := FindByIDCached(slot.Enchant)
-
-				fields = append(fields, discord.EmbedField{
-					Name:   "Enchant",
-					Value:  EnchantIntoEmoji(enchantItem),
-					Inline: ptrTrue,
-				})
-			}
-
-			modifierItem := FindByIDCached(slot.Modifier)
-
-			fields = append(fields, discord.EmbedField{
-				Name:   "Modifier",
-				Value:  ModifierIntoEmoji(modifierItem),
-				Inline: ptrTrue,
-			})
-
-			if len(slot.Gems) > 0 {
-				var gems strings.Builder
-
-				for _, v := range slot.Gems {
-					gems.WriteString(GemIntoEmoji(FindByIDCached(v)))
-					gems.WriteString(" ")
+			for i := 0; i < item.GemNo; i++ {
+				placeholder := fmt.Sprintf("Select a gem for slot %d", i+1)
+				if i < len(slot.Gems) && slot.Gems[i] != "" {
+					placeholder = FindByIDCached(slot.Gems[i]).Name
 				}
-
-				fields = append(fields, discord.EmbedField{
-					Name:   "Gems",
-					Value:  gems.String(),
-					Inline: ptrTrue,
-				})
-			}
-
-			embed := discord.NewEmbedBuilder().
-				SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
-				SetFields(
-					fields...,
-				).
-				SetTimestamp(*oldEmbed.Timestamp).
-				SetFooter(EmbedFooter, "").
-				SetColor(oldEmbed.Color)
-
-			if item.ImageID != "NO_IMAGE" && item.ImageID != "" {
-				embed.SetThumbnail(oldEmbed.Thumbnail.URL)
-			}
-
-			message := discord.NewMessageUpdateBuilder().AddEmbeds(
-				embed.Build(),
-			)
-
-			if slot.Modifier != EmptyModifierID {
-				message.AddActionRow(discord.NewSuccessButton("Done", "item_done"))
-			}
-
-			err := e.UpdateMessage(message.Build())
-
-			if err != nil {
-				slog.Error("error updating modifier message", slog.Any("err", err))
+				update.AddActionRow(discord.NewStringSelectMenu(fmt.Sprintf("item_set_gem_%d", i), placeholder, options...))
 			}
 		}
+		update.AddActionRow(discord.NewSuccessButton("Done", "item_done"))
+		e.UpdateMessage(update.Build())
+
+	case "item_done":
+		e.UpdateMessage(BuildItemEditorResponse(slot, e.User()))
 	}
 }

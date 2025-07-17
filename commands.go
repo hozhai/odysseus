@@ -1,3 +1,5 @@
+// TODO: fix /item with no item.ImageIDs
+
 package main
 
 import (
@@ -21,6 +23,8 @@ const (
 	ItemNotFoundMsg = "Item not found!"
 	DefaultColor    = 0x93b1e3
 )
+
+var cleanDescriptionRegex = regexp.MustCompile(`\s+`)
 
 type WikiSearchResult struct {
 	Title       string
@@ -96,225 +100,27 @@ func CommandHelp(e *events.ApplicationCommandInteractionCreate) {
 
 func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 	id := e.SlashCommandInteractionData().String("name")
-	item := *FindByIDCached(id)
-	ptrTrue := BoolToPtr(true)
-
-	var fields []discord.EmbedField
-	var statsString string
-	var builder strings.Builder
-
-	if len(item.StatsPerLevel) > 0 {
-		lastStats := item.StatsPerLevel[len(item.StatsPerLevel)-1]
-
-		if lastStats.Power != 0 {
-			builder.WriteString(fmt.Sprintf("<:power:1392363667059904632> %d\n", lastStats.Power))
-		}
-
-		if lastStats.Defense != 0 {
-			builder.WriteString(fmt.Sprintf("<:defense:1392364201262977054> %d\n", lastStats.Defense))
-		}
-
-		if lastStats.Agility != 0 {
-			builder.WriteString(fmt.Sprintf("<:agility:1392364894573297746> %d\n", lastStats.Agility))
-		}
-
-		if lastStats.AttackSpeed != 0 {
-			builder.WriteString(fmt.Sprintf("<:attackspeed:1392364933722804274> %d\n", lastStats.AttackSpeed))
-		}
-
-		if lastStats.AttackSize != 0 {
-			builder.WriteString(fmt.Sprintf("<:attacksize:1392364917616807956> %d\n", lastStats.AttackSize))
-		}
-
-		if lastStats.Intensity != 0 {
-			builder.WriteString(fmt.Sprintf("<:intensity:1392365008049934377> %d\n", lastStats.Intensity))
-		}
-
-		if lastStats.Regeneration != 0 {
-			builder.WriteString(fmt.Sprintf("<:regeneration:1392365064010469396> %d\n", lastStats.Regeneration))
-		}
-
-		if lastStats.Piercing != 0 {
-			builder.WriteString(fmt.Sprintf("<:piercing:1392365031705808986> %d\n", lastStats.Piercing))
-		}
-
-		if lastStats.Resistance != 0 {
-			builder.WriteString(fmt.Sprintf("<:resistance:1393458741009186907> %d\n", lastStats.Resistance))
-		}
-
-		if lastStats.Drawback != 0 {
-			builder.WriteString(fmt.Sprintf("<:drawback:1392364965905563698> %d\n", lastStats.Drawback))
-		}
-
-		if lastStats.Warding != 0 {
-			builder.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", lastStats.Warding))
-		}
-
-		statsString = builder.String()
-	} else if item.MainType == "Gem" {
-		if item.Power != 0 {
-			builder.WriteString(fmt.Sprintf("<:power:1392363667059904632> %d\n", item.Power))
-		}
-
-		if item.Defense != 0 {
-			builder.WriteString(fmt.Sprintf("<:defense:1392364201262977054> %d\n", item.Defense))
-		}
-
-		if item.Agility != 0 {
-			builder.WriteString(fmt.Sprintf("<:agility:1392364894573297746> %d\n", item.Agility))
-		}
-
-		if item.AttackSpeed != 0 {
-			builder.WriteString(fmt.Sprintf("<:attackspeed:1392364933722804274> %d\n", item.AttackSpeed))
-		}
-
-		if item.AttackSize != 0 {
-			builder.WriteString(fmt.Sprintf("<:attacksize:1392364917616807956> %d\n", item.AttackSize))
-		}
-
-		if item.Intensity != 0 {
-			builder.WriteString(fmt.Sprintf("<:intensity:1392365008049934377> %d\n", item.Intensity))
-		}
-
-		if item.Regeneration != 0 {
-			builder.WriteString(fmt.Sprintf("<:regeneration:1392365064010469396> %d\n", item.Regeneration))
-		}
-
-		if item.Piercing != 0 {
-			builder.WriteString(fmt.Sprintf("<:piercing:1392365031705808986> %d\n", item.Piercing))
-		}
-
-		if item.Resistance != 0 {
-			builder.WriteString(fmt.Sprintf("<:resistance:1393458741009186907> %d\n", item.Resistance))
-		}
-
-		if item.Drawback != 0 {
-			builder.WriteString(fmt.Sprintf("<:drawback:1392364965905563698> %d\n", item.Drawback))
-		}
-
-		if item.Warding != 0 {
-			builder.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", item.Warding))
-		}
-
-		statsString = builder.String()
-	} else if item.MainType == "Enchant" {
-		if item.PowerIncrement != 0 {
-			builder.WriteString(fmt.Sprintf("<:power:1392363667059904632> %f per 10 levels\n", item.PowerIncrement))
-		}
-
-		if item.DefenseIncrement != 0 {
-			builder.WriteString(fmt.Sprintf("<:defense:1392364201262977054> %f per 10 levels\n", item.DefenseIncrement))
-		}
-
-		if item.AgilityIncrement != 0 {
-			builder.WriteString(fmt.Sprintf("<:agility:1392364894573297746> %f per 10 levels\n", item.AgilityIncrement))
-		}
-
-		if item.AttackSpeedIncrement != 0 {
-			builder.WriteString(fmt.Sprintf("<:attackspeed:1392364933722804274> %f per 10 levels\n", item.AttackSpeedIncrement))
-		}
-
-		if item.AttackSizeIncrement != 0 {
-			builder.WriteString(fmt.Sprintf("<:attacksize:1392364917616807956> %f per 10 levels\n", item.AttackSizeIncrement))
-		}
-
-		if item.IntensityIncrement != 0 {
-			builder.WriteString(fmt.Sprintf("<:intensity:1392365008049934377> %f per 10 levels\n", item.IntensityIncrement))
-		}
-
-		if item.RegenerationIncrement != 0 {
-			builder.WriteString(fmt.Sprintf("<:regeneration:1392365064010469396> %f per 10 levels\n", item.RegenerationIncrement))
-		}
-
-		if item.PiercingIncrement != 0 {
-			builder.WriteString(fmt.Sprintf("<:piercing:1392365031705808986> %f per 10 levels\n", item.PiercingIncrement))
-		}
-
-		if item.ResistanceIncrement != 0 {
-			builder.WriteString(fmt.Sprintf("<:resistance:1393458741009186907> %f per 10 levels\n", item.ResistanceIncrement))
-		}
-
-		statsString = builder.String()
+	item := FindByIDCached(id)
+	if item == nil || item.Name == "Unknown" {
+		e.CreateMessage(discord.NewMessageCreateBuilder().SetContent(ItemNotFoundMsg).SetEphemeral(true).Build())
+		return
 	}
 
-	fields = append(fields, discord.EmbedField{
-		Name:  "Description",
-		Value: item.Legend,
-	}, discord.EmbedField{
-		Name:  "Stats",
-		Value: statsString,
-	}, discord.EmbedField{
-		Name:   "Type",
-		Value:  item.MainType,
-		Inline: ptrTrue,
-	})
-
-	if item.SubType != "" {
-		fields = append(fields, discord.EmbedField{
-			Name:   "Sub Type",
-			Value:  item.SubType,
-			Inline: ptrTrue,
-		})
+	initialSlot := Slot{
+		Item:  item.ID,
+		Level: MaxLevel,
 	}
 
-	if item.Rarity != "" {
-		fields = append(fields, discord.EmbedField{
-			Name:   "Rarity",
-			Value:  item.Rarity,
-			Inline: ptrTrue,
-		})
+	messageUpdate := BuildItemEditorResponse(initialSlot, e.User())
+	messageCreate := discord.MessageCreate{
+		Embeds:     *messageUpdate.Embeds,
+		Components: *messageUpdate.Components,
 	}
 
-	if item.MinLevel != 0 || item.MaxLevel != 0 {
-		fields = append(fields, discord.EmbedField{
-			Name:   "Level Range",
-			Value:  fmt.Sprintf("%d - %d", item.MinLevel, item.MaxLevel),
-			Inline: ptrTrue,
-		})
-	}
-
-	var imageURL string
-
-	// some data has imageID set to "NO_IMAGE" instead of empty string
-	if item.ImageID != "" && item.ImageID != "NO_IMAGE" {
-		imageURL = item.ImageID
-	}
-
-	var actionRow []discord.InteractiveComponent
-	if item.MainType == "Accessory" || item.MainType == "Chestplate" || item.MainType == "Pants" {
-		actionRow = append(actionRow, discord.NewSecondaryButton("Add Enchant", "item_add_enchant"), discord.NewSecondaryButton("Add Modifier", "item_add_modifier"))
-	}
-
-	if item.GemNo > 0 {
-		actionRow = append(actionRow, discord.NewSecondaryButton("Add Gem", "item_add_gem"))
-	}
-
-	message :=
-		discord.NewMessageCreateBuilder().AddEmbeds(
-			discord.NewEmbedBuilder().
-				SetAuthor(fmt.Sprintf("%v | %v", e.User().Username, item.ID), "", *e.User().AvatarURL()).
-				SetTitle(item.Name).
-				SetThumbnail(imageURL).
-				SetFields(
-					fields...,
-				).
-				SetFooter(EmbedFooter, "").
-				SetTimestamp(time.Now()).
-				SetColor(GetRarityColor(item.Rarity)).
-				Build(),
-		)
-
-	if len(actionRow) > 0 {
-		message.AddActionRow(actionRow...)
-	}
-
-	err := e.CreateMessage(
-		message.
-			Build(),
-	)
+	err := e.CreateMessage(messageCreate)
 
 	if err != nil {
-		slog.Error("Error sending message", slog.Any("err", err))
+		slog.Error("Error sending item message", slog.Any("err", err))
 	}
 }
 
@@ -420,7 +226,6 @@ func CommandBuild(e *events.ApplicationCommandInteractionCreate) {
 		slog.Error("error", slog.Any("err", err))
 		return
 	}
-
 }
 
 func CommandWiki(e *events.ApplicationCommandInteractionCreate) {
@@ -563,7 +368,7 @@ func parseSearchResult(n *html.Node) WikiSearchResult {
 		result.Description = getTextContent(descElement)
 		// clean up description
 		result.Description = strings.TrimSpace(result.Description)
-		result.Description = regexp.MustCompile(`\s+`).ReplaceAllString(result.Description, " ")
+		result.Description = cleanDescriptionRegex.ReplaceAllString(result.Description, " ")
 	}
 
 	return result

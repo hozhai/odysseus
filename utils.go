@@ -103,6 +103,14 @@ var (
 		SailorStyle,
 		ThermoFist,
 	}
+
+	enchantToEmojiMap  = make(map[string]string)
+	modifierToEmojiMap = make(map[string]string)
+	gemToEmojiMap      = make(map[string]string)
+
+	emojiToEnchantMap  = make(map[string]*Item)
+	emojiToModifierMap = make(map[string]*Item)
+	emojiToGemMap      = make(map[string]*Item)
 )
 
 type Item struct {
@@ -218,8 +226,9 @@ type TotalStats struct {
 
 // add caching to repeated lookups
 type ItemCache struct {
-	cache map[string]*Item
-	mu    sync.RWMutex
+	cache     map[string]*Item
+	nameCache map[string]*Item
+	mu        sync.RWMutex
 }
 
 var ListOfGems []string
@@ -227,7 +236,8 @@ var ListOfEnchants []string
 var ListOfModifiers []string
 
 var itemCache = &ItemCache{
-	cache: make(map[string]*Item),
+	cache:     make(map[string]*Item),
+	nameCache: make(map[string]*Item),
 }
 
 var httpClient = &http.Client{
@@ -249,23 +259,40 @@ func InitializeItemCache() {
 	}
 
 	itemCache.cache = make(map[string]*Item, len(APIData))
+	itemCache.nameCache = make(map[string]*Item, len(APIData))
 	for i := range APIData {
 		item := APIData[i]
 
 		itemCache.cache[item.ID] = &item
+		itemCache.nameCache[strings.ToLower(item.Name)] = &item
 
 		switch item.MainType {
 		case "Gem":
 			if item.ID != EmptyGemID {
 				ListOfGems = append(ListOfGems, item.ID)
+				emoji := gemIntoEmoji(&item)
+				if emoji != "" {
+					gemToEmojiMap[item.Name] = emoji
+					emojiToGemMap[emoji] = &item
+				}
 			}
 		case "Modifier":
 			if item.ID != EmptyModifierID {
 				ListOfModifiers = append(ListOfModifiers, item.ID)
+				emoji := modifierIntoEmoji(&item)
+				if emoji != "" {
+					modifierToEmojiMap[item.Name] = emoji
+					emojiToModifierMap[emoji] = &item
+				}
 			}
 		case "Enchant":
 			if item.ID != EmptyEnchantmentID {
 				ListOfEnchants = append(ListOfEnchants, item.ID)
+				emoji := enchantIntoEmoji(&item)
+				if emoji != "" {
+					enchantToEmojiMap[item.Name] = emoji
+					emojiToEnchantMap[emoji] = &item
+				}
 			}
 		}
 	}
@@ -297,6 +324,16 @@ func GetRarityColor(rarity string) int {
 	default:
 		return ColorDefault
 	}
+}
+
+func FindByNameCached(name string) *Item {
+	itemCache.mu.RLock()
+	defer itemCache.mu.RUnlock()
+
+	if item, exists := itemCache.nameCache[strings.ToLower(name)]; exists {
+		return item
+	}
+	return nil
 }
 
 func BoolToPtr(b bool) *bool {
@@ -608,7 +645,7 @@ func MagicFsIntoEmoji[k Magic | FightingStyle](content k) string {
 	}
 }
 
-func EnchantIntoEmoji(item *Item) string {
+func enchantIntoEmoji(item *Item) string {
 	switch item.Name {
 	case "Strong":
 		return "<:strong:1393732208673685615>"
@@ -651,7 +688,7 @@ func EnchantIntoEmoji(item *Item) string {
 	}
 }
 
-func ModifierIntoEmoji(item *Item) string {
+func modifierIntoEmoji(item *Item) string {
 	switch item.Name {
 	case "Abyssal":
 		return "<:abyssal:1393733751279718591>"
@@ -676,7 +713,7 @@ func ModifierIntoEmoji(item *Item) string {
 	}
 }
 
-func GemIntoEmoji(item *Item) string {
+func gemIntoEmoji(item *Item) string {
 	switch item.Name {
 	case "Defense Gem":
 		return "<:defensegem:1393733031927349268>"
@@ -721,32 +758,44 @@ func GemIntoEmoji(item *Item) string {
 	}
 }
 
+func EnchantIntoEmoji(item *Item) string {
+	if item == nil {
+		return ""
+	}
+	return enchantToEmojiMap[item.Name]
+}
+
+func ModifierIntoEmoji(item *Item) string {
+	if item == nil {
+		return ""
+	}
+	return modifierToEmojiMap[item.Name]
+}
+
+func GemIntoEmoji(item *Item) string {
+	if item == nil {
+		return ""
+	}
+	return gemToEmojiMap[item.Name]
+}
+
 func EmojiIntoEnchant(emoji string) *Item {
-	for _, enchantID := range ListOfEnchants {
-		enchantItem := FindByIDCached(enchantID)
-		if EnchantIntoEmoji(enchantItem) == emoji {
-			return enchantItem
-		}
+	if item, ok := emojiToEnchantMap[emoji]; ok {
+		return item
 	}
 	return &Item{Name: "Unknown"}
 }
 
 func EmojiIntoModifier(emoji string) *Item {
-	for _, modifierID := range ListOfModifiers {
-		modifierItem := FindByIDCached(modifierID)
-		if ModifierIntoEmoji(modifierItem) == emoji {
-			return modifierItem
-		}
+	if item, ok := emojiToModifierMap[emoji]; ok {
+		return item
 	}
 	return &Item{Name: "Unknown"}
 }
 
 func EmojiIntoGem(emoji string) *Item {
-	for _, gemID := range ListOfGems {
-		gemItem := FindByIDCached(gemID)
-		if GemIntoEmoji(gemItem) == emoji {
-			return gemItem
-		}
+	if item, ok := emojiToGemMap[emoji]; ok {
+		return item
 	}
 	return &Item{Name: "Unknown"}
 }
@@ -1064,4 +1113,110 @@ func EmbedToSlot(embed discord.Embed) Slot {
 	}
 
 	return slot
+}
+
+func BuildItemEditorResponse(slot Slot, user discord.User) discord.MessageUpdate {
+	item := FindByIDCached(slot.Item)
+	var total TotalStats
+	AddItemStats(slot, &total)
+
+	fields := buildEmbedFields(item, slot, total)
+
+	embed := discord.NewEmbedBuilder().
+		SetAuthor(fmt.Sprintf("%s | %s", user.Username, item.ID), "", user.EffectiveAvatarURL()).
+		SetTitle(item.Name).
+		SetThumbnail(item.ImageID).
+		SetFields(fields...).
+		SetTimestamp(time.Now()).
+		SetFooter(EmbedFooter, "").
+		SetColor(GetRarityColor(item.Rarity)).
+		Build()
+
+	update := discord.NewMessageUpdateBuilder().
+		AddEmbeds(embed).
+		ClearContainerComponents()
+
+	buttons := getAvailableActionButtons(slot, item)
+	if len(buttons) > 0 {
+		update.AddActionRow(buttons...)
+	}
+
+	return update.Build()
+}
+
+func buildEmbedFields(item *Item, slot Slot, total TotalStats) []discord.EmbedField {
+	var fields []discord.EmbedField
+	ptrTrue := BoolToPtr(true)
+
+	fields = append(fields,
+		discord.EmbedField{Name: "Description", Value: item.Legend},
+		discord.EmbedField{Name: "Stats", Value: FormatTotalStats(total)},
+		discord.EmbedField{Name: "Type", Value: item.MainType, Inline: ptrTrue},
+	)
+	if item.SubType != "" {
+		fields = append(fields, discord.EmbedField{Name: "Sub Type", Value: item.SubType, Inline: ptrTrue})
+	}
+	if item.Rarity != "" {
+		fields = append(fields, discord.EmbedField{Name: "Rarity", Value: item.Rarity, Inline: ptrTrue})
+	}
+
+	enchantEmoji := EnchantIntoEmoji(FindByIDCached(slot.Enchant))
+	if enchantEmoji == "" {
+		enchantEmoji = "None"
+	}
+	fields = append(fields, discord.EmbedField{Name: "Enchant", Value: enchantEmoji, Inline: ptrTrue})
+
+	modifierEmoji := ModifierIntoEmoji(FindByIDCached(slot.Modifier))
+	if modifierEmoji == "" {
+		modifierEmoji = "None"
+	}
+	fields = append(fields, discord.EmbedField{Name: "Modifier", Value: modifierEmoji, Inline: ptrTrue})
+
+	var gems strings.Builder
+	if item.GemNo > 0 {
+		displayGems := make([]string, item.GemNo)
+		copy(displayGems, slot.Gems)
+		for _, gemID := range displayGems {
+			if gemID != "" && gemID != EmptyGemID {
+				gems.WriteString(GemIntoEmoji(FindByIDCached(gemID)))
+			} else {
+				gems.WriteString("<:emptygem:1394063998834315294>")
+			}
+			gems.WriteString(" ")
+		}
+	}
+	if gems.Len() == 0 {
+		gems.WriteString("N/A")
+	}
+	fields = append(fields, discord.EmbedField{Name: "Gems", Value: strings.TrimSpace(gems.String()), Inline: ptrTrue})
+
+	return fields
+}
+
+func getAvailableActionButtons(slot Slot, item *Item) []discord.InteractiveComponent {
+	var buttons []discord.InteractiveComponent
+
+	if (slot.Enchant == "" || slot.Enchant == EmptyEnchantmentID) && (item.MainType == "Accessory" || item.MainType == "Chestplate" || item.MainType == "Pants") {
+		buttons = append(buttons, discord.NewSecondaryButton("Add Enchant", "item_add_enchant"))
+	}
+	if (slot.Modifier == "" || slot.Modifier == EmptyModifierID) && len(item.ValidModifiers) > 0 {
+		buttons = append(buttons, discord.NewSecondaryButton("Add Modifier", "item_add_modifier"))
+	}
+
+	if item.GemNo > 0 {
+		hasEmptySlot := len(slot.Gems) < item.GemNo
+		if !hasEmptySlot {
+			for _, gemID := range slot.Gems {
+				if gemID == "" || gemID == EmptyGemID {
+					hasEmptySlot = true
+					break
+				}
+			}
+		}
+		if hasEmptySlot {
+			buttons = append(buttons, discord.NewSecondaryButton("Add Gems", "item_add_gem"))
+		}
+	}
+
+	return buttons
 }
