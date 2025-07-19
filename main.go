@@ -89,6 +89,8 @@ func main() {
 	token := os.Getenv("TOKEN")
 	dbUrl := os.Getenv("DB_URL")
 
+	// TODO: add error messages for when env isn't set correctly
+
 	client, err := disgo.New(token,
 		bot.WithGatewayConfigOpts(
 			gateway.WithIntents(
@@ -118,17 +120,18 @@ func main() {
 		panic(err)
 	}
 
-	if gatewayErr := client.OpenGateway(context.TODO()); gatewayErr != nil {
+	if err = client.OpenGateway(context.TODO()); err != nil {
 		slog.Error("error opening gateway: ", slog.Any("err", err))
-		panic(gatewayErr)
+		panic(err)
 	}
 
-	if APIErr := GetData(); APIErr != nil {
+	if err := GetData(); err != nil {
 		slog.Error("error fetching data from API: ", slog.Any("err", err))
-		panic(APIErr)
+		panic(err)
 	}
 
 	dbConn, err = sql.Open("mysql", dbUrl)
+
 	if err != nil {
 		slog.Error("failed to connect to database", "error", err)
 		panic(err)
