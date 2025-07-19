@@ -1,9 +1,9 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log/slog"
-	"net/http"
 	"net/url"
 	"regexp"
 	"strings"
@@ -11,7 +11,8 @@ import (
 
 	"github.com/disgoorg/disgo/discord"
 	"github.com/disgoorg/disgo/events"
-	"golang.org/x/net/html"
+
+	"github.com/hozhai/odysseus/db"
 )
 
 const (
@@ -31,7 +32,7 @@ type WikiSearchResult struct {
 	URL         string
 }
 
-func CommandPing(e *events.ApplicationCommandInteractionCreate) {
+func CommandLatency(e *events.ApplicationCommandInteractionCreate) {
 	embed := discord.NewEmbedBuilder().
 		SetTitlef("Pong! %v", e.Client().Gateway().Latency()).
 		SetFooter(EmbedFooter, "").
@@ -79,7 +80,7 @@ func CommandHelp(e *events.ApplicationCommandInteractionCreate) {
 				SetFields(
 					discord.EmbedField{Name: "</help:1371529758495608853>", Value: "Displays this message :)"},
 					discord.EmbedField{Name: "</about:1366598377147465791>", Value: "Displays an about page where you can also join our Discord!"},
-					discord.EmbedField{Name: "</ping:1366258542704594974>", Value: "Returns the API latency"},
+					discord.EmbedField{Name: "/latency", Value: "Returns the API latency"},
 					discord.EmbedField{Name: "</item:1371980876799410238>", Value: "Displays an item along with stats and additional info"},
 					discord.EmbedField{Name: "</build:1394100657706893453>", Value: "Loads a build from GearBuilder using the URL"},
 					discord.EmbedField{Name: "</wiki:1394143370452144129>", Value: "Searches the AO Wiki"},
@@ -235,7 +236,7 @@ func CommandWiki(e *events.ApplicationCommandInteractionCreate) {
 		return
 	}
 
-	results, err := searchWiki(query)
+	results, err := SearchWiki(query)
 	if err != nil {
 		if _, err := e.Client().Rest().CreateFollowupMessage(e.ApplicationID(), e.Token(), discord.MessageCreate{
 			Content: fmt.Sprintf("Error searching wiki: %v", err),
@@ -291,122 +292,50 @@ func CommandWiki(e *events.ApplicationCommandInteractionCreate) {
 	}
 }
 
-func searchWiki(query string) ([]WikiSearchResult, error) {
-	// encode the query
-	encodedQuery := url.QueryEscape(query)
-	searchURL := fmt.Sprintf("https://roblox-arcane-odyssey.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true&query=%s", encodedQuery)
+func CommandPing(e *events.ApplicationCommandInteractionCreate) {
+	guildID := int64(*e.GuildID())
 
-	// make HTTP request
-	resp, err := httpClient.Get(searchURL)
+	queries := db.New(dbConn)
+
+	guild, err := queries.GetGuild(context.Background(), guildID)
 	if err != nil {
-		return nil, fmt.Errorf("failed to fetch search results: %w", err)
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("search request failed with status: %d", resp.StatusCode)
-	}
-
-	// parse HTML
-	doc, err := html.Parse(resp.Body)
-	if err != nil {
-		return nil, fmt.Errorf("failed to parse HTML: %w", err)
+		slog.Warn("Guild not found in database", "guildID", guildID, "error", err)
+		e.CreateMessage(discord.NewMessageCreateBuilder().
+			SetContent("Server pings have not been set up by a server administrator yet. Ask them to run /setping!").
+			SetEphemeral(true).
+			Build(),
+		)
+		return
 	}
 
-	// extract search results
-	results := extractSearchResults(doc)
-	return results, nil
+	// Check if PermissionRoleID is set
+	if !guild.PermissionRoleID.Valid || guild.PermissionRoleID.Int64 == 0 {
+		// Permission role is not set
+		slog.Info("Permission role not set for guild", "guildID", guildID)
+		// Handle case where permission role is not configured
+		return
+	}
+	permissionRoleID := guild.PermissionRoleID.Int64
+	slog.Info("Permission role found", "guildID", guildID, "roleID", permissionRoleID)
 }
 
-func extractSearchResults(n *html.Node) []WikiSearchResult {
-	var results []WikiSearchResult
-
-	// find search results - fandom uses different classes but typically contains "unified-search__result"
-	if n.Type == html.ElementNode && n.Data == "li" {
-		for _, attr := range n.Attr {
-			if attr.Key == "class" && strings.Contains(attr.Val, "unified-search__result") {
-				result := parseSearchResult(n)
-				if result.Title != "" {
-					results = append(results, result)
-				}
-				break
-			}
-		}
+func CommandPingSet(e *events.ApplicationCommandInteractionCreate) {
+	if !e.Member().Permissions.Has(discord.PermissionManageRoles) &&
+		!e.Member().Permissions.Has(discord.PermissionAdministrator) {
+		e.CreateMessage(discord.NewMessageCreateBuilder().
+			AddEmbeds(
+				discord.NewEmbedBuilder().
+					SetAuthor(e.User().Username, "", *e.User().AvatarURL()).
+					SetDescription("You need the `Manage Roles` permission in order to use this command!").
+					SetFooter(EmbedFooter, "").
+					SetTimestamp(time.Now()).
+					Build(),
+			).
+			SetEphemeral(true).
+			Build(),
+		)
+		return
 	}
 
-	// recursively search child nodes
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		results = append(results, extractSearchResults(c)...)
-	}
-
-	return results
-}
-
-func parseSearchResult(n *html.Node) WikiSearchResult {
-	var result WikiSearchResult
-
-	// find title link
-	titleLink := findElementWithClass(n, "a", "unified-search__result__title")
-	if titleLink != nil {
-		result.Title = getTextContent(titleLink)
-		for _, attr := range titleLink.Attr {
-			if attr.Key == "href" {
-				if strings.HasPrefix(attr.Val, "/") {
-					result.URL = "https://roblox-arcane-odyssey.fandom.com" + attr.Val
-				} else {
-					result.URL = attr.Val
-				}
-				break
-			}
-		}
-	}
-
-	// find description
-	descElement := findElementWithClass(n, "p", "unified-search__result__snippet")
-	if descElement != nil {
-		result.Description = getTextContent(descElement)
-		// clean up description
-		result.Description = strings.TrimSpace(result.Description)
-		result.Description = cleanDescriptionRegex.ReplaceAllString(result.Description, " ")
-	}
-
-	return result
-}
-
-func findElementWithClass(n *html.Node, tagName, className string) *html.Node {
-	if n.Type == html.ElementNode && n.Data == tagName {
-		for _, attr := range n.Attr {
-			if attr.Key == "class" && strings.Contains(attr.Val, className) {
-				return n
-			}
-		}
-	}
-
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		if result := findElementWithClass(c, tagName, className); result != nil {
-			return result
-		}
-	}
-
-	return nil
-}
-
-func getTextContent(n *html.Node) string {
-	if n.Type == html.TextNode {
-		return n.Data
-	}
-
-	var result strings.Builder
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		result.WriteString(getTextContent(c))
-	}
-
-	return result.String()
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
+	// TODO: add interactive embed menu to set roles using buttons and select menus whilst adding those values to the db
 }

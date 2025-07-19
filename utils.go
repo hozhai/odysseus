@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"math"
 	"net/http"
+	"net/url"
 	"os"
 	"strconv"
 	"strings"
@@ -15,6 +16,7 @@ import (
 	"github.com/disgoorg/disgo/discord"
 	"github.com/disgoorg/json"
 	"github.com/disgoorg/snowflake/v2"
+	"golang.org/x/net/html"
 )
 
 type Magic int64
@@ -1225,4 +1227,124 @@ func getAvailableActionButtons(slot Slot, item *Item) []discord.InteractiveCompo
 	}
 
 	return buttons
+}
+
+func SearchWiki(query string) ([]WikiSearchResult, error) {
+	// encode the query
+	encodedQuery := url.QueryEscape(query)
+	searchURL := fmt.Sprintf("https://roblox-arcane-odyssey.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true&query=%s", encodedQuery)
+
+	// make HTTP request
+	resp, err := httpClient.Get(searchURL)
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch search results: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("search request failed with status: %d", resp.StatusCode)
+	}
+
+	// parse HTML
+	doc, err := html.Parse(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse HTML: %w", err)
+	}
+
+	// extract search results
+	results := ExtractSearchResults(doc)
+	return results, nil
+}
+
+func ExtractSearchResults(n *html.Node) []WikiSearchResult {
+	var results []WikiSearchResult
+
+	// find search results - fandom uses different classes but typically contains "unified-search__result"
+	if n.Type == html.ElementNode && n.Data == "li" {
+		for _, attr := range n.Attr {
+			if attr.Key == "class" && strings.Contains(attr.Val, "unified-search__result") {
+				result := ParseSearchResult(n)
+				if result.Title != "" {
+					results = append(results, result)
+				}
+				break
+			}
+		}
+	}
+
+	// recursively search child nodes
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		results = append(results, ExtractSearchResults(c)...)
+	}
+
+	return results
+}
+
+func ParseSearchResult(n *html.Node) WikiSearchResult {
+	var result WikiSearchResult
+
+	// find title link
+	titleLink := FindElementWithClass(n, "a", "unified-search__result__title")
+	if titleLink != nil {
+		result.Title = GetTextContent(titleLink)
+		for _, attr := range titleLink.Attr {
+			if attr.Key == "href" {
+				if strings.HasPrefix(attr.Val, "/") {
+					result.URL = "https://roblox-arcane-odyssey.fandom.com" + attr.Val
+				} else {
+					result.URL = attr.Val
+				}
+				break
+			}
+		}
+	}
+
+	// find description
+	descElement := FindElementWithClass(n, "p", "unified-search__result__snippet")
+	if descElement != nil {
+		result.Description = GetTextContent(descElement)
+		// clean up description
+		result.Description = strings.TrimSpace(result.Description)
+		result.Description = cleanDescriptionRegex.ReplaceAllString(result.Description, " ")
+	}
+
+	return result
+}
+
+func FindElementWithClass(n *html.Node, tagName, className string) *html.Node {
+	if n.Type == html.ElementNode && n.Data == tagName {
+		for _, attr := range n.Attr {
+			if attr.Key == "class" && strings.Contains(attr.Val, className) {
+				return n
+			}
+		}
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		if result := FindElementWithClass(c, tagName, className); result != nil {
+			return result
+		}
+	}
+
+	return nil
+}
+
+func GetTextContent(n *html.Node) string {
+	if n.Type == html.TextNode {
+		return n.Data
+	}
+
+	var result strings.Builder
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		result.WriteString(GetTextContent(c))
+	}
+
+	return result.String()
+}
+
+func Min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }

@@ -2,17 +2,22 @@ package main
 
 import (
 	"context"
-	"flag"
+	"database/sql"
 	"log/slog"
 	"os"
 	"os/signal"
 	"syscall"
 
+	"github.com/joho/godotenv"
+
 	"github.com/disgoorg/disgo"
 	"github.com/disgoorg/disgo/bot"
 	"github.com/disgoorg/disgo/discord"
 	"github.com/disgoorg/disgo/gateway"
+	_ "github.com/go-sql-driver/mysql"
 )
+
+var dbConn *sql.DB
 
 type APIResponse []Item
 
@@ -23,7 +28,7 @@ var (
 			Description: "Displays the help menu.",
 		},
 		discord.SlashCommandCreate{
-			Name:        "ping",
+			Name:        "latency",
 			Description: "Returns the API latency.",
 		},
 		discord.SlashCommandCreate{
@@ -64,20 +69,27 @@ var (
 				},
 			},
 		},
+		discord.SlashCommandCreate{
+			Name:        "ping",
+			Description: "Displays the ping menu.",
+		},
+		discord.SlashCommandCreate{
+			Name:        "pingset",
+			Description: "Sets the role IDs for the pings in /ping. Must have Manage Roles permission to use.",
+		},
 	}
 	APIData APIResponse
 )
 
 func main() {
-	token := flag.String("token", "", "the bot token")
-	flag.Parse()
-
-	if *token == "" {
-		slog.Error("you need to specify a token! ./odysseus --token TOKEN-HERE")
-		return
+	if err := godotenv.Load(); err != nil {
+		slog.Error("failed to load env")
 	}
 
-	client, err := disgo.New(*token,
+	token := os.Getenv("TOKEN")
+	dbUrl := os.Getenv("DB_URL")
+
+	client, err := disgo.New(token,
 		bot.WithGatewayConfigOpts(
 			gateway.WithIntents(
 				gateway.IntentGuilds,
@@ -115,6 +127,19 @@ func main() {
 		slog.Error("error fetching data from API: ", slog.Any("err", err))
 		panic(APIErr)
 	}
+
+	dbConn, err = sql.Open("mysql", dbUrl)
+	if err != nil {
+		slog.Error("failed to connect to database", "error", err)
+		panic(err)
+	}
+
+	if err = dbConn.Ping(); err != nil {
+		slog.Error("failed to ping database", "error", err)
+		panic(err)
+	}
+
+	defer dbConn.Close()
 
 	slog.Info("successfully logged in. ctrl-c to exit")
 	s := make(chan os.Signal, 1)

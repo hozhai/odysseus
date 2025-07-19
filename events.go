@@ -66,8 +66,8 @@ func onAutocompleteInteractionCreate(e *events.AutocompleteInteractionCreate) {
 
 func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteractionCreate) {
 	switch e.Data.CommandName() {
-	case "ping":
-		CommandPing(e)
+	case "latency":
+		CommandLatency(e)
 	case "about":
 		CommandAbout(e)
 	case "help":
@@ -78,6 +78,10 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		CommandBuild(e)
 	case "wiki":
 		CommandWiki(e)
+	case "ping":
+		CommandPing(e)
+	case "pingset":
+		CommandPingSet(e)
 	}
 }
 
