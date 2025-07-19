@@ -18,7 +18,7 @@ Make sure Go is installed. Compile the binary and run it
 
 ```sh
 go build .
-./odysseus --token <TOKEN HERE>
+./odysseus
 ```
 
 ## 🪪 License
