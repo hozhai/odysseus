@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/joho/godotenv"
 
@@ -142,7 +143,16 @@ func main() {
 		panic(err)
 	}
 
-	defer dbConn.Close()
+	defer func(dbConn *sql.DB) {
+		err := dbConn.Close()
+		if err != nil {
+			slog.Error("failed to close database connection", "error", err)
+		}
+	}(dbConn)
+
+	dbConn.SetMaxOpenConns(25)
+	dbConn.SetMaxIdleConns(25)
+	dbConn.SetConnMaxLifetime(5 * time.Minute)
 
 	slog.Info("successfully logged in. ctrl-c to exit")
 	s := make(chan os.Signal, 1)

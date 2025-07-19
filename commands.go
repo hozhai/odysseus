@@ -102,7 +102,10 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 	id := e.SlashCommandInteractionData().String("name")
 	item := FindByIDCached(id)
 	if item == nil || item.Name == "Unknown" {
-		e.CreateMessage(discord.NewMessageCreateBuilder().SetContent(ItemNotFoundMsg).SetEphemeral(true).Build())
+		err := e.CreateMessage(discord.NewMessageCreateBuilder().SetContent(ItemNotFoundMsg).SetEphemeral(true).Build())
+		if err != nil {
+			slog.Error("error sending message", slog.Any("err", err))
+		}
 		return
 	}
 
@@ -125,11 +128,11 @@ func CommandItem(e *events.ApplicationCommandInteractionCreate) {
 }
 
 func CommandBuild(e *events.ApplicationCommandInteractionCreate) {
-	url := e.SlashCommandInteractionData().String("url")
+	urlOption := e.SlashCommandInteractionData().String("url")
 
-	if !strings.HasPrefix(url, "https://tools.arcaneodyssey.net/gearBuilder#") {
+	if !strings.HasPrefix(urlOption, BuildURLPrefix) {
 		err := e.CreateMessage(
-			discord.NewMessageCreateBuilder().SetContent("Invalid URL! Please provide a valid Arcane Odyssey build URL.").Build(),
+			discord.NewMessageCreateBuilder().SetContent(InvalidURLMsg).Build(),
 		)
 
 		if err != nil {
@@ -138,7 +141,7 @@ func CommandBuild(e *events.ApplicationCommandInteractionCreate) {
 		return
 	}
 
-	hash := strings.TrimPrefix(url, "https://tools.arcaneodyssey.net/gearBuilder#")
+	hash := strings.TrimPrefix(urlOption, "https://tools.arcaneodyssey.net/gearBuilder#")
 
 	player, err := UnhashBuildCode(hash)
 
@@ -300,11 +303,15 @@ func CommandPing(e *events.ApplicationCommandInteractionCreate) {
 	guild, err := queries.GetGuild(context.Background(), guildID)
 	if err != nil {
 		slog.Warn("Guild not found in database", "guildID", guildID, "error", err)
-		e.CreateMessage(discord.NewMessageCreateBuilder().
+		err = e.CreateMessage(discord.NewMessageCreateBuilder().
 			SetContent("Server pings have not been set up by a server administrator yet. Ask them to run /setping!").
 			SetEphemeral(true).
 			Build(),
 		)
+
+		if err != nil {
+			slog.Error("error sending message", slog.Any("err", err))
+		}
 		return
 	}
 
@@ -322,7 +329,7 @@ func CommandPing(e *events.ApplicationCommandInteractionCreate) {
 func CommandPingSet(e *events.ApplicationCommandInteractionCreate) {
 	if !e.Member().Permissions.Has(discord.PermissionManageRoles) &&
 		!e.Member().Permissions.Has(discord.PermissionAdministrator) {
-		e.CreateMessage(discord.NewMessageCreateBuilder().
+		err := e.CreateMessage(discord.NewMessageCreateBuilder().
 			AddEmbeds(
 				discord.NewEmbedBuilder().
 					SetAuthor(e.User().Username, "", *e.User().AvatarURL()).
@@ -334,6 +341,10 @@ func CommandPingSet(e *events.ApplicationCommandInteractionCreate) {
 			SetEphemeral(true).
 			Build(),
 		)
+
+		if err != nil {
+			slog.Error("error sending message", slog.Any("err", err))
+		}
 		return
 	}
 
