@@ -11,6 +11,7 @@ import (
 	"github.com/disgoorg/disgo/events"
 	"github.com/disgoorg/disgo/gateway"
 	"github.com/disgoorg/json"
+	"github.com/hozhai/odysseus/db"
 )
 
 func onReady(e *events.Ready) {
@@ -30,7 +31,10 @@ func onReady(e *events.Ready) {
 }
 
 func onAutocompleteInteractionCreate(e *events.AutocompleteInteractionCreate) {
-	if e.Data.CommandName == "item" {
+	data := e.Data
+
+	switch data.CommandName {
+	case "item":
 		for _, option := range e.AutocompleteInteraction.Data.Options {
 			if option.Focused {
 				var value string
@@ -60,7 +64,41 @@ func onAutocompleteInteractionCreate(e *events.AutocompleteInteractionCreate) {
 					return
 				}
 			}
+			for _, option := range e.AutocompleteInteraction.Data.Options {
+				if option.Focused {
+					var value string
+
+					if err := json.Unmarshal(option.Value, &value); err != nil {
+						slog.Error("error unmarshaling option value", slog.Any("err", err))
+						return
+					}
+
+					results := make([]discord.AutocompleteChoice, 0, 25)
+					for _, item := range APIData {
+
+						if len(results) >= 25 {
+							break
+						}
+
+						if strings.Contains(strings.ToLower(item.Name), strings.ToLower(value)) && item.Name != "None" {
+							results = append(results, discord.AutocompleteChoiceString{
+								Name:  item.Name,
+								Value: item.ID,
+							})
+						}
+					}
+
+					err := e.AutocompleteResult(results)
+					if err != nil {
+						return
+					}
+				}
+			}
 		}
+	case "ping":
+		handlePingAutocomplete(e)
+	case "pingset":
+		handlePingSetAutocomplete(e)
 	}
 }
 
@@ -186,5 +224,83 @@ func handleButtonInteraction(e *events.ComponentInteractionCreate) {
 
 	case "item_done":
 		e.UpdateMessage(BuildItemEditorResponse(slot, e.User()))
+	}
+}
+
+func handlePingAutocomplete(e *events.AutocompleteInteractionCreate) {
+	guildID := int64(*e.GuildID())
+
+	for _, option := range e.AutocompleteInteraction.Data.Options {
+		if option.Focused && option.Name == "type" {
+			var value string
+			if err := json.Unmarshal(option.Value, &value); err != nil {
+				slog.Error("error unmarshaling ping autocomplete value", slog.Any("err", err))
+				return
+			}
+
+			queries := db.New(dbConn)
+			configs, err := queries.GetPingConfigs(context.Background(), guildID)
+			if err != nil {
+				slog.Error("error fetching ping configs for autocomplete", slog.Any("err", err))
+				return
+			}
+
+			results := make([]discord.AutocompleteChoice, 0, min(len(configs), 25))
+			for _, config := range configs {
+				if len(results) >= 25 {
+					break
+				}
+				if strings.Contains(strings.ToLower(config.Name), strings.ToLower(value)) {
+					results = append(results, discord.AutocompleteChoiceString{
+						Name:  config.Name,
+						Value: config.Name,
+					})
+				}
+			}
+
+			if err := e.AutocompleteResult(results); err != nil {
+				slog.Error("error sending ping autocomplete results", slog.Any("err", err))
+			}
+			return
+		}
+	}
+}
+
+func handlePingSetAutocomplete(e *events.AutocompleteInteractionCreate) {
+	guildID := int64(*e.GuildID())
+
+	for _, option := range e.AutocompleteInteraction.Data.Options {
+		if option.Focused && option.Name == "name" {
+			var value string
+			if err := json.Unmarshal(option.Value, &value); err != nil {
+				slog.Error("error unmarshaling pingset autocomplete value", slog.Any("err", err))
+				return
+			}
+
+			queries := db.New(dbConn)
+			configs, err := queries.GetPingConfigs(context.Background(), guildID)
+			if err != nil {
+				slog.Error("error fetching ping configs for autocomplete", slog.Any("err", err))
+				return
+			}
+
+			results := make([]discord.AutocompleteChoice, 0, min(len(configs), 25))
+			for _, config := range configs {
+				if len(results) >= 25 {
+					break
+				}
+				if strings.Contains(strings.ToLower(config.Name), strings.ToLower(value)) {
+					results = append(results, discord.AutocompleteChoiceString{
+						Name:  config.Name,
+						Value: config.Name,
+					})
+				}
+			}
+
+			if err := e.AutocompleteResult(results); err != nil {
+				slog.Error("error sending pingset autocomplete results", slog.Any("err", err))
+			}
+			return
+		}
 	}
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 	"log/slog"
 	"net/url"
@@ -11,7 +12,7 @@ import (
 
 	"github.com/disgoorg/disgo/discord"
 	"github.com/disgoorg/disgo/events"
-
+	"github.com/disgoorg/snowflake/v2"
 	"github.com/hozhai/odysseus/db"
 )
 
@@ -21,7 +22,7 @@ const (
 	InvalidURLMsg   = "Invalid URL! Please provide a valid GearBuilder build URL."
 	ItemNotFoundMsg = "Item not found!"
 	DefaultColor    = 0x93b1e3
-	Version         = "v0.1.4"
+	Version         = "v0.2.1"
 )
 
 var cleanDescriptionRegex = regexp.MustCompile(`\s+`)
@@ -80,10 +81,14 @@ func CommandHelp(e *events.ApplicationCommandInteractionCreate) {
 				SetFields(
 					discord.EmbedField{Name: "</help:1371529758495608853>", Value: "Displays this message :)"},
 					discord.EmbedField{Name: "</about:1366598377147465791>", Value: "Displays an about page where you can also join our Discord!"},
-					discord.EmbedField{Name: "/latency", Value: "Returns the API latency"},
-					discord.EmbedField{Name: "</item:1371980876799410238>", Value: "Displays an item along with stats and additional info"},
-					discord.EmbedField{Name: "</build:1394100657706893453>", Value: "Loads a build from GearBuilder using the URL"},
-					discord.EmbedField{Name: "</wiki:1394143370452144129>", Value: "Searches the AO Wiki"},
+					discord.EmbedField{Name: "</latency:1396224588349706342>", Value: "Returns the API latency."},
+					discord.EmbedField{Name: "</item:1371980876799410238>", Value: "Displays an item along with stats and additional info."},
+					discord.EmbedField{Name: "</build:1394100657706893453>", Value: "Loads a build from GearBuilder using the URL."},
+					discord.EmbedField{Name: "</wiki:1394143370452144129>", Value: "Searches the AO Wiki."},
+					discord.EmbedField{Name: "</ping:1366258542704594974>", Value: "Mentions the specified role."},
+					discord.EmbedField{Name: "</pingset:1396224588349706343> add", Value: "Adds a role that can be mentioned, requires the `Manage Roles` permission to use."},
+					discord.EmbedField{Name: "</pingset:1396224588349706343> list", Value: "Lists the roles that can be mentioned via /ping, requires the `Manage Roles` permission to use."},
+					discord.EmbedField{Name: "</pingset:1396224588349706343> remove", Value: "Removes a role that can be mentioned, requires the `Manage Roles` permission to use."},
 				).
 				SetFooter(EmbedFooter, "").
 				SetTimestamp(time.Now()).
@@ -297,56 +302,235 @@ func CommandWiki(e *events.ApplicationCommandInteractionCreate) {
 
 func CommandPing(e *events.ApplicationCommandInteractionCreate) {
 	guildID := int64(*e.GuildID())
+	pingType := e.SlashCommandInteractionData().String("type")
+	message := e.SlashCommandInteractionData().String("message")
 
 	queries := db.New(dbConn)
 
-	guild, err := queries.GetGuild(context.Background(), guildID)
+	// get the ping configuration
+	config, err := queries.GetPingConfig(context.Background(), db.GetPingConfigParams{
+		GuildID: guildID,
+		Name:    pingType,
+	})
 	if err != nil {
-		slog.Warn("Guild not found in database", "guildID", guildID, "error", err)
-		err = e.CreateMessage(discord.NewMessageCreateBuilder().
-			SetContent("Server pings have not been set up by a server administrator yet. Ask them to run /setping!").
+		err := e.CreateMessage(discord.NewMessageCreateBuilder().
+			SetContent("Ping configuration not found!").
 			SetEphemeral(true).
-			Build(),
-		)
-
+			Build())
 		if err != nil {
-			slog.Error("error sending message", slog.Any("err", err))
+			slog.Error("error sending ping not found message", slog.Any("err", err))
 		}
 		return
 	}
 
-	// Check if PermissionRoleID is set
-	if !guild.PermissionRoleID.Valid || guild.PermissionRoleID.Int64 == 0 {
-		// Permission role is not set
-		slog.Info("Permission role not set for guild", "guildID", guildID)
-		// Handle case where permission role is not configured
-		return
+	// check if user has required role (if set)
+	if config.RequiredRoleID.Valid {
+		member := e.Member()
+		if member == nil {
+			err := e.CreateMessage(discord.NewMessageCreateBuilder().
+				SetContent("Could not verify your permissions.").
+				SetEphemeral(true).
+				Build())
+			if err != nil {
+				slog.Error("error sending permission error", slog.Any("err", err))
+			}
+			return
+		}
+
+		hasRole := false
+		requiredRoleID := snowflake.ID(config.RequiredRoleID.Int64)
+		for _, roleID := range member.RoleIDs {
+			if roleID == requiredRoleID {
+				hasRole = true
+				break
+			}
+		}
+
+		if !hasRole {
+			err := e.CreateMessage(discord.NewMessageCreateBuilder().
+				SetContent("You don't have permission to use this ping!").
+				SetEphemeral(true).
+				Build())
+			if err != nil {
+				slog.Error("error sending no permission message", slog.Any("err", err))
+			}
+			return
+		}
 	}
-	permissionRoleID := guild.PermissionRoleID.Int64
-	slog.Info("Permission role found", "guildID", guildID, "roleID", permissionRoleID)
+
+	// Build the ping message
+	var builder strings.Builder
+	builder.WriteString(fmt.Sprintf("<@%d> has pinged <@&%d>!", e.User().ID, config.TargetRoleID))
+
+	if message != "" {
+		builder.WriteString(fmt.Sprintf(" - %s", message))
+	}
+	err = e.CreateMessage(discord.NewMessageCreateBuilder().
+		SetContent(builder.String()).
+		Build())
+	if err != nil {
+		slog.Error("error sending ping message", slog.Any("err", err))
+	}
 }
 
 func CommandPingSet(e *events.ApplicationCommandInteractionCreate) {
-	if !e.Member().Permissions.Has(discord.PermissionManageRoles) &&
-		!e.Member().Permissions.Has(discord.PermissionAdministrator) {
+	// Check if user has Manage Roles permission
+	if !e.Member().Permissions.Has(discord.PermissionManageRoles) && !e.Member().Permissions.Has(discord.PermissionAdministrator) {
 		err := e.CreateMessage(discord.NewMessageCreateBuilder().
-			AddEmbeds(
-				discord.NewEmbedBuilder().
-					SetAuthor(e.User().Username, "", *e.User().AvatarURL()).
-					SetDescription("You need the `Manage Roles` permission in order to use this command!").
-					SetFooter(EmbedFooter, "").
-					SetTimestamp(time.Now()).
-					Build(),
-			).
+			SetContent("You need the 'Manage Roles' permission to use this command!").
 			SetEphemeral(true).
-			Build(),
-		)
-
+			Build())
 		if err != nil {
-			slog.Error("error sending message", slog.Any("err", err))
+			slog.Error("error sending permission error", slog.Any("err", err))
 		}
 		return
 	}
 
-	// TODO: add interactive embed menu to set roles using buttons and select menus whilst adding those values to the db
+	subcommand := e.SlashCommandInteractionData().SubCommandName
+	guildID := int64(*e.GuildID())
+	queries := db.New(dbConn)
+
+	switch *subcommand {
+	case "add":
+		name := e.SlashCommandInteractionData().String("name")
+		targetRole := e.SlashCommandInteractionData().Snowflake("target")
+		requiredRole, requiredRoleOk := e.SlashCommandInteractionData().OptSnowflake("required")
+		description, descriptionOk := e.SlashCommandInteractionData().OptString("description")
+
+		// ensure guild exists in database
+		_, err := queries.GetGuild(context.Background(), guildID)
+		if err != nil {
+			// create guild if it doesn't exist
+			_, err = queries.CreateGuild(context.Background(), guildID)
+			if err != nil {
+				slog.Error("error creating guild", slog.Any("err", err))
+				err := e.CreateMessage(discord.NewMessageCreateBuilder().
+					SetContent("Database error occurred.").
+					SetEphemeral(true).
+					Build())
+				if err != nil {
+					slog.Error("error sending error message", slog.Any("err", err))
+				}
+				return
+			}
+		}
+
+		params := db.CreatePingConfigParams{
+			GuildID:      guildID,
+			Name:         name,
+			TargetRoleID: int64(targetRole),
+		}
+
+		if requiredRoleOk {
+			params.RequiredRoleID = sql.NullInt64{Int64: int64(requiredRole), Valid: true}
+		}
+
+		if descriptionOk {
+			params.Description = sql.NullString{String: description, Valid: true}
+		}
+
+		_, err = queries.CreatePingConfig(context.Background(), params)
+		if err != nil {
+			if strings.Contains(err.Error(), "Duplicate entry") {
+				err := e.CreateMessage(discord.NewMessageCreateBuilder().
+					SetContent(fmt.Sprintf("A ping configuration named '%s' already exists!", name)).
+					SetEphemeral(true).
+					Build())
+				if err != nil {
+					slog.Error("error sending duplicate error", slog.Any("err", err))
+				}
+				return
+			}
+
+			slog.Error("error creating ping config", slog.Any("err", err))
+			err := e.CreateMessage(discord.NewMessageCreateBuilder().
+				SetContent("Failed to create ping configuration.").
+				SetEphemeral(true).
+				Build())
+			if err != nil {
+				slog.Error("error sending error message", slog.Any("err", err))
+			}
+			return
+		}
+
+		err = e.CreateMessage(discord.NewMessageCreateBuilder().
+			SetContent(fmt.Sprintf("Successfully created ping configuration '%s'!", name)).
+			SetEphemeral(true).
+			Build())
+		if err != nil {
+			slog.Error("error sending success message", slog.Any("err", err))
+		}
+
+	case "remove":
+		name := e.SlashCommandInteractionData().String("name")
+
+		_, err := queries.DeletePingConfig(context.Background(), db.DeletePingConfigParams{
+			GuildID: guildID,
+			Name:    name,
+		})
+		if err != nil {
+			err := e.CreateMessage(discord.NewMessageCreateBuilder().
+				SetContent(fmt.Sprintf("Ping configuration '%s' not found!", name)).
+				SetEphemeral(true).
+				Build())
+			if err != nil {
+				slog.Error("error sending not found error", slog.Any("err", err))
+			}
+			return
+		}
+
+		err = e.CreateMessage(discord.NewMessageCreateBuilder().
+			SetContent(fmt.Sprintf("Successfully removed ping configuration '%s'!", name)).
+			SetEphemeral(true).
+			Build())
+		if err != nil {
+			slog.Error("error sending success message", slog.Any("err", err))
+		}
+
+	case "list":
+		configs, err := queries.GetPingConfigs(context.Background(), guildID)
+		if err != nil || len(configs) == 0 {
+			err := e.CreateMessage(discord.NewMessageCreateBuilder().
+				SetContent("No ping configurations found for this server.").
+				SetEphemeral(true).
+				Build())
+			if err != nil {
+				slog.Error("error sending no configs message", slog.Any("err", err))
+			}
+			return
+		}
+
+		fields := make([]discord.EmbedField, 0, len(configs))
+		for _, config := range configs {
+			value := fmt.Sprintf("Target: <@&%d>", config.TargetRoleID)
+			if config.RequiredRoleID.Valid {
+				value += fmt.Sprintf("\nRequired: <@&%d>", config.RequiredRoleID.Int64)
+			}
+			if config.Description.Valid {
+				value += fmt.Sprintf("\nDescription: %s", config.Description.String)
+			}
+
+			fields = append(fields, discord.EmbedField{
+				Name:   config.Name,
+				Value:  value,
+				Inline: BoolToPtr(true),
+			})
+		}
+
+		embed := discord.NewEmbedBuilder().
+			SetTitle("Ping Configurations").
+			SetFields(fields...).
+			SetColor(DefaultColor).
+			SetFooter(EmbedFooter, "").
+			SetTimestamp(time.Now()).
+			Build()
+
+		err = e.CreateMessage(discord.NewMessageCreateBuilder().
+			AddEmbeds(embed).
+			SetEphemeral(true).
+			Build())
+		if err != nil {
+			slog.Error("error sending list message", slog.Any("err", err))
+		}
+	}
 }

@@ -11,32 +11,51 @@ import (
 )
 
 const createGuild = `-- name: CreateGuild :execresult
-INSERT INTO guilds (id, epicenter_role_id, luck_role_id, pvp_na_role_id, pvp_eu_role_id, pvp_as_role_id)
-VALUES (?, ?, ?, ?, ?, ?)
+INSERT INTO guilds (id) VALUES (?)
 `
 
-type CreateGuildParams struct {
-	ID              int64
-	EpicenterRoleID sql.NullInt64
-	LuckRoleID      sql.NullInt64
-	PvpNaRoleID     sql.NullInt64
-	PvpEuRoleID     sql.NullInt64
-	PvpAsRoleID     sql.NullInt64
+func (q *Queries) CreateGuild(ctx context.Context, id int64) (sql.Result, error) {
+	return q.db.ExecContext(ctx, createGuild, id)
 }
 
-func (q *Queries) CreateGuild(ctx context.Context, arg CreateGuildParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, createGuild,
-		arg.ID,
-		arg.EpicenterRoleID,
-		arg.LuckRoleID,
-		arg.PvpNaRoleID,
-		arg.PvpEuRoleID,
-		arg.PvpAsRoleID,
+const createPingConfig = `-- name: CreatePingConfig :execresult
+INSERT INTO ping_configs (guild_id, name, description, required_role_id, target_role_id)
+VALUES (?, ?, ?, ?, ?)
+`
+
+type CreatePingConfigParams struct {
+	GuildID        int64
+	Name           string
+	Description    sql.NullString
+	RequiredRoleID sql.NullInt64
+	TargetRoleID   int64
+}
+
+func (q *Queries) CreatePingConfig(ctx context.Context, arg CreatePingConfigParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, createPingConfig,
+		arg.GuildID,
+		arg.Name,
+		arg.Description,
+		arg.RequiredRoleID,
+		arg.TargetRoleID,
 	)
 }
 
+const deletePingConfig = `-- name: DeletePingConfig :execresult
+DELETE FROM ping_configs WHERE guild_id = ? AND name = ?
+`
+
+type DeletePingConfigParams struct {
+	GuildID int64
+	Name    string
+}
+
+func (q *Queries) DeletePingConfig(ctx context.Context, arg DeletePingConfigParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, deletePingConfig, arg.GuildID, arg.Name)
+}
+
 const getGuild = `-- name: GetGuild :one
-SELECT id, permission_role_id, epicenter_role_id, luck_role_id, pvp_na_role_id, pvp_eu_role_id, pvp_as_role_id, created_at, updated_at FROM guilds WHERE id = ?
+SELECT id, permission_role_id, created_at, updated_at FROM guilds WHERE id = ?
 `
 
 func (q *Queries) GetGuild(ctx context.Context, id int64) (Guild, error) {
@@ -45,185 +64,93 @@ func (q *Queries) GetGuild(ctx context.Context, id int64) (Guild, error) {
 	err := row.Scan(
 		&i.ID,
 		&i.PermissionRoleID,
-		&i.EpicenterRoleID,
-		&i.LuckRoleID,
-		&i.PvpNaRoleID,
-		&i.PvpEuRoleID,
-		&i.PvpAsRoleID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
 	return i, err
 }
 
-const removeEpicenterRole = `-- name: RemoveEpicenterRole :execresult
-UPDATE guilds 
-SET epicenter_role_id = NULL, updated_at = NOW()
-WHERE id = ?
+const getPingConfig = `-- name: GetPingConfig :one
+SELECT id, guild_id, name, description, required_role_id, target_role_id, created_at, updated_at FROM ping_configs WHERE guild_id = ? AND name = ?
 `
 
-func (q *Queries) RemoveEpicenterRole(ctx context.Context, id int64) (sql.Result, error) {
-	return q.db.ExecContext(ctx, removeEpicenterRole, id)
+type GetPingConfigParams struct {
+	GuildID int64
+	Name    string
 }
 
-const removeLuckRole = `-- name: RemoveLuckRole :execresult
-UPDATE guilds 
-SET luck_role_id = NULL, updated_at = NOW()
-WHERE id = ?
+func (q *Queries) GetPingConfig(ctx context.Context, arg GetPingConfigParams) (PingConfig, error) {
+	row := q.db.QueryRowContext(ctx, getPingConfig, arg.GuildID, arg.Name)
+	var i PingConfig
+	err := row.Scan(
+		&i.ID,
+		&i.GuildID,
+		&i.Name,
+		&i.Description,
+		&i.RequiredRoleID,
+		&i.TargetRoleID,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getPingConfigs = `-- name: GetPingConfigs :many
+SELECT id, guild_id, name, description, required_role_id, target_role_id, created_at, updated_at FROM ping_configs WHERE guild_id = ? ORDER BY name
 `
 
-func (q *Queries) RemoveLuckRole(ctx context.Context, id int64) (sql.Result, error) {
-	return q.db.ExecContext(ctx, removeLuckRole, id)
+func (q *Queries) GetPingConfigs(ctx context.Context, guildID int64) ([]PingConfig, error) {
+	rows, err := q.db.QueryContext(ctx, getPingConfigs, guildID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []PingConfig
+	for rows.Next() {
+		var i PingConfig
+		if err := rows.Scan(
+			&i.ID,
+			&i.GuildID,
+			&i.Name,
+			&i.Description,
+			&i.RequiredRoleID,
+			&i.TargetRoleID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
 }
 
-const removePvpAsRole = `-- name: RemovePvpAsRole :execresult
-UPDATE guilds 
-SET pvp_as_role_id = NULL, updated_at = NOW()
-WHERE id = ?
+const updatePingConfig = `-- name: UpdatePingConfig :execresult
+UPDATE ping_configs
+SET description = ?, required_role_id = ?, target_role_id = ?, updated_at = NOW()
+WHERE guild_id = ? AND name = ?
 `
 
-func (q *Queries) RemovePvpAsRole(ctx context.Context, id int64) (sql.Result, error) {
-	return q.db.ExecContext(ctx, removePvpAsRole, id)
+type UpdatePingConfigParams struct {
+	Description    sql.NullString
+	RequiredRoleID sql.NullInt64
+	TargetRoleID   int64
+	GuildID        int64
+	Name           string
 }
 
-const removePvpEuRole = `-- name: RemovePvpEuRole :execresult
-UPDATE guilds 
-SET pvp_eu_role_id = NULL, updated_at = NOW()
-WHERE id = ?
-`
-
-func (q *Queries) RemovePvpEuRole(ctx context.Context, id int64) (sql.Result, error) {
-	return q.db.ExecContext(ctx, removePvpEuRole, id)
-}
-
-const removePvpNaRole = `-- name: RemovePvpNaRole :execresult
-UPDATE guilds 
-SET pvp_na_role_id = NULL, updated_at = NOW()
-WHERE id = ?
-`
-
-func (q *Queries) RemovePvpNaRole(ctx context.Context, id int64) (sql.Result, error) {
-	return q.db.ExecContext(ctx, removePvpNaRole, id)
-}
-
-const updateEpicenterRole = `-- name: UpdateEpicenterRole :execresult
-UPDATE guilds 
-SET epicenter_role_id = ?, updated_at = NOW()
-WHERE id = ?
-`
-
-type UpdateEpicenterRoleParams struct {
-	EpicenterRoleID sql.NullInt64
-	ID              int64
-}
-
-func (q *Queries) UpdateEpicenterRole(ctx context.Context, arg UpdateEpicenterRoleParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, updateEpicenterRole, arg.EpicenterRoleID, arg.ID)
-}
-
-const updateLuckRole = `-- name: UpdateLuckRole :execresult
-UPDATE guilds 
-SET luck_role_id = ?, updated_at = NOW()
-WHERE id = ?
-`
-
-type UpdateLuckRoleParams struct {
-	LuckRoleID sql.NullInt64
-	ID         int64
-}
-
-func (q *Queries) UpdateLuckRole(ctx context.Context, arg UpdateLuckRoleParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, updateLuckRole, arg.LuckRoleID, arg.ID)
-}
-
-const updatePermissionRole = `-- name: UpdatePermissionRole :execresult
-UPDATE guilds 
-SET permission_role_id = ?, updated_at = NOW()
-WHERE id = ?
-`
-
-type UpdatePermissionRoleParams struct {
-	PermissionRoleID sql.NullInt64
-	ID               int64
-}
-
-func (q *Queries) UpdatePermissionRole(ctx context.Context, arg UpdatePermissionRoleParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, updatePermissionRole, arg.PermissionRoleID, arg.ID)
-}
-
-const updatePvpAsRole = `-- name: UpdatePvpAsRole :execresult
-UPDATE guilds 
-SET pvp_as_role_id = ?, updated_at = NOW()
-WHERE id = ?
-`
-
-type UpdatePvpAsRoleParams struct {
-	PvpAsRoleID sql.NullInt64
-	ID          int64
-}
-
-func (q *Queries) UpdatePvpAsRole(ctx context.Context, arg UpdatePvpAsRoleParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, updatePvpAsRole, arg.PvpAsRoleID, arg.ID)
-}
-
-const updatePvpEuRole = `-- name: UpdatePvpEuRole :execresult
-UPDATE guilds 
-SET pvp_eu_role_id = ?, updated_at = NOW()
-WHERE id = ?
-`
-
-type UpdatePvpEuRoleParams struct {
-	PvpEuRoleID sql.NullInt64
-	ID          int64
-}
-
-func (q *Queries) UpdatePvpEuRole(ctx context.Context, arg UpdatePvpEuRoleParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, updatePvpEuRole, arg.PvpEuRoleID, arg.ID)
-}
-
-const updatePvpNaRole = `-- name: UpdatePvpNaRole :execresult
-UPDATE guilds 
-SET pvp_na_role_id = ?, updated_at = NOW()
-WHERE id = ?
-`
-
-type UpdatePvpNaRoleParams struct {
-	PvpNaRoleID sql.NullInt64
-	ID          int64
-}
-
-func (q *Queries) UpdatePvpNaRole(ctx context.Context, arg UpdatePvpNaRoleParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, updatePvpNaRole, arg.PvpNaRoleID, arg.ID)
-}
-
-const upsertGuild = `-- name: UpsertGuild :execresult
-INSERT INTO guilds (id, epicenter_role_id, luck_role_id, pvp_na_role_id, pvp_eu_role_id, pvp_as_role_id)
-VALUES (?, ?, ?, ?, ?, ?)
-ON DUPLICATE KEY UPDATE 
-    epicenter_role_id = COALESCE(VALUES(epicenter_role_id), epicenter_role_id),
-    luck_role_id = COALESCE(VALUES(luck_role_id), luck_role_id),
-    pvp_na_role_id = COALESCE(VALUES(pvp_na_role_id), pvp_na_role_id),
-    pvp_eu_role_id = COALESCE(VALUES(pvp_eu_role_id), pvp_eu_role_id),
-    pvp_as_role_id = COALESCE(VALUES(pvp_as_role_id), pvp_as_role_id),
-    updated_at = NOW()
-`
-
-type UpsertGuildParams struct {
-	ID              int64
-	EpicenterRoleID sql.NullInt64
-	LuckRoleID      sql.NullInt64
-	PvpNaRoleID     sql.NullInt64
-	PvpEuRoleID     sql.NullInt64
-	PvpAsRoleID     sql.NullInt64
-}
-
-func (q *Queries) UpsertGuild(ctx context.Context, arg UpsertGuildParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, upsertGuild,
-		arg.ID,
-		arg.EpicenterRoleID,
-		arg.LuckRoleID,
-		arg.PvpNaRoleID,
-		arg.PvpEuRoleID,
-		arg.PvpAsRoleID,
+func (q *Queries) UpdatePingConfig(ctx context.Context, arg UpdatePingConfigParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, updatePingConfig,
+		arg.Description,
+		arg.RequiredRoleID,
+		arg.TargetRoleID,
+		arg.GuildID,
+		arg.Name,
 	)
 }

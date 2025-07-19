@@ -11,11 +11,17 @@ import (
 type Guild struct {
 	ID               int64
 	PermissionRoleID sql.NullInt64
-	EpicenterRoleID  sql.NullInt64
-	LuckRoleID       sql.NullInt64
-	PvpNaRoleID      sql.NullInt64
-	PvpEuRoleID      sql.NullInt64
-	PvpAsRoleID      sql.NullInt64
 	CreatedAt        sql.NullTime
 	UpdatedAt        sql.NullTime
+}
+
+type PingConfig struct {
+	ID             int64
+	GuildID        int64
+	Name           string
+	Description    sql.NullString
+	RequiredRoleID sql.NullInt64
+	TargetRoleID   int64
+	CreatedAt      sql.NullTime
+	UpdatedAt      sql.NullTime
 }

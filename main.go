@@ -72,11 +72,68 @@ var (
 		},
 		discord.SlashCommandCreate{
 			Name:        "ping",
-			Description: "Displays the ping menu.",
+			Description: "Send a ping using configured ping types.",
+			Options: []discord.ApplicationCommandOption{
+				discord.ApplicationCommandOptionString{
+					Name:         "type",
+					Description:  "Type of ping to send",
+					Required:     true,
+					Autocomplete: true,
+				},
+				discord.ApplicationCommandOptionString{
+					Name:        "message",
+					Description: "Optional message to include with the ping",
+					Required:    false,
+				},
+			},
 		},
 		discord.SlashCommandCreate{
 			Name:        "pingset",
-			Description: "Sets the role IDs for the pings in /ping. Must have Manage Roles permission to use.",
+			Description: "Manage ping configurations. Requires Manage Roles permission.",
+			Options: []discord.ApplicationCommandOption{
+				discord.ApplicationCommandOptionSubCommand{
+					Name:        "add",
+					Description: "Add a new ping configuration",
+					Options: []discord.ApplicationCommandOption{
+						discord.ApplicationCommandOptionString{
+							Name:        "name",
+							Description: "Name for this ping type",
+							Required:    true,
+						},
+						discord.ApplicationCommandOptionRole{
+							Name:        "target",
+							Description: "Role to ping",
+							Required:    true,
+						},
+						discord.ApplicationCommandOptionRole{
+							Name:        "required",
+							Description: "Role required to use this ping (optional)",
+							Required:    false,
+						},
+						discord.ApplicationCommandOptionString{
+							Name:        "description",
+							Description: "Description of this ping type",
+							Required:    false,
+						},
+					},
+				},
+				discord.ApplicationCommandOptionSubCommand{
+					Name:        "remove",
+					Description: "Remove a ping configuration",
+					Options: []discord.ApplicationCommandOption{
+						discord.ApplicationCommandOptionString{
+							Name:         "name",
+							Description:  "Name of ping type to remove",
+							Required:     true,
+							Autocomplete: true,
+						},
+					},
+				},
+				discord.ApplicationCommandOptionSubCommand{
+					Name:        "list",
+					Description: "List all ping configurations",
+				},
+			},
 		},
 	}
 	APIData APIResponse
