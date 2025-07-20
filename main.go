@@ -142,12 +142,21 @@ var (
 func main() {
 	if err := godotenv.Load(); err != nil {
 		slog.Error("failed to load env")
+		return
 	}
 
 	token := os.Getenv("TOKEN")
 	dbUrl := os.Getenv("DB_URL")
 
-	// TODO: add error messages for when env isn't set correctly
+	if token == "" {
+		slog.Error("make sure the token is provided in the .env")
+		return
+	}
+
+	if dbUrl == "" {
+		slog.Error("make sure the mysql connection string is provided in the .env")
+		return
+	}
 
 	client, err := disgo.New(token,
 		bot.WithGatewayConfigOpts(
