@@ -120,6 +120,8 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		CommandPing(e)
 	case "pingset":
 		CommandPingSet(e)
+	case "damagecalc":
+		CommandDamageCalc(e)
 	}
 }
 

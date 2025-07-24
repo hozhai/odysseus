@@ -978,22 +978,15 @@ func FormatTotalStats(stats TotalStats) string {
 		{"<:regeneration:1392365064010469396>", stats.Regeneration},
 		{"<:piercing:1392365031705808986>", stats.Piercing},
 		{"<:resistance:1393458741009186907>", stats.Resistance},
+		{"<:drawback:1392364965905563698>", stats.Drawback},
+		{"<:warding:1392366478560596039>", stats.Warding},
+		{"<:insanity:1392364984658301031>", stats.Insanity},
 	}
 
 	for _, entry := range statEntries {
-		if entry.value > 0 {
+		if entry.value != 0 {
 			builder.WriteString(fmt.Sprintf("%s %d\n", entry.emoji, entry.value))
 		}
-	}
-
-	if stats.Drawback > 0 {
-		builder.WriteString(fmt.Sprintf("<:drawback:1392364965905563698> %d\n", stats.Drawback))
-	}
-	if stats.Warding > 0 {
-		builder.WriteString(fmt.Sprintf("<:warding:1392366478560596039> %d\n", stats.Warding))
-	}
-	if stats.Insanity > 0 {
-		builder.WriteString(fmt.Sprintf("<:insanity:1392364984658301031> %d\n", stats.Insanity))
 	}
 
 	if builder.Len() == 0 {
@@ -1340,11 +1333,4 @@ func GetTextContent(n *html.Node) string {
 	}
 
 	return result.String()
-}
-
-func Min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }

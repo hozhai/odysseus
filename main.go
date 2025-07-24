@@ -71,6 +71,10 @@ var (
 			},
 		},
 		discord.SlashCommandCreate{
+			Name:        "damagecalc",
+			Description: "Calculate your damage given certain stats.",
+		},
+		discord.SlashCommandCreate{
 			Name:        "ping",
 			Description: "Send a ping using configured ping types.",
 			Options: []discord.ApplicationCommandOption{
