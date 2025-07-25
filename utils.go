@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 	"sync"
@@ -19,10 +20,28 @@ import (
 	"golang.org/x/net/html"
 )
 
+type WikiSearchResult struct {
+	Title       string
+	Description string
+	URL         string
+}
+
+var cleanDescriptionRegex = regexp.MustCompile(`\s+`)
+
 type Magic int64
 type FightingStyle int64
 
 const MaxLevel = 140
+
+// Discord bot constants
+const (
+	EmbedFooter     = "Odysseus - Made with love <3"
+	BuildURLPrefix  = "https://tools.arcaneodyssey.net/gearBuilder#"
+	InvalidURLMsg   = "Invalid URL! Please provide a valid GearBuilder build URL."
+	ItemNotFoundMsg = "Item not found!"
+	DefaultColor    = 0x93b1e3
+	Version         = "v0.2.1"
+)
 
 const (
 	ColorDefault  = 0x93b1e3
