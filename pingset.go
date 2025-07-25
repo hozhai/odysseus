@@ -7,10 +7,12 @@ import (
 	"strings"
 	"time"
 
+	"log/slog"
+
 	"github.com/disgoorg/disgo/discord"
 	"github.com/disgoorg/disgo/events"
+	"github.com/disgoorg/json"
 	"github.com/hozhai/odysseus/db"
-	"log/slog"
 )
 
 func CommandPingSet(e *events.ApplicationCommandInteractionCreate) {
@@ -171,6 +173,45 @@ func CommandPingSet(e *events.ApplicationCommandInteractionCreate) {
 			Build())
 		if err != nil {
 			slog.Error("error sending list message", slog.Any("err", err))
+		}
+	}
+}
+
+func handlePingSetAutocomplete(e *events.AutocompleteInteractionCreate) {
+	guildID := int64(*e.GuildID())
+
+	for _, option := range e.AutocompleteInteraction.Data.Options {
+		if option.Focused && option.Name == "name" {
+			var value string
+			if err := json.Unmarshal(option.Value, &value); err != nil {
+				slog.Error("error unmarshaling pingset autocomplete value", slog.Any("err", err))
+				return
+			}
+
+			queries := db.New(dbConn)
+			configs, err := queries.GetPingConfigs(context.Background(), guildID)
+			if err != nil {
+				slog.Error("error fetching ping configs for autocomplete", slog.Any("err", err))
+				return
+			}
+
+			results := make([]discord.AutocompleteChoice, 0, min(len(configs), 25))
+			for _, config := range configs {
+				if len(results) >= 25 {
+					break
+				}
+				if strings.Contains(strings.ToLower(config.Name), strings.ToLower(value)) {
+					results = append(results, discord.AutocompleteChoiceString{
+						Name:  config.Name,
+						Value: config.Name,
+					})
+				}
+			}
+
+			if err := e.AutocompleteResult(results); err != nil {
+				slog.Error("error sending pingset autocomplete results", slog.Any("err", err))
+			}
+			return
 		}
 	}
 }

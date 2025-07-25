@@ -40,7 +40,7 @@ const (
 	InvalidURLMsg   = "Invalid URL! Please provide a valid GearBuilder build URL."
 	ItemNotFoundMsg = "Item not found!"
 	DefaultColor    = 0x93b1e3
-	Version         = "v0.2.1"
+	Version         = "v0.3.0"
 )
 
 const (
