@@ -175,6 +175,7 @@ func main() {
 		bot.WithEventListenerFunc(onApplicationCommandInteractionCreate),
 		bot.WithEventListenerFunc(onAutocompleteInteractionCreate),
 		bot.WithEventListenerFunc(onComponentInteractionCreate),
+		bot.WithEventListenerFunc(onModalSubmitInteractionCreate),
 	)
 
 	if err != nil {

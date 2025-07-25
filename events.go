@@ -89,3 +89,7 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 		handleItemSelectInteraction(e)
 	}
 }
+
+func onModalSubmitInteractionCreate(e *events.ModalSubmitInteractionCreate) {
+	handleDamageCalcModal(e)
+}
