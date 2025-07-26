@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log/slog"
+	"math"
 	"strconv"
 	"strings"
 
@@ -10,7 +11,6 @@ import (
 	"github.com/disgoorg/disgo/events"
 )
 
-// Helper function to validate and parse integer fields
 func validateIntField(components map[string]discord.InteractiveComponent, fieldID, fieldName string) (int, string) {
 	if component, exists := components[fieldID]; exists {
 		if textInput, ok := component.(discord.TextInputComponent); ok {
@@ -25,7 +25,6 @@ func validateIntField(components map[string]discord.InteractiveComponent, fieldI
 	return 0, fmt.Sprintf("%s field not found", fieldName)
 }
 
-// Helper function to validate and parse float fields
 func validateFloatField(components map[string]discord.InteractiveComponent, fieldID, fieldName string) (float64, string) {
 	if component, exists := components[fieldID]; exists {
 		if textInput, ok := component.(discord.TextInputComponent); ok {
@@ -40,7 +39,6 @@ func validateFloatField(components map[string]discord.InteractiveComponent, fiel
 	return 0, fmt.Sprintf("%s field not found", fieldName)
 }
 
-// Helper function to send validation error message
 func sendValidationErrors(e *events.ModalSubmitInteractionCreate, errors []string) {
 	if len(errors) > 0 {
 		err := e.CreateMessage(
@@ -55,26 +53,22 @@ func sendValidationErrors(e *events.ModalSubmitInteractionCreate, errors []strin
 	}
 }
 
-// Helper function to update embed with new field
-func updateEmbedWithField(e *events.ModalSubmitInteractionCreate, fieldName, fieldValue string) error {
+func updateEmbedWithField(e *events.ModalSubmitInteractionCreate, fieldName, fieldValue string) *discord.MessageUpdateBuilder {
 	oldEmbed := e.Message.Embeds[0]
 	ptrTrue := BoolToPtr(true)
 
-	return e.UpdateMessage(
-		discord.NewMessageUpdateBuilder().
-			AddEmbeds(discord.NewEmbedBuilder().
-				SetTitle(oldEmbed.Title).
-				SetColor(oldEmbed.Color).
-				SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
-				SetFields(append(oldEmbed.Fields, discord.EmbedField{
-					Name:   fieldName,
-					Value:  fieldValue,
-					Inline: ptrTrue,
-				})...).
-				Build(),
-			).
+	return discord.NewMessageUpdateBuilder().
+		AddEmbeds(discord.NewEmbedBuilder().
+			SetTitle(oldEmbed.Title).
+			SetColor(oldEmbed.Color).
+			SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
+			SetFields(append(oldEmbed.Fields, discord.EmbedField{
+				Name:   fieldName,
+				Value:  fieldValue,
+				Inline: ptrTrue,
+			})...).
 			Build(),
-	)
+		)
 }
 
 func CommandDamageCalc(e *events.ApplicationCommandInteractionCreate) {
@@ -89,7 +83,7 @@ func CommandDamageCalc(e *events.ApplicationCommandInteractionCreate) {
 					SetFooter(EmbedFooter, "").
 					Build(),
 			).
-			AddActionRow(discord.NewSecondaryButton("Attacker Raw Stats", "dmgcalc_attacker_raw")).
+			AddActionRow(discord.NewPrimaryButton("Set Attacker Raw Stats", "dmgcalc_attacker_raw")).
 			Build(),
 	)
 
@@ -197,6 +191,103 @@ func handleDamageCalcButtons(e *events.ComponentInteractionCreate) {
 			slog.Error("error showing modal", "error", err)
 		}
 	case "dmgcalc_calculate":
+		// Extract all values from the embed fields
+		fields := e.Message.Embeds[0].Fields
+		var (
+			attackerLevel, attackerPower, attackerVitality, attackerAP int
+			defenderLevel, defenderDefense, defenderVitality           int
+			baseAffinity, powerAffinity, damageAffinity                float64
+			customization, synergy, shape, charging                    float64
+		)
+
+		for _, field := range fields {
+			switch field.Name {
+			case "Attacker Raw Stats":
+				lines := strings.Split(field.Value, "\n")
+				for _, line := range lines {
+					parts := strings.SplitN(line, ": ", 2)
+					if len(parts) != 2 {
+						continue
+					}
+					val := strings.TrimSpace(parts[1])
+					switch parts[0] {
+					case "Level":
+						attackerLevel, _ = strconv.Atoi(val)
+					case "Power":
+						attackerPower, _ = strconv.Atoi(val)
+					case "Vitality":
+						attackerVitality, _ = strconv.Atoi(val)
+					case "Armor Piercing":
+						attackerAP, _ = strconv.Atoi(val)
+					}
+				}
+			case "Defender Raw Stats":
+				lines := strings.Split(field.Value, "\n")
+				for _, line := range lines {
+					parts := strings.SplitN(line, ": ", 2)
+					if len(parts) != 2 {
+						continue
+					}
+					val := strings.TrimSpace(parts[1])
+					switch parts[0] {
+					case "Level":
+						defenderLevel, _ = strconv.Atoi(val)
+					case "Defense":
+						defenderDefense, _ = strconv.Atoi(val)
+					case "Vitality":
+						defenderVitality, _ = strconv.Atoi(val)
+					}
+				}
+			case "Affinity Multipliers":
+				lines := strings.Split(field.Value, "\n")
+				for _, line := range lines {
+					parts := strings.SplitN(line, ": ", 2)
+					if len(parts) != 2 {
+						continue
+					}
+					val := strings.TrimSpace(parts[1])
+					switch parts[0] {
+					case "Base Affinity":
+						baseAffinity, _ = strconv.ParseFloat(val, 64)
+					case "Power Affinity":
+						powerAffinity, _ = strconv.ParseFloat(val, 64)
+					case "Damage Affinity":
+						damageAffinity, _ = strconv.ParseFloat(val, 64)
+					}
+				}
+			case "Additional Multipliers":
+				lines := strings.Split(field.Value, "\n")
+				for _, line := range lines {
+					parts := strings.SplitN(line, ": ", 2)
+					if len(parts) != 2 {
+						continue
+					}
+					val := strings.TrimSpace(parts[1])
+					switch parts[0] {
+					case "Customization":
+						customization, _ = strconv.ParseFloat(val, 64)
+					case "Synergy":
+						synergy, _ = strconv.ParseFloat(val, 64)
+					case "Shape/Embodiment":
+						shape, _ = strconv.ParseFloat(val, 64)
+					case "Charging":
+						charging, _ = strconv.ParseFloat(val, 64)
+					}
+				}
+			}
+		}
+
+		baseAbilityDamage := int(baseAffinity * float64((19 + attackerLevel)))
+		powerAbilityDamage := int(powerAffinity * float64(attackerPower))
+		preMultiplierDamage := baseAbilityDamage + powerAbilityDamage
+
+		baseHp := 93 + 7*attackerLevel
+		maxHp := baseHp + 4*attackerVitality
+
+		damage := math.Sqrt(float64(baseHp)/float64(maxHp)) * damageAffinity * float64(preMultiplierDamage)
+		rawSimpleDamage := math.Sqrt(float64(baseHp)/float64(maxHp)) * (damageAffinity * ((float64(19+attackerLevel) * baseAffinity) + (float64(attackerPower) * powerAffinity)))
+
+		// TODO add more calculations lol
 	}
 }
 
@@ -205,13 +296,11 @@ func handleDamageCalcModal(e *events.ModalSubmitInteractionCreate) {
 
 	switch customID {
 	case "dmgcalc_modal_attacker_submit":
-		// Parse and validate all fields
 		level, levelErr := validateIntField(e.Data.Components, "dmgcalc_modal_level", "Level")
 		power, powerErr := validateIntField(e.Data.Components, "dmgcalc_modal_power", "Power")
 		vitality, vitalityErr := validateIntField(e.Data.Components, "dmgcalc_modal_vitality", "Vitality")
 		armorPiercing, apErr := validateIntField(e.Data.Components, "dmgcalc_modal_ap", "Armor Piercing")
 
-		// Collect all errors
 		var errors []string
 		for _, err := range []string{levelErr, powerErr, vitalityErr, apErr} {
 			if err != "" {
@@ -224,24 +313,11 @@ func handleDamageCalcModal(e *events.ModalSubmitInteractionCreate) {
 			return
 		}
 
-		// Update the embed with attacker stats
-		oldEmbed := e.Message.Embeds[0]
-		ptrTrue := BoolToPtr(true)
+		message := updateEmbedWithField(e, "Attacker Raw Stats", fmt.Sprintf("Level: %d\nPower: %d\nVitality: %d\nArmor Piercing: %d", level, power, vitality, armorPiercing))
 
 		err := e.UpdateMessage(
-			discord.NewMessageUpdateBuilder().
-				AddEmbeds(discord.NewEmbedBuilder().
-					SetTitle(oldEmbed.Title).
-					SetColor(oldEmbed.Color).
-					SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
-					SetFields(discord.EmbedField{
-						Name:   "Attacker Raw Stats",
-						Value:  fmt.Sprintf("Level: %d\nPower: %d\nVitality: %d\nArmor Piercing: %d", level, power, vitality, armorPiercing),
-						Inline: ptrTrue,
-					}).
-					Build(),
-				).
-				AddActionRow(discord.NewSecondaryButton("Defender Raw Stats", "dmgcalc_defender_raw")).
+			message.
+				AddActionRow(discord.NewPrimaryButton("Set Defender Raw Stats", "dmgcalc_defender_raw")).
 				Build(),
 		)
 
@@ -250,7 +326,6 @@ func handleDamageCalcModal(e *events.ModalSubmitInteractionCreate) {
 		}
 
 	case "dmgcalc_modal_defender_submit":
-		// Parse and validate all fields
 		level, levelErr := validateIntField(e.Data.Components, "dmgcalc_modal_level", "Level")
 		defense, defenseErr := validateIntField(e.Data.Components, "dmgcalc_modal_defense", "Defense")
 		vitality, vitalityErr := validateIntField(e.Data.Components, "dmgcalc_modal_vitality", "Vitality")
@@ -268,24 +343,11 @@ func handleDamageCalcModal(e *events.ModalSubmitInteractionCreate) {
 			return
 		}
 
-		// Update the embed with defender stats
-		oldEmbed := e.Message.Embeds[0]
-		ptrTrue := BoolToPtr(true)
+		message := updateEmbedWithField(e, "Defender Raw Stats", fmt.Sprintf("Level: %d\nDefense: %d\nVitality: %d", level, defense, vitality))
 
 		err := e.UpdateMessage(
-			discord.NewMessageUpdateBuilder().
-				AddEmbeds(discord.NewEmbedBuilder().
-					SetTitle(oldEmbed.Title).
-					SetColor(oldEmbed.Color).
-					SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
-					SetFields(append(oldEmbed.Fields, discord.EmbedField{
-						Name:   "Defender Raw Stats",
-						Value:  fmt.Sprintf("Level: %d\nDefense: %d\nVitality: %d", level, defense, vitality),
-						Inline: ptrTrue,
-					})...).
-					Build(),
-				).
-				AddActionRow(discord.NewSecondaryButton("Affinity Multipliers", "dmgcalc_affinity_multipliers")).
+			message.
+				AddActionRow(discord.NewPrimaryButton("Set Affinity Multipliers", "dmgcalc_affinity_multipliers")).
 				Build(),
 		)
 
@@ -294,12 +356,10 @@ func handleDamageCalcModal(e *events.ModalSubmitInteractionCreate) {
 		}
 
 	case "dmgcalc_modal_affinity_submit":
-		// Parse and validate all fields
 		baseAffinity, baseErr := validateFloatField(e.Data.Components, "dmgcalc_modal_base_affinity", "Base Affinity")
 		powerAffinity, powerErr := validateFloatField(e.Data.Components, "dmgcalc_modal_power_affinity", "Power Affinity")
 		damageAffinity, damageErr := validateFloatField(e.Data.Components, "dmgcalc_modal_damage_affinity", "Damage Affinity")
 
-		// Collect all errors
 		var errors []string
 		for _, err := range []string{baseErr, powerErr, damageErr} {
 			if err != "" {
@@ -312,24 +372,11 @@ func handleDamageCalcModal(e *events.ModalSubmitInteractionCreate) {
 			return
 		}
 
-		// Update the embed with affinity multipliers
-		oldEmbed := e.Message.Embeds[0]
-		ptrTrue := BoolToPtr(true)
+		message := updateEmbedWithField(e, "Affinity Multipliers", fmt.Sprintf("Base Affinity: %.2f\nPower Affinity: %.2f\nDamage Affinity: %.2f", baseAffinity, powerAffinity, damageAffinity))
 
 		err := e.UpdateMessage(
-			discord.NewMessageUpdateBuilder().
-				AddEmbeds(discord.NewEmbedBuilder().
-					SetTitle(oldEmbed.Title).
-					SetColor(oldEmbed.Color).
-					SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
-					SetFields(append(oldEmbed.Fields, discord.EmbedField{
-						Name:   "Affinity Multipliers",
-						Value:  fmt.Sprintf("Base Affinity: %.2f\nPower Affinity: %.2f\nDamage Affinity: %.2f", baseAffinity, powerAffinity, damageAffinity),
-						Inline: ptrTrue,
-					})...).
-					Build(),
-				).
-				AddActionRow(discord.NewSecondaryButton("Additional Multipliers", "dmgcalc_additional_multipliers")).
+			message.
+				AddActionRow(discord.NewPrimaryButton("Set Additional Multipliers", "dmgcalc_additional_multipliers")).
 				Build(),
 		)
 
@@ -338,13 +385,11 @@ func handleDamageCalcModal(e *events.ModalSubmitInteractionCreate) {
 		}
 
 	case "dmgcalc_modal_additional_submit":
-		// Parse and validate all fields with correct component IDs
 		customization, customErr := validateFloatField(e.Data.Components, "dmgcalc_modal_customization", "Customization")
 		synergy, synergyErr := validateFloatField(e.Data.Components, "dmgcalc_modal_synergy", "Synergy")
 		shape, shapeErr := validateFloatField(e.Data.Components, "dmgcalc_modal_shape", "Shape/Embodiment")
 		charging, chargingErr := validateFloatField(e.Data.Components, "dmgcalc_modal_charging", "Charging")
 
-		// Collect all errors
 		var errors []string
 		for _, err := range []string{customErr, synergyErr, shapeErr, chargingErr} {
 			if err != "" {
@@ -357,23 +402,10 @@ func handleDamageCalcModal(e *events.ModalSubmitInteractionCreate) {
 			return
 		}
 
-		// Update the embed with additional multipliers
-		oldEmbed := e.Message.Embeds[0]
-		ptrTrue := BoolToPtr(true)
+		message := updateEmbedWithField(e, "Additional Multipliers", fmt.Sprintf("Customization: %.2f\nSynergy: %.2f\nShape/Embodiment: %.2f\nCharging: %.2f", customization, synergy, shape, charging))
 
 		err := e.UpdateMessage(
-			discord.NewMessageUpdateBuilder().
-				AddEmbeds(discord.NewEmbedBuilder().
-					SetTitle(oldEmbed.Title).
-					SetColor(oldEmbed.Color).
-					SetAuthor(oldEmbed.Author.Name, "", oldEmbed.Author.IconURL).
-					SetFields(append(oldEmbed.Fields, discord.EmbedField{
-						Name:   "Additional Multipliers",
-						Value:  fmt.Sprintf("Customization: %.2f\nSynergy: %.2f\nShape/Embodiment: %.2f\nCharging: %.2f", customization, synergy, shape, charging),
-						Inline: ptrTrue,
-					})...).
-					Build(),
-				).
+			message.
 				AddActionRow(discord.NewSuccessButton("Calculate", "dmgcalc_calculate")).
 				Build(),
 		)
