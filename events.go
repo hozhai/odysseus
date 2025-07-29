@@ -61,10 +61,21 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		CommandPingSet(e)
 	case "damagecalc":
 		CommandDamageCalc(e)
+	case "sort":
+		CommandSort(e)
 	}
 }
 
 func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
+	customID := e.ComponentInteraction.Data.CustomID()
+
+	// Handle sort pagination without author check (sort results are public)
+	if strings.HasPrefix(customID, "sort_") {
+		handleSortPagination(e)
+		return
+	}
+
+	// For other interactions, check authorization
 	authorUsername := strings.Split(e.Message.Embeds[0].Author.Name, " | ")[0]
 	if authorUsername != e.User().Username {
 		e.CreateMessage(
@@ -75,8 +86,6 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 		)
 		return
 	}
-
-	customID := e.ComponentInteraction.Data.CustomID()
 
 	switch e.ComponentInteraction.Data.Type() {
 	case discord.ComponentTypeButton:

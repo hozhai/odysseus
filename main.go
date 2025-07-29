@@ -75,6 +75,74 @@ var (
 			Description: "Calculate your damage given certain stats.",
 		},
 		discord.SlashCommandCreate{
+			Name:        "sort",
+			Description: "Sort and display items by specific stats.",
+			Options: []discord.ApplicationCommandOption{
+				discord.ApplicationCommandOptionString{
+					Name:        "stat",
+					Description: "The stat to sort by",
+					Required:    true,
+					Choices: []discord.ApplicationCommandOptionChoiceString{
+						{
+							Name:  "Power",
+							Value: "power",
+						},
+						{
+							Name:  "Agility",
+							Value: "agility",
+						},
+						{
+							Name:  "Attack Speed",
+							Value: "attackspeed",
+						},
+						{
+							Name:  "Defense",
+							Value: "defense",
+						},
+						{
+							Name:  "Attack Size",
+							Value: "attacksize",
+						},
+						{
+							Name:  "Intensity",
+							Value: "intensity",
+						},
+						{
+							Name:  "Regeneration",
+							Value: "regeneration",
+						},
+						{
+							Name:  "Resistance",
+							Value: "resistance",
+						},
+						{
+							Name:  "Armor Piercing",
+							Value: "armorpiercing",
+						},
+					},
+				},
+				discord.ApplicationCommandOptionString{
+					Name:        "type",
+					Description: "Filter by item type (optional)",
+					Required:    false,
+					Choices: []discord.ApplicationCommandOptionChoiceString{
+						{
+							Name:  "Accessory",
+							Value: "Accessory",
+						},
+						{
+							Name:  "Chestplate",
+							Value: "Chestplate",
+						},
+						{
+							Name:  "Pants",
+							Value: "Pants",
+						},
+					},
+				},
+			},
+		},
+		discord.SlashCommandCreate{
 			Name:        "ping",
 			Description: "Send a ping using configured ping types.",
 			Options: []discord.ApplicationCommandOption{
