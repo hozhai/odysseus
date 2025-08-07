@@ -1,0 +1,572 @@
+[
+  {
+    "name": "Sword",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Greathammer",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Greataxe",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Greatsword",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Spear",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Axe",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Staff",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Katana",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Dual Swords",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Dagger",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Rapier",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Claws",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Rifle",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Pistol",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Multi Pistols",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Bow",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Wooden Shield",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 300,
+    "blockingPower": 0.1
+  },
+  {
+    "name": "Samerian Sword",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Iron Shield",
+    "damage": 1,
+    "speed": 1,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3,
+    "durability": 600,
+    "blockingPower": 0.15
+  },
+  {
+    "name": "Trident",
+    "damage": 1.05,
+    "speed": 0.925,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3.0025,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Hammer",
+    "damage": 1,
+    "speed": 0.925,
+    "size": 1.1,
+    "specialEffect": "None",
+    "efficiency": 3.0025,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Club",
+    "damage": 1,
+    "speed": 0.925,
+    "size": 1.1,
+    "specialEffect": "None",
+    "efficiency": 3.0025,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Ravenna Sword",
+    "damage": 1.05,
+    "speed": 0.925,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3.0025,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Ravenna Shield",
+    "damage": 1.05,
+    "speed": 0.925,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3.0025,
+    "durability": 800,
+    "blockingPower": 0.175
+  },
+  {
+    "name": "Samerian Shield",
+    "damage": 1,
+    "speed": 0.95,
+    "size": 1.075,
+    "specialEffect": "None",
+    "efficiency": 3.085,
+    "durability": 800,
+    "blockingPower": 0.1
+  },
+  {
+    "name": "Mace",
+    "damage": 1.05,
+    "speed": 1,
+    "size": 0.925,
+    "specialEffect": "None",
+    "efficiency": 3.25,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Morning Star",
+    "damage": 1.05,
+    "speed": 1,
+    "size": 0.925,
+    "specialEffect": "None",
+    "efficiency": 3.25,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Cutlass",
+    "damage": 1,
+    "speed": 1.1,
+    "size": 0.9,
+    "specialEffect": "None",
+    "efficiency": 3.33,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Ravenna War Shield",
+    "damage": 1.05,
+    "speed": 0.8,
+    "size": 1.2,
+    "specialEffect": "None",
+    "efficiency": 3.34,
+    "durability": 1800,
+    "blockingPower": 0.25
+  },
+  {
+    "name": "Poison Tooth Dagger",
+    "damage": 0.9,
+    "speed": 1,
+    "size": 1.05,
+    "specialEffect": "Poisoned",
+    "efficiency": 3.5,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Ravenna Greatsword",
+    "damage": 1.05,
+    "speed": 0.925,
+    "size": 1.05,
+    "specialEffect": "None",
+    "efficiency": 3.5025,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Ravenna Greataxe",
+    "damage": 1.05,
+    "speed": 0.925,
+    "size": 1.05,
+    "specialEffect": "None",
+    "efficiency": 3.5025,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Sunken Staff",
+    "damage": 1,
+    "speed": 0.85,
+    "size": 1.25,
+    "specialEffect": "Soaked",
+    "efficiency": 3.505,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Atlantean Spear",
+    "damage": 1,
+    "speed": 0.9,
+    "size": 1.2,
+    "specialEffect": "None",
+    "efficiency": 3.67,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Atlantean Bow",
+    "damage": 1,
+    "speed": 0.9,
+    "size": 1.2,
+    "specialEffect": "None",
+    "efficiency": 3.67,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Thalassi",
+    "damage": 1.05,
+    "speed": 0.9,
+    "size": 1.1,
+    "specialEffect": "None",
+    "efficiency": 3.67,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Lance of Loyalty",
+    "damage": 1.05,
+    "speed": 0.75,
+    "size": 1.3,
+    "specialEffect": "None",
+    "efficiency": 3.675,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Commodore Kai's Saber",
+    "damage": 0.925,
+    "speed": 1.1,
+    "size": 1.1,
+    "specialEffect": "None",
+    "efficiency": 3.83,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Greenwish Cultist Staff",
+    "damage": 1,
+    "speed": 1.15,
+    "size": 0.9,
+    "specialEffect": "None",
+    "efficiency": 3.995,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Stormcaller",
+    "damage": 0.9,
+    "speed": 1.15,
+    "size": 1.1,
+    "specialEffect": "None",
+    "efficiency": 3.995,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Plunderers",
+    "damage": 0.95,
+    "speed": 1.15,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 3.995,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Lion's Halberd",
+    "damage": 1.1,
+    "speed": 0.7,
+    "size": 1.3,
+    "specialEffect": "None",
+    "efficiency": 4.01,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Atlantean Shield",
+    "damage": 0.925,
+    "speed": 1.2,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 4.16,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Atlantean Rapier",
+    "damage": 0.925,
+    "speed": 1.2,
+    "size": 1,
+    "specialEffect": "None",
+    "efficiency": 4.16,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Sunken Sword",
+    "damage": 1,
+    "speed": 1.2,
+    "size": 0.85,
+    "specialEffect": "Soaked",
+    "efficiency": 4.16,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Silent Blades",
+    "damage": 1.1,
+    "speed": 1.05,
+    "size": 0.85,
+    "specialEffect": "None",
+    "efficiency": 4.165,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Sanguine",
+    "damage": 1.1,
+    "speed": 1.05,
+    "size": 0.85,
+    "specialEffect": "None",
+    "efficiency": 4.165,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Atlantean Cutlass",
+    "damage": 0.925,
+    "speed": 1.05,
+    "size": 1.2,
+    "specialEffect": "None",
+    "efficiency": 4.165,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Atlantean Claws",
+    "damage": 0.925,
+    "speed": 1.05,
+    "size": 1.2,
+    "specialEffect": "None",
+    "efficiency": 4.165,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Siren Bow",
+    "damage": 1.1,
+    "speed": 1.15,
+    "size": 0.75,
+    "specialEffect": "None",
+    "efficiency": 4.495,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Noble Thunderspear",
+    "damage": 1.05,
+    "speed": 1.15,
+    "size": 0.85,
+    "specialEffect": "None",
+    "efficiency": 4.495,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Scimitars of Storm",
+    "damage": 1.05,
+    "speed": 1.15,
+    "size": 0.85,
+    "specialEffect": "None",
+    "efficiency": 4.495,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Triasta of Bronze",
+    "damage": 0.9,
+    "speed": 1.15,
+    "size": 1.15,
+    "specialEffect": "Charred",
+    "efficiency": 4.495,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Vindicator",
+    "damage": 1,
+    "speed": 1.15,
+    "size": 0.95,
+    "specialEffect": "None",
+    "efficiency": 4.495,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Scald Tooth Dagger",
+    "damage": 0.925,
+    "speed": 1.2,
+    "size": 1,
+    "specialEffect": "Burning",
+    "efficiency": 5.16,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Atlantean Mace",
+    "damage": 1.15,
+    "speed": 1,
+    "size": 0.95,
+    "specialEffect": "Slowness",
+    "efficiency": 5.5,
+    "durability": 0,
+    "blockingPower": 0
+  },
+  {
+    "name": "Atlantean Greatsword",
+    "damage": 1,
+    "speed": 0.9,
+    "size": 1.15,
+    "specialEffect": "Bleeding",
+    "efficiency": 4.17,
+    "durability": 0,
+    "blockingPower": 0
+  }
+]

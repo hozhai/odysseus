@@ -38,6 +38,8 @@ func onAutocompleteInteractionCreate(e *events.AutocompleteInteractionCreate) {
 		handlePingAutocomplete(e)
 	case "pingset":
 		handlePingSetAutocomplete(e)
+	case "weapon":
+		handleWeaponAutocomplete(e)
 	}
 }
 
@@ -63,6 +65,8 @@ func onApplicationCommandInteractionCreate(e *events.ApplicationCommandInteracti
 		CommandDamageCalc(e)
 	case "sort":
 		CommandSort(e)
+	case "weapon":
+		CommandWeapon(e)
 	}
 }
 
@@ -80,7 +84,7 @@ func onComponentInteractionCreate(e *events.ComponentInteractionCreate) {
 	if authorUsername != e.User().Username {
 		e.CreateMessage(
 			discord.NewMessageCreateBuilder().
-				SetContent("You cannot modify items displayed by others! Display your own item and change its properties by using </item:1371980876799410238>.").
+				SetContent("You cannot modify embeds by others. Create your own, you dummy!").
 				SetEphemeral(true).
 				Build(),
 		)

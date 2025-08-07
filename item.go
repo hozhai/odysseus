@@ -135,7 +135,7 @@ func handleItemAutocomplete(e *events.AutocompleteInteractionCreate) {
 			}
 
 			results := make([]discord.AutocompleteChoice, 0, 25)
-			for _, item := range APIData {
+			for _, item := range ItemsData {
 
 				if len(results) >= 25 {
 					break
@@ -164,7 +164,7 @@ func handleItemAutocomplete(e *events.AutocompleteInteractionCreate) {
 				}
 
 				results := make([]discord.AutocompleteChoice, 0, 25)
-				for _, item := range APIData {
+				for _, item := range ItemsData {
 
 					if len(results) >= 25 {
 						break

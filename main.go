@@ -20,7 +20,8 @@ import (
 
 var dbConn *sql.DB
 
-type APIResponse []Item
+type ItemList []Item
+type WeaponList []Weapon
 
 var (
 	commands = []discord.ApplicationCommandCreate{
@@ -65,6 +66,18 @@ var (
 				discord.ApplicationCommandOptionString{
 					Name:         "name",
 					Description:  "Name of the item.",
+					Required:     true,
+					Autocomplete: true,
+				},
+			},
+		},
+		discord.SlashCommandCreate{
+			Name:        "weapon",
+			Description: "Get information about a weapon.",
+			Options: []discord.ApplicationCommandOption{
+				discord.ApplicationCommandOptionString{
+					Name:         "name",
+					Description:  "Name of the weapon.",
 					Required:     true,
 					Autocomplete: true,
 				},
@@ -208,7 +221,8 @@ var (
 			},
 		},
 	}
-	APIData APIResponse
+	ItemsData   ItemList
+	WeaponsData WeaponList
 )
 
 func main() {
@@ -265,8 +279,8 @@ func main() {
 		panic(err)
 	}
 
-	if err := GetData(); err != nil {
-		slog.Error("error fetching data from API: ", slog.Any("err", err))
+	if err := GetItemData(); err != nil {
+		slog.Error("error fetching item data from API: ", slog.Any("err", err))
 		panic(err)
 	}
 

@@ -25,7 +25,7 @@ func CommandSort(e *events.ApplicationCommandInteractionCreate) {
 	itemType := e.SlashCommandInteractionData().String("type") // optional
 
 	var filteredItems []*Item
-	for _, item := range APIData {
+	for _, item := range ItemsData {
 		if item.Deleted || item.Name == "None" || len(item.StatsPerLevel) == 0 {
 			continue
 		}
@@ -271,7 +271,7 @@ func handleSortPagination(e *events.ComponentInteractionCreate) {
 
 	// regenerate the sorted items (this could be optimized by caching)
 	var filteredItems []*Item
-	for _, item := range APIData {
+	for _, item := range ItemsData {
 		if item.Deleted || item.Name == "None" || len(item.StatsPerLevel) == 0 {
 			continue
 		}

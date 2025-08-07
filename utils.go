@@ -165,21 +165,6 @@ type Item struct {
 
 	ValidModifiers []string `json:"validModifiers,omitempty"`
 
-	EnchantTypes struct {
-		Gear struct {
-			DefenseIncrement int `json:"defenseIncrement"`
-			PowerIncrement   int `json:"powerIncrement"`
-		} `json:"gear,omitempty"`
-		Ship struct {
-			Hull struct {
-				Durability int `json:"durability"`
-			} `json:"hull,omitempty"`
-			Ram struct {
-				Durability int `json:"durability"`
-			} `json:"ram,omitempty"`
-		} `json:"ship"`
-	} `json:"enchantTypes,omitempty"`
-
 	PowerIncrement        float64 `json:"powerIncrement,omitempty"`
 	DefenseIncrement      float64 `json:"defenseIncrement,omitempty"`
 	AgilityIncrement      float64 `json:"agilityIncrement,omitempty"`
@@ -202,11 +187,20 @@ type Item struct {
 	Piercing     int `json:"piercing,omitempty"`
 	Regeneration int `json:"regeneration,omitempty"`
 	Resistance   int `json:"resistance,omitempty"`
-	Durability   int `json:"durability,omitempty"`
-	Speed        int `json:"speed,omitempty"`
-	Stability    int `json:"stability,omitempty"`
-	Turning      int `json:"turning,omitempty"`
-	RamDefense   int `json:"ramDefense,omitempty"`
+}
+
+type Weapon struct {
+	Name          string  `json:"name"`
+	Legend        string  `json:"legend"`
+	Rarity        string  `json:"rarity"`
+	ImageID       string  `json:"imageId"`
+	Damage        float64 `json:"damage"`
+	Speed         float64 `json:"speed"`
+	Size          float64 `json:"size"`
+	SpecialEffect string  `json:"specialEffect"`
+	Efficiency    float64 `json:"efficiency"`
+	Durability    int     `json:"durability,omitempty"`
+	BlockingPower int     `json:"blockingPower,omitempty"`
 }
 
 type Player struct {
@@ -252,6 +246,11 @@ type ItemCache struct {
 	mu        sync.RWMutex
 }
 
+type WeaponCache struct {
+	cache map[string]*Weapon
+	mu    sync.RWMutex
+}
+
 var ListOfGems []string
 var ListOfEnchants []string
 var ListOfModifiers []string
@@ -259,6 +258,10 @@ var ListOfModifiers []string
 var itemCache = &ItemCache{
 	cache:     make(map[string]*Item),
 	nameCache: make(map[string]*Item),
+}
+
+var weaponCache = &WeaponCache{
+	cache: make(map[string]*Weapon),
 }
 
 var httpClient = &http.Client{
@@ -274,15 +277,15 @@ func InitializeItemCache() {
 	itemCache.mu.Lock()
 	defer itemCache.mu.Unlock()
 
-	if len(APIData) == 0 {
-		slog.Warn("APIData is empty, cache not initialized")
+	if len(ItemsData) == 0 {
+		slog.Warn("ItemsData is empty, cache not initialized")
 		return
 	}
 
-	itemCache.cache = make(map[string]*Item, len(APIData))
-	itemCache.nameCache = make(map[string]*Item, len(APIData))
-	for i := range APIData {
-		item := APIData[i]
+	itemCache.cache = make(map[string]*Item, len(ItemsData))
+	itemCache.nameCache = make(map[string]*Item, len(ItemsData))
+	for i := range ItemsData {
+		item := ItemsData[i]
 
 		itemCache.cache[item.ID] = &item
 		itemCache.nameCache[strings.ToLower(item.Name)] = &item
@@ -318,6 +321,25 @@ func InitializeItemCache() {
 		}
 	}
 	slog.Info("item cache initialized", "items", len(itemCache.cache))
+}
+
+func InitializeWeaponCache() {
+	weaponCache.mu.Lock()
+	defer weaponCache.mu.Unlock()
+
+	if len(WeaponsData) == 0 {
+		slog.Warn("ItemsData is empty, cache not initialized")
+		return
+	}
+
+	weaponCache.cache = make(map[string]*Weapon, len(WeaponsData))
+
+	for i := range WeaponsData {
+		weapon := WeaponsData[i]
+		weaponCache.cache[strings.ToLower(weapon.Name)] = &weapon
+	}
+
+	slog.Info("weapon cache initialized", "items", len(itemCache.cache))
 }
 
 func FindByIDCached(id string) *Item {
@@ -361,12 +383,12 @@ func BoolToPtr(b bool) *bool {
 	return &b
 }
 
-func GetData() error {
+func GetItemData() error {
 	fileContent, err := os.ReadFile("items.json")
 
 	if err == nil {
 		slog.Info("items.json found, decoding...")
-		err = json.Unmarshal(fileContent, &APIData)
+		err = json.Unmarshal(fileContent, &ItemsData)
 		if err != nil {
 			slog.Warn("failed to decode, falling back to fetching api...")
 		} else {
@@ -381,7 +403,7 @@ func GetData() error {
 		return err
 	}
 
-	resp, err := httpClient.Get("https://api.arcaneodyssey.net/items")
+	resp, err := httpClient.Get("https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/items.json")
 	if err != nil {
 		return fmt.Errorf("cannot fetch items: %w", err)
 	}
@@ -393,12 +415,12 @@ func GetData() error {
 		return fmt.Errorf("cannot read response body: %w", readErr)
 	}
 
-	unmarshalErr := json.Unmarshal(respBytes, &APIData)
+	unmarshalErr := json.Unmarshal(respBytes, &ItemsData)
 	if unmarshalErr != nil {
 		return fmt.Errorf("cannot unmarshal response body: %w", unmarshalErr)
 	}
 
-	file, fileErr := json.MarshalIndent(APIData, "", "  ")
+	file, fileErr := json.MarshalIndent(ItemsData, "", "  ")
 	if fileErr != nil {
 		return fmt.Errorf("cannot encode marshal response body: %w", fileErr)
 	}
@@ -408,8 +430,60 @@ func GetData() error {
 		return fmt.Errorf("cannot write file: %w", writeErr)
 	}
 
-	slog.Info("finished fetching data from API")
+	slog.Info("finished fetching item data from API")
 	InitializeItemCache()
+	return nil
+}
+
+func GetWeaponData() error {
+	fileContent, err := os.ReadFile("weapons.json")
+
+	if err == nil {
+		slog.Info("weapons.json found, decoding...")
+		err = json.Unmarshal(fileContent, &WeaponsData)
+		if err != nil {
+			slog.Warn("failed to decode, falling back to fetching api...")
+		} else {
+			slog.Info("succesfully decoded json")
+			InitializeItemCache()
+			return nil
+		}
+	} else if os.IsNotExist(err) {
+		slog.Warn("weapons.json doesn't exist, fetching from api...")
+	} else {
+		slog.Error("error reading weapons.json")
+		return err
+	}
+
+	resp, err := httpClient.Get("https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/weapons.json")
+	if err != nil {
+		return fmt.Errorf("cannot fetch items: %w", err)
+	}
+
+	defer resp.Body.Close()
+
+	respBytes, readErr := io.ReadAll(resp.Body)
+	if readErr != nil {
+		return fmt.Errorf("cannot read response body: %w", readErr)
+	}
+
+	unmarshalErr := json.Unmarshal(respBytes, &ItemsData)
+	if unmarshalErr != nil {
+		return fmt.Errorf("cannot unmarshal response body: %w", unmarshalErr)
+	}
+
+	file, fileErr := json.MarshalIndent(ItemsData, "", "  ")
+	if fileErr != nil {
+		return fmt.Errorf("cannot encode marshal response body: %w", fileErr)
+	}
+
+	writeErr := os.WriteFile("weapons.json", file, 0644)
+	if writeErr != nil {
+		return fmt.Errorf("cannot write file: %w", writeErr)
+	}
+
+	slog.Info("finished fetching data from API")
+	InitializeWeaponCache()
 	return nil
 }
 
