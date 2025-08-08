@@ -354,6 +354,17 @@ func FindByIDCached(id string) *Item {
 	return &Item{Name: "Unknown", ID: id}
 }
 
+func FindWeapon(name string) *Weapon {
+	weaponCache.mu.RLock()
+	defer weaponCache.mu.RUnlock()
+
+	if item, exists := weaponCache.cache[name]; exists {
+		return item
+	}
+
+	return &Weapon{Name: "Unknown"}
+}
+
 func GetRarityColor(rarity string) int {
 	switch rarity {
 	case "Common":
