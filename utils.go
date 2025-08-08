@@ -200,7 +200,7 @@ type Weapon struct {
 	SpecialEffect string  `json:"specialEffect"`
 	Efficiency    float64 `json:"efficiency"`
 	Durability    int     `json:"durability,omitempty"`
-	BlockingPower int     `json:"blockingPower,omitempty"`
+	BlockingPower float64 `json:"blockingPower,omitempty"`
 }
 
 type Player struct {
@@ -339,7 +339,7 @@ func InitializeWeaponCache() {
 		weaponCache.cache[strings.ToLower(weapon.Name)] = &weapon
 	}
 
-	slog.Info("weapon cache initialized", "items", len(itemCache.cache))
+	slog.Info("weapon cache initialized", "weapons", len(weaponCache.cache))
 }
 
 func FindByIDCached(id string) *Item {
@@ -453,10 +453,10 @@ func GetWeaponData() error {
 		slog.Info("weapons.json found, decoding...")
 		err = json.Unmarshal(fileContent, &WeaponsData)
 		if err != nil {
-			slog.Warn("failed to decode, falling back to fetching api...")
+			slog.Warn("failed to decode, falling back to fetching api...", slog.Any("err", err))
 		} else {
 			slog.Info("succesfully decoded json")
-			InitializeItemCache()
+			InitializeWeaponCache()
 			return nil
 		}
 	} else if os.IsNotExist(err) {
@@ -468,7 +468,7 @@ func GetWeaponData() error {
 
 	resp, err := httpClient.Get("https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/weapons.json")
 	if err != nil {
-		return fmt.Errorf("cannot fetch items: %w", err)
+		return fmt.Errorf("cannot fetch weapons: %w", err)
 	}
 
 	defer resp.Body.Close()

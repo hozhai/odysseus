@@ -284,6 +284,11 @@ func main() {
 		panic(err)
 	}
 
+	if err := GetWeaponData(); err != nil {
+		slog.Error("error fetching weapon data from API: ", slog.Any("err", err))
+		panic(err)
+	}
+
 	dbConn, err = sql.Open("mysql", dbUrl)
 
 	if err != nil {

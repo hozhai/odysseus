@@ -598,8 +598,8 @@
     "size": 1,
     "specialEffect": "None",
     "efficiency": 4.16,
-    "durability": 0,
-    "blockingPower": 0
+    "durability": 1200,
+    "blockingPower": 0.2
   },
   {
     "name": "Atlantean Rapier",
