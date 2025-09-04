@@ -669,7 +669,7 @@ fn parse_item_slot(slot_code: &[String]) -> Result<Slot> {
     Ok(slot)
 }
 
-pub fn _calculate_total_stats(player: &Player, data: &Data) -> TotalStats {
+pub fn calculate_total_stats(player: &Player, data: &Data) -> TotalStats {
     let mut total = TotalStats::default();
 
     // Calculate stats for all equipped items

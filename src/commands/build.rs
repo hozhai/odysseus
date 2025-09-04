@@ -45,6 +45,9 @@ async fn create_build_response(
     ctx: &poise::Context<'_, Data, Error>,
     player: &Player,
 ) -> Result<(), Error> {
+    let total_stats = crate::calculate_total_stats(&player, &ctx.data());
+    let formatted_total_stats = crate::format_total_stats(&total_stats);
+
     let embed = serenity_prelude::CreateEmbed::new()
         .title(format!("{}'s build", ctx.author().display_name()))
         .field("Level", player.level.to_string(), true)
@@ -68,7 +71,8 @@ async fn create_build_response(
                 .collect::<Vec<String>>()
                 .join(" "),
             true,
-        );
+        )
+        .field("Total Stats", formatted_total_stats, true);
 
     ctx.send(poise::CreateReply::default().embed(embed)).await?;
 
