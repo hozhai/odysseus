@@ -16,8 +16,7 @@ pub async fn weapon(
         let mut embed = serenity::CreateEmbed::new()
             .title(&weapon.name)
             .description(&weapon.legend)
-            .author(serenity::CreateEmbedAuthor::new(&ctx.author().name))
-            .thumbnail(format!("https://cdn.discordapp.com/attachments/1253135628362788875/1311132459264352317/{}.png", weapon.image_id))
+            .thumbnail(weapon.image_id)
             .color(get_rarity_color(&weapon.rarity))
             .footer(serenity::CreateEmbedFooter::new(EMBED_FOOTER));
 

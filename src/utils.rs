@@ -1115,9 +1115,9 @@ pub fn item_to_stats(slot: &crate::models::Slot, data: &Data) -> String {
 }
 
 // Build slot field text helper for build command
-pub fn _build_slot_field_text(slot: &Slot, data: &Data) -> String {
+pub fn build_slot_field_text(slot: &Slot, data: &Data) -> String {
     let item = find_item_by_id(data, &slot.item);
-    let mut text = format!("**{}**", item.name);
+    let mut text = format!("{}", item.name);
 
     if !slot.enchant.is_empty() && slot.enchant != crate::EMPTY_ENCHANTMENT_ID {
         let enchant = find_item_by_id(data, &slot.enchant);

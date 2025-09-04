@@ -1,8 +1,7 @@
-use poise::serenity_prelude;
-
 use crate::models::Player;
 use crate::utils::unhash_build_code;
 use crate::{Context, Data, Error};
+use poise::serenity_prelude as serenity;
 
 /// Loads a GearBuilder build from URL
 #[poise::command(slash_command)]
@@ -40,7 +39,6 @@ pub async fn build(
     Ok(())
 }
 
-// TODO
 async fn create_build_response(
     ctx: &poise::Context<'_, Data, Error>,
     player: &Player,
@@ -48,7 +46,7 @@ async fn create_build_response(
     let total_stats = crate::calculate_total_stats(&player, &ctx.data());
     let formatted_total_stats = crate::format_total_stats(&total_stats);
 
-    let embed = serenity_prelude::CreateEmbed::new()
+    let embed = serenity::CreateEmbed::new()
         .title(format!("{}'s build", ctx.author().display_name()))
         .field("Level", player.level.to_string(), true)
         .field(
@@ -64,15 +62,50 @@ async fn create_build_response(
         )
         .field(
             "Magic/Fighting Styles",
-            player
-                .fighting_styles
-                .iter()
-                .map(|x| crate::magic_fs_into_emoji(*x as i32).unwrap())
-                .collect::<Vec<String>>()
-                .join(" "),
+            {
+                // Join all the emojis for FS and magic
+                let mut emojis = player
+                    .fighting_styles
+                    .iter()
+                    .map(|x| crate::magic_fs_into_emoji(*x as i32).unwrap())
+                    .collect::<Vec<String>>();
+                emojis.extend(
+                    player
+                        .magics
+                        .iter()
+                        .map(|x| crate::magic_fs_into_emoji(*x as i32).unwrap()),
+                );
+                emojis.join(" ")
+            },
             true,
         )
-        .field("Total Stats", formatted_total_stats, true);
+        .field(
+            "Accessory",
+            crate::build_slot_field_text(&player.accessories[0], ctx.data()),
+            true,
+        )
+        .field(
+            "Accessory",
+            crate::build_slot_field_text(&player.accessories[1], ctx.data()),
+            true,
+        )
+        .field(
+            "Accessory",
+            crate::build_slot_field_text(&player.accessories[2], ctx.data()),
+            true,
+        )
+        .field(
+            "Chestplate",
+            crate::build_slot_field_text(&player.chestplate, ctx.data()),
+            true,
+        )
+        .field(
+            "Boots",
+            crate::build_slot_field_text(&player.boots, ctx.data()),
+            true,
+        )
+        .field("Total Stats", formatted_total_stats, true)
+        .footer(serenity::CreateEmbedFooter::new(crate::EMBED_FOOTER));
 
     ctx.send(poise::CreateReply::default().embed(embed)).await?;
 
