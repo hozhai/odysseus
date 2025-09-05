@@ -2,23 +2,22 @@ use crate::{Context, Error, DEFAULT_COLOR, EMBED_FOOTER};
 use poise::serenity_prelude as serenity;
 
 /// Manage ping configurations. Requires Manage Roles permission.
-#[poise::command(
-    slash_command,
-    subcommands("pingset_add", "pingset_remove", "pingset_list")
-)]
+#[poise::command(slash_command, subcommands("add", "remove", "list"))]
 pub async fn pingset(_ctx: Context<'_>) -> Result<(), Error> {
     Ok(())
 }
 
 /// Add a new ping configuration
 #[poise::command(slash_command)]
-pub async fn pingset_add(
+pub async fn add(
     ctx: Context<'_>,
     #[description = "Name for this ping type"] name: String,
     #[description = "Role to ping"] target: serenity::Role,
     #[description = "Role required to use this ping (optional)"] required: Option<serenity::Role>,
     #[description = "Description of this ping type"] description: Option<String>,
 ) -> Result<(), Error> {
+    ctx.defer().await?;
+
     let guild_id = match ctx.guild_id() {
         Some(id) => id.get() as i64,
         None => {
@@ -126,7 +125,7 @@ pub async fn pingset_add(
 
 /// Remove a ping configuration
 #[poise::command(slash_command)]
-pub async fn pingset_remove(
+pub async fn remove(
     ctx: Context<'_>,
     #[description = "Name of ping type to remove"]
     #[autocomplete = "autocomplete_ping_remove"]
@@ -209,7 +208,7 @@ async fn autocomplete_ping_remove(ctx: Context<'_>, partial: &str) -> impl Itera
 
 /// List all ping configurations
 #[poise::command(slash_command)]
-pub async fn pingset_list(ctx: Context<'_>) -> Result<(), Error> {
+pub async fn list(ctx: Context<'_>) -> Result<(), Error> {
     let guild_id = match ctx.guild_id() {
         Some(id) => id.get() as i64,
         None => {
