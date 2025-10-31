@@ -1064,7 +1064,7 @@ pub async fn build_item_editor_response(
         serenity::CreateButton::new("item_level_down")
             .style(serenity::ButtonStyle::Secondary)
             .label("-10")
-            .disabled(slot.level <= 10),
+            .disabled(slot.level <= item.min_level.unwrap_or(10)),
         serenity::CreateButton::new("item_level_up")
             .style(serenity::ButtonStyle::Secondary)
             .label("+10")

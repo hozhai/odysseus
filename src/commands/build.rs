@@ -8,8 +8,14 @@ use poise::serenity_prelude as serenity;
 pub async fn build(
     ctx: Context<'_>,
     #[description = "URL of the build"] url: String,
+    #[description = "Gatekeep?"] gatekeep: bool,
 ) -> Result<(), Error> {
-    ctx.defer().await?;
+    // Allow for ephemeral response if gatekeep is true
+    if gatekeep {
+        ctx.defer_ephemeral().await?;
+    } else {
+        ctx.defer().await?;
+    }
 
     // Validate URL format
     if !url.starts_with("https://tools.arcaneodyssey.net/gearBuilder#")
@@ -30,7 +36,7 @@ pub async fn build(
 
     // Parse the build
     match unhash_build_code(build_code) {
-        Ok(player) => create_build_response(&ctx, &player).await?,
+        Ok(player) => create_build_response(&ctx, &player, gatekeep).await?,
         Err(e) => {
             ctx.say(format!("❌ **Failed to parse build:** {}\n\n💡 **Tips:**\n• Make sure the URL is complete\n• Check that the build was saved properly\n• Try generating a new build URL", e)).await?;
         }
@@ -42,6 +48,7 @@ pub async fn build(
 async fn create_build_response(
     ctx: &poise::Context<'_, Data, Error>,
     player: &Player,
+    gatekeep: bool,
 ) -> Result<(), Error> {
     let total_stats = crate::calculate_total_stats(&player, &ctx.data());
     let formatted_total_stats = crate::format_total_stats(&total_stats);
@@ -104,10 +111,35 @@ async fn create_build_response(
             crate::build_slot_field_text(&player.boots, ctx.data()),
             true,
         )
-        .field("Total Stats", formatted_total_stats, true)
+        .field("Total Stats", formatted_total_stats.clone(), true)
         .footer(serenity::CreateEmbedFooter::new(crate::EMBED_FOOTER));
 
-    ctx.send(poise::CreateReply::default().embed(embed)).await?;
+    if gatekeep {
+        // Send a standalone message to the channel instead of replying
+        // This prevents others from seeing the original command with the build URL
+
+        let gatekeep_embed = serenity::CreateEmbed::new()
+            .title(format!("{}'s Gatekept Build", ctx.author().name))
+            .field("Total Stats", formatted_total_stats, true)
+            .footer(serenity::CreateEmbedFooter::new(crate::EMBED_FOOTER));
+
+        ctx.send(
+            poise::CreateReply::default()
+                .content("Success!")
+                .ephemeral(true),
+        )
+        .await?;
+
+        ctx.channel_id()
+            .send_message(
+                ctx.http(),
+                serenity::CreateMessage::new().embed(gatekeep_embed),
+            )
+            .await?;
+    } else {
+        // Normal reply to the command
+        ctx.send(poise::CreateReply::default().embed(embed)).await?;
+    }
 
     Ok(())
 }

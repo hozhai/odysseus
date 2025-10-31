@@ -90,6 +90,14 @@ async fn main() -> Result<()> {
         std::process::exit(1);
     }
 
+    // Basic sanity check to help catch common DSN mistakes (e.g. Go-style DSN without scheme)
+    if !db_url.starts_with("mysql://") {
+        eprintln!(
+            "❌ ERROR: DB_URL must be a valid MySQL URL starting with 'mysql://'.\n   Example: mysql://user:pass@host:3306/db_name?ssl-mode=DISABLED\n   If your current value looks like 'user:pass@tcp(host:3306)/db', convert it to the URL form."
+        );
+        std::process::exit(1);
+    }
+
     info!("Starting Odysseus Discord Bot {}", VERSION);
 
     // Initialize database with connection pool configuration

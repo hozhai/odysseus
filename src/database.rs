@@ -11,11 +11,7 @@ impl Database {
         Self { pool }
     }
 
-    pub async fn get_ping_config(
-        &self,
-        guild_id: i64,
-        name: &str,
-    ) -> Result<Option<PingConfig>> {
+    pub async fn get_ping_config(&self, guild_id: i64, name: &str) -> Result<Option<PingConfig>> {
         let row = sqlx::query(
             "SELECT id, guild_id, name, description, required_role_id, target_role_id, created_at, updated_at FROM ping_configs WHERE guild_id = ? AND name = ?"
         )
@@ -88,13 +84,11 @@ impl Database {
     }
 
     pub async fn remove_ping_config(&self, guild_id: i64, name: &str) -> Result<bool> {
-        let result = sqlx::query(
-            "DELETE FROM ping_configs WHERE guild_id = ? AND name = ?"
-        )
-        .bind(guild_id)
-        .bind(name)
-        .execute(&self.pool)
-        .await?;
+        let result = sqlx::query("DELETE FROM ping_configs WHERE guild_id = ? AND name = ?")
+            .bind(guild_id)
+            .bind(name)
+            .execute(&self.pool)
+            .await?;
 
         Ok(result.rows_affected() > 0)
     }

@@ -195,7 +195,12 @@ pub async fn handle_item_interaction(
         }
         "item_level_down" => {
             let mut new_slot = slot.clone();
-            new_slot.level = (new_slot.level - 10).max(10);
+
+            // Ensure we don't drop below the item's minimum level.
+            let item = find_item_by_id(data, &slot.item);
+            let min_allowed = item.min_level.unwrap_or(10);
+
+            new_slot.level = (new_slot.level - 10).max(min_allowed);
             let (new_embed, new_components) = build_item_editor_response(&new_slot, data).await;
 
             interaction
@@ -397,7 +402,10 @@ fn embed_to_slot(embed: &serenity::Embed, data: &Data) -> crate::models::Slot {
             }
             "Enchantment" => {
                 // Extract enchantment name from the field value (format: "emoji name")
-                if let Some(enchant_name) = field.value.split(' ').nth(1) {
+                // Split only on the first space to handle multi-word names
+                let parts: Vec<&str> = field.value.splitn(2, ' ').collect();
+                if parts.len() > 1 {
+                    let enchant_name = parts[1].trim();
                     if let Some(enchant) = find_item_by_name(data, enchant_name) {
                         slot.enchant = enchant.id;
                     }
@@ -405,7 +413,10 @@ fn embed_to_slot(embed: &serenity::Embed, data: &Data) -> crate::models::Slot {
             }
             "Modifier" => {
                 // Extract modifier name from the field value (format: "emoji name")
-                if let Some(modifier_name) = field.value.split(' ').nth(1) {
+                // Split only on the first space to handle multi-word names
+                let parts: Vec<&str> = field.value.splitn(2, ' ').collect();
+                if parts.len() > 1 {
+                    let modifier_name = parts[1].trim();
                     if let Some(modifier) = find_item_by_name(data, modifier_name) {
                         slot.modifier = modifier.id;
                     }
@@ -416,11 +427,23 @@ fn embed_to_slot(embed: &serenity::Embed, data: &Data) -> crate::models::Slot {
                 let gems_lines: Vec<&str> = field.value.lines().collect();
                 slot.gems.clear();
                 for line in gems_lines {
+                    // Skip empty lines
+                    if line.trim().is_empty() {
+                        continue;
+                    }
+
                     if line.contains("Empty Slot") {
                         slot.gems.push(crate::EMPTY_GEM_ID.to_string());
-                    } else if let Some(gem_name) = line.split(' ').nth(1) {
-                        if let Some(gem) = find_item_by_name(data, gem_name) {
-                            slot.gems.push(gem.id);
+                    } else {
+                        // Split only on the first space to handle multi-word names
+                        let parts: Vec<&str> = line.splitn(2, ' ').collect();
+                        if parts.len() > 1 {
+                            let gem_name = parts[1].trim();
+                            if let Some(gem) = find_item_by_name(data, gem_name) {
+                                slot.gems.push(gem.id);
+                            } else {
+                                slot.gems.push(crate::EMPTY_GEM_ID.to_string());
+                            }
                         } else {
                             slot.gems.push(crate::EMPTY_GEM_ID.to_string());
                         }
