@@ -9,6 +9,7 @@ pub async fn ping(
     #[autocomplete = "autocomplete_ping_type"]
     ping_type: String,
     #[description = "Optional message to include with the ping"] message: Option<String>,
+    #[description = "Whether to include a thread with the ping"] thread: Option<bool>,
 ) -> Result<(), Error> {
     let guild_id = match ctx.guild_id() {
         Some(id) => id.get() as i64,
@@ -77,7 +78,24 @@ pub async fn ping(
                 .roles(vec![serenity::RoleId::new(config.target_role_id as u64)]),
         );
 
-    ctx.send(response).await?;
+    let reply_handle = ctx.send(response).await?;
+    let message = reply_handle.message().await?;
+
+    match thread {
+        Some(bool) => {
+            if bool {
+                ctx.channel_id()
+                    .create_thread_from_message(
+                        &ctx.http(),
+                        message.id,
+                        serenity::CreateThread::new("Discuss here...")
+                            .kind(serenity::model::channel::ChannelType::PublicThread), // Explicitly set the type
+                    )
+                    .await?;
+            }
+        }
+        None => {}
+    }
 
     Ok(())
 }

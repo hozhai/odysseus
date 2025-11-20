@@ -17,7 +17,9 @@ pub async fn event_handler(
             );
 
             // Set bot activity
-            ctx.set_activity(Some(serenity::ActivityData::playing("Arcane Odyssey")));
+            let presence_status = std::env::var("PRESENCE_STATUS")
+                .expect("PRESENCE_STATUS must be set in environment");
+            ctx.set_activity(Some(serenity::ActivityData::playing(presence_status)));
         }
         FullEvent::InteractionCreate { interaction } => {
             if let serenity::Interaction::Component(component) = interaction {
