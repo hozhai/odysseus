@@ -101,6 +101,47 @@ pub async fn load_weapon_data(data: &Data) -> Result<()> {
     Ok(())
 }
 
+pub async fn load_magic_data(data: &Data) -> Result<()> {
+    // Try to load from local file first
+    if let Ok(file_content) = fs::read_to_string("magics.json") {
+        info!("magics.json found, decoding...");
+        match serde_json::from_str::<Vec<MagicData>>(&file_content) {
+            Ok(magics) => {
+                info!("Successfully decoded magics.json");
+                *data.magic_data.write() = magics;
+                initialize_weapon_cache(data).await;
+                return Ok(());
+            }
+            Err(e) => {
+                warn!(
+                    "Failed to decode magics.json: {}, falling back to API...",
+                    e
+                );
+            }
+        }
+    } else {
+        warn!("magics.json doesn't exist, fetching from API...");
+    }
+
+    // Fetch from API
+    let response = HTTP_CLIENT
+        .get("https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/magics.json")
+        .send()
+        .await?;
+
+    let magics: Vec<MagicData> = response.json().await?;
+
+    // Save to file
+    let json_content = serde_json::to_string_pretty(&magics)?;
+    fs::write("magics.json", json_content)?;
+
+    info!("Finished fetching magics data from API");
+    *data.magic_data.write() = magics;
+    initialize_magic_cache(data).await;
+
+    Ok(())
+}
+
 async fn initialize_item_cache(data: &Data) {
     let items = data.items_data.read();
     if items.is_empty() {
@@ -185,6 +226,23 @@ async fn initialize_weapon_cache(data: &Data) {
     );
 }
 
+async fn initialize_magic_cache(data: &Data) {
+    let magics = data.magic_data.read();
+    if magics.is_empty() {
+        warn!("Magics data is empty, cache not initialized");
+        return;
+    }
+
+    let mut magic_cache = data.magic_cache.write();
+    magic_cache.clear();
+
+    for magic in magics.iter() {
+        magic_cache.insert(magic.name.to_lowercase(), magic.clone());
+    }
+
+    info!("Magic cache initialized with {} magics", magic_cache.len())
+}
+
 pub fn find_item_by_id(data: &Data, id: &str) -> Item {
     let cache = data.item_cache.read();
     cache.get(id).cloned().unwrap_or_else(|| Item {
@@ -233,6 +291,11 @@ pub fn find_item_by_name(data: &Data, name: &str) -> Option<Item> {
 
 pub fn find_weapon_by_name(data: &Data, name: &str) -> Option<Weapon> {
     let cache = data.weapon_cache.read();
+    cache.get(&name.to_lowercase()).cloned()
+}
+
+pub fn find_magic_by_name(data: &Data, name: &str) -> Option<MagicData> {
+    let cache = data.magic_cache.read();
     cache.get(&name.to_lowercase()).cloned()
 }
 

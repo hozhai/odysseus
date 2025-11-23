@@ -179,6 +179,46 @@ pub struct WikiSearchResult {
     pub url: String,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct MagicData {
+    pub name: String,
+    pub legend: String,
+    #[serde(rename = "imageId")]
+    pub image_id: String,
+    pub unimbued: UnimbuedStats,
+    pub imbued: ImbuedStats,
+    #[serde(rename = "specialEffect")]
+    pub special_effect: String,
+    pub clash: Clash,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UnimbuedStats {
+    pub damage: f64,
+    pub speed: f64,
+    pub size: f64,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ImbuedStats {
+    pub damage: f64,
+    pub speed: f64,
+    pub size: ImbuedSize,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ImbuedSize {
+    pub conjurer: f64,
+    pub warlock: f64,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Clash {
+    pub over: Vec<String>,
+    pub neutral: Vec<String>,
+    pub under: Vec<String>,
+}
+
 // impl Magic {
 //     pub fn all() -> Vec<Magic> {
 //         vec![

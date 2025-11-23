@@ -1,0 +1,766 @@
+[
+  {
+    "name": "Acid",
+    "legend": "Allows the user to form a caustic, reactive liquid that corrodes through enemies and leaves behind deadly puddles of bubbling acid.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/b/bd/Acid_Magic_%28Green%29.png/revision/latest?cb=20221126131958",
+    "unimbued": {
+      "damage": 0.875,
+      "speed": 1,
+      "size": 1
+    },
+    "imbued": {
+      "damage": 0.925,
+      "speed": 1,
+      "size": {
+        "conjurer": 0.9444,
+        "warlock": 0.95
+      }
+    },
+    "specialEffect": "Corroding",
+    "clash": {
+      "over": [
+        "Fire",
+        "Water",
+        "Sand",
+        "Snow",
+        "Lightning",
+        "Wood",
+        "Poison",
+        "Ash"
+      ],
+      "neutral": ["Ice", "Magma", "Light", "Wind", "Shadow", "Plasma"],
+      "under": ["Glass", "Crystal", "Explosion", "Earth", "Metal"]
+    }
+  },
+  {
+    "name": "Ash",
+    "legend": "Allows the user to shroud the air with smoldering cinders, preserving the most ill-fated as ashen statues.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/1/1d/Ash_Magic.png/revision/latest?cb=20221126132028",
+    "unimbued": {
+      "damage": 0.875,
+      "speed": 0.95,
+      "size": 1.25
+    },
+    "imbued": {
+      "damage": 0.95,
+      "speed": 0.975,
+      "size": {
+        "conjurer": 1.222,
+        "warlock": 1.2
+      }
+    },
+    "specialEffect": "Petrified",
+    "clash": {
+      "over": ["Light", "Snow", "Wood", "Poison"],
+      "neutral": ["Lightning", "Magma"],
+      "under": [
+        "Acid",
+        "Ice",
+        "Plasma",
+        "Water",
+        "Fire",
+        "Earth",
+        "Sand",
+        "Glass",
+        "Wind",
+        "Crystal",
+        "Explosion",
+        "Metal",
+        "Shadow"
+      ]
+    }
+  },
+  {
+    "name": "Crystal",
+    "legend": "Allows the user to materialize luminous crystals which embed themselves in adversaries and brilliantly shatter after high accumulation.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/7/7c/Crystal_Magic1_%28Ruby%29.png/revision/latest?cb=20221126132024",
+    "unimbued": {
+      "damage": 0.95,
+      "speed": 0.9,
+      "size": 1.15
+    },
+    "imbued": {
+      "damage": 1.025,
+      "speed": 0.95,
+      "size": {
+        "conjurer": 1.111,
+        "warlock": 1.1
+      }
+    },
+    "specialEffect": "Crystallized",
+    "clash": {
+      "over": [
+        "Wind",
+        "Glass",
+        "Water",
+        "Acid",
+        "Ash",
+        "Fire",
+        "Light",
+        "Ice",
+        "Wood",
+        "Poison",
+        "Shadow",
+        "Plasma",
+        "Sand",
+        "Snow"
+      ],
+      "neutral": ["Lightning", "Magma"],
+      "under": ["Earth", "Explosion", "Metal"]
+    }
+  },
+  {
+    "name": "Earth",
+    "legend": "Allows the user to generate solid rock to crush enemies under giant boulders and earthen pillars.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/7/79/Earth_Magic1_%28Soil%29.png/revision/latest?cb=20221126132038",
+    "unimbued": {
+      "damage": 1,
+      "speed": 0.7,
+      "size": 1.3
+    },
+    "imbued": {
+      "damage": 1.075,
+      "speed": 0.85,
+      "size": {
+        "conjurer": 1.278,
+        "warlock": 1.25
+      }
+    },
+    "specialEffect": "Bleeding",
+    "clash": {
+      "over": [
+        "Wind",
+        "Glass",
+        "Water",
+        "Acid",
+        "Light",
+        "Fire",
+        "Snow",
+        "Crystal",
+        "Ice",
+        "Sand",
+        "Shadow",
+        "Poison",
+        "Plasma"
+      ],
+      "neutral": ["Explosion"],
+      "under": ["Lightning", "Magma", "Metal"]
+    }
+  },
+  {
+    "name": "Explosion",
+    "legend": "TBD. Please message me in Discord (zhai_) if you know the legend for this magic.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/c/c3/Explosion_Magic.png/revision/latest?cb=20221126132047",
+    "unimbued": {
+      "damage": 0.925,
+      "speed": 0.85,
+      "size": 1.3
+    },
+    "imbued": {
+      "damage": 1,
+      "speed": 0.925,
+      "size": {
+        "conjurer": 1.278,
+        "warlock": 1.25
+      }
+    },
+    "specialEffect": "Charred",
+    "clash": {
+      "over": [
+        "Glass",
+        "Water",
+        "Wind",
+        "Sand",
+        "Crystal",
+        "Snow",
+        "Ash",
+        "Acid",
+        "Fire",
+        "Ice",
+        "Light",
+        "Shadow"
+      ],
+      "neutral": ["Earth", "Magma", "Wood", "Poison"],
+      "under": ["Lightning", "Plasma", "Metal"]
+    }
+  },
+  {
+    "name": "Fire",
+    "legend": "Allows the user to cast fearsome flames, engulfing enemies in a roaring blaze.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/4/43/Fire_Magic.png/revision/latest?cb=20221126132044",
+    "unimbued": {
+      "damage": 0.85,
+      "speed": 1,
+      "size": 1.15
+    },
+    "imbued": {
+      "damage": 0.925,
+      "speed": 1,
+      "size": {
+        "conjurer": 1.111,
+        "warlock": 1.1
+      }
+    },
+    "specialEffect": "Burning",
+    "clash": {
+      "over": ["Wood", "Glass", "Snow", "Ash"],
+      "neutral": ["Lightning", "Light", "Wind", "Shadow", "Poison"],
+      "under": [
+        "Acid",
+        "Sand",
+        "Magma",
+        "Plasma",
+        "Crystal",
+        "Explosion",
+        "Ice",
+        "Water",
+        "Earth",
+        "Metal"
+      ]
+    }
+  },
+  {
+    "name": "Glass",
+    "legend": "Allows the user to generate elegant ornaments of glass that can shatter into knife-like shards to keep danger at bay.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/4/4c/Glass_Magic.png/revision/latest?cb=20221126132047",
+    "unimbued": {
+      "damage": 0.9,
+      "speed": 1,
+      "size": 1.1
+    },
+    "imbued": {
+      "damage": 1,
+      "speed": 1,
+      "size": {
+        "conjurer": 1.056,
+        "warlock": 1.05
+      }
+    },
+    "specialEffect": "Bleeding",
+    "clash": {
+      "over": [
+        "Shadow",
+        "Wind",
+        "Water",
+        "Poison",
+        "Ash",
+        "Acid",
+        "Sand",
+        "Snow"
+      ],
+      "neutral": ["Lightning", "Light"],
+      "under": [
+        "Fire",
+        "Plasma",
+        "Ice",
+        "Explosion",
+        "Crystal",
+        "Wood",
+        "Magma",
+        "Earth",
+        "Metal"
+      ]
+    }
+  },
+  {
+    "name": "Ice",
+    "legend": "Allows the user to generate cold hard ice which can freeze and chill to the blood and bone.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/f/f9/Ice_Magic1_%28Glacial%29.png/revision/latest?cb=20221126132051",
+    "unimbued": {
+      "damage": 0.975,
+      "speed": 0.85,
+      "size": 1.2
+    },
+    "imbued": {
+      "damage": 1.05,
+      "speed": 0.925,
+      "size": {
+        "conjurer": 1.167,
+        "warlock": 1.15
+      }
+    },
+    "specialEffect": "Freezing/Frozen",
+    "clash": {
+      "over": [
+        "Water",
+        "Wind",
+        "Glass",
+        "Snow",
+        "Light",
+        "Sand",
+        "Poison",
+        "Ash"
+      ],
+      "neutral": ["Acid"],
+      "under": [
+        "Shadow",
+        "Plasma",
+        "Crystal",
+        "Wood",
+        "Lightning",
+        "Explosion",
+        "Earth",
+        "Fire",
+        "Metal",
+        "Magma"
+      ]
+    }
+  },
+  {
+    "name": "Light",
+    "legend": "Allows the user to overwhelm foes with shining light moving at incredible speeds and blinding anyone struck.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/b/b4/Light_Magic1_%28Sunlight%29.png/revision/latest?cb=20250125162432",
+    "unimbued": {
+      "damage": 0.85,
+      "speed": 1.6,
+      "size": 1
+    },
+    "imbued": {
+      "damage": 0.9,
+      "speed": 1.3,
+      "size": {
+        "conjurer": 0.9444,
+        "warlock": 0.95
+      }
+    },
+    "specialEffect": "Blinded",
+    "clash": {
+      "over": ["Wind"],
+      "neutral": ["Acid", "Water", "Fire", "Shadow", "Glass"],
+      "under": [
+        "Ice",
+        "Explosion",
+        "Lightning",
+        "Wood",
+        "Metal",
+        "Poison",
+        "Crystal",
+        "Plasma",
+        "Ash",
+        "Earth",
+        "Magma",
+        "Snow",
+        "Sand"
+      ]
+    }
+  },
+  {
+    "name": "Lightning",
+    "legend": "Allows the user to create swift bolts of destructive lightning.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/b/b7/Lightning_Magic1_%28Teal%29.png/revision/latest?cb=20221126132055",
+    "unimbued": {
+      "damage": 0.875,
+      "speed": 1.4,
+      "size": 1
+    },
+    "imbued": {
+      "damage": 0.95,
+      "speed": 1.2,
+      "size": {
+        "conjurer": 0.9444,
+        "warlock": 0.95
+      }
+    },
+    "specialEffect": "Paralyzed",
+    "clash": {
+      "over": ["Shadow", "Sand", "Ice", "Light", "Plasma", "Explosion", "Wood"],
+      "neutral": [
+        "Ash",
+        "Fire",
+        "Magma",
+        "Poison",
+        "Glass",
+        "Crystal",
+        "Snow",
+        "Earth"
+      ],
+      "under": ["Acid", "Wind", "Water", "Metal"]
+    }
+  },
+  {
+    "name": "Magma",
+    "legend": "Allows the user to unleash eruptions of thick, molten rock that melts all in its path.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/1/14/Magma_Magic.png/revision/latest?cb=20221126132105",
+    "unimbued": {
+      "damage": 0.9,
+      "speed": 0.7,
+      "size": 1.2
+    },
+    "imbued": {
+      "damage": 0.975,
+      "speed": 0.85,
+      "size": {
+        "conjurer": 1.167,
+        "warlock": 1.15
+      }
+    },
+    "specialEffect": "Melting",
+    "clash": {
+      "over": [
+        "Glass",
+        "Snow",
+        "Ice",
+        "Wood",
+        "Wind",
+        "Sand",
+        "Light",
+        "Plasma",
+        "Fire",
+        "Shadow",
+        "Earth",
+        "Poison",
+        "Metal"
+      ],
+      "neutral": ["Acid", "Ash", "Explosion", "Lightning", "Crystal"],
+      "under": ["Water"]
+    }
+  },
+  {
+    "name": "Metal",
+    "legend": "Allows the user to form dense metals that demolish obstructions with their immense weight and force.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/5/57/MetalMagic_1_%28Light%29.png/revision/latest?cb=20221126132349",
+    "unimbued": {
+      "damage": 1.025,
+      "speed": 0.65,
+      "size": 1.2
+    },
+    "imbued": {
+      "damage": 1.1,
+      "speed": 0.825,
+      "size": {
+        "conjurer": 1.167,
+        "warlock": 1.15
+      }
+    },
+    "specialEffect": "Bleeding",
+    "clash": {
+      "over": [
+        "Wind",
+        "Glass",
+        "Water",
+        "Snow",
+        "Crystal",
+        "Fire",
+        "Acid",
+        "Ice",
+        "Lightning",
+        "Sand",
+        "Wood",
+        "Poison",
+        "Shadow",
+        "Ash",
+        "Plasma",
+        "Explosion",
+        "Earth",
+        "Light"
+      ],
+      "neutral": [],
+      "under": ["Magma"]
+    }
+  },
+  {
+    "name": "Plasma",
+    "legend": "Allows the user to cast fervent plasma that swiftly scorches rivals with coruscating heat.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/b/b3/Plasma_Magic1_%28Gamma%29.png/revision/latest?cb=20221126132102",
+    "unimbued": {
+      "damage": 0.825,
+      "speed": 1.25,
+      "size": 1
+    },
+    "imbued": {
+      "damage": 0.9,
+      "speed": 1.125,
+      "size": {
+        "conjurer": 0.9444,
+        "warlock": 0.95
+      }
+    },
+    "specialEffect": "Scorched",
+    "clash": {
+      "over": [
+        "Snow",
+        "Wood",
+        "Glass",
+        "Fire",
+        "Light",
+        "Wind",
+        "Explosion",
+        "Poison",
+        "Ash"
+      ],
+      "neutral": ["Acid", "Sand"],
+      "under": [
+        "Ice",
+        "Crystal",
+        "Water",
+        "Lightning",
+        "Shadow",
+        "Magma",
+        "Earth",
+        "Metal"
+      ]
+    }
+  },
+  {
+    "name": "Poison",
+    "legend": "Allows the user to form noxious fumes which inflict chronic poisons and leave lethal clouds of gas.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/2/2a/Poison_Magic_1_%28Toxin%29.png/revision/latest?cb=20221126132103",
+    "unimbued": {
+      "damage": 0.75,
+      "speed": 1,
+      "size": 1.15
+    },
+    "imbued": {
+      "damage": 0.825,
+      "speed": 1,
+      "size": {
+        "conjurer": 1.111,
+        "warlock": 1.1
+      }
+    },
+    "specialEffect": "Poisoned",
+    "clash": {
+      "over": ["Light"],
+      "neutral": ["Water", "Fire", "Lightning", "Explosion"],
+      "under": [
+        "Acid",
+        "Ice",
+        "Wood",
+        "Plasma",
+        "Crystal",
+        "Ash",
+        "Earth",
+        "Magma",
+        "Shadow",
+        "Sand",
+        "Glass",
+        "Snow",
+        "Wind",
+        "Metal"
+      ]
+    }
+  },
+  {
+    "name": "Sand",
+    "legend": "Allows the user to create densely-packed sand that hits with treacherous force while hindering sight.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/9/97/Sand_Magic1_%28Desert%29.png/revision/latest?cb=20221126132101",
+    "unimbued": {
+      "damage": 0.975,
+      "speed": 0.95,
+      "size": 1.1
+    },
+    "imbued": {
+      "damage": 1.05,
+      "speed": 0.975,
+      "size": {
+        "conjurer": 1.056,
+        "warlock": 1.05
+      }
+    },
+    "specialEffect": "Sandy",
+    "clash": {
+      "over": ["Light", "Shadow", "Wind", "Poison", "Ash", "Fire"],
+      "neutral": ["Plasma", "Snow"],
+      "under": [
+        "Wood",
+        "Water",
+        "Ice",
+        "Glass",
+        "Crystal",
+        "Acid",
+        "Earth",
+        "Explosion",
+        "Lightning",
+        "Metal",
+        "Magma"
+      ]
+    }
+  },
+  {
+    "name": "Shadow",
+    "legend": "Allows the user to evoke ominous dark shadows that drain color and grace from all that they touch.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/0/05/Shadow_Magic.png/revision/latest?cb=20221126132108",
+    "unimbued": {
+      "damage": 0.95,
+      "speed": 1.2,
+      "size": 1.1
+    },
+    "imbued": {
+      "damage": 1.025,
+      "speed": 1.1,
+      "size": {
+        "conjurer": 1.056,
+        "warlock": 1.05
+      }
+    },
+    "specialEffect": "Drained",
+    "clash": {
+      "over": ["Ash", "Wind", "Poison", "Plasma", "Ice"],
+      "neutral": ["Acid", "Water", "Fire", "Light"],
+      "under": [
+        "Wood",
+        "Crystal",
+        "Earth",
+        "Explosion",
+        "Magma",
+        "Metal",
+        "Sand",
+        "Lightning",
+        "Snow",
+        "Glass"
+      ]
+    }
+  },
+  {
+    "name": "Snow",
+    "legend": "Allows the user to form wintry snow, snuffing out heat and sight under chilly layers.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/e/e0/Snow_Magic.png/revision/latest?cb=20221126132111",
+    "unimbued": {
+      "damage": 0.925,
+      "speed": 1.1,
+      "size": 1.15
+    },
+    "imbued": {
+      "damage": 1,
+      "speed": 1.05,
+      "size": {
+        "conjurer": 1.111,
+        "warlock": 1
+      }
+    },
+    "specialEffect": "snowy",
+    "clash": {
+      "over": ["Shadow", "Light", "Poison", "Water"],
+      "neutral": ["Lightning", "Sand"],
+      "under": [
+        "Glass",
+        "Crystal",
+        "Wood",
+        "Acid",
+        "Ice",
+        "Ash",
+        "Explosion",
+        "Fire",
+        "Earth",
+        "Metal",
+        "Plasma",
+        "Wind",
+        "Magma"
+      ]
+    }
+  },
+  {
+    "name": "Water",
+    "legend": "Allows the user to utilize water's vast potential to rinse foes with tidal forces.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/1/16/Water_Magic1_%28Spring%29.png/revision/latest?cb=20221126132111",
+    "unimbued": {
+      "damage": 0.9,
+      "speed": 1,
+      "size": 1.25
+    },
+    "imbued": {
+      "damage": 0.975,
+      "speed": 1,
+      "size": {
+        "conjurer": 1.222,
+        "warlock": 1.2
+      }
+    },
+    "specialEffect": "Soaked",
+    "clash": {
+      "over": ["Fire", "Lightning", "Magma", "Plasma", "Ash", "Sand"],
+      "neutral": ["Light", "Wind", "Shadow", "Poison"],
+      "under": [
+        "Snow",
+        "Acid",
+        "Explosion",
+        "Glass",
+        "Crystal",
+        "Wood",
+        "Ice",
+        "Earth",
+        "Metal"
+      ]
+    }
+  },
+  {
+    "name": "Wind",
+    "legend": "Allows the user to send turbulent gales that whirl enemies into tumultuous peril.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/4/41/Wind_Magic1_%28Neutral%29.png/revision/latest?cb=20221126132116",
+    "unimbued": {
+      "damage": 0.825,
+      "speed": 1.35,
+      "size": 1.2
+    },
+    "imbued": {
+      "damage": 0.9,
+      "speed": 1.175,
+      "size": {
+        "conjurer": 1.167,
+        "warlock": 1.15
+      }
+    },
+    "specialEffect": "None (Clear)",
+    "clash": {
+      "over": ["Snow", "Sand", "Lightning", "Poison", "Ash"],
+      "neutral": ["Acid", "Water", "Fire"],
+      "under": [
+        "Light",
+        "Plasma",
+        "Explosion",
+        "Shadow",
+        "Ice",
+        "Glass",
+        "Magma",
+        "Wood",
+        "Crystal",
+        "Earth",
+        "Metal"
+      ]
+    }
+  },
+  {
+    "name": "Wood",
+    "legend": "Allows the user to slam foes with solid wood and bark, becoming even stronger when exposed to heat.",
+    "imageId": "https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/2/27/Wood_Magic1_%28Oak%29.png/revision/latest?cb=20221126132120",
+    "unimbued": {
+      "damage": 0.95,
+      "speed": 0.8,
+      "size": 1.2
+    },
+    "imbued": {
+      "damage": 1.025,
+      "speed": 0.9,
+      "size": {
+        "conjurer": 1.167,
+        "warlock": 1.15
+      }
+    },
+    "specialEffect": "Bleeding",
+    "clash": {
+      "over": [
+        "Wind",
+        "Glass",
+        "Water",
+        "Light",
+        "Ice",
+        "Snow",
+        "Shadow",
+        "Sand",
+        "Poison"
+      ],
+      "neutral": ["Explosion"],
+      "under": [
+        "Ash",
+        "Acid",
+        "Crystal",
+        "Lightning",
+        "Earth",
+        "Fire",
+        "Magma",
+        "Metal",
+        "Plasma"
+      ]
+    }
+  }
+]

@@ -40,6 +40,8 @@ pub struct Data {
     pub emoji_to_enchant: Arc<RwLock<HashMap<String, Item>>>,
     pub emoji_to_modifier: Arc<RwLock<HashMap<String, Item>>>,
     pub emoji_to_gem: Arc<RwLock<HashMap<String, Item>>>,
+    pub magic_data: Arc<RwLock<Vec<MagicData>>>,
+    pub magic_cache: Arc<RwLock<HashMap<String, MagicData>>>,
 }
 
 // Global constants
@@ -50,7 +52,7 @@ pub static ITEM_NOT_FOUND_MSG: &str = "Item not found!";
 pub static DEFAULT_COLOR: u32 = 0x93b1e3;
 pub static SUCCESS_COLOR: u32 = 0x00ff00;
 pub static ERROR_COLOR: u32 = 0xff0000;
-pub static VERSION: &str = "v1.0.0";
+pub static VERSION: &str = "v1.0.1";
 pub static MAX_LEVEL: i32 = 140;
 
 // Color constants
@@ -135,11 +137,14 @@ async fn main() -> Result<()> {
         emoji_to_enchant: Arc::new(RwLock::new(HashMap::new())),
         emoji_to_modifier: Arc::new(RwLock::new(HashMap::new())),
         emoji_to_gem: Arc::new(RwLock::new(HashMap::new())),
+        magic_data: Arc::new(RwLock::new(Vec::new())),
+        magic_cache: Arc::new(RwLock::new(HashMap::new())),
     };
 
     // Load item and weapon data
     load_item_data(&data).await?;
     load_weapon_data(&data).await?;
+    load_magic_data(&data).await?;
 
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
