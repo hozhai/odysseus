@@ -1,10 +1,7 @@
-use crate::{
-    models::MagicData, utils::find_magic_by_name, Context, Error, DEFAULT_COLOR, EMBED_FOOTER,
-};
+use crate::{utils::find_magic_by_name, Context, Error, DEFAULT_COLOR, EMBED_FOOTER};
 use poise::serenity_prelude as serenity;
-use serenity::builder::CreateEmbed;
-use std::time::Instant;
 
+/// Get information about a magic
 #[poise::command(slash_command)]
 pub async fn magic(
     ctx: Context<'_>,
@@ -19,6 +16,7 @@ pub async fn magic(
             .title(&magic.name)
             .description(&magic.legend)
             .thumbnail(magic.image_id)
+            .color(DEFAULT_COLOR)
             .footer(serenity::CreateEmbedFooter::new(EMBED_FOOTER));
 
         embed = embed.field("Special Effect", &magic.special_effect, true);
@@ -27,7 +25,7 @@ pub async fn magic(
         ctx.send(response).await?;
     } else {
         let response = poise::CreateReply::default()
-            .content("❌ Weapon not found!")
+            .content("❌ Magic not found!")
             .ephemeral(true);
         ctx.send(response).await?;
     }

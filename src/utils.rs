@@ -109,7 +109,7 @@ pub async fn load_magic_data(data: &Data) -> Result<()> {
             Ok(magics) => {
                 info!("Successfully decoded magics.json");
                 *data.magic_data.write() = magics;
-                initialize_weapon_cache(data).await;
+                initialize_magic_cache(data).await;
                 return Ok(());
             }
             Err(e) => {

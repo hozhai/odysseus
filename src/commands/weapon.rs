@@ -2,7 +2,7 @@ use crate::utils::{create_weapon_stat_bar, find_weapon_by_name, get_rarity_color
 use crate::{Context, Error, EMBED_FOOTER};
 use poise::serenity_prelude as serenity;
 
-/// Get information about a weapon with visual stat display
+/// Get information about a weapon
 #[poise::command(slash_command)]
 pub async fn weapon(
     ctx: Context<'_>,
