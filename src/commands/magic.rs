@@ -12,14 +12,27 @@ pub async fn magic(
     let data = ctx.data();
 
     if let Some(magic) = find_magic_by_name(data, &magic) {
-        let mut embed = serenity::CreateEmbed::new()
+        let embed = serenity::CreateEmbed::new()
             .title(&magic.name)
             .description(&magic.legend)
             .thumbnail(magic.image_id)
+            .field("Special Effect", &magic.special_effect, true)
+            .field(
+                "Unimbued Stats",
+                format!(
+                    "<:power:1392363667059904632> {}x <:attackspeed:1392364933722804274> {}x <:attacksize:1392364917616807956> {}x",
+                    &magic.unimbued.damage, &magic.unimbued.speed, &magic.unimbued.size
+                ),
+                true,
+            )
+            .field(
+              "Imbued Stats",
+              format!(
+                "<:power:1392363667059904632> {}x <:attackspeed:1392364933722804274> {}x <:attacksize:1392364917616807956> [cj] {}x <:attacksize:1392364917616807956> [wl] {}x",
+                &magic.imbued.damage, &magic.imbued.speed, &magic.imbued.size.conjurer, &magic.imbued.size.warlock
+              ), true)
             .color(DEFAULT_COLOR)
             .footer(serenity::CreateEmbedFooter::new(EMBED_FOOTER));
-
-        embed = embed.field("Special Effect", &magic.special_effect, true);
 
         let response = poise::CreateReply::default().embed(embed);
         ctx.send(response).await?;
