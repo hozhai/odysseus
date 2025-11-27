@@ -1,4 +1,7 @@
-use crate::{utils::find_magic_by_name, Context, Error, DEFAULT_COLOR, EMBED_FOOTER};
+use crate::{
+    utils::{find_magic_by_name, magic_string_into_emoji},
+    Context, Error, DEFAULT_COLOR, EMBED_FOOTER,
+};
 use poise::serenity_prelude as serenity;
 
 /// Get information about a magic
@@ -20,7 +23,7 @@ pub async fn magic(
             .field(
                 "Unimbued Stats",
                 format!(
-                    "<:power:1392363667059904632> {}x <:attackspeed:1392364933722804274> {}x <:attacksize:1392364917616807956> {}x",
+                    "<:power:1392363667059904632> {}x\n <:attackspeed:1392364933722804274> {}x\n <:attacksize:1392364917616807956> {}x",
                     &magic.unimbued.damage, &magic.unimbued.speed, &magic.unimbued.size
                 ),
                 true,
@@ -28,9 +31,12 @@ pub async fn magic(
             .field(
               "Imbued Stats",
               format!(
-                "<:power:1392363667059904632> {}x <:attackspeed:1392364933722804274> {}x\n <:attacksize:1392364917616807956> [cj] {}x \n<:attacksize:1392364917616807956> [wl] {}x",
+                "<:power:1392363667059904632> {}x\n<:attackspeed:1392364933722804274> {}x\n <:attacksize:1392364917616807956> [cj] {}x \n<:attacksize:1392364917616807956> [wl] {}x",
                 &magic.imbued.damage, &magic.imbued.speed, &magic.imbued.size.conjurer, &magic.imbued.size.warlock
               ), true)
+            .field("Outclashes", magic.clash.over.iter().map(|x| magic_string_into_emoji(x.to_string()).unwrap()).collect::<Vec<String>>().join("\n"), true)
+            .field("Neutral clashes", magic.clash.neutral.iter().map(|x| magic_string_into_emoji(x.to_string()).unwrap()).collect::<Vec<String>>().join("\n"), true)
+            .field("Outclashed by", magic.clash.under.iter().map(|x| magic_string_into_emoji(x.to_string()).unwrap()).collect::<Vec<String>>().join("\n"), true)
             .color(DEFAULT_COLOR)
             .footer(serenity::CreateEmbedFooter::new(EMBED_FOOTER));
 

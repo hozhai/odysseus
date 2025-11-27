@@ -343,6 +343,32 @@ pub fn magic_fs_into_emoji(content: i32) -> Option<String> {
     }
 }
 
+pub fn magic_string_into_emoji(magic: String) -> Option<String> {
+    match magic.as_str() {
+        "Acid" => Some("<:acid:1443732219628617880>".to_string()),
+        "Ash" => Some("<:ash:1443732218043170887>".to_string()),
+        "Crystal" => Some("<:crystal:1443732216432820377>".to_string()),
+        "Earth" => Some("<:earth:1443732214515765279>".to_string()),
+        "Explosion" => Some("<:explosion:1443732212855078942>".to_string()),
+        "Fire" => Some("<:fire:1443732211500187788>".to_string()),
+        "Glass" => Some("<:glass:1443732209927196834>".to_string()),
+        "Ice" => Some("<:ice:1443732208308191302>".to_string()),
+        "Light" => Some("<:light:1443732206752370698>".to_string()),
+        "Lightning" => Some("<:lightning:1443732205024182304>".to_string()),
+        "Magma" => Some("<:magma:1443732203639935158>".to_string()),
+        "Metal" => Some("<:metal:1443732202402611320>".to_string()),
+        "Plasma" => Some("<:plasma:1443732201131741224>".to_string()),
+        "Poison" => Some("<:poison:1443732199705936083>".to_string()),
+        "Sand" => Some("<:sand:1443732197914972271>".to_string()),
+        "Shadow" => Some("<:shadow:1443732196232790117>".to_string()),
+        "Snow" => Some("<:snow:1443732194697806116>".to_string()),
+        "Water" => Some("<:water:1443732192277692467>".to_string()),
+        "Wind" => Some("<:wind:1443732191036047494>".to_string()),
+        "Wood" => Some("<:wood:1443732189601599599>".to_string()),
+        _ => None,
+    }
+}
+
 pub fn enchant_into_emoji(item: &Item) -> Option<String> {
     match item.name.as_str() {
         "Strong" => Some("<:strong:1393732208673685615>".to_string()),

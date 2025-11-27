@@ -45,7 +45,7 @@ pub struct Data {
 }
 
 // Global constants
-pub static EMBED_FOOTER: &str = "Odysseus - Made with love <3";
+pub static EMBED_FOOTER: &str = "Odysseus - Made with ❤️";
 pub static BUILD_URL_PREFIX: &str = "https://tools.arcaneodyssey.net/gearBuilder#";
 pub static INVALID_URL_MSG: &str = "Invalid URL! Please provide a valid GearBuilder build URL.";
 pub static ITEM_NOT_FOUND_MSG: &str = "Item not found!";
