@@ -137,7 +137,7 @@ pub fn build_sort_embed(
     let stat_display = get_stat_display_name(stat_type);
 
     let mut description = format!(
-        "Items sorted by {} at level 140{}\n\n",
+        "Items sorted by {} at level 170{}\n\n",
         stat_display, type_filter
     );
 

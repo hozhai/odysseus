@@ -25,6 +25,8 @@ pub struct Item {
     pub stats_per_level: Option<Vec<StatsPerLevel>>,
     #[serde(rename = "validModifiers")]
     pub valid_modifiers: Option<Vec<String>>,
+    // Scaling multipliers for new items.json
+    pub scaling: Option<Scaling>,
 
     // Increment stats
     #[serde(rename = "powerIncrement")]
@@ -79,6 +81,23 @@ pub struct StatsPerLevel {
     pub regeneration: Option<i32>,
     pub piercing: Option<i32>,
     pub resistance: Option<i32>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Scaling {
+    pub power: Option<f64>,
+    pub defense: Option<f64>,
+    pub agility: Option<f64>,
+    #[serde(rename = "attackSpeed")]
+    pub attack_speed: Option<f64>,
+    #[serde(rename = "attackSize")]
+    pub attack_size: Option<f64>,
+    pub intensity: Option<f64>,
+    pub regeneration: Option<f64>,
+    pub piercing: Option<f64>,
+    pub resistance: Option<f64>,
+    pub warding: Option<f64>,
+    pub drawback: Option<f64>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

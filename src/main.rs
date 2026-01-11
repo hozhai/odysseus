@@ -52,8 +52,8 @@ pub static ITEM_NOT_FOUND_MSG: &str = "Item not found!";
 pub static DEFAULT_COLOR: u32 = 0x93b1e3;
 pub static SUCCESS_COLOR: u32 = 0x00ff00;
 pub static ERROR_COLOR: u32 = 0xff0000;
-pub static VERSION: &str = "v1.0.1";
-pub static MAX_LEVEL: i32 = 140;
+pub static VERSION: &str = "v1.1.0";
+pub static MAX_LEVEL: i32 = 170;
 
 // Color constants
 pub static COLOR_DEFAULT: u32 = 0x93b1e3;

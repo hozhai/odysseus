@@ -57,7 +57,7 @@ async fn handle_component_interaction(
                                 "Level",
                                 "dmgcalc_modal_level",
                             )
-                            .placeholder("140")
+                            .placeholder("170")
                             .required(true),
                         ),
                         serenity::CreateActionRow::InputText(
@@ -94,7 +94,7 @@ async fn handle_component_interaction(
                                 "Level",
                                 "dmgcalc_modal_def_level",
                             )
-                            .placeholder("140")
+                            .placeholder("170")
                             .required(true),
                         ),
                         serenity::CreateActionRow::InputText(
