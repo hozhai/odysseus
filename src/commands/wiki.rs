@@ -21,7 +21,7 @@ pub async fn wiki(
 
             let mut embed = CreateEmbed::new()
                 .title(&format!("Wiki Search Results for: '{}'", query))
-                .url(format!("https://roblox-arcane-odyssey.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true&query={}", query))
+                .url(format!("https://roblox-arcane-odyssey.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true&query={}", urlencoding::encode(&query)))
                 .color(DEFAULT_COLOR)
                 .footer(serenity::CreateEmbedFooter::new(EMBED_FOOTER));
 
