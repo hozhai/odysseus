@@ -21,14 +21,16 @@ pub struct Item {
     pub max_level: Option<i32>,
     #[serde(rename = "statType")]
     pub stat_type: Option<String>,
-    #[serde(rename = "statsPerLevel")]
-    pub stats_per_level: Option<Vec<StatsPerLevel>>,
     #[serde(rename = "validModifiers")]
     pub valid_modifiers: Option<Vec<String>>,
     // Scaling multipliers for new items.json
     pub scaling: Option<Scaling>,
 
-    // Increment stats
+    // New enchantTypes structure
+    #[serde(rename = "enchantTypes")]
+    pub enchant_types: Option<EnchantTypes>,
+
+    // Increment stats (legacy - for modifiers and backwards compatibility)
     #[serde(rename = "powerIncrement")]
     pub power_increment: Option<f64>,
     #[serde(rename = "defenseIncrement")]
@@ -66,24 +68,6 @@ pub struct Item {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct StatsPerLevel {
-    pub level: i32,
-    pub power: Option<i32>,
-    pub agility: Option<i32>,
-    pub defense: Option<i32>,
-    #[serde(rename = "attackSpeed")]
-    pub attack_speed: Option<i32>,
-    #[serde(rename = "attackSize")]
-    pub attack_size: Option<i32>,
-    pub intensity: Option<i32>,
-    pub warding: Option<i32>,
-    pub drawback: Option<i32>,
-    pub regeneration: Option<i32>,
-    pub piercing: Option<i32>,
-    pub resistance: Option<i32>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Scaling {
     pub power: Option<f64>,
     pub defense: Option<f64>,
@@ -98,6 +82,33 @@ pub struct Scaling {
     pub resistance: Option<f64>,
     pub warding: Option<f64>,
     pub drawback: Option<f64>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct EnchantTypes {
+    pub gear: Option<GearEnchantStats>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct GearEnchantStats {
+    #[serde(rename = "powerIncrement")]
+    pub power_increment: Option<f64>,
+    #[serde(rename = "defenseIncrement")]
+    pub defense_increment: Option<f64>,
+    #[serde(rename = "agilityIncrement")]
+    pub agility_increment: Option<f64>,
+    #[serde(rename = "attackSpeedIncrement")]
+    pub attack_speed_increment: Option<f64>,
+    #[serde(rename = "attackSizeIncrement")]
+    pub attack_size_increment: Option<f64>,
+    #[serde(rename = "intensityIncrement")]
+    pub intensity_increment: Option<f64>,
+    #[serde(rename = "regenerationIncrement")]
+    pub regeneration_increment: Option<f64>,
+    #[serde(rename = "piercingIncrement")]
+    pub piercing_increment: Option<f64>,
+    #[serde(rename = "resistanceIncrement")]
+    pub resistance_increment: Option<f64>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

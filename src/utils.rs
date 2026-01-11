@@ -258,9 +258,9 @@ pub fn find_item_by_id(data: &Data, id: &str) -> Item {
         min_level: None,
         max_level: None,
         stat_type: None,
-        stats_per_level: None,
         valid_modifiers: None,
         scaling: None,
+        enchant_types: None,
         power_increment: None,
         defense_increment: None,
         agility_increment: None,
@@ -786,11 +786,11 @@ pub fn add_item_stats(slot: &Slot, total: &mut TotalStats, data: &Data) {
     let enchantment = find_item_by_id(data, &slot.enchant);
     let modifier = find_item_by_id(data, &slot.modifier);
 
-    let level = ((slot.level as f64) / 10.0).floor() * 10.0;
+    // Use exact level for scaling calculations
+    let level_exact = slot.level as f64;
     let multiplier = ((slot.level as f64) / 10.0).floor();
 
     // Base item stats computed from scaling at the slot's level
-    let level_exact = slot.level as f64;
     if let Some(scaling) = &item.scaling {
         // Scaling multipliers by stat category
         let scaling_mult = |stat: &str| -> f64 {
@@ -865,7 +865,7 @@ pub fn add_item_stats(slot: &Slot, total: &mut TotalStats, data: &Data) {
             None
         };
 
-        // Imbue multipliers per stat type (from provided mapping)
+        // Imbue multipliers per stat type
         let imbue_mult_for = |imbue_key: &str, stat: &str| -> f64 {
             match imbue_key {
                 "acid" => match stat {
@@ -1013,7 +1013,7 @@ pub fn add_item_stats(slot: &Slot, total: &mut TotalStats, data: &Data) {
         };
         let imbue_piece = imbue_piece_mult(&item);
 
-        let mut apply = |stat_key: &str, opt: &Option<f64>, out: &mut i32| {
+        let apply = |stat_key: &str, opt: &Option<f64>, out: &mut i32| {
             if let Some(scale) = opt {
                 let base = (scale * scaling_mult(stat_key) * level_exact).floor();
                 let imbue_bonus = if let Some(ref imbue_key) = imbue {
@@ -1060,48 +1060,10 @@ pub fn add_item_stats(slot: &Slot, total: &mut TotalStats, data: &Data) {
             &mut slot_stats.resistance,
         );
         apply("warding", &scaling.warding, &mut slot_stats.warding);
-        apply("drawback", &scaling.drawback, &mut slot_stats.drawback);
-    }
 
-    // Base item stats (at the slot's level)
-    if item.scaling.is_none() {
-        if let Some(stats_per_level) = &item.stats_per_level {
-            let mut level_stats_found = false;
-
-            // Find the appropriate stats for the item level
-            for stat_level in stats_per_level {
-                if stat_level.level == level as i32 {
-                    level_stats_found = true;
-                    slot_stats.agility += stat_level.agility.unwrap_or(0);
-                    slot_stats.attack_size += stat_level.attack_size.unwrap_or(0);
-                    slot_stats.attack_speed += stat_level.attack_speed.unwrap_or(0);
-                    slot_stats.defense += stat_level.defense.unwrap_or(0);
-                    slot_stats.drawback += stat_level.drawback.unwrap_or(0);
-                    slot_stats.intensity += stat_level.intensity.unwrap_or(0);
-                    slot_stats.piercing += stat_level.piercing.unwrap_or(0);
-                    slot_stats.power += stat_level.power.unwrap_or(0);
-                    slot_stats.regeneration += stat_level.regeneration.unwrap_or(0);
-                    slot_stats.resistance += stat_level.resistance.unwrap_or(0);
-                    slot_stats.warding += stat_level.warding.unwrap_or(0);
-                    break;
-                }
-            }
-
-            // If no exact level match, use the last available level
-            if !level_stats_found && !stats_per_level.is_empty() {
-                let last_stat = &stats_per_level[stats_per_level.len() - 1];
-                slot_stats.agility += last_stat.agility.unwrap_or(0);
-                slot_stats.attack_size += last_stat.attack_size.unwrap_or(0);
-                slot_stats.attack_speed += last_stat.attack_speed.unwrap_or(0);
-                slot_stats.defense += last_stat.defense.unwrap_or(0);
-                slot_stats.drawback += last_stat.drawback.unwrap_or(0);
-                slot_stats.intensity += last_stat.intensity.unwrap_or(0);
-                slot_stats.piercing += last_stat.piercing.unwrap_or(0);
-                slot_stats.power += last_stat.power.unwrap_or(0);
-                slot_stats.regeneration += last_stat.regeneration.unwrap_or(0);
-                slot_stats.resistance += last_stat.resistance.unwrap_or(0);
-                slot_stats.warding += last_stat.warding.unwrap_or(0);
-            }
+        // Drawback from scaling is a fixed value, not level-scaled
+        if let Some(drawback_val) = scaling.drawback {
+            slot_stats.drawback += drawback_val as i32;
         }
     }
 
@@ -1121,24 +1083,57 @@ pub fn add_item_stats(slot: &Slot, total: &mut TotalStats, data: &Data) {
 
     // Enchantment stats
     if enchantment.id != EMPTY_ENCHANTMENT_ID && !slot.enchant.is_empty() {
-        slot_stats.power +=
-            (enchantment.power_increment.unwrap_or(0.0) * multiplier).floor() as i32;
-        slot_stats.defense +=
-            (enchantment.defense_increment.unwrap_or(0.0) * multiplier).floor() as i32;
-        slot_stats.agility +=
-            (enchantment.agility_increment.unwrap_or(0.0) * multiplier).floor() as i32;
-        slot_stats.attack_speed +=
-            (enchantment.attack_speed_increment.unwrap_or(0.0) * multiplier).floor() as i32;
-        slot_stats.attack_size +=
-            (enchantment.attack_size_increment.unwrap_or(0.0) * multiplier).floor() as i32;
-        slot_stats.intensity +=
-            (enchantment.intensity_increment.unwrap_or(0.0) * multiplier).floor() as i32;
-        slot_stats.regeneration +=
-            (enchantment.regeneration_increment.unwrap_or(0.0) * multiplier).floor() as i32;
-        slot_stats.piercing +=
-            (enchantment.piercing_increment.unwrap_or(0.0) * multiplier).floor() as i32;
-        slot_stats.resistance +=
-            (enchantment.resistance_increment.unwrap_or(0.0) * multiplier).floor() as i32;
+        // Try new enchantTypes.gear structure first, fall back to legacy fields
+        let (
+            power_inc,
+            defense_inc,
+            agility_inc,
+            attack_speed_inc,
+            attack_size_inc,
+            intensity_inc,
+            regeneration_inc,
+            piercing_inc,
+            resistance_inc,
+        ) = if let Some(ref enchant_types) = enchantment.enchant_types {
+            if let Some(ref gear) = enchant_types.gear {
+                (
+                    gear.power_increment,
+                    gear.defense_increment,
+                    gear.agility_increment,
+                    gear.attack_speed_increment,
+                    gear.attack_size_increment,
+                    gear.intensity_increment,
+                    gear.regeneration_increment,
+                    gear.piercing_increment,
+                    gear.resistance_increment,
+                )
+            } else {
+                (None, None, None, None, None, None, None, None, None)
+            }
+        } else {
+            // Legacy fallback
+            (
+                enchantment.power_increment,
+                enchantment.defense_increment,
+                enchantment.agility_increment,
+                enchantment.attack_speed_increment,
+                enchantment.attack_size_increment,
+                enchantment.intensity_increment,
+                enchantment.regeneration_increment,
+                enchantment.piercing_increment,
+                enchantment.resistance_increment,
+            )
+        };
+
+        slot_stats.power += (power_inc.unwrap_or(0.0) * multiplier).floor() as i32;
+        slot_stats.defense += (defense_inc.unwrap_or(0.0) * multiplier).floor() as i32;
+        slot_stats.agility += (agility_inc.unwrap_or(0.0) * multiplier).floor() as i32;
+        slot_stats.attack_speed += (attack_speed_inc.unwrap_or(0.0) * multiplier).floor() as i32;
+        slot_stats.attack_size += (attack_size_inc.unwrap_or(0.0) * multiplier).floor() as i32;
+        slot_stats.intensity += (intensity_inc.unwrap_or(0.0) * multiplier).floor() as i32;
+        slot_stats.regeneration += (regeneration_inc.unwrap_or(0.0) * multiplier).floor() as i32;
+        slot_stats.piercing += (piercing_inc.unwrap_or(0.0) * multiplier).floor() as i32;
+        slot_stats.resistance += (resistance_inc.unwrap_or(0.0) * multiplier).floor() as i32;
         slot_stats.warding += enchantment.warding.unwrap_or(0);
     }
 
@@ -1235,11 +1230,8 @@ pub async fn filter_and_sort_items(
     let mut sortable_items = Vec::new();
 
     for item in items_data.iter() {
-        // Skip deleted items, "None" items, and items without stats
-        if item.deleted
-            || item.name == "None"
-            || (item.stats_per_level.is_none() && item.scaling.is_none())
-        {
+        // Skip deleted items, "None" items, and items without scaling
+        if item.deleted || item.name == "None" || item.scaling.is_none() {
             continue;
         }
 
@@ -1522,24 +1514,6 @@ pub fn get_stat_value_at_max_level(item: &Item, stat_type: &str) -> Option<i32> 
             return if total != 0 { Some(total) } else { None };
         }
     }
-    if let Some(ref stats_per_level) = item.stats_per_level {
-        for stats in stats_per_level {
-            if stats.level == 170 {
-                return match stat_type {
-                    "power" => stats.power,
-                    "agility" => stats.agility,
-                    "attackspeed" => stats.attack_speed,
-                    "defense" => stats.defense,
-                    "attacksize" => stats.attack_size,
-                    "intensity" => stats.intensity,
-                    "regeneration" => stats.regeneration,
-                    "resistance" => stats.resistance,
-                    "armorpiercing" => stats.piercing,
-                    _ => None,
-                };
-            }
-        }
-    }
     None
 }
 
@@ -1656,15 +1630,27 @@ pub async fn build_item_editor_response(
         .style(serenity::ButtonStyle::Primary)
         .label("Set Enchantment")];
 
-    // Only show modifier button if item supports modifiers
-    if let Some(valid_modifiers) = &item.valid_modifiers {
-        if !valid_modifiers.is_empty() {
-            buttons.push(
-                serenity::CreateButton::new("item_add_modifier")
-                    .style(serenity::ButtonStyle::Primary)
-                    .label("Set Modifier"),
-            );
+    // Show modifier button for gear items (Accessory, Chestplate, Pants)
+    // Only hide if validModifiers explicitly exists and is empty
+    let supports_modifiers = match item.main_type.as_str() {
+        "Accessory" | "Chestplate" | "Pants" => {
+            // If validModifiers is explicitly set to empty, don't show
+            if let Some(valid_modifiers) = &item.valid_modifiers {
+                !valid_modifiers.is_empty()
+            } else {
+                // No validModifiers field means it supports modifiers by default
+                true
+            }
         }
+        _ => false,
+    };
+
+    if supports_modifiers {
+        buttons.push(
+            serenity::CreateButton::new("item_add_modifier")
+                .style(serenity::ButtonStyle::Primary)
+                .label("Set Modifier"),
+        );
     }
 
     // Only show gems button if item has gem slots
