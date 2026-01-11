@@ -260,6 +260,7 @@ pub fn find_item_by_id(data: &Data, id: &str) -> Item {
         stat_type: None,
         stats_per_level: None,
         valid_modifiers: None,
+        scaling: None,
         power_increment: None,
         defense_increment: None,
         agility_increment: None,
@@ -788,43 +789,319 @@ pub fn add_item_stats(slot: &Slot, total: &mut TotalStats, data: &Data) {
     let level = ((slot.level as f64) / 10.0).floor() * 10.0;
     let multiplier = ((slot.level as f64) / 10.0).floor();
 
-    // Base item stats (at the slot's level)
-    if let Some(stats_per_level) = &item.stats_per_level {
-        let mut level_stats_found = false;
-
-        // Find the appropriate stats for the item level
-        for stat_level in stats_per_level {
-            if stat_level.level == level as i32 {
-                level_stats_found = true;
-                slot_stats.agility += stat_level.agility.unwrap_or(0);
-                slot_stats.attack_size += stat_level.attack_size.unwrap_or(0);
-                slot_stats.attack_speed += stat_level.attack_speed.unwrap_or(0);
-                slot_stats.defense += stat_level.defense.unwrap_or(0);
-                slot_stats.drawback += stat_level.drawback.unwrap_or(0);
-                slot_stats.intensity += stat_level.intensity.unwrap_or(0);
-                slot_stats.piercing += stat_level.piercing.unwrap_or(0);
-                slot_stats.power += stat_level.power.unwrap_or(0);
-                slot_stats.regeneration += stat_level.regeneration.unwrap_or(0);
-                slot_stats.resistance += stat_level.resistance.unwrap_or(0);
-                slot_stats.warding += stat_level.warding.unwrap_or(0);
-                break;
+    // Base item stats computed from scaling at the slot's level
+    let level_exact = slot.level as f64;
+    if let Some(scaling) = &item.scaling {
+        // Scaling multipliers by stat category
+        let scaling_mult = |stat: &str| -> f64 {
+            match stat {
+                "defense" => 2.7,
+                "power" => 0.35,
+                _ => 0.5, // substats
             }
-        }
+        };
 
-        // If no exact level match, use the last available level
-        if !level_stats_found && !stats_per_level.is_empty() {
-            let last_stat = &stats_per_level[stats_per_level.len() - 1];
-            slot_stats.agility += last_stat.agility.unwrap_or(0);
-            slot_stats.attack_size += last_stat.attack_size.unwrap_or(0);
-            slot_stats.attack_speed += last_stat.attack_speed.unwrap_or(0);
-            slot_stats.defense += last_stat.defense.unwrap_or(0);
-            slot_stats.drawback += last_stat.drawback.unwrap_or(0);
-            slot_stats.intensity += last_stat.intensity.unwrap_or(0);
-            slot_stats.piercing += last_stat.piercing.unwrap_or(0);
-            slot_stats.power += last_stat.power.unwrap_or(0);
-            slot_stats.regeneration += last_stat.regeneration.unwrap_or(0);
-            slot_stats.resistance += last_stat.resistance.unwrap_or(0);
-            slot_stats.warding += last_stat.warding.unwrap_or(0);
+        // Piece multiplier: 1.0 for Chestplate/Arcsphere/Bracelet, 0.75 otherwise
+        let imbue_piece_mult = |item: &Item| -> f64 {
+            let name = item.name.to_lowercase();
+            if item.main_type == "Chestplate"
+                || name.contains("arcsphere")
+                || name.contains("bracelet")
+            {
+                1.0
+            } else {
+                0.75
+            }
+        };
+
+        // Imbue multipliers by stat category
+        let imbue_category_mult = |stat: &str| -> f64 {
+            match stat {
+                "defense" => 0.334,
+                "power" => 0.285716,
+                _ => 0.595, // substats
+            }
+        };
+
+        // Detect imbue from item name
+        let detect_imbue = |item: &Item| -> Option<String> {
+            let n = item.name.to_lowercase();
+            let candidates = [
+                "acid",
+                "ash",
+                "crystal",
+                "earth",
+                "explosion",
+                "fire",
+                "glass",
+                "ice",
+                "light",
+                "lightning",
+                "magma",
+                "metal",
+                "plasma",
+                "poison",
+                "sand",
+                "shadow",
+                "snow",
+                "water",
+                "wind",
+                "wood",
+                "basic combat",
+                "boxing",
+                "cannon fist",
+                "iron leg",
+                "sailor style",
+                "thermo fist",
+            ];
+            for c in candidates {
+                if n.contains(c) {
+                    return Some(match c {
+                        "basic combat" => "basic".to_string(),
+                        _ => c.to_string(),
+                    });
+                }
+            }
+            None
+        };
+
+        // Imbue multipliers per stat type (from provided mapping)
+        let imbue_mult_for = |imbue_key: &str, stat: &str| -> f64 {
+            match imbue_key {
+                "acid" => match stat {
+                    "piercing" => 1.0,
+                    _ => 0.0,
+                },
+                "ash" => match stat {
+                    "attackSize" => 0.75,
+                    "power" => 0.25,
+                    _ => 0.0,
+                },
+                "crystal" => match stat {
+                    "defense" => 0.5,
+                    "intensity" => 0.5,
+                    _ => 0.0,
+                },
+                "earth" => match stat {
+                    "defense" => 0.75,
+                    "attackSize" => 0.25,
+                    _ => 0.0,
+                },
+                "explosion" => match stat {
+                    "attackSize" => 1.0,
+                    _ => 0.0,
+                },
+                "fire" => match stat {
+                    "power" => 1.0,
+                    _ => 0.0,
+                },
+                "glass" => match stat {
+                    "power" => 1.25,
+                    "defense" => -0.25,
+                    _ => 0.0,
+                },
+                "ice" => match stat {
+                    "defense" => 0.25,
+                    "resistance" => 0.75,
+                    _ => 0.0,
+                },
+                "light" => match stat {
+                    "attackSpeed" => 1.25,
+                    "attackSize" => -0.25,
+                    _ => 0.0,
+                },
+                "lightning" => match stat {
+                    "attackSpeed" => 0.75,
+                    "agility" => 0.25,
+                    _ => 0.0,
+                },
+                "magma" => match stat {
+                    "power" => 0.5,
+                    "attackSize" => 0.5,
+                    _ => 0.0,
+                },
+                "metal" => match stat {
+                    "defense" => 1.0,
+                    "agility" => -0.25,
+                    "resistance" => 0.25,
+                    _ => 0.0,
+                },
+                "plasma" => match stat {
+                    "power" => 0.75,
+                    "intensity" => 0.25,
+                    _ => 0.0,
+                },
+                "poison" => match stat {
+                    "power" => 0.75,
+                    "piercing" => 0.25,
+                    _ => 0.0,
+                },
+                "sand" => match stat {
+                    "intensity" => 1.0,
+                    _ => 0.0,
+                },
+                "shadow" => match stat {
+                    "power" => 0.5,
+                    "attackSpeed" => 0.5,
+                    _ => 0.0,
+                },
+                "snow" => match stat {
+                    "attackSpeed" => 0.25,
+                    "attackSize" => 0.75,
+                    _ => 0.0,
+                },
+                "water" => match stat {
+                    "intensity" => 0.25,
+                    "attackSize" => 0.75,
+                    _ => 0.0,
+                },
+                "wind" => match stat {
+                    "agility" => 0.25,
+                    "attackSize" => 0.25,
+                    "attackSpeed" => 0.5,
+                    _ => 0.0,
+                },
+                "wood" => match stat {
+                    "power" => 0.25,
+                    "defense" => 0.75,
+                    _ => 0.0,
+                },
+                "basic" => match stat {
+                    "power" => 0.5,
+                    "intensity" => 0.5,
+                    _ => 0.0,
+                },
+                "boxing" => match stat {
+                    "agility" => 0.5,
+                    "resistance" => 0.5,
+                    _ => 0.0,
+                },
+                "cannon fist" => match stat {
+                    "piercing" => 0.5,
+                    "intensity" => 0.5,
+                    _ => 0.0,
+                },
+                "iron leg" => match stat {
+                    "attackSpeed" => -0.25,
+                    "power" => 0.5,
+                    "resistance" => 0.75,
+                    _ => 0.0,
+                },
+                "sailor style" => match stat {
+                    "attackSize" => 0.5,
+                    "power" => 0.5,
+                    _ => 0.0,
+                },
+                "thermo fist" => match stat {
+                    "attackSpeed" => 0.75,
+                    "intensity" => 0.5,
+                    "attackSize" => -0.25,
+                    _ => 0.0,
+                },
+                _ => 0.0,
+            }
+        };
+
+        let imbue = if let Some(st) = &item.stat_type {
+            if st == "Magic" || st == "Strength" {
+                detect_imbue(&item)
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+        let imbue_piece = imbue_piece_mult(&item);
+
+        let mut apply = |stat_key: &str, opt: &Option<f64>, out: &mut i32| {
+            if let Some(scale) = opt {
+                let base = (scale * scaling_mult(stat_key) * level_exact).floor();
+                let imbue_bonus = if let Some(ref imbue_key) = imbue {
+                    let m = imbue_mult_for(imbue_key, stat_key);
+                    if m != 0.0 {
+                        (m * scaling_mult(stat_key)
+                            * imbue_category_mult(stat_key)
+                            * level_exact
+                            * imbue_piece)
+                            .floor()
+                    } else {
+                        0.0
+                    }
+                } else {
+                    0.0
+                };
+                *out += (base + imbue_bonus) as i32;
+            }
+        };
+
+        apply("power", &scaling.power, &mut slot_stats.power);
+        apply("defense", &scaling.defense, &mut slot_stats.defense);
+        apply("agility", &scaling.agility, &mut slot_stats.agility);
+        apply(
+            "attackSpeed",
+            &scaling.attack_speed,
+            &mut slot_stats.attack_speed,
+        );
+        apply(
+            "attackSize",
+            &scaling.attack_size,
+            &mut slot_stats.attack_size,
+        );
+        apply("intensity", &scaling.intensity, &mut slot_stats.intensity);
+        apply(
+            "regeneration",
+            &scaling.regeneration,
+            &mut slot_stats.regeneration,
+        );
+        apply("piercing", &scaling.piercing, &mut slot_stats.piercing);
+        apply(
+            "resistance",
+            &scaling.resistance,
+            &mut slot_stats.resistance,
+        );
+        apply("warding", &scaling.warding, &mut slot_stats.warding);
+        apply("drawback", &scaling.drawback, &mut slot_stats.drawback);
+    }
+
+    // Base item stats (at the slot's level)
+    if item.scaling.is_none() {
+        if let Some(stats_per_level) = &item.stats_per_level {
+            let mut level_stats_found = false;
+
+            // Find the appropriate stats for the item level
+            for stat_level in stats_per_level {
+                if stat_level.level == level as i32 {
+                    level_stats_found = true;
+                    slot_stats.agility += stat_level.agility.unwrap_or(0);
+                    slot_stats.attack_size += stat_level.attack_size.unwrap_or(0);
+                    slot_stats.attack_speed += stat_level.attack_speed.unwrap_or(0);
+                    slot_stats.defense += stat_level.defense.unwrap_or(0);
+                    slot_stats.drawback += stat_level.drawback.unwrap_or(0);
+                    slot_stats.intensity += stat_level.intensity.unwrap_or(0);
+                    slot_stats.piercing += stat_level.piercing.unwrap_or(0);
+                    slot_stats.power += stat_level.power.unwrap_or(0);
+                    slot_stats.regeneration += stat_level.regeneration.unwrap_or(0);
+                    slot_stats.resistance += stat_level.resistance.unwrap_or(0);
+                    slot_stats.warding += stat_level.warding.unwrap_or(0);
+                    break;
+                }
+            }
+
+            // If no exact level match, use the last available level
+            if !level_stats_found && !stats_per_level.is_empty() {
+                let last_stat = &stats_per_level[stats_per_level.len() - 1];
+                slot_stats.agility += last_stat.agility.unwrap_or(0);
+                slot_stats.attack_size += last_stat.attack_size.unwrap_or(0);
+                slot_stats.attack_speed += last_stat.attack_speed.unwrap_or(0);
+                slot_stats.defense += last_stat.defense.unwrap_or(0);
+                slot_stats.drawback += last_stat.drawback.unwrap_or(0);
+                slot_stats.intensity += last_stat.intensity.unwrap_or(0);
+                slot_stats.piercing += last_stat.piercing.unwrap_or(0);
+                slot_stats.power += last_stat.power.unwrap_or(0);
+                slot_stats.regeneration += last_stat.regeneration.unwrap_or(0);
+                slot_stats.resistance += last_stat.resistance.unwrap_or(0);
+                slot_stats.warding += last_stat.warding.unwrap_or(0);
+            }
         }
     }
 
@@ -959,7 +1236,10 @@ pub async fn filter_and_sort_items(
 
     for item in items_data.iter() {
         // Skip deleted items, "None" items, and items without stats
-        if item.deleted || item.name == "None" || item.stats_per_level.is_none() {
+        if item.deleted
+            || item.name == "None"
+            || (item.stats_per_level.is_none() && item.scaling.is_none())
+        {
             continue;
         }
 
@@ -970,8 +1250,8 @@ pub async fn filter_and_sort_items(
             }
         }
 
-        // Check if item has the stat at level 140
-        if let Some(stat_value) = get_stat_value_at_level_140(item, stat_type) {
+        // Check if item has the stat at level 170
+        if let Some(stat_value) = get_stat_value_at_max_level(item, stat_type) {
             if stat_value > 0 {
                 sortable_items.push(SortableItem {
                     item: item.clone(),
@@ -987,10 +1267,264 @@ pub async fn filter_and_sort_items(
     sortable_items
 }
 
-pub fn get_stat_value_at_level_140(item: &Item, stat_type: &str) -> Option<i32> {
+pub fn get_stat_value_at_max_level(item: &Item, stat_type: &str) -> Option<i32> {
+    // New: compute using scaling + imbue formulas at level 170 when available
+    if let Some(scaling) = &item.scaling {
+        let level_exact = 170.0;
+
+        // Map input to internal stat key names
+        let stat_key = match stat_type {
+            "attackspeed" => "attackSpeed",
+            "attacksize" => "attackSize",
+            "armorpiercing" => "piercing",
+            other => other,
+        };
+
+        let scaling_mult = |stat: &str| -> f64 {
+            match stat {
+                "defense" => 2.7,
+                "power" => 0.35,
+                _ => 0.5,
+            }
+        };
+        let imbue_piece_mult = |item: &Item| -> f64 {
+            let name = item.name.to_lowercase();
+            if item.main_type == "Chestplate"
+                || name.contains("arcsphere")
+                || name.contains("bracelet")
+            {
+                1.0
+            } else {
+                0.75
+            }
+        };
+        let imbue_category_mult = |stat: &str| -> f64 {
+            match stat {
+                "defense" => 0.334,
+                "power" => 0.285716,
+                _ => 0.595,
+            }
+        };
+        let detect_imbue = |item: &Item| -> Option<String> {
+            let n = item.name.to_lowercase();
+            let candidates = [
+                "acid",
+                "ash",
+                "crystal",
+                "earth",
+                "explosion",
+                "fire",
+                "glass",
+                "ice",
+                "light",
+                "lightning",
+                "magma",
+                "metal",
+                "plasma",
+                "poison",
+                "sand",
+                "shadow",
+                "snow",
+                "water",
+                "wind",
+                "wood",
+                "basic combat",
+                "boxing",
+                "cannon fist",
+                "iron leg",
+                "sailor style",
+                "thermo fist",
+            ];
+            for c in candidates {
+                if n.contains(c) {
+                    return Some(match c {
+                        "basic combat" => "basic".to_string(),
+                        _ => c.to_string(),
+                    });
+                }
+            }
+            None
+        };
+        let imbue = if let Some(st) = &item.stat_type {
+            if st == "Magic" || st == "Strength" {
+                detect_imbue(&item)
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+        let imbue_piece = imbue_piece_mult(&item);
+        let imbue_mult_for = |imbue_key: &str, stat: &str| -> f64 {
+            match imbue_key {
+                "acid" => match stat {
+                    "piercing" => 1.0,
+                    _ => 0.0,
+                },
+                "ash" => match stat {
+                    "attackSize" => 0.75,
+                    "power" => 0.25,
+                    _ => 0.0,
+                },
+                "crystal" => match stat {
+                    "defense" => 0.5,
+                    "intensity" => 0.5,
+                    _ => 0.0,
+                },
+                "earth" => match stat {
+                    "defense" => 0.75,
+                    "attackSize" => 0.25,
+                    _ => 0.0,
+                },
+                "explosion" => match stat {
+                    "attackSize" => 1.0,
+                    _ => 0.0,
+                },
+                "fire" => match stat {
+                    "power" => 1.0,
+                    _ => 0.0,
+                },
+                "glass" => match stat {
+                    "power" => 1.25,
+                    "defense" => -0.25,
+                    _ => 0.0,
+                },
+                "ice" => match stat {
+                    "defense" => 0.25,
+                    "resistance" => 0.75,
+                    _ => 0.0,
+                },
+                "light" => match stat {
+                    "attackSpeed" => 1.25,
+                    "attackSize" => -0.25,
+                    _ => 0.0,
+                },
+                "lightning" => match stat {
+                    "attackSpeed" => 0.75,
+                    "agility" => 0.25,
+                    _ => 0.0,
+                },
+                "magma" => match stat {
+                    "power" => 0.5,
+                    "attackSize" => 0.5,
+                    _ => 0.0,
+                },
+                "metal" => match stat {
+                    "defense" => 1.0,
+                    "agility" => -0.25,
+                    "resistance" => 0.25,
+                    _ => 0.0,
+                },
+                "plasma" => match stat {
+                    "power" => 0.75,
+                    "intensity" => 0.25,
+                    _ => 0.0,
+                },
+                "poison" => match stat {
+                    "power" => 0.75,
+                    "piercing" => 0.25,
+                    _ => 0.0,
+                },
+                "sand" => match stat {
+                    "intensity" => 1.0,
+                    _ => 0.0,
+                },
+                "shadow" => match stat {
+                    "power" => 0.5,
+                    "attackSpeed" => 0.5,
+                    _ => 0.0,
+                },
+                "snow" => match stat {
+                    "attackSpeed" => 0.25,
+                    "attackSize" => 0.75,
+                    _ => 0.0,
+                },
+                "water" => match stat {
+                    "intensity" => 0.25,
+                    "attackSize" => 0.75,
+                    _ => 0.0,
+                },
+                "wind" => match stat {
+                    "agility" => 0.25,
+                    "attackSize" => 0.25,
+                    "attackSpeed" => 0.5,
+                    _ => 0.0,
+                },
+                "wood" => match stat {
+                    "power" => 0.25,
+                    "defense" => 0.75,
+                    _ => 0.0,
+                },
+                "basic" => match stat {
+                    "power" => 0.5,
+                    "intensity" => 0.5,
+                    _ => 0.0,
+                },
+                "boxing" => match stat {
+                    "agility" => 0.5,
+                    "resistance" => 0.5,
+                    _ => 0.0,
+                },
+                "cannon fist" => match stat {
+                    "piercing" => 0.5,
+                    "intensity" => 0.5,
+                    _ => 0.0,
+                },
+                "iron leg" => match stat {
+                    "attackSpeed" => -0.25,
+                    "power" => 0.5,
+                    "resistance" => 0.75,
+                    _ => 0.0,
+                },
+                "sailor style" => match stat {
+                    "attackSize" => 0.5,
+                    "power" => 0.5,
+                    _ => 0.0,
+                },
+                "thermo fist" => match stat {
+                    "attackSpeed" => 0.75,
+                    "intensity" => 0.5,
+                    "attackSize" => -0.25,
+                    _ => 0.0,
+                },
+                _ => 0.0,
+            }
+        };
+        let base = match stat_key {
+            "power" => scaling.power,
+            "defense" => scaling.defense,
+            "agility" => scaling.agility,
+            "attackSpeed" => scaling.attack_speed,
+            "attackSize" => scaling.attack_size,
+            "intensity" => scaling.intensity,
+            "regeneration" => scaling.regeneration,
+            "resistance" => scaling.resistance,
+            "piercing" => scaling.piercing,
+            _ => None,
+        };
+        if let Some(scale) = base {
+            let base_val = (scale * scaling_mult(stat_key) * level_exact).floor();
+            let imbue_bonus = if let Some(ref imbue_key) = imbue {
+                let m = imbue_mult_for(imbue_key, stat_key);
+                if m != 0.0 {
+                    (m * scaling_mult(stat_key)
+                        * imbue_category_mult(stat_key)
+                        * level_exact
+                        * imbue_piece)
+                        .floor()
+                } else {
+                    0.0
+                }
+            } else {
+                0.0
+            };
+            let total = (base_val + imbue_bonus) as i32;
+            return if total != 0 { Some(total) } else { None };
+        }
+    }
     if let Some(ref stats_per_level) = item.stats_per_level {
         for stats in stats_per_level {
-            if stats.level == 140 {
+            if stats.level == 170 {
                 return match stat_type {
                     "power" => stats.power,
                     "agility" => stats.agility,
