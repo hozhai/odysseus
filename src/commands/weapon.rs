@@ -32,9 +32,15 @@ pub async fn weapon(
             }
         }
 
-        if let Some(durability) = weapon.durability {
-            if durability > 0 {
-                embed = embed.field("Durability", durability.to_string(), true);
+        if let Some(defense) = weapon.defense {
+            if defense > 0 {
+                embed = embed.field("Defense", defense.to_string(), true);
+            }
+        }
+
+        if let Some(weight) = weapon.weight {
+            if weight > 0 {
+                embed = embed.field("Weight", weight.to_string(), true);
             }
         }
 

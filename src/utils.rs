@@ -1014,23 +1014,28 @@ pub fn add_item_stats(slot: &Slot, total: &mut TotalStats, data: &Data) {
         let imbue_piece = imbue_piece_mult(&item);
 
         let apply = |stat_key: &str, opt: &Option<f64>, out: &mut i32| {
-            if let Some(scale) = opt {
-                let base = (scale * scaling_mult(stat_key) * level_exact).floor();
-                let imbue_bonus = if let Some(ref imbue_key) = imbue {
-                    let m = imbue_mult_for(imbue_key, stat_key);
-                    if m != 0.0 {
-                        (m * scaling_mult(stat_key)
-                            * imbue_category_mult(stat_key)
-                            * level_exact
-                            * imbue_piece)
-                            .floor()
-                    } else {
-                        0.0
-                    }
+            let base = if let Some(scale) = opt {
+                (scale * scaling_mult(stat_key) * level_exact).floor()
+            } else {
+                0.0
+            };
+            let imbue_bonus = if let Some(ref imbue_key) = imbue {
+                let m = imbue_mult_for(imbue_key, stat_key);
+                if m != 0.0 {
+                    (m * scaling_mult(stat_key)
+                        * imbue_category_mult(stat_key)
+                        * level_exact
+                        * imbue_piece)
+                        .floor()
                 } else {
                     0.0
-                };
-                *out += (base + imbue_bonus) as i32;
+                }
+            } else {
+                0.0
+            };
+            let total = base + imbue_bonus;
+            if total != 0.0 {
+                *out += total as i32;
             }
         };
 
@@ -1177,24 +1182,21 @@ pub fn add_item_stats(slot: &Slot, total: &mut TotalStats, data: &Data) {
         slot_stats.resistance +=
             (modifier.resistance_increment.unwrap_or(0.0) * multiplier).floor() as i32;
     } else if modifier.name == "Atlantean Essence" {
-        // Special handling for Atlantean Essence
+        // Special handling for atlantean essence
         slot_stats.insanity += 1;
-        let multiplier_int = multiplier as i32;
 
         if slot_stats.power == 0 {
-            slot_stats.power += 1 * multiplier_int;
+            slot_stats.power += (0.765 * multiplier).floor() as i32;
         } else if slot_stats.defense == 0 {
-            slot_stats.defense += (9.07 * multiplier).floor() as i32;
-        } else if slot_stats.attack_size == 0 {
-            slot_stats.attack_size += 3 * multiplier_int;
-        } else if slot_stats.attack_speed == 0 {
-            slot_stats.attack_speed += 3 * multiplier_int;
+            slot_stats.defense += (6.825 * multiplier).floor() as i32;
         } else if slot_stats.agility == 0 {
-            slot_stats.agility += 3 * multiplier_int;
+            slot_stats.agility += (2.25 * multiplier).floor() as i32;
+        } else if slot_stats.attack_speed == 0 {
+            slot_stats.attack_speed += (2.25 * multiplier).floor() as i32;
+        } else if slot_stats.attack_size == 0 {
+            slot_stats.attack_size += (2.25 * multiplier).floor() as i32;
         } else if slot_stats.intensity == 0 {
-            slot_stats.intensity += 3 * multiplier_int;
-        } else {
-            slot_stats.power += 1 * multiplier_int;
+            slot_stats.intensity += (2.25 * multiplier).floor() as i32;
         }
     }
 
@@ -1494,24 +1496,28 @@ pub fn get_stat_value_at_max_level(item: &Item, stat_type: &str) -> Option<i32> 
             "piercing" => scaling.piercing,
             _ => None,
         };
-        if let Some(scale) = base {
-            let base_val = (scale * scaling_mult(stat_key) * level_exact).floor();
-            let imbue_bonus = if let Some(ref imbue_key) = imbue {
-                let m = imbue_mult_for(imbue_key, stat_key);
-                if m != 0.0 {
-                    (m * scaling_mult(stat_key)
-                        * imbue_category_mult(stat_key)
-                        * level_exact
-                        * imbue_piece)
-                        .floor()
-                } else {
-                    0.0
-                }
+        let base_val = if let Some(scale) = base {
+            (scale * scaling_mult(stat_key) * level_exact).floor()
+        } else {
+            0.0
+        };
+        let imbue_bonus = if let Some(ref imbue_key) = imbue {
+            let m = imbue_mult_for(imbue_key, stat_key);
+            if m != 0.0 {
+                (m * scaling_mult(stat_key)
+                    * imbue_category_mult(stat_key)
+                    * level_exact
+                    * imbue_piece)
+                    .floor()
             } else {
                 0.0
-            };
-            let total = (base_val + imbue_bonus) as i32;
-            return if total != 0 { Some(total) } else { None };
+            }
+        } else {
+            0.0
+        };
+        let total = (base_val + imbue_bonus) as i32;
+        if total != 0 {
+            return Some(total);
         }
     }
     None

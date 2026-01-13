@@ -123,10 +123,10 @@ pub struct Weapon {
     pub size: f64,
     #[serde(rename = "specialEffect")]
     pub special_effect: String,
-    pub efficiency: f64,
-    pub durability: Option<i32>,
+    pub defense: Option<i32>,
     #[serde(rename = "blockingPower")]
     pub blocking_power: Option<f64>,
+    pub weight: Option<i32>,
 }
 
 #[derive(Debug, Clone)]
