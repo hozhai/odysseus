@@ -14,10 +14,10 @@ git clone https://github.com/hozhai/odysseus.git
 cd odysseus
 ```
 
-Make sure `cargo` is installed. Compile the binary and run it
+Make sure `go` is installed. Compile the binary and run it
 
 ```sh
-cargo build --release
+go build .
 ```
 
 ## 🪪 License
