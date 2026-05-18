@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    // Bun
+    "types": ["@types/bun"],
+
+    // Seyfert
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  }
+}

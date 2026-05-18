@@ -1,0 +1,1 @@
+[{"name":"ping","type":1,"nsfw":false,"description":"Returns the API latency","contexts":[0,1,2],"integration_types":[0],"options":[{"name":"hide","description":"Whether to make the response ephemeral","type":5,"name_localizations":{},"description_localizations":{},"autocomplete":false}]}]
