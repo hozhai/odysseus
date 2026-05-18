@@ -14,7 +14,7 @@ export default createEvent({
     // Load data on startup
     let data = await getData();
     client.logger.info(
-      `Loaded items.json?length=${data.items.length}, magics.json?length=${data.magics.length}, and weapons.json?length=${data.weapons.length}`,
+      `Loaded items.json?length=${Object.values(data.items).length}, magics.json?length=${data.magics.length}, and weapons.json?length=${data.weapons.length}`,
     );
   },
 });
