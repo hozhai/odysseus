@@ -1,5 +1,6 @@
 import { randomUUIDv7 } from "bun";
 import { TotalStats } from "../types/data";
+import { statType } from "../types";
 
 /**
  * formatTotalStats formats the TotalStats passed into it by prepending an appropriate
@@ -9,7 +10,7 @@ import { TotalStats } from "../types/data";
  */
 export function formatTotalStats(stats: TotalStats): string {
   const normalizedStat = (value: number | undefined): number =>
-    Number.isFinite(value) ? Math.floor(value) : 0;
+    Number.isFinite(value) ? Math.floor(value ?? 0) : 0;
 
   const statEntries: Array<[string, number]> = [
     ["<:power:1392363667059904632>", normalizedStat(stats.power)],
@@ -34,14 +35,13 @@ export function formatTotalStats(stats: TotalStats): string {
   return result || "No stats";
 }
 
-// TODO
-function getScalingMultiplier(type: string, value: number) {
-  switch (type) {
+export function getScalingMultiplier(statType: statType) {
+  switch (statType) {
     case "defense":
-      return value * 2.7;
+      return 2.7;
     case "power":
-      return value * 0.35;
+      return 0.35;
     default:
-      return value * 0.5;
+      return 0.5;
   }
 }

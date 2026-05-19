@@ -1,11 +1,13 @@
 /* === ITEM === */
 
+import { Rarity } from "./item";
+
 export interface Item {
   id: string;
   name: string;
   legend: string;
   mainType: string;
-  rarity: string;
+  rarity: Rarity;
   imageId: string;
   deleted: boolean;
   subType?: string | null;

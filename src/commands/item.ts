@@ -9,8 +9,9 @@ import {
 } from "seyfert";
 import { getData } from "../data/load";
 import { TotalStats } from "../types";
-import { MAX_LEVEL } from "../constants";
-import { formatTotalStats } from "../utils/stats";
+import { EMBED_FOOTER, MAX_LEVEL } from "../constants";
+import { formatTotalStats, getScalingMultiplier } from "../utils/stats";
+import { getRarityColor } from "../utils/item";
 
 const options = {
   name: createStringOption({
@@ -20,7 +21,11 @@ const options = {
       let itemsData = (await getData()).items;
       const focus = interaction.getInput();
       const response = Object.values(itemsData)
-        .filter((val) => val.name.toLowerCase().includes(focus.toLowerCase()))
+        .filter(
+          (val) =>
+            val.name.toLowerCase().includes(focus.toLowerCase()) &&
+            val.name != "None",
+        )
         .slice(0, 25)
         .map((val) => ({ name: val.name, value: val.id }));
 
@@ -42,15 +47,33 @@ export default class ItemCommand extends Command {
     let scaling = item.scaling ?? {};
 
     let totalStats: TotalStats = {
-      power: (scaling.power ?? 0) * MAX_LEVEL,
-      defense: (scaling.defense ?? 0) * MAX_LEVEL,
-      agility: (scaling.agility ?? 0) * MAX_LEVEL,
-      attackSpeed: (scaling.attackSpeed ?? 0) * MAX_LEVEL,
-      attackSize: (scaling.attackSize ?? 0) * MAX_LEVEL,
-      intensity: (scaling.intensity ?? 0) * MAX_LEVEL,
-      regeneration: (scaling.regeneration ?? 0) * MAX_LEVEL,
-      piercing: (scaling.piercing ?? 0) * MAX_LEVEL,
-      resistance: (scaling.resistance ?? 0) * MAX_LEVEL,
+      power: Math.floor(
+        (scaling.power ?? 0) * MAX_LEVEL * getScalingMultiplier("power"),
+      ),
+      defense: Math.floor(
+        (scaling.defense ?? 0) * MAX_LEVEL * getScalingMultiplier("defense"),
+      ),
+      agility: Math.floor(
+        (scaling.agility ?? 0) * MAX_LEVEL * getScalingMultiplier("other"),
+      ),
+      attackSpeed: Math.floor(
+        (scaling.attackSpeed ?? 0) * MAX_LEVEL * getScalingMultiplier("other"),
+      ),
+      attackSize: Math.floor(
+        (scaling.attackSize ?? 0) * MAX_LEVEL * getScalingMultiplier("other"),
+      ),
+      intensity: Math.floor(
+        (scaling.intensity ?? 0) * MAX_LEVEL * getScalingMultiplier("other"),
+      ),
+      regeneration: Math.floor(
+        (scaling.regeneration ?? 0) * MAX_LEVEL * getScalingMultiplier("other"),
+      ),
+      piercing: Math.floor(
+        (scaling.piercing ?? 0) * MAX_LEVEL * getScalingMultiplier("other"),
+      ),
+      resistance: Math.floor(
+        (scaling.resistance ?? 0) * MAX_LEVEL * getScalingMultiplier("other"),
+      ),
       insanity: 0,
       warding: scaling.warding ?? 0,
       drawback: scaling.drawback ?? 0,
@@ -64,18 +87,34 @@ export default class ItemCommand extends Command {
         iconUrl: ctx.author.avatarURL(),
       })
       .setThumbnail(item.imageId)
+      .setTitle(`${item.name} | ${item.id}`)
       .setFields([
         {
           name: "Description",
           value: item.legend,
-          inline: false,
         },
         {
           name: "Stats",
           value: formattedStats,
-          inline: false,
         },
-      ]);
+        {
+          name: "Type",
+          value: item.mainType,
+          inline: true,
+        },
+        {
+          name: "Subtype",
+          value: item.subType ?? "None",
+          inline: true,
+        },
+        {
+          name: "Rarity",
+          value: item.rarity,
+          inline: true,
+        },
+      ])
+      .setColor(getRarityColor(item.rarity))
+      .setFooter({ text: EMBED_FOOTER });
 
     ctx.write({
       embeds: [embed],
