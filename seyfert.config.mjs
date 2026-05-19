@@ -6,6 +6,7 @@ export default config.bot({
         base: "src",
         commands: "commands",
         events: "events",
+        components: "components",
     },
     intents: ["Guilds"],
 });

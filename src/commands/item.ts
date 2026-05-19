@@ -1,4 +1,6 @@
 import {
+  ActionRow,
+  Button,
   Command,
   CommandContext,
   createStringOption,
@@ -12,6 +14,7 @@ import { TotalStats } from "../types";
 import { EMBED_FOOTER, MAX_LEVEL } from "../constants";
 import { formatTotalStats, getScalingMultiplier } from "../utils/stats";
 import { getRarityColor } from "../utils/item";
+import { ButtonStyle } from "seyfert/lib/types";
 
 const options = {
   name: createStringOption({
@@ -116,8 +119,31 @@ export default class ItemCommand extends Command {
       .setColor(getRarityColor(item.rarity))
       .setFooter({ text: EMBED_FOOTER });
 
+    const components = [
+      new Button()
+        .setLabel("Add Enchant")
+        .setCustomId("item_set_enchant")
+        .setStyle(ButtonStyle.Secondary),
+      new Button()
+        .setLabel("Add Modifier")
+        .setCustomId("item_set_modifier")
+        .setStyle(ButtonStyle.Secondary),
+    ];
+
+    if (item.gemNo) {
+      components.push(
+        new Button()
+          .setLabel("Add Gems")
+          .setCustomId("item_set_gems")
+          .setStyle(ButtonStyle.Secondary),
+      );
+    }
+
+    const row = new ActionRow().setComponents(components);
+
     ctx.write({
       embeds: [embed],
+      components: [row],
     });
   }
 }
