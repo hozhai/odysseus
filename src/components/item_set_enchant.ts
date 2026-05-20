@@ -42,7 +42,7 @@ export default class ItemSetEnchantButton extends ComponentCommand {
         option.setLabel(ench.name);
         option.setValue(ench.name.toLowerCase());
 
-        const emoji = itemEnchantToEmoji(ench.name);
+        const emoji = itemEnchantToEmoji(ench);
         if (emoji) {
           option.setEmoji(emoji);
         }

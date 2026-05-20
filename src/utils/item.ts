@@ -4,9 +4,13 @@ import {
   COLOR_EXOTIC,
   COLOR_RARE,
   COLOR_UNCOMMON,
+  EMPTY_CHESTPLATE_ID,
+  EMPTY_ENCHANTMENT_ID,
+  EMPTY_MODIFIER_ID,
 } from "../constants";
-import { Rarity, Slot } from "../types";
+import { Item, Rarity, Slot } from "../types";
 import { InMessageEmbed } from "seyfert";
+import { getData } from "../data/load";
 
 /**
  * Get's the color of a rarity given the rarity.
@@ -33,9 +37,9 @@ export function getRarityColor(rarity: Rarity): number {
  * @returns { APIMessageComponentEmoji}
  */
 export function itemEnchantToEmoji(
-  enchant: string,
+  enchantItem: Item,
 ): APIMessageComponentEmoji | null {
-  switch (enchant) {
+  switch (enchantItem.name) {
     case "Deadeye":
       return { name: "agile", id: "1393732132588752946" };
     case "Brisk":
@@ -76,18 +80,169 @@ export function itemEnchantToEmoji(
       return null;
   }
 }
+export function itemModifierToEmoji(
+  modifierItem: Item,
+): APIMessageComponentEmoji | null {
+  switch (modifierItem.name) {
+    case "Abyssal":
+      return { name: "abyssal", id: "1393733751279718591" };
+    case "Archaic":
+      return { name: "archaic", id: "1393733752877744178" };
+    case "Atlantean Essence":
+      return { name: "atlantean", id: "1393733755088404665" };
+    case "Blasted":
+      return { name: "blasted", id: "1393733757537882144" };
+    case "Crystalline":
+      return { name: "crystalline", id: "1393733759114936443" };
+    case "Drowned":
+      return { name: "drowned", id: "1393733760670896128" };
+    case "Frozen":
+      return { name: "frozen", id: "1393733762541682870" };
+    case "Sandy":
+      return { name: "sandy", id: "1393733763938386000" };
+    case "Superheated":
+      return { name: "superheated", id: "1393733766517887006" };
+    default:
+      return null;
+  }
+}
 
-function parseEmbedIntoItem(embed: InMessageEmbed): Slot {
-  const item_id = embed.title.split(" | ")[1];
-  const gemEmojis = embed.fields
-    .find((field) => field.name === "Gems")
-    ?.value.split(" ");
-  const enchantEmoji = embed.fields.find(
-    (field) => field.name === "Enchant",
-  )?.value;
-  const modifierEmoji = embed.fields.find(
-    (field) => field.name === "Modifier",
-  )?.value;
+export function itemGemToEmoji(gemItem: Item): APIMessageComponentEmoji | null {
+  switch (gemItem.name) {
+    case "Defense Gem":
+      return { name: "defensegem", id: "1393733031927349268" };
+    case "Power Gem":
+      return { name: "powergem", id: "1393733189289115710" };
+    case "Attack Speed Gem":
+      return { name: "attackspeedgem", id: "1393733075699105943" };
+    case "Attack Size Gem":
+      return { name: "attacksizegem", id: "1393733045210845336" };
+    case "Agility Gem":
+      return { name: "agilitygem", id: "1393733033659469926" };
+    case "Intensity Gem":
+      return { name: "intensitygem", id: "1393733041079324734" };
+    case "Lapiz Lazuli":
+      return { name: "lapislazuli", id: "1393733050508251177" };
+    case "Larimar":
+      return { name: "larimar", id: "1393733187091435520" };
+    case "Agate":
+      return { name: "agate", id: "1393733030019076177" };
+    case "Malachite":
+      return { name: "malachite", id: "1393733054895231077" };
+    case "Candelaria":
+      return { name: "candelaria", id: "1393733039049408657" };
+    case "Morenci":
+      return { name: "morenci", id: "1393733059039465562" };
+    case "Painite":
+      return { name: "painite", id: "1393733069969817762" };
+    case "Kyanite":
+      return { name: "kyanite", id: "1393733049115611136" };
+    case "Variscite":
+      return { name: "variscite", id: "1393733193798123560" };
+    case "Perfect Azurite":
+      return { name: "azurite", id: "1393733037447184394" };
+    case "Perfect Aventurine":
+      return { name: "aventurine", id: "1393733035450699910" };
+    case "Perfect Fire Opal":
+      return { name: "fireopal", id: "1393733046792093837" };
+    default:
+      return null;
+  }
+}
 
+export function textToEmoji(
+  emojiText: string,
+): APIMessageComponentEmoji | null {
+  if (emojiText === "" || !emojiText) {
+    return null;
+  }
+
+  const name_and_id = emojiText
+    .substring(1, emojiText.length - 1)
+    .split(":")
+    .slice(1);
+
+  return { name: name_and_id[0], id: name_and_id[1] };
+}
+
+export async function emojiToGem(
+  emoji: APIMessageComponentEmoji,
+): Promise<Item | null> {
+  const itemsData = (await getData()).items;
+
+  const gem = Object.values(itemsData)
+    .filter((val) => val.mainType === "Gem")
+    .filter((gem) => gem.name.toLowerCase() === emoji.name);
+
+  if (gem.length == 0) {
+    return null;
+  }
+
+  return gem[0];
+}
+
+export async function emojiToEnchant(
+  emoji: APIMessageComponentEmoji | null,
+): Promise<Item | null> {
   // TODO
+  const itemsData = (await getData()).items;
+
+  const enchant = Object.values(itemsData)
+    .filter((val) => val.mainType === "Enchant")
+    .filter((enchant) => enchant.name.toLowerCase() === emoji?.name);
+
+  if (enchant.length == 0) {
+    return null;
+  }
+
+  return enchant[0];
+}
+
+export async function emojiToModifier(
+  emoji: APIMessageComponentEmoji,
+): Promise<Item | null> {
+  const itemsData = (await getData()).items;
+
+  const modifier = Object.values(itemsData)
+    .filter((val) => val.mainType === "Modifier")
+    .filter((modifier) => modifier.name.toLowerCase() === emoji.name);
+
+  if (modifier.length == 0) {
+    return null;
+  }
+
+  return modifier[0];
+}
+
+export async function parseEmbedIntoSlot(embed: InMessageEmbed): Promise<Slot> {
+  const item_id = embed.title?.split(" | ")[1];
+  const gemEmojis =
+    embed.fields?.find((field) => field.name === "Gems")?.value.split(" ") ??
+    [];
+  const enchantEmoji =
+    embed.fields?.find((field) => field.name === "Enchant")?.value ?? "";
+  const modifierEmoji =
+    embed.fields?.find((field) => field.name === "Modifier")?.value ?? "";
+
+  const gems = await Promise.all(
+    gemEmojis.map(async (emojiText) => {
+      const emoji = textToEmoji(emojiText);
+      const gem = await emojiToGem(emoji);
+      return gem?.id;
+    }),
+  );
+
+  const enchant = await emojiToEnchant(textToEmoji(enchantEmoji));
+
+  const modifier = await emojiToModifier(textToEmoji(modifierEmoji));
+
+  const slot: Slot = {
+    item_id: item_id ?? EMPTY_CHESTPLATE_ID,
+    gem_ids: gems.filter((id) => id !== undefined),
+    enchant_id: enchant?.id ?? EMPTY_ENCHANTMENT_ID,
+    modifier_id: EMPTY_MODIFIER_ID,
+    level: 170,
+  };
+
+  return slot;
 }
