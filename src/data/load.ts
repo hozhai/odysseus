@@ -2,7 +2,7 @@ import { BotData, Items, Magics, Weapons } from "../types/data";
 
 let data: BotData | null = null;
 
-export async function getData() {
+export async function getData(): Promise<BotData> {
   if (data) return data;
 
   let itemsFile = Bun.file("./data/items.json", {

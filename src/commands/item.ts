@@ -27,7 +27,14 @@ const options = {
         .filter(
           (val) =>
             val.name.toLowerCase().includes(focus.toLowerCase()) &&
-            val.name != "None",
+            val.name !== "None" &&
+            val.mainType !== "Ship" &&
+            val.mainType !== "Gem" &&
+            val.mainType !== "Enchant" &&
+            val.mainType !== "Hull Armor" &&
+            val.mainType !== "Siege Weapon" &&
+            val.mainType !== "Deckhand" &&
+            val.mainType !== "Ram",
         )
         .slice(0, 25)
         .map((val) => ({ name: val.name, value: val.id }));
@@ -124,11 +131,16 @@ export default class ItemCommand extends Command {
         .setLabel("Add Enchant")
         .setCustomId("item_set_enchant")
         .setStyle(ButtonStyle.Secondary),
-      new Button()
-        .setLabel("Add Modifier")
-        .setCustomId("item_set_modifier")
-        .setStyle(ButtonStyle.Secondary),
     ];
+
+    if (item.validModifiers) {
+      components.push(
+        new Button()
+          .setLabel("Add Modifier")
+          .setCustomId("item_set_modifier")
+          .setStyle(ButtonStyle.Secondary),
+      );
+    }
 
     if (item.gemNo) {
       components.push(

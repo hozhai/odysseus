@@ -109,10 +109,10 @@ export interface Player {
 }
 
 export interface Slot {
-  item: string;
-  gems: string[];
-  enchant: string;
-  modifier: string;
+  item_id: string;
+  gems_id: string[];
+  enchant_id: string;
+  modifier_id: string;
   level: number;
 }
 
