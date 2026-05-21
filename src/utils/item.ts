@@ -6,6 +6,7 @@ import {
   COLOR_UNCOMMON,
   EMPTY_CHESTPLATE_ID,
   EMPTY_ENCHANTMENT_ID,
+  EMPTY_GEM_ID,
   EMPTY_MODIFIER_ID,
 } from "../constants";
 import { Item, Rarity, Slot } from "../types";
@@ -166,9 +167,13 @@ export function textToEmoji(
 }
 
 export async function emojiToGem(
-  emoji: APIMessageComponentEmoji,
+  emoji: APIMessageComponentEmoji | null,
 ): Promise<Item | null> {
   const itemsData = (await getData()).items;
+
+  if (emoji == null) {
+    return Object.values(itemsData).filter((val) => val.id === EMPTY_GEM_ID)[0];
+  }
 
   const gem = Object.values(itemsData)
     .filter((val) => val.mainType === "Gem")
@@ -184,8 +189,13 @@ export async function emojiToGem(
 export async function emojiToEnchant(
   emoji: APIMessageComponentEmoji | null,
 ): Promise<Item | null> {
-  // TODO
   const itemsData = (await getData()).items;
+
+  if (emoji == null) {
+    return Object.values(itemsData).filter(
+      (val) => val.id === EMPTY_ENCHANTMENT_ID,
+    )[0];
+  }
 
   const enchant = Object.values(itemsData)
     .filter((val) => val.mainType === "Enchant")
@@ -199,9 +209,15 @@ export async function emojiToEnchant(
 }
 
 export async function emojiToModifier(
-  emoji: APIMessageComponentEmoji,
+  emoji: APIMessageComponentEmoji | null,
 ): Promise<Item | null> {
   const itemsData = (await getData()).items;
+
+  if (emoji == null) {
+    return Object.values(itemsData).filter(
+      (val) => val.id === EMPTY_MODIFIER_ID,
+    )[0];
+  }
 
   const modifier = Object.values(itemsData)
     .filter((val) => val.mainType === "Modifier")
@@ -240,7 +256,7 @@ export async function parseEmbedIntoSlot(embed: InMessageEmbed): Promise<Slot> {
     item_id: item_id ?? EMPTY_CHESTPLATE_ID,
     gem_ids: gems.filter((id) => id !== undefined),
     enchant_id: enchant?.id ?? EMPTY_ENCHANTMENT_ID,
-    modifier_id: EMPTY_MODIFIER_ID,
+    modifier_id: modifier?.id ?? EMPTY_MODIFIER_ID,
     level: 170,
   };
 
