@@ -2,6 +2,7 @@ import {
     ActionRow,
     ComponentCommand,
     ComponentContext,
+    Embed,
     StringSelectMenu,
     StringSelectOption,
 } from "seyfert";
@@ -20,6 +21,15 @@ export default class ItemSetEnchantButton extends ComponentCommand {
 
         const msg = ctx.interaction?.message;
         const embed = msg?.embeds?.[0];
+
+        if (!embed) {
+            await ctx.editResponse({
+                content:
+                    "Error: previous message did not contain a valid embed.",
+            });
+            return;
+        }
+
         const itemsData = (await getData()).items;
 
         const selectMenu = new StringSelectMenu()
@@ -51,7 +61,7 @@ export default class ItemSetEnchantButton extends ComponentCommand {
 
         const row = new ActionRow().setComponents([selectMenu]);
 
-        return ctx.editResponse({
+        await ctx.editResponse({
             embeds: [embed],
             components: [row],
         });
