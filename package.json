@@ -1,22 +1,24 @@
 {
-  "name": "odysseus",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "lint": "eslint ."
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^6.0.3"
-  },
-  "dependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.4.0",
-    "prettier": "^3.8.3",
-    "seyfert": "^4.3.0",
-    "typescript-eslint": "^8.59.4"
-  }
+    "name": "odysseus",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "fmt": "oxfmt",
+        "fmt:check": "oxfmt --check",
+        "lint": "oxlint",
+        "lint:fix": "oxlint --fix"
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "oxfmt": "^0.51.0",
+        "oxlint": "^1.66.0",
+        "oxlint-tsgolint": "^0.23.0"
+    },
+    "peerDependencies": {
+        "typescript": "^6.0.3"
+    },
+    "dependencies": {
+        "seyfert": "^4.3.0"
+    }
 }

@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp">
 </p>
@@ -15,7 +14,7 @@ git clone https://github.com/hozhai/odysseus.git
 cd odysseus
 ```
 
-Make sure `bun` is installed. 
+Make sure `bun` is installed.
 
 ```sh
 bun run src/index.ts

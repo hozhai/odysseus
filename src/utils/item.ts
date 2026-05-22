@@ -9,11 +9,12 @@ import {
     EMPTY_GEM_ID,
     EMPTY_MODIFIER_ID,
 } from "../constants";
-import { Item, Rarity, Slot } from "../types";
+import type { Item, Rarity, Slot } from "../types";
 import { getData } from "../data/load";
+import { InMessageEmbed } from "seyfert";
 
 /**
- * Get's the color of a rarity given the rarity.
+ * Gets the color of a rarity given the rarity.
  *
  * @param rarity A rarity that can be "Common", "Uncommon", "Rare", or "Exotic" (case-sensitive)
  * @returns {number} A hexadecimal number
@@ -239,7 +240,7 @@ export async function emojiToModifier(
 }
 
 export async function parseEmbedIntoSlot(
-    embed: InMessageEmbed | null
+    embed: InMessageEmbed | undefined
 ): Promise<Slot> {
     const slot: Slot = {
         item_id: EMPTY_CHESTPLATE_ID,

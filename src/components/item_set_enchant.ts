@@ -11,7 +11,7 @@ import { itemEnchantToEmoji } from "../utils/item";
 export default class ItemSetEnchantButton extends ComponentCommand {
     componentType = "Button" as const;
 
-    filter(ctx: ComponentContext<typeof this.componentType>) {
+    override filter(ctx: ComponentContext<typeof this.componentType>) {
         return ctx.customId === "item_set_enchant";
     }
 

@@ -1,5 +1,5 @@
-import { type Item, type Slot, TotalStats } from "../types/data";
-import { statType } from "../types";
+import type { Item, Slot, TotalStats } from "../types";
+import type { statType } from "../types";
 import { MAX_LEVEL } from "../constants";
 import { findItemById } from "./item.ts";
 
