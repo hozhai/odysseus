@@ -9,7 +9,7 @@ import {
   Options,
 } from "seyfert";
 import { getData } from "../data/load";
-import { TotalStats } from "../types";
+import type { TotalStats } from "../types";
 import { EMBED_FOOTER, MAX_LEVEL } from "../constants";
 import { formatTotalStats, getScalingMultiplier } from "../utils";
 import { getRarityColor } from "../utils";
@@ -53,7 +53,15 @@ export default class ItemCommand extends Command {
     const response = ctx.options.name;
     const itemsData = (await getData()).items;
     const item = itemsData[response];
-    const scaling = item.scaling ?? {};
+
+    if (!item) {
+      await ctx.write({
+        content: `Selected item does not exist: ${response}`,
+      });
+      return;
+    }
+
+    const scaling = item?.scaling ?? {};
 
     const totalStats: TotalStats = {
       power: Math.floor(

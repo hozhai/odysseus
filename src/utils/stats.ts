@@ -118,6 +118,57 @@ export function calculateItemStats(item: Item | null): TotalStats {
   return totalStats;
 }
 
+export async function calculateGemStats(
+  gem_ids: string[]
+): Promise<TotalStats> {
+  const gems = await Promise.all(
+    gem_ids
+      .map(async (id) => {
+        return await findItemById(id);
+      })
+      .filter((item) => item !== null)
+  );
+
+  const totalStats: TotalStats = {
+    power: 0,
+    defense: 0,
+    agility: 0,
+    attackSpeed: 0,
+    attackSize: 0,
+    intensity: 0,
+    regeneration: 0,
+    insanity: 0,
+    piercing: 0,
+    resistance: 0,
+    warding: 0,
+    drawback: 0,
+  };
+
+  // if every gem is null
+  if (gems.every((gem) => gem === null)) {
+    return totalStats;
+  }
+
+  gems.forEach((gem) => {
+    if (!gem) return;
+
+    totalStats.power += gem.power ?? 0;
+    totalStats.defense += gem.defense ?? 0;
+    totalStats.agility += gem.agility ?? 0;
+    totalStats.attackSpeed += gem.attackSpeed ?? 0;
+    totalStats.attackSize += gem.attackSize ?? 0;
+    totalStats.intensity += gem.intensity ?? 0;
+    totalStats.regeneration += gem.regeneration ?? 0;
+    // we skip insanity; there are no insanity gems
+    totalStats.piercing += gem.piercing ?? 0;
+    totalStats.resistance += gem.piercing ?? 0;
+    // also skip warding for the same reason
+    totalStats.drawback += gem.drawback ?? 0;
+  });
+
+  return totalStats;
+}
+
 export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {
   const totalStats: TotalStats = {
     power: 0,
@@ -150,12 +201,20 @@ export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {
   totalStats.warding += itemTotalStats.warding;
   totalStats.drawback += itemTotalStats.drawback;
 
-  /*
-    TODO:
-    - create function calculateGemStats(gem_ids: string[]): TotalStats
-    - create function calculateEnchantStats(enchant: string): TotalStats
-    - create function calculateModifierStats(modifier: string): TotalStats
-    */
+  const gemsTotalStats = await calculateGemStats(slot.gem_ids);
+
+  totalStats.power += gemsTotalStats.power;
+  totalStats.defense += gemsTotalStats.defense;
+  totalStats.agility += gemsTotalStats.agility;
+  totalStats.attackSpeed += gemsTotalStats.attackSpeed;
+  totalStats.attackSize += gemsTotalStats.attackSize;
+  totalStats.intensity += gemsTotalStats.intensity;
+  totalStats.regeneration += gemsTotalStats.regeneration;
+  totalStats.insanity += gemsTotalStats.insanity; // should skip this too but ehhh nahh.
+  totalStats.piercing += gemsTotalStats.piercing;
+  totalStats.resistance += gemsTotalStats.resistance;
+  totalStats.warding += gemsTotalStats.warding;
+  totalStats.drawback += gemsTotalStats.drawback;
 
   return totalStats;
 }
