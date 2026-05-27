@@ -38,7 +38,7 @@ export function getRarityColor(rarity: Rarity): number {
  * @returns { APIMessageComponentEmoji}
  */
 export function itemEnchantToEmoji(
-  enchantItem: Item
+  enchantItem: Enchant
 ): APIMessageComponentEmoji | null {
   switch (enchantItem.name) {
     case "Deadeye":
@@ -83,7 +83,7 @@ export function itemEnchantToEmoji(
 }
 
 export function itemModifierToEmoji(
-  modifierItem: Item
+  modifierItem: Modifier
 ): APIMessageComponentEmoji | null {
   switch (modifierItem.name) {
     case "Abyssal":
@@ -109,7 +109,7 @@ export function itemModifierToEmoji(
   }
 }
 
-export function itemGemToEmoji(gemItem: Item): APIMessageComponentEmoji | null {
+export function itemGemToEmoji(gemItem: Gem): APIMessageComponentEmoji | null {
   switch (gemItem.name) {
     case "Defense Gem":
       return { name: "defensegem", id: "1393733031927349268" };

@@ -28,7 +28,7 @@ export default class ItemSetEnchantButton extends ComponentCommand {
       return;
     }
 
-    const itemsData = (await getData()).items;
+    const enchantData = (await getData()).enchants;
 
     const selectMenu = new StringSelectMenu()
       .setCustomId("item_select_enchant")
@@ -36,7 +36,7 @@ export default class ItemSetEnchantButton extends ComponentCommand {
       .setRequired(true)
       .setValuesLength({ max: 1, min: 1 });
 
-    Object.values(itemsData)
+    Object.values(enchantData)
       .filter(
         (val) =>
           val.mainType === "Enchant" &&
