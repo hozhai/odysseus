@@ -39,3 +39,7 @@ But you must:
 ## ✨ Contributing
 
 Contributions are welcome! By contributing, you agree that your contributions will be licensed under the same AGPL-3.0 license. Feel free to open issues or pull requests. You're welcome to join the [Discord](https://discord.gg/JwRCsJSH85) as well.
+
+## Credits
+
+I'd like to show great appreciation to [BobbyNooby](https://github.com/BobbyNooby) for the original GearBuilder and the inspiration to create Odysseus. I'd also like to show great appreciation to [WoodyLoody](https://github.com/woodyloody) for sending me over the updated data for all the items in AO.
