@@ -14,6 +14,15 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
     const msg = ctx.interaction?.message;
     const oldEmbed = msg?.embeds?.[0];
 
+    if (!oldEmbed) {
+      await ctx.editResponse({
+        content: "Error: previous message did not contain a valid embed.",
+        embeds: [],
+        components: [],
+      });
+      return;
+    }
+
     const slot = await parseEmbedIntoSlot(oldEmbed);
 
     await ctx.editResponse({
@@ -21,6 +30,5 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
       ${JSON.stringify(slot, null, 2)}
       `,
     });
-    // TODO
   }
 }
