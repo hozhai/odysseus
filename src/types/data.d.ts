@@ -33,26 +33,6 @@ export interface Scaling {
   drawback?: number | null;
 }
 
-export interface EnchantTypes {
-  gear?: GearEnchantStats | null;
-  // in the future add the rest of types if
-  // want to support ship builds in odysseus
-}
-
-export interface GearEnchantStats {
-  powerIncrement?: number | null;
-  defenseIncrement?: number | null;
-  // Range
-  agilityIncrement?: number | null;
-  attackSpeedIncrement?: number | null;
-  attachSizeIncrement?: number | null;
-  // Haste
-  intensityIncrement?: number | null;
-  regenerationIncrement?: number | null;
-  piercingIncrement?: number | null;
-  resistanceIncrement?: number | null;
-}
-
 /* === WEAPON === */
 
 export interface Weapon {
@@ -104,6 +84,28 @@ export interface Enchant {
   imageId: string;
   deleted: boolean;
   enchantTypes?: EnchantTypes | null;
+}
+
+export interface EnchantTypes {
+  gear?: GearEnchantStats | null;
+  // in the future add the rest of types if
+  // want to support ship builds in odysseus
+}
+
+export interface GearEnchantStats {
+  powerIncrement?: number | null;
+  defenseIncrement?: number | null;
+  // Range
+  agilityIncrement?: number | null;
+  attackSpeedIncrement?: number | null;
+  attackSizeIncrement?: number | null;
+  // Haste
+  intensityIncrement?: number | null;
+  regenerationIncrement?: number | null;
+  piercingIncrement?: number | null;
+  resistanceIncrement?: number | null;
+
+  warding?: number | null;
 }
 
 /* === GEM === */
