@@ -1,0 +1,117 @@
+AAu:
+  id: AAu
+  name: Atlantean Essence
+  legend: Le atlantean sus
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  powerIncrement: 0.765
+  defenseIncrement: 6.825
+  agilityIncrement: 2.25
+  attackSpeedIncrement: 2.25
+  attackSizeIncrement: 2.25
+  intensityIncrement: 2.25
+  insanity: 1
+LoL: # lol lmao
+  id: LoL
+  name: Drowned
+  legend: Adds low defense and attack size for each 10 levels
+  mainType: Modifier
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierDrowned.jpg
+  deleted: false
+  defenseIncrement: 2.2491
+  attackSizeIncrement: 0.84375
+AAE:
+  id: AAE
+  name: None
+  legend: This modifies NOTHING it serves ZERO PURPOSE it should disappear NOW!!
+  mainType: Modifier
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/master/static/assets/images/modifier/0.jpg
+  deleted: false
+sC6:
+  id: sC6
+  name: Blasted
+  legend: Adds power for each 10 levels
+  mainType: Modifier
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierBlasted.jpg
+  deleted: false
+  powerIncrement: 0.500003
+giu:
+  id: giu
+  name: Archaic
+  legend: Adds Attack Size for each 10 levels
+  mainType: Modifier
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierArchaic.jpg
+  deleted: false
+  attackSizeIncrement: 1.465
+Pun:
+  id: Pun
+  name: Superheated
+  legend: Adds low power and intensity for each 10 levels
+  mainType: Modifier
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierSuperheated.jpg
+  deleted: false
+  powerIncrement: 0.255003
+  intensityIncrement: 0.84375
+  defenseIncrement: 0
+  resistanceIncrement: 0
+faX:
+  id: faX
+  name: Crystalline
+  legend: Adds Attack Speed for each 10 levels
+  mainType: Modifier
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierCrystalline.jpg
+  deleted: false
+  attackSpeedIncrement: 1.465
+wpg:
+  id: wpg
+  name: Frozen
+  legend: Adds extra defense for each 10 levels
+  mainType: Modifier
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierFrozen.jpg
+  deleted: false
+  defenseIncrement: 4.4982
+b13:
+  id: b13
+  name: Sandy
+  legend: Adds Intensity for each 10 levels
+  mainType: Modifier
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierSandy.jpg
+  deleted: false
+  intensityIncrement: 1.465
+8fN:
+  id: 8fN
+  name: Abyssal
+  legend: Adds low defense and medium resistance for each 10 levels.
+  mainType: Modifier
+  rarity: Rare
+  imageId: ""
+  deleted: false
+  defenseIncrement: 2.2491
+  resistanceIncrement: 1.64
+RO9:
+  id: RO9
+  name: Goldsail
+  legend: None
+  mainType: Modifier
+  rarity: None
+  imageId: ""
+  deleted: false
+  piercingIncrement: 1.465
+M2z:
+  id: M2z
+  name: None
+  legend: None
+  mainType: Modifier
+  rarity: None
+  imageId: ""
+  deleted: false

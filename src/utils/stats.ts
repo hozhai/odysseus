@@ -1,7 +1,7 @@
 import type { Item, Slot, TotalStats } from "../types";
 import type { statType } from "../types";
 import { MAX_LEVEL } from "../constants";
-import { findItemById } from "./item.ts";
+import { findEnchantById, findGemById, findItemById } from "./item.ts";
 
 /**
  * formatTotalStats formats the TotalStats passed into it by prepending an appropriate
@@ -124,7 +124,7 @@ export async function calculateGemStats(
   const gems = await Promise.all(
     gem_ids
       .map(async (id) => {
-        return await findItemById(id);
+        return await findGemById(id);
       })
       .filter((item) => item !== null)
   );
@@ -167,6 +167,36 @@ export async function calculateGemStats(
   });
 
   return totalStats;
+}
+
+export async function calculateEnchantStats(
+  enchant_id: string
+): Promise<TotalStats> {
+  const enchant = await findEnchantById(enchant_id);
+
+  const totalStats: TotalStats = {
+    power: 0,
+    defense: 0,
+    agility: 0,
+    attackSpeed: 0,
+    attackSize: 0,
+    intensity: 0,
+    regeneration: 0,
+    insanity: 0,
+    piercing: 0,
+    resistance: 0,
+    warding: 0,
+    drawback: 0,
+  };
+
+  if (!enchant) {
+    return totalStats;
+  }
+
+  totalStats.power +=
+    (enchant.enchantTypes?.gear?.powerIncrement ?? 0) * (MAX_LEVEL / 10);
+
+  // TODO
 }
 
 export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {

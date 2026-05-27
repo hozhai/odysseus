@@ -9,7 +9,7 @@ import {
   EMPTY_GEM_ID,
   EMPTY_MODIFIER_ID,
 } from "../constants";
-import type { Item, Rarity, Slot } from "../types";
+import type { Enchant, Gem, Item, Modifier, Rarity, Slot } from "../types";
 import { getData } from "../data/load";
 import { InMessageEmbed } from "seyfert";
 
@@ -305,4 +305,25 @@ export async function findItemById(id: string): Promise<Item | null> {
   const item = itemData[id];
 
   return item ?? null;
+}
+
+export async function findEnchantById(id: string): Promise<Enchant | null> {
+  const enchantData = (await getData()).enchants;
+  const enchant = enchantData[id];
+
+  return enchant ?? null;
+}
+
+export async function findModifierById(id: string): Promise<Modifier | null> {
+  const modifierData = (await getData()).modifiers;
+  const modifier = modifierData[id];
+
+  return modifier ?? null;
+}
+
+export async function findGemById(id: string): Promise<Gem | null> {
+  const gemData = (await getData()).gems;
+  const gem = gemData[id];
+
+  return gem ?? null;
 }

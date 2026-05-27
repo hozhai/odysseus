@@ -1,0 +1,1804 @@
+#################################
+# ship.yaml is currently UNUSED #
+#################################
+"155":
+  id: "155"
+  name: Saiboat
+  legend: Sailboat innit
+  mainType: Ship
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 1200
+  resilience: 65
+  speed: 50
+  stability: 30
+  turning: 80
+  hullArmorSlot: 1
+  cannonSlot: 1
+  sailMaterialSlot: 1
+  shipCrewSlot: 1
+  deckhandSlot: 1
+  quartermasterSlot: 1
+b49:
+  id: b49
+  name: None
+  legend: None Cannon Innit
+  mainType: Cannon
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Miscellaneous/shipplaceholders/cannonPlaceholder.jpg
+  deleted: false
+u9G:
+  id: u9G
+  name: None
+  legend: This human does NOT exist
+  mainType: Deckhand
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Miscellaneous/shipplaceholders/deckhandPlaceholder.jpg
+  deleted: false
+K4h:
+  id: K4h
+  name: Wooden Trim
+  legend:
+    A wooden trim added to the hull of a ship, allowing it to move through the
+    sea easier and increasing its durability slightly.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/woodenTrim.jpg
+  deleted: false
+  speed: 5
+  durability: 900
+  stability: 3
+WqY:
+  id: WqY
+  name: Rugged Framing
+  legend:
+    A framing of thin rugged metal added to the hull of a ship, increasing its
+    maneuverability and durability slightly.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/ruggedFraming.jpg
+  deleted: false
+  durability: 3150
+  stability: 1
+  turning: 12
+Ds0:
+  id: Ds0
+  name: Light Rugged Hull
+  legend:
+    A thing rugged metal frame with trims of wood added to the hull of a ship,
+    increasing its maneuverability and durability slightly.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/lightRuggedHull.jpg
+  deleted: false
+  durability: 4050
+  stability: 2
+  turning: 13
+e3d:
+  id: e3d
+  name: Wool Sailcloth
+  legend:
+    A sailcloth made out of wool fabric, providing a toughness which increases
+    your ship's durability and resilience slightly.
+  mainType: Sail Material
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 60
+  resilience: 10
+5Th:
+  id: 5Th
+  name: Bronze Cannons
+  legend: A set of cannons reinforced with bronze metal, increasing their damage.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1.4
+  rangeMultiplier: 1
+  fuseLength: 2
+  reloadTime: 6
+Xt7:
+  id: Xt7
+  name: Carronades
+  legend: A set of cannons built for firing powerful shots at a close range.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1.8
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 8
+vmj:
+  id: vmj
+  name: Bronze Culverins
+  legend: A set of bronze reinforced cannons built for firing at a long range.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1.2
+  rangeMultiplier: 1.6
+  fuseLength: 2
+  reloadTime: 6
+62S:
+  id: 62S
+  name: Iron Culverins
+  legend: A set of bronze-reinforced iron cannons built for firing at long range.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1.4
+  rangeMultiplier: 1.6
+  fuseLength: 2
+  reloadTime: 6
+sXk:
+  id: sXk
+  name: Lesser Ash Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct ash
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 0.7
+  fuseLength: 2
+  reloadTime: 5
+FRG:
+  id: FRG
+  name: Lesser Explosion Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct explosion
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 0.6
+  fuseLength: 2
+  reloadTime: 5
+Eut:
+  id: Eut
+  name: Lesser Lightning Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct lightning
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 1.2
+  fuseLength: 2
+  reloadTime: 5
+5GX:
+  id: 5GX
+  name: Lesser Metal Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct metal
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 1.8
+  rangeMultiplier: 0.4
+  fuseLength: 2
+  reloadTime: 5
+rhx:
+  id: rhx
+  name: Lesser Plasma Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct plasma
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 1
+  fuseLength: 2
+  reloadTime: 5
+CrG:
+  id: CrG
+  name: Lesser Sand Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct sand
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 1.4
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 5
+ilb:
+  id: ilb
+  name: Lesser Wind Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct wind
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 1.1
+  fuseLength: 2
+  reloadTime: 5
+Xv7:
+  id: Xv7
+  name: Lesser Wood Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct wood
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 1.3
+  rangeMultiplier: 0.6
+  fuseLength: 2
+  reloadTime: 5
+ZRP:
+  id: ZRP
+  name: Iron Axe Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 400
+  ramStrength: 1330
+  ramSpeed: 1.5
+zoh:
+  id: zoh
+  name: Lesser Arcanium Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct some magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1870
+  ramSpeed: 1.5
+Xci:
+  id: Xci
+  name: Lesser Glass Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct glass magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1271
+  ramSpeed: 1.5
+jqu:
+  id: jqu
+  name: Lesser Magma Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct magma magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1286
+  ramSpeed: 1.3
+98J:
+  id: 98J
+  name: Lesser Metal Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct metal magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 2004
+  ramSpeed: 1.2
+lPJ:
+  id: lPJ
+  name: Lesser Wood Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct wood magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1316
+  ramSpeed: 1.4
+uSS:
+  id: uSS
+  name: +10 Turning Speed
+  legend: +10 Turning Speed
+  mainType: Deckhand
+  rarity: None
+  imageId: ""
+  deleted: false
+  turning: 10
+I4z:
+  id: I4z
+  name: +300 Ram Defense
+  legend: +300 Ram Defense
+  mainType: Deckhand
+  rarity: None
+  imageId: ""
+  deleted: false
+  ramDefense: 300
+zPX:
+  id: zPX
+  name: +475 Magic Storage
+  legend: +475 Magic Storage
+  mainType: Deckhand
+  rarity: None
+  imageId: ""
+  deleted: false
+  magicStorage: 475
+GEO:
+  id: GEO
+  name: Bronze Howitzers
+  legend: "[plz fix]"
+  mainType: Siege Weapon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -3
+  damageMultiplier: 1.6
+  rangeMultiplier: 2
+  spreadMultiplier: 0.5
+  fuseLength: 1
+  reloadTime: 10
+JuN:
+  id: JuN
+  name: Brig
+  legend: briggy
+  mainType: Ship
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 12000
+  ramStrength: 1200
+  resilience: 65
+  speed: 75
+  stability: 75
+  turning: 50
+  hullArmorSlot: 1
+  cannonSlot: 1
+  siegeWeaponSlot: 1
+  sailMaterialSlot: 1
+  shipCrewSlot: 1
+  ramSlot: 1
+  deckhandSlot: 4
+  quartermasterSlot: 2
+pmb:
+  id: pmb
+  name: None
+  legend: Aint no quartermaster bruv
+  mainType: Quartermaster
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Miscellaneous/shipplaceholders/quartermasterPlaceholder.jpg
+  deleted: false
+iNa:
+  id: iNa
+  name: Wooden Framing
+  legend:
+    A double layered wooden framing added to the hull of a ship, providing a
+    decent amount of durability and ram defense.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/woodenFraming.jpg
+  deleted: false
+  durability: 1800
+  ramDefense: 138
+  stability: 6
+isv:
+  id: isv
+  name: Reinforced Wooden Framing
+  legend:
+    A framing of wood and thin rugged metal added to the hull of a ship, allowing
+    to move through the sea easier and increasing its durability slightly.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/reinforcedWoodenFraming.jpg
+  deleted: false
+  durability: 1500
+  speed: 6
+  stability: 3
+B8a:
+  id: B8a
+  name: Light Bronze Framing
+  legend:
+    A framing of wood and thin bronze metal and wood added to the hull of a
+    ship, providing a decent amount of durability and ram defense.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/lightBronzeFraming.jpg
+  deleted: false
+  durability: 3000
+  ramDefense: 230
+  stability: 7
+8bX:
+  id: 8bX
+  name: Wooden Hull
+  legend:
+    Various layers of wood added to the hull of a ship, allowing it to move
+    through the sea easier and increasing its durability slightly.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/woodenHull.jpg
+  deleted: false
+  durability: 2100
+  speed: 7
+  stability: 4
+FAG:
+  id: FAG
+  name: Bronze Framing
+  legend:
+    A framing of thin rugged metal and bronze added to the hull of a ship, providing
+    a decent amount of durability and ram defense.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/bronzeFraming.jpg
+  deleted: false
+  durability: 5400
+  ramDefense: 414
+  stability: 9
+IIV:
+  id: IIV
+  name: Silver Framing
+  legend:
+    A framing of thin rugged metal and silver added to the hull of a ship, providing
+    a fair amount of durability and ram defense. It can be enchanted by an Alchemist
+    in order to increase its stats.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 7800
+  ramDefense: 598
+  stability: 11
+9lv:
+  id: 9lv
+  name: Light Silver Framing
+  legend:
+    "A framing of wood and thin silver metal added to the hull of a ship, allowing
+    it to move through the sea easier and increasing its durability slightly. "
+  mainType: Hull Armor
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 3900
+  speed: 8
+  stability: 5
+yUJ:
+  id: yUJ
+  name: Flax Sailcloth
+  legend:
+    A sailcloth made out of flax fabric, allowing it to catch more wind and
+    increase your ship's speed slightly.
+  mainType: Sail Material
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: 6
+QaE:
+  id: QaE
+  name: Heavy Cannons
+  legend: A set of heavy expensive cannons.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1.2
+  rangeMultiplier: 1.2
+  fuseLength: 2
+  reloadTime: 7
+ciJ:
+  id: ciJ
+  name: Lesser Acid Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct acid
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 5
+9tn:
+  id: 9tn
+  name: Lesser Crystal Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct crystal
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 1
+  rangeMultiplier: 0.6
+  fuseLength: 2
+  reloadTime: 5
+squ:
+  id: squ
+  name: Lesser Fire Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct fire
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 5
+OUh:
+  id: OUh
+  name: Lesser Glass Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct glass
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 5
+XDe:
+  id: XDe
+  name: Lesser Light Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct light
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 1.4
+  fuseLength: 2
+  reloadTime: 5
+LQ7:
+  id: LQ7
+  name: Lesser Magma Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct magma
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 0.6
+  fuseLength: 2
+  reloadTime: 5
+HK0:
+  id: HK0
+  name: Lesser Water Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct water
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 1.3
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 5
+P87:
+  id: P87
+  name: Rugged Axe Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 250
+  ramStrength: 925
+  ramSpeed: 1.5
+S67:
+  id: S67
+  name: Iron Reinforced Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 100
+  ramDefense: 368
+  ramStrength: 970
+  ramSpeed: 1.6
+2j2:
+  id: 2j2
+  name: Rugged Battering Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 125
+  ramDefense: 57
+  ramStrength: 1150
+  ramSpeed: 1.4
+ClS:
+  id: ClS
+  name: Iron Cleaving Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 200
+  ramDefense: 92
+  ramStrength: 1690
+  ramSpeed: 1.4
+jdN:
+  id: jdN
+  name: Rugged Spiked Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 125
+  ramDefense: 115
+  ramStrength: 925
+  ramSpeed: 1.5
+t62:
+  id: t62
+  name: Reinforced Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 62
+  ramDefense: 230
+  ramStrength: 700
+  ramSpeed: 1.6
+ipc:
+  id: ipc
+  name: Hammerhead Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Rare
+  imageId: ""
+  deleted: false
+  durability: 600
+  ramStrength: 2086
+  ramSpeed: 1.7
+ZfS:
+  id: ZfS
+  name: Lesser Acid Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct acid magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1271
+  ramSpeed: 1.5
+0mW:
+  id: 0mW
+  name: "Lesser Ash Ram "
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct ash magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1256
+  ramSpeed: 1.4
+R75:
+  id: R75
+  name: Lesser Fire Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct fire magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1241
+  ramSpeed: 1.5
+N0n:
+  id: N0n
+  name: Lesser Light Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct light magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1256
+  ramSpeed: 1.8
+eyK:
+  id: eyK
+  name: Lesser Poison Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct poison
+    magic. When activating Ramming Speed with this equipped, it will overflow with
+    magic energy collected from the sea and release it all on contact, creating an
+    explosion of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1196
+  ramSpeed: 1.5
+Nb5:
+  id: Nb5
+  name: Lesser Water Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct water magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1301
+  ramSpeed: 1.5
+Fwo:
+  id: Fwo
+  name: Redwake Warriors
+  legend:
+    A group of trained warriors armed with shark-bone swords that you hired
+    on Redwake in the Bronze Sea. They aren't the greatest crew, but they do their
+    jobs well enough.
+  mainType: Ship Crew
+  rarity: None
+  imageId: ""
+  deleted: false
+  stability: 5
+bCd:
+  id: bCd
+  name: Sailors
+  legend:
+    A group of skilled sailors with cutlasses that you hired in Sailor's Lodge
+    in the Bronze Sea. They aren't a particularly strong crew, but they have fair
+    knowledge of the sea and the workings of a ship, increasing the strength of its
+    sails and reinforcing the ship to take less damage when ramming.
+  mainType: Ship Crew
+  rarity: None
+  imageId: ""
+  deleted: false
+  ramDefense: 300
+  resilience: 10
+Oag:
+  id: Oag
+  name: Ravenna Deserters
+  legend:
+    A batallion of former Bronze Legion warriors that you saved in the Shining
+    Plains of Ravenna, in the Bronze Sea. They deserted the kingdom after being forced
+    by their superiors to execute innocent people. They are a somewhat strong crew
+    with scraps of armor and rugged weapons, and have fair knowledge of the sea and
+    the workings of a ship.
+  mainType: Ship Crew
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 300
+  resilience: 5
+RZw:
+  id: RZw
+  name: +6% Stability
+  legend: lol
+  mainType: Deckhand
+  rarity: None
+  imageId: ""
+  deleted: false
+  stability: 6
+ItZ:
+  id: ItZ
+  name: +9% Resilience
+  legend: +9% Resilience
+  mainType: Deckhand
+  rarity: None
+  imageId: ""
+  deleted: false
+  resilience: 9
+8GU:
+  id: 8GU
+  name: Heavy Mortars
+  legend: "[plz fix]"
+  mainType: Siege Weapon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -5
+  damageMultiplier: 1.7
+  rangeMultiplier: 0.8
+  spreadMultiplier: 1.5
+  fuseLength: 1
+  reloadTime: 12
+I5M:
+  id: I5M
+  name: Coehorns
+  legend: "[plz fix]"
+  mainType: Siege Weapon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -1
+  damageMultiplier: 1
+  rangeMultiplier: 0.8
+  spreadMultiplier: 0.5
+  fuseLength: 0.5
+  reloadTime: 5
+yDz:
+  id: yDz
+  name: Bronze Mortars
+  legend: "[plz fix]"
+  mainType: Siege Weapon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -3
+  damageMultiplier: 1.7
+  rangeMultiplier: 1
+  spreadMultiplier: 1
+  fuseLength: 1
+  reloadTime: 10
+NTt:
+  id: NTt
+  name: Heavy Bronze Mortars
+  legend: "[plz fix]"
+  mainType: Siege Weapon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -5
+  damageMultiplier: 2
+  rangeMultiplier: 0.8
+  spreadMultiplier: 1.5
+  fuseLength: 1
+  reloadTime: 12
+j9o:
+  id: j9o
+  name: Caravel
+  legend: Craaaave
+  mainType: Ship
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 2500
+  resilience: 65
+  speed: 60
+  stability: 45
+  turning: 70
+  hullArmorSlot: 1
+  cannonSlot: 1
+  sailMaterialSlot: 1
+  shipCrewSlot: 1
+  ramSlot: 1
+  deckhandSlot: 2
+  quartermasterSlot: 1
+yb7:
+  id: yb7
+  name: Ketch
+  legend: gethc
+  mainType: Ship
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 4000
+  resilience: 65
+  speed: 70
+  stability: 50
+  turning: 50
+  hullArmorSlot: 1
+  cannonSlot: 1
+  sailMaterialSlot: 1
+  shipCrewSlot: 1
+  deckhandSlot: 3
+  quartermasterSlot: 2
+m2t:
+  id: m2t
+  name: None
+  legend: No ramming boi >:(
+  mainType: Ram
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Miscellaneous/shipplaceholders/ramPlaceholder.jpg
+  deleted: false
+DC4:
+  id: DC4
+  name: None
+  legend: No ship crew here buddy.. Nope
+  mainType: Ship Crew
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Miscellaneous/shipplaceholders/shipCrewPlaceholder.jpg
+  deleted: false
+uJL:
+  id: uJL
+  name: Light Rugged Framing
+  legend:
+    A framing of wood and thin rugged metal and wood added to the hull of a
+    ship, increasing its maneuverability and durability slightly.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/lightRuggedFraming.jpg
+  deleted: false
+  durability: 2250
+  stability: 2
+  turning: 12
+EDy:
+  id: EDy
+  name: Trimmed Wooden Hull
+  legend:
+    A wooden frame and trims of wood and thin rugged metal added to the hull
+    of a ship, providing a decent amount of durability and ram defense.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/trimmedWoodenHull.jpg
+  deleted: false
+  durability: 4200
+  ramDefense: 322
+  stability: 8
+a38:
+  id: a38
+  name: Ruined Archaic Hull
+  legend:
+    A set of hull armor that is decades old, but made of unknown metals which
+    still seem to provide great protection, despite their appearance. It has a light
+    weight to it, increasing its maneuverability and durability slightly.
+  mainType: Hull Armor
+  rarity: Rare
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/ruinedArchaicHull.jpg
+  deleted: false
+  durability: 5400
+  speed: 2
+  stability: 5
+  turning: 14
+mx1:
+  id: mx1
+  name: Edward Kenton, the Exiled Captain
+  legend:
+    A twenty-seven year old man who served in the Grand Navy since he was twenty,
+    Edward Kenton has seen everything from naval blockades to bandit camp raiding.
+    He deserted the Grand Navy in pursuit of a simplier life, and joined your crew
+    so that he might feel adventure again. Since then, he has embraced the role of
+    quartermaster and has enjoyed sailing with you, but his bounty is ever increasing
+    as the Grand Navy pursues him for desertion.
+  mainType: Quartermaster
+  rarity: Rare
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Quartermaster/edward2.jpg
+  deleted: false
+  durability: 300
+  resilience: 5
+  stability: 5
+UJV:
+  id: UJV
+  name: Enizor, the Visionary
+  legend:
+    A sixty-eight year old man who is a renowned alchemist in the Bronze Sea,
+    Enzior left his home of Frostmill Island in pursuit of one last adventure that
+    would complete his life's work. Since then, he has revealed to you that his research
+    involves a very old, powerful artifact of some kind, and that he would share it
+    with you if he manages to succeed in researching it. The hardships of the Dark
+    Sea caused him to awaken his latent magic potential, and he now knows how to use
+    Snow Magic.
+  mainType: Quartermaster
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Quartermaster/enizor2.jpg
+  deleted: false
+  durability: 100
+  magicStorage: 500
+  stability: 5
+SW6:
+  id: SW6
+  name: Cotton Sailcloth
+  legend:
+    A sailcloth made out of cotton fabric, providing a toughness which increases
+    your ship's durability and resilience slightly.
+  mainType: Sail Material
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 160
+  resilience: 12
+ADt:
+  id: ADt
+  name: Hemp Sailcloth
+  legend:
+    A sailcloth made out of hemp fabric, allowing it to catch more wind and
+    increase your ship's speed slightly.
+  mainType: Sail Material
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: 9
+fsx:
+  id: fsx
+  name: Archaic Sailcloth
+  legend:
+    An old sailcloth made out of a strange material, which seems to be in remarkably
+    good condition. Its thickness provides improved durability and resilience, while
+    also catching a lot of wind.
+  mainType: Sail Material
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 60
+  resilience: 3
+  speed: 11
+kTu:
+  id: kTu
+  name: Willow Sailcloth
+  legend: "[pls fix]"
+  mainType: Sail Material
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: 12
+Bu6:
+  id: Bu6
+  name: Reinforced Sailcloth
+  legend: "[plz fix]"
+  mainType: Sail Material
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 260
+  resilience: 13
+8Pu:
+  id: 8Pu
+  name: Light Cannons
+  legend: A set of lightweight, cheap cannons.
+  mainType: Cannon
+  rarity: Common
+  imageId: ""
+  deleted: false
+  speed: -5
+  damageMultiplier: 0.8
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 5
+zTZ:
+  id: zTZ
+  name: Standard Cannons
+  legend: A set of standard ship cannons.
+  mainType: Cannon
+  rarity: Common
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  fuseLength: 2
+  reloadTime: 6
+xQr:
+  id: xQr
+  name: Heavy Iron Cannons
+  legend: "[plz fix]"
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1.8
+  rangeMultiplier: 1.2
+  fuseLength: 2
+  reloadTime: 7
+X6X:
+  id: X6X
+  name: Lesser Cataclysm Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct cataclysm
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Seasonal
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 5.6
+  rangeMultiplier: 1
+  fuseLength: 2
+  reloadTime: 5
+Tvq:
+  id: Tvq
+  name: Lesser Ice Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct ice
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 0.6
+  fuseLength: 2
+  reloadTime: 5
+BW1:
+  id: BW1
+  name: Lesser Poison Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct poison
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 5
+sMF:
+  id: sMF
+  name: Iron Battering Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 200
+  ramDefense: 92
+  ramStrength: 1690
+  ramSpeed: 1.4
+erc:
+  id: erc
+  name: Iron Blade Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 400
+  ramStrength: 1330
+  ramSpeed: 1.5
+mbk:
+  id: mbk
+  name: Rugged Blade Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 250
+  ramStrength: 925
+  ramSpeed: 1.5
+YYt:
+  id: YYt
+  name: "Rugged Cleaving Ram "
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 125
+  ramDefense: 57
+  ramStrength: 1150
+  ramSpeed: 1.4
+EME:
+  id: EME
+  name: Lesser Earth Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct earth magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1944
+  ramSpeed: 1.3
+BEg:
+  id: BEg
+  name: Lesser Lightning Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct lightning
+    magic. When activating Ramming Speed with this equipped, it will overflow with
+    magic energy collected from the sea and release it all on contact, creating an
+    explosion of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1271
+  ramSpeed: 1.7
+Du4:
+  id: Du4
+  name: Lesser Plasma Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct plasma
+    magic. When activating Ramming Speed with this equipped, it will overflow with
+    magic energy collected from the sea and release it all on contact, creating an
+    explosion of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1226
+  ramSpeed: 1.6
+2Wa:
+  id: 2Wa
+  name: Lesser Wind Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct wind magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1271
+  ramSpeed: 1.7
+JHF:
+  id: JHF
+  name: +600 Ram Strength
+  legend: +600 Ram Strength
+  mainType: Deckhand
+  rarity: None
+  imageId: ""
+  deleted: false
+  ramStrength: 600
+rBU:
+  id: rBU
+  name: Mortar
+  legend: "[plz fix]"
+  mainType: Siege Weapon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -3
+  damageMultiplier: 1.5
+  rangeMultiplier: 1
+  spreadMultiplier: 1
+  fuseLength: 1
+  reloadTime: 10
+M2t:
+  id: M2t
+  name: Howitzers
+  legend: "[plz fix]"
+  mainType: Siege Weapon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -3
+  damageMultiplier: 1.4
+  rangeMultiplier: 2
+  spreadMultiplier: 0.5
+  fuseLength: 1
+  reloadTime: 10
+Ng7:
+  id: Ng7
+  name: None
+  legend: Aint no hull thick enoughh
+  mainType: Hull Armor
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Miscellaneous/shipplaceholders/hullArmorPlaceholder.jpg
+  deleted: false
+nIB:
+  id: nIB
+  name: None
+  legend: No sailing today too
+  mainType: Sail Material
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Miscellaneous/shipplaceholders/sailMaterialPlaceholder.jpg
+  deleted: false
+i5y:
+  id: i5y
+  name: None
+  legend: Nope no sieging
+  mainType: Siege Weapon
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Miscellaneous/shipplaceholders/mortarPlaceholder.jpg
+  deleted: false
+Ehk:
+  id: Ehk
+  name: Rugged Trim
+  legend:
+    A trim of thin rugged metal added to the hull of a ship, increasing its
+    maneuverability and durability slightly.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/ruggedTrim.jpg
+  deleted: false
+  durability: 1350
+  stability: 1
+  turning: 11
+vHX:
+  id: vHX
+  name: Reinforced Wooden Hull
+  legend:
+    A wooden frame with thin rugged metal and wooden trims added to the hull
+    of a ship, allowing it to move through the sea easier and increasing its durability
+    slightly.
+  mainType: Hull Armor
+  rarity: Common
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Ship%20Parts/Hull/reinforcedWoodenHull.jpg
+  deleted: false
+  durability: 2700
+  speed: 7
+  stability: 4
+aFt:
+  id: aFt
+  name: +7 Speed
+  legend: +7 Speed Deckhand
+  mainType: Deckhand
+  rarity: Common
+  imageId: ""
+  deleted: false
+  speed: 7
+TKr:
+  id: TKr
+  name: Heavy Bronze Cannons
+  legend: A set of heavy cannons reinforced with bronze metal, increasing their damage.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1.6
+  rangeMultiplier: 1.2
+  fuseLength: 2
+  reloadTime: 7
+jgm:
+  id: jgm
+  name: Bronze Carronades
+  legend:
+    A set of reinforced bronze cannons built for firing powerful shots at a
+    close range.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1.9
+  rangeMultiplier: 0.9
+  fuseLength: 2
+  reloadTime: 8
+gnG:
+  id: gnG
+  name: Culverins
+  legend: A set of cannons built for firing at long range.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 1.1
+  rangeMultiplier: 1.6
+  fuseLength: 2
+  reloadTime: 6
+M8Q:
+  id: M8Q
+  name: Iron Carronades
+  legend:
+    A set of bronze-reinforced iron cannons built for firing powerful shots
+    at close range.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -7
+  damageMultiplier: 2.1
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 7
+21y:
+  id: 21y
+  name: Dragonfire Carronades
+  legend:
+    A set of cannons with a unique mechanism built in which causes flames to
+    spew from the barrel for a short duration after they are fired, dealing additional
+    damage to nearby ships.
+  mainType: Cannon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -10
+  damageMultiplier: 2
+  rangeMultiplier: 0.7
+  fuseLength: 2
+  reloadTime: 8
+4El:
+  id: 4El
+  name: Lesser Arcanium Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct some
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  speed: -5
+  damageMultiplier: 1.3
+  rangeMultiplier: 0.8
+  fuseLength: 2
+  reloadTime: 5
+  magicStorage: 135
+xom:
+  id: xom
+  name: Lesser Earth Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct earth
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 1.8
+  rangeMultiplier: 0.5
+  fuseLength: 2
+  reloadTime: 5
+gyP:
+  id: gyP
+  name: Lesser Shadow Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct shadow
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 1
+  fuseLength: 2
+  reloadTime: 5
+yPI:
+  id: yPI
+  name: Lesser Snow Cannons
+  legend:
+    A set of cannons made out of lesser arcanium metal, forged to conduct snow
+    magic. When firing with this equipped, it will overflow with stored magic energy
+    and imbue it into the cannonball, increasing its damage and applying additional
+    effects.
+  mainType: Cannon
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  magicStorage: 135
+  speed: -5
+  damageMultiplier: 0.9
+  rangeMultiplier: 0.9
+  fuseLength: 2
+  reloadTime: 5
+l6m:
+  id: l6m
+  name: Iron Spiked Ram
+  legend: "[plz fix]"
+  mainType: Ram
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 200
+  ramDefense: 184
+  ramStrength: 1330
+  ramSpeed: 1.5
+qEc:
+  id: qEc
+  name: Lesser Crystal Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct crystal
+    magic. When activating Ramming Speed with this equipped, it will overflow with
+    magic energy collected from the sea and release it all on contact, creating an
+    explosion of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1331
+  ramSpeed: 1.4
+lcV:
+  id: lcV
+  name: Lesser Explosion Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct explosion
+    magic. When activating Ramming Speed with this equipped, it will overflow with
+    magic energy collected from the sea and release it all on contact, creating an
+    explosion of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1301
+  ramSpeed: 1.5
+eS4:
+  id: eS4
+  name: Lesser Ice Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct ice magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1316
+  ramSpeed: 1.4
+nSv:
+  id: nSv
+  name: Lesser Sand Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct sand magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1331
+  ramSpeed: 1.5
+4fu:
+  id: 4fu
+  name: Lesser Shadow Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct shadow
+    magic. When activating Ramming Speed with this equipped, it will overflow with
+    magic energy collected from the sea and release it all on contact, creating an
+    explosion of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1316
+  ramSpeed: 1.6
+W9L:
+  id: W9L
+  name: Lesser Snow Ram
+  legend:
+    A basic ram made out of lesser arcanium metal, forged to conduct snow magic.
+    When activating Ramming Speed with this equipped, it will overflow with magic
+    energy collected from the sea and release it all on contact, creating an explosion
+    of magic energy.
+  mainType: Ram
+  rarity: Uncommon
+  imageId: ""
+  deleted: false
+  durability: 225
+  magicStorage: 360
+  ramDefense: 103
+  ramStrength: 1301
+  ramSpeed: 1.5
+IjV:
+  id: IjV
+  name: +1050 Durability
+  legend: +1050 Durability
+  mainType: Deckhand
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 1050
+sRl:
+  id: sRl
+  name: Ruined Archaic Mortars
+  legend: "[plz fix]"
+  mainType: Siege Weapon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -5
+  damageMultiplier: 1.2
+  rangeMultiplier: 0.8
+  spreadMultiplier: 1.5
+  fuseLength: 1
+  reloadTime: 15
+a2s:
+  id: a2s
+  name: Bronze Coehorns
+  legend: "[plz fix]"
+  mainType: Siege Weapon
+  rarity: None
+  imageId: ""
+  deleted: false
+  speed: -1
+  damageMultiplier: 1.2
+  rangeMultiplier: 0.8
+  spreadMultiplier: 0.5
+  fuseLength: 0.5
+  reloadTime: 5
+t1G:
+  id: t1G
+  name: Rowboat
+  legend: Robot Innit
+  mainType: Ship
+  rarity: None
+  imageId: ""
+  deleted: false
+  durability: 350
+  speed: 30
+  stability: 10
+  turning: 100
+  hullArmorSlot: 1
+  deckhandSlot: 1
+8qC:
+  id: 8qC
+  name: Light Bronze Hull
+  legend: Light Bronze Hull
+  mainType: Hull Armor
+  rarity: Common
+  imageId: ""
+  deleted: false
+  durability: 5850
+  stability: 2
+  turning: 15

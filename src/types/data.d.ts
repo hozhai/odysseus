@@ -16,33 +16,7 @@ export interface Item {
   maxLevel?: number | null;
   statType?: string | null;
   validModifiers?: string[] | null;
-
   scaling?: Scaling | null;
-
-  enchantTypes?: EnchantTypes | null;
-
-  powerIncrement?: number | null;
-  defenseIncrement?: number | null;
-  agilityIncrement?: number | null;
-  attackSpeedIncrement?: number | null;
-  attackSizeIncrement?: number | null;
-  intensityIncrement?: number | null;
-  regenerationIncrement?: number | null;
-  piercingIncrement?: number | null;
-  resistanceIncrement?: number | null;
-
-  insanity?: number | null;
-  warding?: number | null;
-  agility?: number | null;
-  attackSize?: number | null;
-  defense?: number | null;
-  drawback?: number | null;
-  power?: number | null;
-  attackSpeed?: number | null;
-  intensity?: number | null;
-  piercing?: number | null;
-  regeneration?: number | null;
-  resistance?: number | null;
 }
 
 export interface Scaling {
@@ -61,6 +35,8 @@ export interface Scaling {
 
 export interface EnchantTypes {
   gear?: GearEnchantStats | null;
+  // in the future add the rest of types if
+  // want to support ship builds in odysseus
 }
 
 export interface GearEnchantStats {
@@ -91,6 +67,68 @@ export interface Weapon {
   defense?: number | null;
   blockingPower?: number | null;
   weight?: number | null;
+}
+
+/* === MODIFIER === */
+
+export interface Modifier {
+  id: string;
+  name: string;
+  legend: string;
+  mainType: string;
+  rarity: string;
+  imageId: string;
+  deleted: boolean;
+
+  powerIncrement?: number | null;
+  defenseIncrement?: number | null;
+  // Range
+  agilityIncrement?: number | null;
+  attackSpeedIncrement?: number | null;
+  attackSizeIncrement?: number | null;
+  // Haste
+  intensityIncrement?: number | null;
+  regenerationIncrement?: number | null;
+  piercingIncrement?: number | null;
+  resistanceIncrement?: number | null;
+}
+
+/* === ENCHANT === */
+
+export interface Enchant {
+  id: string;
+  name: string;
+  legend: string;
+  mainType: string;
+  rarity: string;
+  imageId: string;
+  deleted: boolean;
+  enchantTypes?: EnchantTypes | null;
+}
+
+/* === GEM === */
+
+export interface Gem {
+  id: string;
+  name: string;
+  legend: string;
+  mainType: string;
+  rarity: string;
+  imageId: string;
+  deleted: boolean;
+
+  insanity?: number | null;
+  warding?: number | null;
+  agility?: number | null;
+  attackSize?: number | null;
+  defense?: number | null;
+  drawback?: number | null;
+  power?: number | null;
+  attackSpeed?: number | null;
+  intensity?: number | null;
+  piercing?: number | null;
+  regeneration?: number | null;
+  resistance?: number | null;
 }
 
 /* === NON-DATABASE TYPES === */
@@ -209,9 +247,15 @@ export interface Clash {
 type Items = Record<string, Item>;
 type Weapons = Weapon[];
 type Magics = Magic[];
+type Modifiers = Record<string, Modifier>;
+type Enchants = Record<string, Enchant>;
+type Gems = Record<string, Gem>;
 
 export interface BotData {
   items: Items;
   weapons: Weapons;
   magics: Magics;
+  modifiers: Modifiers;
+  enchants: Enchants;
+  gems: Gems;
 }
