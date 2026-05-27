@@ -1,11 +1,24 @@
-import type { Item, Slot, TotalStats } from "../types";
+import type { Item, Modifier, Slot, TotalStats } from "../types";
 import type { statType } from "../types";
-import { MAX_LEVEL } from "../constants";
-import { findEnchantById, findGemById, findItemById } from "./item.ts";
+import {
+  MAX_LEVEL,
+  ATL_POWER_CAP,
+  ATL_DEFENSE_CAP,
+  ATL_AGILITY_CAP,
+  ATL_ATTACK_SIZE_CAP,
+  ATL_ATTACK_SPEED_CAP,
+  ATL_INTENSITY_CAP,
+} from "../constants";
+import {
+  findEnchantById,
+  findGemById,
+  findItemById,
+  findModifierById,
+} from "./item.ts";
 
 /**
  * formatTotalStats formats the TotalStats passed into it by prepending an appropriate
- * emoji and appeding a new line to each stat.
+ * emoji and appending a new line to each stat.
  * @param stats The total stats
  * @returns {string} A String with the stats formatted with their respective emojis
  */
@@ -47,7 +60,7 @@ export function getScalingMultiplier(statType: statType) {
   }
 }
 
-export function calculateItemStats(item: Item | null): TotalStats {
+export function createEmptyTotalStats(): TotalStats {
   const totalStats: TotalStats = {
     power: 0,
     defense: 0,
@@ -62,6 +75,12 @@ export function calculateItemStats(item: Item | null): TotalStats {
     warding: 0,
     drawback: 0,
   };
+
+  return totalStats;
+}
+
+export function calculateItemStats(item: Item | null): TotalStats {
+  const totalStats = createEmptyTotalStats();
 
   if (!item) return totalStats;
 
@@ -121,37 +140,13 @@ export function calculateItemStats(item: Item | null): TotalStats {
 export async function calculateGemStats(
   gem_ids: string[]
 ): Promise<TotalStats> {
-  const gems = await Promise.all(
-    gem_ids
-      .map(async (id) => {
-        return await findGemById(id);
-      })
-      .filter((item) => item !== null)
-  );
+  const gems = (
+    await Promise.all(gem_ids.map(async (id) => await findGemById(id)))
+  ).filter((item) => item !== null);
 
-  const totalStats: TotalStats = {
-    power: 0,
-    defense: 0,
-    agility: 0,
-    attackSpeed: 0,
-    attackSize: 0,
-    intensity: 0,
-    regeneration: 0,
-    insanity: 0,
-    piercing: 0,
-    resistance: 0,
-    warding: 0,
-    drawback: 0,
-  };
-
-  // if every gem is null
-  if (gems.every((gem) => gem === null)) {
-    return totalStats;
-  }
+  const totalStats = createEmptyTotalStats();
 
   gems.forEach((gem) => {
-    if (!gem) return;
-
     totalStats.power += gem.power ?? 0;
     totalStats.defense += gem.defense ?? 0;
     totalStats.agility += gem.agility ?? 0;
@@ -161,7 +156,7 @@ export async function calculateGemStats(
     totalStats.regeneration += gem.regeneration ?? 0;
     // we skip insanity; there are no insanity gems
     totalStats.piercing += gem.piercing ?? 0;
-    totalStats.resistance += gem.piercing ?? 0;
+    totalStats.resistance += gem.resistance ?? 0;
     // also skip warding for the same reason
     totalStats.drawback += gem.drawback ?? 0;
   });
@@ -174,46 +169,139 @@ export async function calculateEnchantStats(
 ): Promise<TotalStats> {
   const enchant = await findEnchantById(enchant_id);
 
-  const totalStats: TotalStats = {
-    power: 0,
-    defense: 0,
-    agility: 0,
-    attackSpeed: 0,
-    attackSize: 0,
-    intensity: 0,
-    regeneration: 0,
-    insanity: 0,
-    piercing: 0,
-    resistance: 0,
-    warding: 0,
-    drawback: 0,
-  };
+  const totalStats = createEmptyTotalStats();
 
   if (!enchant) {
     return totalStats;
   }
 
-  totalStats.power +=
-    (enchant.enchantTypes?.gear?.powerIncrement ?? 0) * (MAX_LEVEL / 10);
+  const multiplier = MAX_LEVEL / 10;
 
-  // TODO
+  totalStats.power +=
+    (enchant.enchantTypes?.gear?.powerIncrement ?? 0) * multiplier;
+
+  totalStats.defense +=
+    (enchant.enchantTypes?.gear?.defenseIncrement ?? 0) * multiplier;
+
+  totalStats.agility +=
+    (enchant.enchantTypes?.gear?.agilityIncrement ?? 0) * multiplier;
+
+  totalStats.attackSpeed +=
+    (enchant.enchantTypes?.gear?.attackSpeedIncrement ?? 0) * multiplier;
+
+  totalStats.attackSize +=
+    (enchant.enchantTypes?.gear?.attackSizeIncrement ?? 0) * multiplier;
+
+  totalStats.intensity +=
+    (enchant.enchantTypes?.gear?.intensityIncrement ?? 0) * multiplier;
+
+  totalStats.regeneration +=
+    (enchant.enchantTypes?.gear?.regenerationIncrement ?? 0) * multiplier;
+
+  // skip insanity
+
+  totalStats.piercing +=
+    (enchant.enchantTypes?.gear?.piercingIncrement ?? 0) * multiplier;
+
+  totalStats.resistance +=
+    (enchant.enchantTypes?.gear?.resistanceIncrement ?? 0) * multiplier;
+
+  totalStats.warding += (enchant.enchantTypes?.gear?.warding ?? 0) * multiplier;
+
+  // skip drawback
+
+  return totalStats;
+}
+
+export function calculateAtlanteanEssence(
+  item_stats: TotalStats,
+  atl: Modifier
+): TotalStats {
+  const totalStats = createEmptyTotalStats();
+
+  // alt essence always gives 1 insanity regardless
+  totalStats.insanity += 1;
+
+  const multiplier = MAX_LEVEL / 10;
+
+  if (item_stats.power === 0) {
+    totalStats.power += Math.min(
+      Math.floor((atl.powerIncrement ?? 0) * multiplier),
+      ATL_POWER_CAP
+    );
+  } else if (item_stats.defense === 0) {
+    totalStats.defense += Math.min(
+      Math.floor((atl.defenseIncrement ?? 0) * multiplier),
+      ATL_DEFENSE_CAP
+    );
+  } else if (item_stats.attackSize === 0) {
+    totalStats.attackSize += Math.min(
+      Math.floor((atl.attackSizeIncrement ?? 0) * multiplier),
+      ATL_ATTACK_SIZE_CAP
+    );
+  } else if (item_stats.attackSpeed === 0) {
+    totalStats.attackSpeed += Math.min(
+      Math.floor((atl.attackSpeedIncrement ?? 0) * multiplier),
+      ATL_ATTACK_SPEED_CAP
+    );
+  } else if (item_stats.agility === 0) {
+    totalStats.agility += Math.min(
+      Math.floor((atl.agilityIncrement ?? 0) * multiplier),
+      ATL_AGILITY_CAP
+    );
+  } else if (item_stats.intensity === 0) {
+    totalStats.intensity += Math.min(
+      Math.floor((atl.intensityIncrement ?? 0) * multiplier),
+      ATL_INTENSITY_CAP
+    );
+  } else {
+    // if all stats are present, roll back to power
+    totalStats.power += Math.min(
+      Math.floor((atl.powerIncrement ?? 0) * multiplier),
+      13
+    );
+  }
+
+  return totalStats;
+}
+
+export async function calculateModifierStats(
+  modifier_id: string,
+  item_stats: TotalStats
+): Promise<TotalStats> {
+  const modifier = await findModifierById(modifier_id);
+
+  const totalStats = createEmptyTotalStats();
+
+  if (!modifier) {
+    return totalStats;
+  }
+
+  // atlantean essence calculation
+  if (modifier.id === "AAu") {
+    return calculateAtlanteanEssence(item_stats, modifier);
+  }
+
+  const multiplier = MAX_LEVEL / 10;
+
+  totalStats.power += (modifier.powerIncrement ?? 0) * multiplier;
+  totalStats.defense += (modifier.defenseIncrement ?? 0) * multiplier;
+  totalStats.agility += (modifier.agilityIncrement ?? 0) * multiplier;
+  totalStats.attackSpeed += (modifier.attackSpeedIncrement ?? 0) * multiplier;
+  totalStats.attackSize += (modifier.attackSizeIncrement ?? 0) * multiplier;
+  totalStats.intensity += (modifier.intensityIncrement ?? 0) * multiplier;
+  totalStats.regeneration += (modifier.regenerationIncrement ?? 0) * multiplier;
+  // skip insanity
+  totalStats.piercing += (modifier.piercingIncrement ?? 0) * multiplier;
+  totalStats.resistance += (modifier.resistanceIncrement ?? 0) * multiplier;
+  // skip warding
+  // skip drawback
+
+  return totalStats;
 }
 
 export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {
-  const totalStats: TotalStats = {
-    power: 0,
-    defense: 0,
-    agility: 0,
-    attackSpeed: 0,
-    attackSize: 0,
-    intensity: 0,
-    regeneration: 0,
-    insanity: 0,
-    piercing: 0,
-    resistance: 0,
-    warding: 0,
-    drawback: 0,
-  };
+  const totalStats = createEmptyTotalStats();
 
   const item = await findItemById(slot.item_id);
   const itemTotalStats = calculateItemStats(item);
@@ -241,10 +329,43 @@ export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {
   totalStats.intensity += gemsTotalStats.intensity;
   totalStats.regeneration += gemsTotalStats.regeneration;
   totalStats.insanity += gemsTotalStats.insanity; // should skip this too but ehhh nahh.
-  totalStats.piercing += gemsTotalStats.piercing;
+  totalStats.piercing += gemsTotalStats.piercing; // edit: i think i should skip a lot of these but nahhh
   totalStats.resistance += gemsTotalStats.resistance;
   totalStats.warding += gemsTotalStats.warding;
   totalStats.drawback += gemsTotalStats.drawback;
+
+  const enchantTotalStats = await calculateEnchantStats(slot.enchant_id);
+
+  totalStats.power += enchantTotalStats.power;
+  totalStats.defense += enchantTotalStats.defense;
+  totalStats.agility += enchantTotalStats.agility;
+  totalStats.attackSpeed += enchantTotalStats.attackSpeed;
+  totalStats.attackSize += enchantTotalStats.attackSize;
+  totalStats.intensity += enchantTotalStats.intensity;
+  totalStats.regeneration += enchantTotalStats.regeneration;
+  totalStats.insanity += enchantTotalStats.insanity;
+  totalStats.piercing += enchantTotalStats.piercing;
+  totalStats.resistance += enchantTotalStats.resistance;
+  totalStats.warding += enchantTotalStats.warding;
+  totalStats.drawback += enchantTotalStats.drawback;
+
+  const modifierTotalStats = await calculateModifierStats(
+    slot.modifier_id,
+    totalStats
+  );
+
+  totalStats.power += modifierTotalStats.power;
+  totalStats.defense += modifierTotalStats.defense;
+  totalStats.agility += modifierTotalStats.agility;
+  totalStats.attackSpeed += modifierTotalStats.attackSpeed;
+  totalStats.attackSize += modifierTotalStats.attackSize;
+  totalStats.intensity += modifierTotalStats.intensity;
+  totalStats.regeneration += modifierTotalStats.regeneration;
+  totalStats.insanity += modifierTotalStats.insanity;
+  totalStats.piercing += modifierTotalStats.piercing;
+  totalStats.resistance += modifierTotalStats.resistance;
+  totalStats.warding += modifierTotalStats.warding;
+  totalStats.drawback += modifierTotalStats.drawback;
 
   return totalStats;
 }
