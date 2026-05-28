@@ -4,6 +4,8 @@ import {
   COLOR_EXOTIC,
   COLOR_RARE,
   COLOR_UNCOMMON,
+  EMBED_COLOR_ERROR,
+  EMBED_FOOTER,
   EMPTY_CHESTPLATE_ID,
   EMPTY_ENCHANTMENT_ID,
   EMPTY_GEM_ID,
@@ -11,13 +13,13 @@ import {
 } from "../constants";
 import type { Enchant, Gem, Item, Modifier, Rarity, Slot } from "../types";
 import { getData } from "../data/load";
-import { InMessageEmbed } from "seyfert";
+import { ComponentContext, Embed, InMessageEmbed } from "seyfert";
+import { formatTotalStats, slotToTotalStats } from "./stats";
 
 /**
  * Gets the color of a rarity given the rarity.
- *
  * @param rarity A rarity that can be "Common", "Uncommon", "Rare", or "Exotic" (case-sensitive)
- * @returns {number} A hexadecimal number
+ * @returns A hexadecimal number
  */
 export function getRarityColor(rarity: Rarity): number {
   switch (rarity) {
@@ -33,7 +35,7 @@ export function getRarityColor(rarity: Rarity): number {
 }
 
 /**
- *
+ * Turns an enchant item type to a APIMessageComponentEmoji
  * @param enchantItem
  * @returns { APIMessageComponentEmoji}
  */
@@ -238,6 +240,20 @@ export async function emojiToModifier(
   return modifier[0] ?? null;
 }
 
+/**
+ * Turns a APIMessageComponentEmoji into an emoji in string format
+ * @param emoji The emoji in APIMessageComponentEmoji format
+ * @returns An emoji in the <animated:name:id> format
+ */
+export function componentEmojiToText(
+  emoji: APIMessageComponentEmoji | null
+): string {
+  if (!emoji) {
+    return "";
+  }
+  return `<${emoji.animated ? "a" : ""}:${emoji.name}:${emoji.id}>`;
+}
+
 export async function parseEmbedIntoSlot(
   embed: InMessageEmbed | undefined
 ): Promise<Slot> {
@@ -300,6 +316,109 @@ export async function parseEmbedIntoSlot(
   return slot;
 }
 
+export async function slotIntoEmbed(
+  ctx: ComponentContext,
+  slot: Slot
+): Promise<Embed> {
+  const item = await findItemById(slot.item_id);
+
+  if (!item) {
+    return new Embed()
+      .setAuthor({
+        name: ctx.author.username,
+        iconUrl: ctx.author.avatarURL(),
+      })
+      .setColor(EMBED_COLOR_ERROR)
+      .setFooter({ text: EMBED_FOOTER })
+      .setDescription(
+        "Error: the item passed from item_select_enchant to slotIntoEmbed seems to not be valid. Please report this to the developer."
+      );
+  }
+
+  const totalStats = await slotToTotalStats(slot);
+  const formattedStats = formatTotalStats(totalStats);
+
+  const embed = new Embed()
+    .setAuthor({
+      name: ctx.author.username,
+      iconUrl: ctx.author.avatarURL(),
+    })
+    .setThumbnail(item.imageId)
+    .setTitle(`${item.name} | ${item.id}`)
+    .setColor(getRarityColor(item.rarity))
+    .setFooter({ text: EMBED_FOOTER });
+
+  const fields = [
+    {
+      name: "Description",
+      value: item.legend,
+    },
+    {
+      name: "Stats",
+      value: formattedStats,
+    },
+    {
+      name: "Type",
+      value: item.mainType,
+      inline: true,
+    },
+    {
+      name: "Subtype",
+      value: item.subType ?? "None",
+      inline: true,
+    },
+    {
+      name: "Rarity",
+      value: item.rarity,
+      inline: true,
+    },
+  ];
+
+  const enchant = await findEnchantById(slot.enchant_id);
+
+  if (enchant !== null && enchant.id !== EMPTY_ENCHANTMENT_ID) {
+    fields.push({
+      name: "Enchant",
+      value: componentEmojiToText(itemEnchantToEmoji(enchant)),
+    });
+  }
+
+  const modifier = await findModifierById(slot.modifier_id);
+
+  if (modifier !== null && modifier.id !== EMPTY_MODIFIER_ID) {
+    fields.push({
+      name: "Modifier",
+      value: componentEmojiToText(itemModifierToEmoji(modifier)),
+    });
+  }
+
+  const gems = (
+    await Promise.all(
+      slot.gem_ids.map(async (gem_id) => await findGemById(gem_id))
+    )
+  ).filter((gem) => gem !== null);
+
+  if (gems.length !== 0) {
+    const gemEmojis = gems
+      .map((gem) => componentEmojiToText(itemGemToEmoji(gem)))
+      .join(" ");
+
+    fields.push({
+      name: gems.length > 1 ? "Gems" : "Gem",
+      value: gemEmojis,
+    });
+  }
+
+  embed.addFields(fields);
+
+  return embed;
+}
+
+/**
+ * Find an item from the ID.
+ * @param id The ID of the item to find
+ * @returns A Promise that resolves to either the item if found or null if not found.
+ */
 export async function findItemById(id: string): Promise<Item | null> {
   const itemData = (await getData()).items;
   const item = itemData[id];
@@ -307,6 +426,11 @@ export async function findItemById(id: string): Promise<Item | null> {
   return item ?? null;
 }
 
+/**
+ * Find an enchant from the ID
+ * @param id The ID of the enchant to find
+ * @returns A Promise that resolves to either the enchant if found or null if not found
+ */
 export async function findEnchantById(id: string): Promise<Enchant | null> {
   const enchantData = (await getData()).enchants;
   const enchant = enchantData[id];
@@ -314,6 +438,11 @@ export async function findEnchantById(id: string): Promise<Enchant | null> {
   return enchant ?? null;
 }
 
+/**
+ * Find a modifier from the ID
+ * @param id The ID of the modifier to find
+ * @returns A Promise that resolves to either the modifier if found or null if not found
+ */
 export async function findModifierById(id: string): Promise<Modifier | null> {
   const modifierData = (await getData()).modifiers;
   const modifier = modifierData[id];
@@ -321,9 +450,28 @@ export async function findModifierById(id: string): Promise<Modifier | null> {
   return modifier ?? null;
 }
 
+/**
+ * Find a modifier from the ID
+ * @param id The ID of the gem to find
+ * @returns A Promise that resolves to either the gem if found or null if not found
+ */
 export async function findGemById(id: string): Promise<Gem | null> {
   const gemData = (await getData()).gems;
   const gem = gemData[id];
 
   return gem ?? null;
+}
+
+/**
+ * Find an enchant from the name
+ * @param name The name of the enchant to find
+ * @returns A Promise that resolves to either the enchant if found or null if not found
+ */
+export async function findEnchantByName(name: string): Promise<Enchant | null> {
+  const enchantData = (await getData()).enchants;
+  const enchant = Object.values(enchantData).find(
+    (ench) => ench.name.toLowerCase() === name.toLowerCase()
+  );
+
+  return enchant ?? null;
 }
