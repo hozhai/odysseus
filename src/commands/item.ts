@@ -10,8 +10,8 @@ import {
 } from "seyfert";
 import { getData } from "../data/load";
 import type { TotalStats } from "../types";
-import { EMBED_FOOTER, MAX_LEVEL } from "../constants";
-import { formatTotalStats, getScalingMultiplier } from "../utils";
+import { EMBED_FOOTER } from "../constants";
+import { calculateItemStats, formatTotalStats } from "../utils";
 import { getRarityColor } from "../utils";
 import { ButtonStyle } from "seyfert/lib/types";
 
@@ -26,14 +26,7 @@ const options = {
         .filter(
           (val) =>
             val.name.toLowerCase().includes(focus.toLowerCase()) &&
-            val.name !== "None" &&
-            val.mainType !== "Ship" &&
-            val.mainType !== "Gem" &&
-            val.mainType !== "Enchant" &&
-            val.mainType !== "Hull Armor" &&
-            val.mainType !== "Siege Weapon" &&
-            val.mainType !== "Deckhand" &&
-            val.mainType !== "Ram"
+            val.name !== "None"
         )
         .slice(0, 25)
         .map((val) => ({ name: val.name, value: val.id }));
@@ -56,45 +49,12 @@ export default class ItemCommand extends Command {
 
     if (!item) {
       await ctx.write({
-        content: `Selected item does not exist: ${response}`,
+        content: `Error: selected item does not exist: ${response}`,
       });
       return;
     }
 
-    const scaling = item?.scaling ?? {};
-
-    const totalStats: TotalStats = {
-      power: Math.floor(
-        (scaling.power ?? 0) * MAX_LEVEL * getScalingMultiplier("power")
-      ),
-      defense: Math.floor(
-        (scaling.defense ?? 0) * MAX_LEVEL * getScalingMultiplier("defense")
-      ),
-      agility: Math.floor(
-        (scaling.agility ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-      ),
-      attackSpeed: Math.floor(
-        (scaling.attackSpeed ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-      ),
-      attackSize: Math.floor(
-        (scaling.attackSize ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-      ),
-      intensity: Math.floor(
-        (scaling.intensity ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-      ),
-      regeneration: Math.floor(
-        (scaling.regeneration ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-      ),
-      piercing: Math.floor(
-        (scaling.piercing ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-      ),
-      resistance: Math.floor(
-        (scaling.resistance ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-      ),
-      insanity: 0,
-      warding: scaling.warding ?? 0,
-      drawback: scaling.drawback ?? 0,
-    };
+    const totalStats: TotalStats = calculateItemStats(item);
 
     const formattedStats = formatTotalStats(totalStats);
 
@@ -105,6 +65,8 @@ export default class ItemCommand extends Command {
       })
       .setThumbnail(item.imageId)
       .setTitle(`${item.name} | ${item.id}`)
+      .setColor(getRarityColor(item.rarity))
+      .setFooter({ text: EMBED_FOOTER })
       .setFields([
         {
           name: "Description",
@@ -129,9 +91,7 @@ export default class ItemCommand extends Command {
           value: item.rarity,
           inline: true,
         },
-      ])
-      .setColor(getRarityColor(item.rarity))
-      .setFooter({ text: EMBED_FOOTER });
+      ]);
 
     const components = [
       new Button()
