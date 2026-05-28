@@ -14,9 +14,13 @@ export default createEvent({
 
     // Load data on startup
     const data = await getData();
-    client.logger.info("Loaded data")
-    client.logger.info("| items.yaml | magics.yaml | weapons.yaml | enchants.yaml | modifiers.yaml | gems.yaml |")
-    client.logger.info("|--------------------------------------------------------------------------------------|")
+    client.logger.info("Loaded data");
+    client.logger.info(
+      "| items.yaml | magics.yaml | weapons.yaml | enchants.yaml | modifiers.yaml | gems.yaml |"
+    );
+    client.logger.info(
+      "|--------------------------------------------------------------------------------------|"
+    );
     client.logger.info(
       `| ${Object.values(data.items).length.toString().padEnd(10)} | ${data.magics.length.toString().padEnd(11)} | ${data.weapons.length.toString().padEnd(12)} | ${Object.values(data.enchants).length.toString().padEnd(13)} | ${Object.values(data.modifiers).length.toString().padEnd(14)} | ${Object.values(data.gems).length.toString().padEnd(9)} |`
     );
