@@ -86,7 +86,8 @@ AAt:
 fXr:
   id: fXr
   name: Hasty
-  legend: +1.41 points of Attack Speed for every 10 levels +1.41 points of Agility
+  legend:
+    +1.41 points of Attack Speed for every 10 levels +1.41 points of Agility
     for every 10 levels
   mainType: Enchant
   rarity: Exotic
@@ -169,7 +170,8 @@ W7S:
 8SI:
   id: 8SI
   name: Healing
-  legend: A scroll containing the Healing enchantment. When clicked in the inventory,
+  legend:
+    A scroll containing the Healing enchantment. When clicked in the inventory,
     it can be applied to one compatible item, causing it to be used up. The Healing
     enchantment increases regeneration.
   mainType: Enchant
@@ -183,7 +185,8 @@ W7S:
 I13:
   id: I13
   name: Piercing
-  legend: A scroll containing the Piercing enchantment. When clicked in the inventory,
+  legend:
+    A scroll containing the Piercing enchantment. When clicked in the inventory,
     it can be applied to one compatible item, causing it to be used up. The Piercing
     enchantment increases armor piercing.
   mainType: Enchant
@@ -207,7 +210,8 @@ AAD:
 JEI:
   id: JEI
   name: Charged
-  legend: 0.61 points of Power for every 10 levels +1.41 points of Intensity for every
+  legend:
+    0.61 points of Power for every 10 levels +1.41 points of Intensity for every
     10 levels
   mainType: Enchant
   rarity: Exotic
@@ -262,7 +266,8 @@ Mod:
 RlR:
   id: RlR
   name: Virtuous
-  legend: +4.5 points of Defense for every 10 levels +1 point of Warding  Removes
+  legend:
+    +4.5 points of Defense for every 10 levels +1 point of Warding  Removes
     Atlantean Modifier
   mainType: Enchant
   rarity: Exotic
@@ -298,7 +303,8 @@ jv5:
 iVI:
   id: iVI
   name: Resilience
-  legend: A scroll containing the Resilience enchantment. When clicked in the inventory,
+  legend:
+    A scroll containing the Resilience enchantment. When clicked in the inventory,
     it can be applied to one compatible item, causing it to be used up. The Resilience
     enchantment increases resistance.
   mainType: Enchant

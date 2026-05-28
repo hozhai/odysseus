@@ -1,11 +1,12 @@
-'680':
-  id: '680'
+"680":
+  id: "680"
   name: Magma Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct magma magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct magma magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -26,14 +27,15 @@
   scaling:
     defense: 0.2625
     resistance: 0.3
-'918':
-  id: '918'
+"918":
+  id: "918"
   name: Metal Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct metal magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct metal magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -58,7 +60,8 @@
 AAJ:
   id: AAJ
   name: Mantello of Ravenna's Fallen King [Calvus]
-  legend: A cape made out of fine red cloth with an orange fur collar, emblazoned
+  legend:
+    A cape made out of fine red cloth with an orange fur collar, emblazoned
     with the symbol of the Ravenna Realm. It was specifically made for King Calvus
     IV, the Third King of Ravenna, and was stolen from him after he was killed in
     Ravenna Castello, at the heart of Ravenna Realm in the Bronze Sea.
@@ -81,7 +84,8 @@ AAJ:
 AAK:
   id: AAK
   name: Lion of Ravenna Leggings [Argos]
-  legend: A pair of scarlet leggings trimmed in bronze, emblazoned with the symbol
+  legend:
+    A pair of scarlet leggings trimmed in bronze, emblazoned with the symbol
     of the Ravenna Realm. These leggings were specifically made for General Argos,
     the Lion of Old Ravenna, and were stolen from him after he was killed in the dungeons
     of Fort Talos in the Bronze Sea.
@@ -103,7 +107,8 @@ AAK:
 AAL:
   id: AAL
   name: Lion of Ravenna Armor [Argos]
-  legend: A hulking set of scarlet armor trimmed in bronze, emblazoned with the symbol
+  legend:
+    A hulking set of scarlet armor trimmed in bronze, emblazoned with the symbol
     of the Ravenna Realm. This armor was specifically made for General Argos, the
     Lion of Old Ravenna, and was stolen from him after he was killed in the dungeons
     of Fort Talos in the Bronze Sea.
@@ -125,7 +130,8 @@ AAL:
 AAR:
   id: AAR
   name: Theurgist Hat
-  legend: A hat once worn by a powerful mage, which seems to provide some kind of
+  legend:
+    A hat once worn by a powerful mage, which seems to provide some kind of
     divine protection when worn. It seems to be designed to fit three socketed jewels
     instead of two.
   mainType: Accessory
@@ -146,7 +152,8 @@ AAR:
 AAS:
   id: AAS
   name: Theurgist Cloak
-  legend: A cloak once worn by a powerful mage, which seems to provide some kind of
+  legend:
+    A cloak once worn by a powerful mage, which seems to provide some kind of
     divine protection when worn. It seems to be designed to fit three socketed jewels
     instead of two.
   mainType: Accessory
@@ -167,7 +174,8 @@ AAS:
 AAW:
   id: AAW
   name: Sunken Iron Boots
-  legend: A set of boots made out of arcanium metal that have spent hundreds of years
+  legend:
+    A set of boots made out of arcanium metal that have spent hundreds of years
     underwater, causing their properties to change. They seem to constantly produce
     water.
   mainType: Pants
@@ -188,7 +196,8 @@ AAW:
 AAa:
   id: AAa
   name: Aereus Robes
-  legend: A set of dark purple robes lined with bronze, obtained from a Dark Sealed
+  legend:
+    A set of dark purple robes lined with bronze, obtained from a Dark Sealed
     Chest.
   mainType: Chestplate
   rarity: Uncommon
@@ -208,7 +217,8 @@ AAa:
 AAc:
   id: AAc
   name: Vatrachos Boots
-  legend: A set of brightly colored boots imbued with some strange kind of power,
+  legend:
+    A set of brightly colored boots imbued with some strange kind of power,
     it seems to grant the wearer great power... at a price.
   mainType: Pants
   rarity: Rare
@@ -229,7 +239,8 @@ AAc:
 AAd:
   id: AAd
   name: Vatrachos Armor
-  legend: A set of brightly colored armor imbued with some strange kind of power,
+  legend:
+    A set of brightly colored armor imbued with some strange kind of power,
     it seems to grant the wearer great power... at a price.
   mainType: Chestplate
   rarity: Rare
@@ -250,7 +261,8 @@ AAd:
 AAe:
   id: AAe
   name: Vatrachos Helmet
-  legend: A brightly colored helmet imbued with some strange kind of power, it seems
+  legend:
+    A brightly colored helmet imbued with some strange kind of power, it seems
     to grant the wearer great power... at a price.
   mainType: Accessory
   rarity: Rare
@@ -271,7 +283,8 @@ AAe:
 AAl:
   id: AAl
   name: Attack Size Amulet [Fair]
-  legend: A rugged, peridot gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, peridot gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of Attack size.
   mainType: Accessory
   rarity: Uncommon
@@ -298,7 +311,8 @@ AAl:
 AAq:
   id: AAq
   name: Cernyx's Sleeveless Robe
-  legend: A sleeveless robe top made out of fine green fabric, specifically made to
+  legend:
+    A sleeveless robe top made out of fine green fabric, specifically made to
     fit the large upper body of Cernyx, the Archon of the Greenwish Cult residing
     in the Forest of Cernunno. It was taken from him after he was defeated in combat.
   mainType: Chestplate
@@ -319,7 +333,8 @@ AAq:
 Awv:
   id: Awv
   name: Ravenna Apostle Leggings [Carina]
-  legend: A pair of sturdy, metal-capped boots with red metal greaves. These leggings
+  legend:
+    A pair of sturdy, metal-capped boots with red metal greaves. These leggings
     were specifically made to be worn by Lady Carina, a noble of the Ravenna Realm,
     and were stolen from her after she was defeated in the Shining Plains of Ravenna.
   mainType: Pants
@@ -340,7 +355,8 @@ Awv:
 b4B:
   id: b4B
   name: Ravenna Noble Armor [Elius]
-  legend: A finely crafted set of bronze armor trimmed in gold, with ornate fabric
+  legend:
+    A finely crafted set of bronze armor trimmed in gold, with ornate fabric
     and golden chainmail. This armor was specifically made to be worn by the nobles
     of the Ravenna Realm, and was stolen from Lord Elius after he was defeated in
     the sky of the Bronze Sea.
@@ -362,7 +378,8 @@ b4B:
 Egb:
   id: Egb
   name: Siren Top
-  legend: A revealing top usually worn by Sirens, which are dangerous mythical creatures
+  legend:
+    A revealing top usually worn by Sirens, which are dangerous mythical creatures
     found in the Dark Sea. They appear as beautiful women, singing, only to lure in
     sailors and kill them with their wings and fangs.
   mainType: Chestplate
@@ -402,7 +419,8 @@ or9:
 fuY:
   id: fuY
   name: Titanium Armor
-  legend: A bulky set of armor made out of titanium metal, usually worn by powerful
+  legend:
+    A bulky set of armor made out of titanium metal, usually worn by powerful
     warriors.
   mainType: Chestplate
   rarity: Uncommon
@@ -455,7 +473,8 @@ zlp:
 eU8:
   id: eU8
   name: Elite Knight's Pauldrons
-  legend: An ornate set of pauldrons with a black cape, usually worn by renowned knights
+  legend:
+    An ornate set of pauldrons with a black cape, usually worn by renowned knights
     and warriors.
   mainType: Accessory
   rarity: Uncommon
@@ -510,7 +529,8 @@ c7a:
 gpg:
   id: gpg
   name: Power Amulet [Dull]
-  legend: A rugged, orange zircon gemstone embedded in a bronze chain necklace. The
+  legend:
+    A rugged, orange zircon gemstone embedded in a bronze chain necklace. The
     gemstone seems to give a small amount of power.
   mainType: Accessory
   rarity: Common
@@ -547,7 +567,8 @@ gpg:
 QDj:
   id: QDj
   name: Attack Size Amulet [Poor]
-  legend: A rugged, peridot gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, peridot gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of Attack size.
   mainType: Accessory
   rarity: Common
@@ -582,11 +603,12 @@ QDj:
 Nis:
   id: Nis
   name: Explosion Arcsphere
-  legend: An arcanium-glass dome capable of conducting explosion magic, meant to be
+  legend:
+    An arcanium-glass dome capable of conducting explosion magic, meant to be
     worn on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -613,11 +635,12 @@ Nis:
 lqV:
   id: lqV
   name: Lightning Arcsphere
-  legend: An arcanium-glass dome capable of conducting lightning magic, meant to be
+  legend:
+    An arcanium-glass dome capable of conducting lightning magic, meant to be
     worn on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -640,11 +663,12 @@ lqV:
 yIS:
   id: yIS
   name: Poison Arcsphere
-  legend: An arcanium-glass dome capable of conducting poison magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting poison magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -669,11 +693,12 @@ yIS:
 ERj:
   id: ERj
   name: Water Arcsphere
-  legend: An arcanium-glass dome capable of conducting water magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting water magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.2025
@@ -698,11 +723,12 @@ ERj:
 RqN:
   id: RqN
   name: Wind Arcsphere
-  legend: An arcanium-glass dome capable of conducting wind magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting wind magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -727,11 +753,12 @@ RqN:
 2Q6:
   id: 2Q6
   name: Wood Arcsphere
-  legend: An arcanium-glass dome capable of conducting wood magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting wood magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -754,7 +781,8 @@ RqN:
 3AH:
   id: 3AH
   name: Captain Maria's Boots
-  legend: A pair of black boots lined with gold and trims of purple, representing
+  legend:
+    A pair of black boots lined with gold and trims of purple, representing
     the colors of Pirate Lord Duke De'Roy. It was taken after she was defeated in
     the Nimbus Sea.
   mainType: Pants
@@ -775,8 +803,9 @@ RqN:
 RFp:
   id: RFp
   name: Samurai Helmet
-  legend: 'A helmet worn by samurai from the Ryujin Dynasty, a kingdom in the southern
-    War Seas. '
+  legend:
+    "A helmet worn by samurai from the Ryujin Dynasty, a kingdom in the southern
+    War Seas. "
   mainType: Accessory
   rarity: Common
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Armor/Samurai/samuraiHelmet.jpg
@@ -803,8 +832,9 @@ RFp:
 em2:
   id: em2
   name: Samurai Leggings
-  legend: 'A set of lightweight leggings worn by samurai from the Ryujin Dynasty,
-    a kingdom in the southern War Seas. '
+  legend:
+    "A set of lightweight leggings worn by samurai from the Ryujin Dynasty,
+    a kingdom in the southern War Seas. "
   mainType: Pants
   rarity: Common
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Armor/Samurai/samuraiLeggings.jpg
@@ -831,7 +861,8 @@ em2:
 hSy:
   id: hSy
   name: Juggernaut Armor
-  legend: An armored chestpiece for protection, with exposed arms for ease of motion.
+  legend:
+    An armored chestpiece for protection, with exposed arms for ease of motion.
     it can be enchanted by an Alchemist in  order to increase it's stats.
   mainType: Chestplate
   rarity: Common
@@ -859,11 +890,12 @@ hSy:
 VC2:
   id: VC2
   name: Cannon Fist Greaves
-  legend: A set of heavy metal greaves made for cannon fist users, designed to compliment
+  legend:
+    A set of heavy metal greaves made for cannon fist users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -890,11 +922,12 @@ VC2:
 crz:
   id: crz
   name: Cannon Fist Leggings
-  legend: A set of lightweight armored leggings made for cannon fist users, designed
+  legend:
+    A set of lightweight armored leggings made for cannon fist users, designed
     to compliment the style's strengths.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -917,8 +950,9 @@ crz:
 P0Y:
   id: P0Y
   name: Sailor Style Armor
-  legend: 'A set of lightweight armor made for sailor style users, designed to compliment
-    the style''s strengths. '
+  legend:
+    "A set of lightweight armor made for sailor style users, designed to compliment
+    the style's strengths. "
   mainType: Chestplate
   rarity: Uncommon
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Armor/Fighting/Sailor%20Fist/sailorStyleArmor.png?raw=true
@@ -944,7 +978,8 @@ P0Y:
 Cl7:
   id: Cl7
   name: Sailor Style Chestplate
-  legend: A heavy metal chestplate with exposed arms for freedom of movement, made
+  legend:
+    A heavy metal chestplate with exposed arms for freedom of movement, made
     to compliment sailor style users' strengths.
   mainType: Chestplate
   rarity: Uncommon
@@ -974,7 +1009,8 @@ Cl7:
 kUH:
   id: kUH
   name: Sailor Style Greaves
-  legend: A set of heavy metal greaves made for sailor style users, designed to compliment
+  legend:
+    A set of heavy metal greaves made for sailor style users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
@@ -1006,7 +1042,8 @@ kUH:
 u2X:
   id: u2X
   name: Basic Combat Leggings
-  legend: A set of lightweight armored leggings made for basic combat users, designed
+  legend:
+    A set of lightweight armored leggings made for basic combat users, designed
     to compliment the style's strengths.
   mainType: Pants
   rarity: Uncommon
@@ -1033,7 +1070,8 @@ u2X:
 dbo:
   id: dbo
   name: Basic Combat Balteus
-  legend: A balteus made for basic combat users, designed to compliment the style's
+  legend:
+    A balteus made for basic combat users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -1065,12 +1103,13 @@ dbo:
 Bwe:
   id: Bwe
   name: Boxing Leggings
-  legend: A set of lightweight armored leggings made for boxing users, designed to
+  legend:
+    A set of lightweight armored leggings made for boxing users, designed to
     compliment the style's strengths. It can be enchanted by an Alchemist in order
     to increase its stats.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -1093,11 +1132,12 @@ Bwe:
 aBK:
   id: aBK
   name: Boxing Robes
-  legend: A fine robe made for boxing users, designed to compliment the style's strengths.
+  legend:
+    A fine robe made for boxing users, designed to compliment the style's strengths.
     It can be enchanted by an Alchemist in order to increase its stats.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -1123,11 +1163,12 @@ aBK:
 ty7:
   id: ty7
   name: Earth Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct earth magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct earth magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -1150,11 +1191,12 @@ ty7:
 Q9J:
   id: Q9J
   name: Fire Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct fire magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct fire magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -1177,11 +1219,12 @@ Q9J:
 b4x:
   id: b4x
   name: Lightning Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct lightning magic, usually worn by
+  legend:
+    An arcanium-fabric hat made to conduct lightning magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -1206,11 +1249,12 @@ b4x:
 AeT:
   id: AeT
   name: Magma Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct magma magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct magma magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -1235,11 +1279,12 @@ AeT:
 hut:
   id: hut
   name: Shadow Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct shadow magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct shadow magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -1264,11 +1309,12 @@ hut:
 lg8:
   id: lg8
   name: Earth Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct earth magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct earth magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1294,11 +1340,12 @@ lg8:
 wdv:
   id: wdv
   name: Glass Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct glass magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct glass magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1323,11 +1370,12 @@ wdv:
 2Uw:
   id: 2Uw
   name: Ice Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct ice magic, usually worn by
+  legend:
+    A set of arcanium-fabric robes made to conduct ice magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1352,11 +1400,12 @@ wdv:
 6ev:
   id: 6ev
   name: Light Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct light magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct light magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1379,11 +1428,12 @@ wdv:
 LIe:
   id: LIe
   name: Poison Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct poison magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct poison magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1406,7 +1456,8 @@ LIe:
 YJm:
   id: YJm
   name: Water Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct water magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct water magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
@@ -1436,11 +1487,12 @@ YJm:
 jbZ:
   id: jbZ
   name: Wind Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct wind magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct wind magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1463,11 +1515,12 @@ jbZ:
 nHn:
   id: nHn
   name: Ash Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct ash magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct ash magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1490,11 +1543,12 @@ nHn:
 gSD:
   id: gSD
   name: Explosion Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct explosion magic,
+  legend:
+    The lower part of arcanium-fabric robes made to conduct explosion magic,
     usually worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1521,11 +1575,12 @@ gSD:
 MUP:
   id: MUP
   name: Poison Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct poison magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct poison magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1548,11 +1603,12 @@ MUP:
 c6f:
   id: c6f
   name: Sand Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct sand magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct sand magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -1575,7 +1631,8 @@ c6f:
 AAH:
   id: AAH
   name: Ravenna Fallen King Armor [Calvus]
-  legend: A set of bronze armor with an ornate scarlet trim. This armor was specifically
+  legend:
+    A set of bronze armor with an ornate scarlet trim. This armor was specifically
     made for King Calvus IV.
   mainType: Chestplate
   rarity: Rare
@@ -1596,7 +1653,8 @@ AAH:
 AAY:
   id: AAY
   name: Sunken Iron Helmet
-  legend: A helmet made out of arcanium metal that has spent hundreds of years underwater,
+  legend:
+    A helmet made out of arcanium metal that has spent hundreds of years underwater,
     causing its properties to change. It seems to constantly produce water.
   mainType: Accessory
   rarity: Rare
@@ -1616,7 +1674,8 @@ AAY:
 AAg:
   id: AAg
   name: Power Amulet [Fair]
-  legend: A rugged, orange zircon gemstone embedded in a bronze chain necklace. The
+  legend:
+    A rugged, orange zircon gemstone embedded in a bronze chain necklace. The
     gemstone seems to give a small amount of power.
   mainType: Accessory
   rarity: Uncommon
@@ -1643,7 +1702,8 @@ AAg:
 AAi:
   id: AAi
   name: Agility Amulet [Fair]
-  legend: A rugged, amazonite gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, amazonite gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of agility.
   mainType: Accessory
   rarity: Uncommon
@@ -1670,7 +1730,8 @@ AAi:
 AAm:
   id: AAm
   name: Dark Bronze Boots
-  legend: A set of finely crafted black iron boots with trims of bronze, obtained
+  legend:
+    A set of finely crafted black iron boots with trims of bronze, obtained
     from a Dark Sealed Chest.
   mainType: Pants
   rarity: Uncommon
@@ -1690,7 +1751,8 @@ AAm:
 AAn:
   id: AAn
   name: Dark Bronze Armor
-  legend: A set of finely crafted black iron armor with trims of bronze, obtained
+  legend:
+    A set of finely crafted black iron armor with trims of bronze, obtained
     from a Dark Sealed Chest.
   mainType: Chestplate
   rarity: Uncommon
@@ -1710,7 +1772,8 @@ AAn:
 AAo:
   id: AAo
   name: Dark Bronze Helmet
-  legend: A finely crafted helmet made of black iron with trims of bronze, obtained
+  legend:
+    A finely crafted helmet made of black iron with trims of bronze, obtained
     from a Dark Sealed Chest.
   mainType: Accessory
   rarity: Uncommon
@@ -1730,7 +1793,8 @@ AAo:
 AAr:
   id: AAr
   name: Cernyx's Faulds
-  legend: Long faulds of green cloth worn around the waist. They were taken from Cernyx,
+  legend:
+    Long faulds of green cloth worn around the waist. They were taken from Cernyx,
     the Archon of the Greenwish Cult, after he was defeated in combat.
   mainType: Accessory
   rarity: Rare
@@ -1750,7 +1814,8 @@ AAr:
 AAs:
   id: AAs
   name: Archon Quartz Amulet [Cernyx]
-  legend: A large green quartz gemstone embedded in a polished silver socket, designed
+  legend:
+    A large green quartz gemstone embedded in a polished silver socket, designed
     to increase the wearer's defense and attack speed. It was taken from Cernyx, the
     Archon of the Greenwish Cult, after he was defeated in combat.
   mainType: Accessory
@@ -1771,7 +1836,8 @@ AAs:
 Nks:
   id: Nks
   name: Ravenna Noble Boots [Elius]
-  legend: A pair of well-made leather boots with a gold trim. These boots were specifically
+  legend:
+    A pair of well-made leather boots with a gold trim. These boots were specifically
     made to be worn by the nobles of the Ravenna Realm, and were stolen from Lord
     Elius after he was defeated in the sky of the Bronze Sea.
   mainType: Pants
@@ -1920,7 +1986,8 @@ hrn:
 xsy:
   id: xsy
   name: Large Jacket/Large Cloak
-  legend: A large jacket usually worn as a cape. / A large cloak made out of fur.
+  legend:
+    A large jacket usually worn as a cape. / A large cloak made out of fur.
     usually worn by adventures.
   mainType: Accessory
   rarity: Common
@@ -2009,7 +2076,8 @@ PTf:
 lU4:
   id: lU4
   name: Defense Amulet [Poor]
-  legend: A rugged, grey agate gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, grey agate gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of defense.
   mainType: Accessory
   rarity: Common
@@ -2044,11 +2112,12 @@ lU4:
 nYd:
   id: nYd
   name: Glass Arcsphere
-  legend: An arcanium-glass dome capable of conducting glass magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting glass magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -2073,11 +2142,12 @@ nYd:
 0cI:
   id: 0cI
   name: Shadow Arcsphere
-  legend: An arcanium-glass dome capable of conducting shadow magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting shadow magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -2100,7 +2170,8 @@ nYd:
 ubQ:
   id: ubQ
   name: Captain Maria's Cloak
-  legend: A Black cloak lined with gold and trims of red and purple, representing
+  legend:
+    A Black cloak lined with gold and trims of red and purple, representing
     the colors of Pirate Lord Duke De'Roy. It was taken by Captain Maria after she
     was defeated in the Nimbus Sea.
   mainType: Chestplate
@@ -2121,11 +2192,12 @@ ubQ:
 7lc:
   id: 7lc
   name: Cannon Fist Armor
-  legend: A set of lightweight armor made for cannon fist users, designed to compliment
+  legend:
+    A set of lightweight armor made for cannon fist users, designed to compliment
     the style's strengths.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -2148,7 +2220,8 @@ ubQ:
 DMh:
   id: DMh
   name: Sailor Style Boots
-  legend: A set of lightweight boots made for sailor style users, designed to compliment
+  legend:
+    A set of lightweight boots made for sailor style users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
@@ -2179,7 +2252,8 @@ DMh:
 KOh:
   id: KOh
   name: Basic Combat Robes
-  legend: A fine robe made for basic combat users, designed to compliment the style's
+  legend:
+    A fine robe made for basic combat users, designed to compliment the style's
     strengths.
   mainType: Chestplate
   rarity: Uncommon
@@ -2208,7 +2282,8 @@ KOh:
 c84:
   id: c84
   name: Basic Combat Boots
-  legend: A set of lightweight boots made for basic combat users, designed to compliment
+  legend:
+    A set of lightweight boots made for basic combat users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
@@ -2239,7 +2314,8 @@ c84:
 Q6n:
   id: Q6n
   name: Basic Combat Belt
-  legend: A thick belt made for basic combat users, designed to compliment the style's
+  legend:
+    A thick belt made for basic combat users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -2266,7 +2342,8 @@ Q6n:
 9Ri:
   id: 9Ri
   name: Basic Combat Shoulderpads
-  legend: A set of lightweight shoulderpads made for basic combat users, designed
+  legend:
+    A set of lightweight shoulderpads made for basic combat users, designed
     to compliment the style's strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -2293,11 +2370,12 @@ Q6n:
 Sep:
   id: Sep
   name: Boxing Headband
-  legend: A long headband made for boxing users, designed to compliment the style's
+  legend:
+    A long headband made for boxing users, designed to compliment the style's
     strengths. It can be enchanted by an Alchemist in order to increase its stats.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   statType: Strength
@@ -2323,11 +2401,12 @@ Sep:
 A3V:
   id: A3V
   name: Boxing Belt
-  legend: A thick belt made for boxing users, designed to compliment the style's strengths.
+  legend:
+    A thick belt made for boxing users, designed to compliment the style's strengths.
     It can be enchanted by an Alchemist in order to increase its stats.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Waist
   statType: Strength
@@ -2350,12 +2429,13 @@ A3V:
 zIw:
   id: zIw
   name: Boxing Greaves
-  legend: A set of heavy metal greaves made for boxing users, designed to compliment
+  legend:
+    A set of heavy metal greaves made for boxing users, designed to compliment
     the style's strengths. It can be enchanted by an Alchemist in order to increase
     its stats.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -2382,12 +2462,13 @@ zIw:
 iCb:
   id: iCb
   name: Boxing Chestplate
-  legend: A heavy metal chestplate with exposed arms for freedom of movement, made
+  legend:
+    A heavy metal chestplate with exposed arms for freedom of movement, made
     to compliment boxing user's strengths. It can be enchanted by an Alchemist in
     order to increase its stats.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -2414,11 +2495,12 @@ iCb:
 H3c:
   id: H3c
   name: Glass Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct glass magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct glass magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -2443,11 +2525,12 @@ H3c:
 Xje:
   id: Xje
   name: Wood Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct wood magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct wood magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -2470,11 +2553,12 @@ Xje:
 onQ:
   id: onQ
   name: Metal Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct metal magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct metal magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2497,11 +2581,12 @@ onQ:
 zid:
   id: zid
   name: Snow Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct snow magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct snow magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2529,11 +2614,12 @@ zid:
 JyP:
   id: JyP
   name: Acid Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct acid magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct acid magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2556,11 +2642,12 @@ JyP:
 kAe:
   id: kAe
   name: Earth Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct earth magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct earth magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2583,11 +2670,12 @@ kAe:
 XTQ:
   id: XTQ
   name: Glass Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct glass magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct glass magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2612,11 +2700,12 @@ XTQ:
 9ap:
   id: 9ap
   name: Plasma Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct plasma magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct plasma magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2639,11 +2728,12 @@ XTQ:
 5eh:
   id: 5eh
   name: Wood Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct wood magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct wood magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2666,11 +2756,12 @@ XTQ:
 vZg:
   id: vZg
   name: Crystal Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct crystal magic, usually worn by
+  legend:
+    An arcanium metal helmet made to conduct crystal magic, usually worn by
     mages for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -2694,11 +2785,12 @@ vZg:
 XAZ:
   id: XAZ
   name: Ice Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct ice magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct ice magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -2722,11 +2814,12 @@ XAZ:
 ZkZ:
   id: ZkZ
   name: Magma Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct magma magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct magma magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -2750,11 +2843,12 @@ ZkZ:
 ykz:
   id: ykz
   name: Wood Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct wood magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct wood magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -2778,11 +2872,12 @@ ykz:
 3hv:
   id: 3hv
   name: Ash Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct ash magic, usually worn by
+  legend:
+    A set of plated arcanium armor made to conduct ash magic, usually worn by
     mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2806,11 +2901,12 @@ ykz:
 lTs:
   id: lTs
   name: Earth Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct earth magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct earth magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2834,11 +2930,12 @@ lTs:
 hSi:
   id: hSi
   name: Plasma Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct plasma magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct plasma magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2862,11 +2959,12 @@ hSi:
 hep:
   id: hep
   name: Poison Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct poison magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct poison magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2892,11 +2990,12 @@ hep:
 Z1U:
   id: Z1U
   name: Sand Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct sand magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct sand magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2920,11 +3019,12 @@ Z1U:
 TxH:
   id: TxH
   name: Acid Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct acid magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct acid magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2948,11 +3048,12 @@ TxH:
 HSV:
   id: HSV
   name: Explosion Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct explosion magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct explosion magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -2980,11 +3081,12 @@ HSV:
 pS3:
   id: pS3
   name: Water Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct water magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct water magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3009,11 +3111,12 @@ pS3:
 kYV:
   id: kYV
   name: Wind Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct wind magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct wind magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3039,11 +3142,12 @@ kYV:
 hyu:
   id: hyu
   name: Acid Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct acid magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct acid magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -3067,11 +3171,12 @@ hyu:
 x3d:
   id: x3d
   name: Ash Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct ash magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct ash magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -3095,11 +3200,12 @@ x3d:
 Pbx:
   id: Pbx
   name: Earth Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct earth magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct earth magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -3125,11 +3231,12 @@ Pbx:
 sTC:
   id: sTC
   name: Fire Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct fire magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct fire magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -3153,11 +3260,12 @@ sTC:
 OK6:
   id: OK6
   name: Light Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct light magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct light magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -3183,11 +3291,12 @@ OK6:
 RM0:
   id: RM0
   name: Snow Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct snow magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct snow magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -3211,11 +3320,12 @@ RM0:
 ndB:
   id: ndB
   name: Water Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct water magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct water magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -3239,11 +3349,12 @@ ndB:
 upT:
   id: upT
   name: Acid Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct acid magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct acid magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3271,11 +3382,12 @@ upT:
 ZYq:
   id: ZYq
   name: Lightning Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct lightning magic, usually
+  legend:
+    A set of plated arcanium armor made to conduct lightning magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3299,11 +3411,12 @@ ZYq:
 NTB:
   id: NTB
   name: Snow Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct snow magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct snow magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3327,11 +3440,12 @@ NTB:
 US7:
   id: US7
   name: Earth Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct earth magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct earth magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3357,11 +3471,12 @@ US7:
 MJN:
   id: MJN
   name: Fire Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct fire magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct fire magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3387,11 +3502,12 @@ MJN:
 g0A:
   id: g0A
   name: Glass Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct glass magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct glass magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3417,11 +3533,12 @@ g0A:
 gTt:
   id: gTt
   name: Light Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct light magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct light magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3447,11 +3564,12 @@ gTt:
 Nzz:
   id: Nzz
   name: Metal Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct metal magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct metal magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3477,11 +3595,12 @@ Nzz:
 Jb7:
   id: Jb7
   name: Sand Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct sand magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct sand magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3505,11 +3624,12 @@ Jb7:
 WAX:
   id: WAX
   name: Snow Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct snow magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct snow magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3533,11 +3653,12 @@ WAX:
 0ok:
   id: 0ok
   name: Acid Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct acid magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct acid magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -3561,11 +3682,12 @@ WAX:
 C4q:
   id: C4q
   name: Acid Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct acid magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct acid magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3589,11 +3711,12 @@ C4q:
 6MS:
   id: 6MS
   name: Ash Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct ash magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct ash magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -3617,11 +3740,12 @@ C4q:
 VvT:
   id: VvT
   name: Crystal Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct crystal magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct crystal magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -3645,11 +3769,12 @@ VvT:
 art:
   id: art
   name: Light Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct light magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct light magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3677,11 +3802,12 @@ art:
 gTL:
   id: gTL
   name: Magma Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct magma magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct magma magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3705,11 +3831,12 @@ gTL:
 pYW:
   id: pYW
   name: Poison Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct poison magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct poison magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3733,7 +3860,8 @@ pYW:
 Qyc:
   id: Qyc
   name: Water Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct water magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct water magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
@@ -3761,11 +3889,12 @@ Qyc:
 VBo:
   id: VBo
   name: Metal Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct metal magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct metal magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3789,11 +3918,12 @@ VBo:
 rsl:
   id: rsl
   name: Plasma Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct plasma magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct plasma magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3819,7 +3949,8 @@ rsl:
 9ij:
   id: 9ij
   name: Reinforced Helmet
-  legend: A basic helmet layered in thick dyed leather and other fabrics. This helmet
+  legend:
+    A basic helmet layered in thick dyed leather and other fabrics. This helmet
     is often worn by hunters and explorers.
   mainType: Accessory
   rarity: Uncommon
@@ -3846,12 +3977,13 @@ rsl:
 ceB:
   id: ceB
   name: Oracle Helmet
-  legend: An old helmet that was enchanted to store spirit energy, something only
+  legend:
+    An old helmet that was enchanted to store spirit energy, something only
     a very skilled enchanter and oracle can do. Oracles can store or call upon spirit
     energy from the robes to boost the power of their spirit weapons.
   mainType: Accessory
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     defense: 0.45
@@ -3875,12 +4007,13 @@ ceB:
 8Tw:
   id: 8Tw
   name: Oracle Leggings
-  legend: An old set of armored leggings that were enchanted to store spirit energy,
+  legend:
+    An old set of armored leggings that were enchanted to store spirit energy,
     something only a very skilled enchanter and oracle can do. Oracles can store or
     call upon spirit energy from the robes to boost the power of their spirit weapons.
   mainType: Pants
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     defense: 0.45
@@ -3904,11 +4037,12 @@ ceB:
 EE4:
   id: EE4
   name: Magma Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct magma magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct magma magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3932,11 +4066,12 @@ EE4:
 OSd:
   id: OSd
   name: Poison Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct poison magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct poison magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3960,11 +4095,12 @@ OSd:
 uNB:
   id: uNB
   name: Shadow Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct shadow magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct shadow magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -3990,11 +4126,12 @@ uNB:
 So0:
   id: So0
   name: Water Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct water magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct water magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4018,11 +4155,12 @@ So0:
 K4u:
   id: K4u
   name: Earth Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct earth magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct earth magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -4048,11 +4186,12 @@ K4u:
 EwF:
   id: EwF
   name: Explosion Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct explosion magic, usually worn by
+  legend:
+    An arcanium-fabric hat made to conduct explosion magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -4080,11 +4219,12 @@ EwF:
 GeS:
   id: GeS
   name: Explosion Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct explosion magic, usually
+  legend:
+    A set of arcanium-fabric pants made to conduct explosion magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4112,11 +4252,12 @@ GeS:
 D9a:
   id: D9a
   name: Lightning Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct lightning magic, usually worn by
+  legend:
+    An arcanium-fabric hat made to conduct lightning magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -4140,11 +4281,12 @@ D9a:
 1kL:
   id: 1kL
   name: Metal Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct metal magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct metal magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -4170,11 +4312,12 @@ D9a:
 6A2:
   id: 6A2
   name: Metal Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct metal magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct metal magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4200,11 +4343,12 @@ D9a:
 xBa:
   id: xBa
   name: Wind Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct wind magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct wind magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -4231,11 +4375,12 @@ xBa:
 5ab:
   id: 5ab
   name: Wood Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct wood magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct wood magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -4259,11 +4404,12 @@ xBa:
 2NT:
   id: 2NT
   name: Acid Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct acid magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct acid magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4289,11 +4435,12 @@ xBa:
 k2i:
   id: k2i
   name: Earth Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct earth magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct earth magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4317,11 +4464,12 @@ k2i:
 Yji:
   id: Yji
   name: Explosion Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct explosion magic, usually worn by
+  legend:
+    An arcanium-fabric coat made to conduct explosion magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4349,11 +4497,12 @@ Yji:
 3zV:
   id: 3zV
   name: Fire Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct fire magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct fire magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4379,11 +4528,12 @@ Yji:
 86O:
   id: 86O
   name: Glass Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct glass magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct glass magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4409,11 +4559,12 @@ Yji:
 fzd:
   id: fzd
   name: Ice Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct ice magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct ice magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4437,11 +4588,12 @@ fzd:
 trv:
   id: trv
   name: Light Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct light magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct light magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4467,11 +4619,12 @@ trv:
 BLt:
   id: BLt
   name: Magma Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct magma magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct magma magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4495,11 +4648,12 @@ BLt:
 bLo:
   id: bLo
   name: Poison Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct poison magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct poison magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4525,11 +4679,12 @@ bLo:
 kxs:
   id: kxs
   name: Shadow Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct shadow magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct shadow magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -4579,7 +4734,8 @@ uSe:
 1AL:
   id: 1AL
   name: Resistance Amulet [Fair]
-  legend: Five azurite gemstone embedded in a bronze chain necklace. The gemstones
+  legend:
+    Five azurite gemstone embedded in a bronze chain necklace. The gemstones
     seem to give a decent amount of resistance.
   mainType: Accessory
   rarity: Uncommon
@@ -4606,7 +4762,8 @@ uSe:
 2aQ:
   id: 2aQ
   name: Regeneration Amulet [Fair]
-  legend: Five aventurine gemstone embedded in a bronze chain necklace. The gemstones
+  legend:
+    Five aventurine gemstone embedded in a bronze chain necklace. The gemstones
     seem to give a decent amount of regeneration.
   mainType: Accessory
   rarity: Uncommon
@@ -4633,12 +4790,13 @@ uSe:
 iHM:
   id: iHM
   name: Oracle Armor
-  legend: An old set of heavy armor that was enchanted to store spirit energy, something
+  legend:
+    An old set of heavy armor that was enchanted to store spirit energy, something
     only a very skilled enchanter and oracle can do. Oracles can store or call upon
     spirit energy from the robes to boost the power of their spirit weapons.
   mainType: Chestplate
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     defense: 0.6
@@ -4662,12 +4820,13 @@ iHM:
 GHh:
   id: GHh
   name: Oracle Robes
-  legend: A set of old robes that were enchanted to store spirit energy, something
+  legend:
+    A set of old robes that were enchanted to store spirit energy, something
     only a very skilled enchanter and oracle can do. Oracles can store or call upon
     spirit energy from the robes to boost the power of their spirit weapons.
   mainType: Chestplate
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.5
@@ -4721,7 +4880,8 @@ AAC:
 AAI:
   id: AAI
   name: Ravenna Fallen King Boots [Calvus]
-  legend: A pair of dark red metal boots trimmed in bronze. They were specifically
+  legend:
+    A pair of dark red metal boots trimmed in bronze. They were specifically
     made for King Calvus IV.
   mainType: Pants
   rarity: Rare
@@ -4742,7 +4902,8 @@ AAI:
 AAM:
   id: AAM
   name: Lion of Ravenna Helmet [Argos]
-  legend: A heavy bronze helmet specifically made for General Argos, the Lion of Old
+  legend:
+    A heavy bronze helmet specifically made for General Argos, the Lion of Old
     Ravenna, and was stolen from him after he was killed in the dungeons of Fort Talos
     in the Bronze Sea.
   mainType: Accessory
@@ -4763,7 +4924,8 @@ AAM:
 AAP:
   id: AAP
   name: Theurgist Pants
-  legend: The lower part of a robe once worn by a powerful mage, which seems to provide
+  legend:
+    The lower part of a robe once worn by a powerful mage, which seems to provide
     some kind of divine protection when worn. It seems to be designed to fit three
     socketed jewels instead of two.
   mainType: Pants
@@ -4784,7 +4946,8 @@ AAP:
 AAT:
   id: AAT
   name: Sunken Warrior Leggings
-  legend: A set of green and gold leggings made out of arcanium metal that have spent
+  legend:
+    A set of green and gold leggings made out of arcanium metal that have spent
     hundreds of years underwater, causing their properties to change. They seem to
     constantly produce water.
   mainType: Pants
@@ -4805,7 +4968,8 @@ AAT:
 AAV:
   id: AAV
   name: Sunken Warrior Helmet
-  legend: A green and gold helmet made out of arcanium metal that has spent hundreds
+  legend:
+    A green and gold helmet made out of arcanium metal that has spent hundreds
     of years underwater, causing it's properties to change. It seems to constantly
     produce water.
   mainType: Accessory
@@ -4826,7 +4990,8 @@ AAV:
 AAb:
   id: AAb
   name: Aereus Pants
-  legend: A set of black robe bottoms line with bronze, obtained from a Dark Sealed
+  legend:
+    A set of black robe bottoms line with bronze, obtained from a Dark Sealed
     Chest.
   mainType: Pants
   rarity: Uncommon
@@ -4846,7 +5011,8 @@ AAb:
 AAf:
   id: AAf
   name: Vatrachos Cape
-  legend: A brightly colored cape imbued with some strange kind of power, it seems
+  legend:
+    A brightly colored cape imbued with some strange kind of power, it seems
     to grant the wearer great power... at a price.
   mainType: Accessory
   rarity: Rare
@@ -4867,7 +5033,8 @@ AAf:
 AAj:
   id: AAj
   name: Intensity Amulet [Fair]
-  legend: A rugged, goshenite gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, goshenite gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of Intensity.
   mainType: Accessory
   rarity: Uncommon
@@ -4937,7 +5104,8 @@ q9Q:
 Rvx:
   id: Rvx
   name: Siren Pants
-  legend: A white robe usually worn by Sirens, dangerous mythical creatures found
+  legend:
+    A white robe usually worn by Sirens, dangerous mythical creatures found
     in the Dark Sea which appear as beautiful women singing, only to lure in sailors
     and kill them with their wings and fangs.
   mainType: Pants
@@ -4958,7 +5126,8 @@ Rvx:
 Uoo:
   id: Uoo
   name: Titanium Leggings
-  legend: A bulky pair of boots reinforced with titanium metal to provide a decent
+  legend:
+    A bulky pair of boots reinforced with titanium metal to provide a decent
     amount of protection.
   mainType: Pants
   rarity: Uncommon
@@ -5038,7 +5207,8 @@ Jpy:
 7dO:
   id: 7dO
   name: Defense Amulet [Dull]
-  legend: A rugged, grey agate gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, grey agate gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of defense.
   mainType: Accessory
   rarity: Common
@@ -5075,7 +5245,8 @@ Jpy:
 T3B:
   id: T3B
   name: Agility Amulet [Dull]
-  legend: A rugged, amazonite gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, amazonite gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of agility.
   mainType: Accessory
   rarity: Common
@@ -5112,7 +5283,8 @@ T3B:
 9py:
   id: 9py
   name: Agility Amulet [Poor]
-  legend: A rugged, amazonite gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, amazonite gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of agility.
   mainType: Accessory
   rarity: Common
@@ -5147,7 +5319,8 @@ T3B:
 d7S:
   id: d7S
   name: Attack Speed Amulet [Dull]
-  legend: A rugged, emerald gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, emerald gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of Attack speed.
   mainType: Accessory
   rarity: Common
@@ -5184,11 +5357,12 @@ d7S:
 McN:
   id: McN
   name: Crystal Arcsphere
-  legend: An arcanium-glass dome capable of conducting crystal magic, meant to be
+  legend:
+    An arcanium-glass dome capable of conducting crystal magic, meant to be
     worn on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -5211,11 +5385,12 @@ McN:
 st9:
   id: st9
   name: Fire Arcsphere
-  legend: An arcanium-glass dome capable of conducting fire magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting fire magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -5238,11 +5413,12 @@ st9:
 RMO:
   id: RMO
   name: Magma Arcsphere
-  legend: An arcanium-glass dome capable of conducting magma magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting magma magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -5265,11 +5441,12 @@ RMO:
 v0q:
   id: v0q
   name: Metal Arcsphere
-  legend: An arcanium-glass dome capable of conducting metal magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting metal magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -5292,11 +5469,12 @@ v0q:
 zKK:
   id: zKK
   name: Plasma Arcsphere
-  legend: An arcanium-glass dome capable of conducting plasma magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting plasma magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -5319,7 +5497,8 @@ zKK:
 YEg:
   id: YEg
   name: Captain Maria's Cape
-  legend: A faded red cape, representing the colors of Pirate Lord Duke De'Roy. It
+  legend:
+    A faded red cape, representing the colors of Pirate Lord Duke De'Roy. It
     was taken by Captain Maria after she was defeated in the Nimbus Sea.
   mainType: Accessory
   rarity: Rare
@@ -5339,8 +5518,9 @@ YEg:
 h0h:
   id: h0h
   name: Samurai Armor
-  legend: 'A set of lightweight armor worn by samurai from the Ryujin Dynasty, a kingdom
-    in the southern War Seas. '
+  legend:
+    "A set of lightweight armor worn by samurai from the Ryujin Dynasty, a kingdom
+    in the southern War Seas. "
   mainType: Chestplate
   rarity: Common
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Armor/Samurai/samuraiArmor.jpg
@@ -5367,7 +5547,8 @@ h0h:
 OAM:
   id: OAM
   name: Juggernaut Boots
-  legend: A pair of heavy metal boots. It can be enchanted by an Alchemist in order
+  legend:
+    A pair of heavy metal boots. It can be enchanted by an Alchemist in order
     to increase it's stats.
   mainType: Pants
   rarity: Common
@@ -5395,11 +5576,12 @@ OAM:
 Apd:
   id: Apd
   name: Cannon Fist Balteus
-  legend: A balteus made for cannon fist users, designed to compliment the style's
+  legend:
+    A balteus made for cannon fist users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Waist
   statType: Strength
@@ -5426,11 +5608,12 @@ Apd:
 T0v:
   id: T0v
   name: Cannon Fist Robes
-  legend: A fine robe made for cannon fist users, designed to compliment the style's
+  legend:
+    A fine robe made for cannon fist users, designed to compliment the style's
     strengths.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -5456,11 +5639,12 @@ T0v:
 EXS:
   id: EXS
   name: Cannon Fist Boots
-  legend: A set of lightweight boots made for cannon fist users, designed to compliment
+  legend:
+    A set of lightweight boots made for cannon fist users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -5486,11 +5670,12 @@ EXS:
 Squ:
   id: Squ
   name: Cannon Fist Chestplate
-  legend: A heavy metal chestplate with exposed arms for freedom of movement, made
+  legend:
+    A heavy metal chestplate with exposed arms for freedom of movement, made
     for cannon fist users, designed to compliment the style's strengths.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -5517,7 +5702,8 @@ Squ:
 stf:
   id: stf
   name: Sailor Style Belt
-  legend: A thick belt made for sailor style users, designed to compliment the style's
+  legend:
+    A thick belt made for sailor style users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -5544,7 +5730,8 @@ stf:
 S37:
   id: S37
   name: Sailor Style Headband
-  legend: A long headband made for sailor style users, designed to compliment the
+  legend:
+    A long headband made for sailor style users, designed to compliment the
     style's strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -5575,7 +5762,8 @@ S37:
 zMG:
   id: zMG
   name: Basic Combat Armor
-  legend: A set of lightweight armor made for basic combat users, designed to compliment
+  legend:
+    A set of lightweight armor made for basic combat users, designed to compliment
     the style's strengths.
   mainType: Chestplate
   rarity: Uncommon
@@ -5602,7 +5790,8 @@ zMG:
 h6d:
   id: h6d
   name: Basic Combat Handwraps
-  legend: A set of hand wrappings made for basic combat users, designed to compliment
+  legend:
+    A set of hand wrappings made for basic combat users, designed to compliment
     the style's strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -5633,7 +5822,8 @@ h6d:
 zKb:
   id: zKb
   name: Basic Combat Headband
-  legend: A long headband made for basic combat users, designed to compliment the
+  legend:
+    A long headband made for basic combat users, designed to compliment the
     style's strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -5664,12 +5854,13 @@ zKb:
 H2x:
   id: H2x
   name: Boxing Handwraps
-  legend: A set of hand wrappings made for boxing users, designed to compliment the
+  legend:
+    A set of hand wrappings made for boxing users, designed to compliment the
     style's strengths. It can be enchanted by an Alchemist in order to increase its
     stats.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arms
   statType: Strength
@@ -5695,12 +5886,13 @@ H2x:
 3Zm:
   id: 3Zm
   name: Boxing Shoulderpads
-  legend: A set of lightweight shoulderpads made for boxing users, designed to compliment
+  legend:
+    A set of lightweight shoulderpads made for boxing users, designed to compliment
     the style's strengths. It can be enchanted by an Alchemist in order to increase
     its stats.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Shoulder
   statType: Strength
@@ -5723,12 +5915,13 @@ H2x:
 nrQ:
   id: nrQ
   name: Boxing Boots
-  legend: A set of lightweight boots made for boxing users, designed to compliment
+  legend:
+    A set of lightweight boots made for boxing users, designed to compliment
     te style's strengths. It can enchanted by an Alchemist in order to increase its
     stats.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -5754,12 +5947,13 @@ nrQ:
 rIt:
   id: rIt
   name: Boxing Armor
-  legend: A set of lightweight armor made for boxing users, designed to compliment
+  legend:
+    A set of lightweight armor made for boxing users, designed to compliment
     the style's strengths. It can be enchanted by an Alchemist in order to increase
     its stats.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -5782,7 +5976,8 @@ rIt:
 CX3:
   id: CX3
   name: Ravenna Apostle Bracelets [Carina]
-  legend: Colorful metal bracelets that were specifically made to be worn by Lady
+  legend:
+    Colorful metal bracelets that were specifically made to be worn by Lady
     Carina, a noble of the Ravenna Realm. They were stolen from her after she was
     defeated in the Shining Plains of Ravenna.
   mainType: Accessory
@@ -5803,11 +5998,12 @@ CX3:
 jip:
   id: jip
   name: Crystal Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct crystal magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct crystal magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -5830,11 +6026,12 @@ jip:
 uqD:
   id: uqD
   name: Light Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct light magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct light magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -5861,7 +6058,8 @@ uqD:
 9le:
   id: 9le
   name: Water Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct water magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct water magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
@@ -5888,11 +6086,12 @@ uqD:
 H5l:
   id: H5l
   name: Acid Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct acid magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct acid magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -5921,11 +6120,12 @@ H5l:
 WcK:
   id: WcK
   name: Ash Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct ash magic, usually worn by
+  legend:
+    A set of arcanium-fabric robes made to conduct ash magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -5948,11 +6148,12 @@ WcK:
 xkA:
   id: xkA
   name: Shadow Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct shadow magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct shadow magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -5977,11 +6178,12 @@ xkA:
 A4e:
   id: A4e
   name: Crystal Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct crystal magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct crystal magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -6004,11 +6206,12 @@ A4e:
 MyT:
   id: MyT
   name: Ice Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct ice magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct ice magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -6046,7 +6249,8 @@ AAA:
 AAG:
   id: AAG
   name: The Lost Crown of Ravenna [Calvus]
-  legend: A crown made out of sun-forged bronze, a technique invented by the Samerians.
+  legend:
+    A crown made out of sun-forged bronze, a technique invented by the Samerians.
     It was specifically made for King Calvus IV, the Third King of Ravenna, and was
     stolen from him after he was killed in Ravenna Castello, at the heart of the Ravenna
     Realm in the Bronze Sea.
@@ -6069,7 +6273,8 @@ AAG:
 AAN:
   id: AAN
   name: Cape of Ravenna Loyalty [Argos]
-  legend: A cape made out of fine orange cloth, emblazoned with the symbol of the
+  legend:
+    A cape made out of fine orange cloth, emblazoned with the symbol of the
     Ravenna Realm. It was specifically made for General Argos, the Lion of Old Ravenna,
     and was stolen from him after he was killed in the dungeons of Fort Talos in the
     Bronze Sea.
@@ -6091,7 +6296,8 @@ AAN:
 AAO:
   id: AAO
   name: Bronze Chainmail Shirt [Argos]
-  legend: A chainmail shirt made out of bronze metal. It was specifically made for
+  legend:
+    A chainmail shirt made out of bronze metal. It was specifically made for
     General Argos, the Lion of Old Ravenna.
   mainType: Chestplate
   rarity: Rare
@@ -6111,7 +6317,8 @@ AAO:
 AAQ:
   id: AAQ
   name: Theurgist Robes
-  legend: A robe once worn by a powerful mage, which seems to provide some kind of
+  legend:
+    A robe once worn by a powerful mage, which seems to provide some kind of
     divine protection when worn. It seems to be designed to fit three socketed jewels
     instead of two.
   mainType: Chestplate
@@ -6132,7 +6339,8 @@ AAQ:
 AAU:
   id: AAU
   name: Sunken Warrior Armor
-  legend: A set of green and gold armor made out of arcanium metal that has spent
+  legend:
+    A set of green and gold armor made out of arcanium metal that has spent
     hundreds of years underwater, causing its properties to change. It seems to constantly
     produce water.
   mainType: Chestplate
@@ -6153,7 +6361,8 @@ AAU:
 AAX:
   id: AAX
   name: Sunken Iron Armor
-  legend: A set of armour made out of arcanium metal that has spent hundreds of years
+  legend:
+    A set of armour made out of arcanium metal that has spent hundreds of years
     underwater, causing its properties to change. It seems to constantly produce water.
   mainType: Chestplate
   rarity: Rare
@@ -6192,7 +6401,8 @@ AAZ:
 AAh:
   id: AAh
   name: Defense Amulet [Fair]
-  legend: A rugged, grey agate gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, grey agate gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of defense.
   mainType: Accessory
   rarity: Uncommon
@@ -6219,7 +6429,8 @@ AAh:
 AAk:
   id: AAk
   name: Attack Speed Amulet [Fair]
-  legend: A rugged, emerald gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, emerald gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of Attack speed.
   mainType: Accessory
   rarity: Uncommon
@@ -6246,7 +6457,8 @@ AAk:
 AAp:
   id: AAp
   name: Cernyx's Boots
-  legend: A pair of rough grey pants with sturdy black boots, made to be worn in the
+  legend:
+    A pair of rough grey pants with sturdy black boots, made to be worn in the
     muddy swamp of the Forest of Cernunno. They were taken from Cernyx, the Archon
     of the Greenwish Cult, after he was defeated in Combat.
   mainType: Pants
@@ -6267,7 +6479,8 @@ AAp:
 RN5:
   id: RN5
   name: Ravenna Apostle Gi [Carina]
-  legend: A finely sewn gi that was specifically made to be worn by Lady Carina, a
+  legend:
+    A finely sewn gi that was specifically made to be worn by Lady Carina, a
     noble of the Ravenna Realm. It was stolen from her after she was defeated in the
     Shining Plains of Ravenna.
   mainType: Chestplate
@@ -6288,7 +6501,8 @@ RN5:
 v2U:
   id: v2U
   name: Ravenna Apostle Faulds [Carina]
-  legend: Faulds of fine cloth to be worn around the wasit. They were specifically
+  legend:
+    Faulds of fine cloth to be worn around the wasit. They were specifically
     made to be worn by Lady Carina, a noble of the Ravenna Realm, and were stolen
     from her after she was defeated in the Shining Plains of Ravenna.
   mainType: Accessory
@@ -6309,7 +6523,8 @@ v2U:
 uPA:
   id: uPA
   name: Ravenna Apostle Pauldrons [Carina]
-  legend: Lightweight metal pauldrons that were specifically made to be worn by Lady
+  legend:
+    Lightweight metal pauldrons that were specifically made to be worn by Lady
     Carina, a noble of the Ravenna Realm, and were stolen from her after she was defeated
     in the Shining Plains of Ravenna.
   mainType: Accessory
@@ -6498,7 +6713,8 @@ wLR:
 aMW:
   id: aMW
   name: Power Amulet [Poor]
-  legend: A rugged, orange zircon gemstone embedded in a bronze chain necklace. The
+  legend:
+    A rugged, orange zircon gemstone embedded in a bronze chain necklace. The
     gemstone seems to give a small amount of power.
   mainType: Accessory
   rarity: Common
@@ -6533,7 +6749,8 @@ aMW:
 NgS:
   id: NgS
   name: Intensity Amulet [Dull]
-  legend: A rugged, goshenite gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, goshenite gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of Intensity.
   mainType: Accessory
   rarity: Common
@@ -6570,7 +6787,8 @@ NgS:
 3qt:
   id: 3qt
   name: Intensity Amulet [Poor]
-  legend: A rugged, goshenite gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, goshenite gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of Intensity.
   mainType: Accessory
   rarity: Common
@@ -6605,7 +6823,8 @@ NgS:
 nbu:
   id: nbu
   name: Attack Speed Amulet [Poor]
-  legend: A rugged, emerald gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, emerald gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of Attack speed.
   mainType: Accessory
   rarity: Common
@@ -6640,7 +6859,8 @@ nbu:
 kCA:
   id: kCA
   name: Attack Size Amulet [Dull]
-  legend: A rugged, peridot gemstone embedded in a bronze chain necklace. The gemstone
+  legend:
+    A rugged, peridot gemstone embedded in a bronze chain necklace. The gemstone
     seems to give a small amount of Attack size.
   mainType: Accessory
   rarity: Common
@@ -6677,11 +6897,12 @@ kCA:
 IvE:
   id: IvE
   name: Acid Arcsphere
-  legend: An arcanium-glass dome capable of conducting acid magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting acid magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -6704,11 +6925,12 @@ IvE:
 Fx8:
   id: Fx8
   name: Ash Arcsphere
-  legend: An arcanium-glass dome capable of conducting ash magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting ash magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -6731,11 +6953,12 @@ Fx8:
 ecu:
   id: ecu
   name: Earth Arcsphere
-  legend: An arcanium-glass dome capable of conducting earth magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting earth magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -6758,11 +6981,12 @@ ecu:
 qzx:
   id: qzx
   name: Ice Arcsphere
-  legend: An arcanium-glass dome capable of conducting ice magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting ice magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -6785,11 +7009,12 @@ qzx:
 Gd9:
   id: Gd9
   name: Light Arcsphere
-  legend: An arcanium-glass dome capable of conducting light magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting light magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -6816,11 +7041,12 @@ Gd9:
 hxE:
   id: hxE
   name: Sand Arcsphere
-  legend: An arcanium-glass dome capable of conducting sand magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting sand magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -6843,11 +7069,12 @@ hxE:
 G7X:
   id: G7X
   name: Snow Arcsphere
-  legend: An arcanium-glass dome capable of conducting snow magic, meant to be worn
+  legend:
+    An arcanium-glass dome capable of conducting snow magic, meant to be worn
     on the head.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   gemNo: 2
@@ -6872,7 +7099,8 @@ G7X:
 XmZ:
   id: XmZ
   name: Captain Maria's Hat
-  legend: A pirate hat adorned with a gold trim and a red feather representing the
+  legend:
+    A pirate hat adorned with a gold trim and a red feather representing the
     colors of Pirate Lord Duke De'Roy. It was taken after she was defeated in the
     Nimbus Sea.
   mainType: Accessory
@@ -6893,11 +7121,12 @@ XmZ:
 EHw:
   id: EHw
   name: Cannon Fist Belt
-  legend: A thick belt made for cannon fist users, designed to compliment the style's
+  legend:
+    A thick belt made for cannon fist users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Waist
   statType: Strength
@@ -6920,11 +7149,12 @@ EHw:
 KPG:
   id: KPG
   name: Cannon Fist Handwraps
-  legend: A set of handwraps made for cannon fist users, designed to compliment the
+  legend:
+    A set of handwraps made for cannon fist users, designed to compliment the
     style's strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Waist
   statType: Strength
@@ -6950,11 +7180,12 @@ KPG:
 ju6:
   id: ju6
   name: Cannon Fist Shoulderpads
-  legend: A set of lightweight shoulderpads made for cannon fist users, designed to
+  legend:
+    A set of lightweight shoulderpads made for cannon fist users, designed to
     compliment the style's strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Shoulder
   statType: Strength
@@ -6977,7 +7208,8 @@ ju6:
 HDC:
   id: HDC
   name: Sailor Style Leggings
-  legend: A set of lightweight armored leggings made for sailor style users, designed
+  legend:
+    A set of lightweight armored leggings made for sailor style users, designed
     to compliment the style's strengths.
   mainType: Pants
   rarity: Uncommon
@@ -7004,7 +7236,8 @@ HDC:
 MDz:
   id: MDz
   name: Sailor Style Shoulderpads
-  legend: A set of lightweight shoulderpads made for sailor style users, designed
+  legend:
+    A set of lightweight shoulderpads made for sailor style users, designed
     to compliment the style's strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -7031,7 +7264,8 @@ MDz:
 L7s:
   id: L7s
   name: Sailor Style Robes
-  legend: A fine robe made for sailor style users, designed to compliment the style's
+  legend:
+    A fine robe made for sailor style users, designed to compliment the style's
     strengths.
   mainType: Chestplate
   rarity: Uncommon
@@ -7060,7 +7294,8 @@ L7s:
 7Iv:
   id: 7Iv
   name: Sailor Style Balteus
-  legend: A balteus made for sailor style users, designed to compliment the style's
+  legend:
+    A balteus made for sailor style users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -7092,7 +7327,8 @@ L7s:
 QDL:
   id: QDL
   name: Basic Combat Chestplate
-  legend: A set of heavy metal chestplate with exposed arms for freedom of movement,
+  legend:
+    A set of heavy metal chestplate with exposed arms for freedom of movement,
     made for basic combat users, made to compliment the style's strengths.
   mainType: Chestplate
   rarity: Uncommon
@@ -7122,7 +7358,8 @@ QDL:
 a3e:
   id: a3e
   name: Basic Combat Greaves
-  legend: A set of heavy metal greaves made for basic combat users, designed to compliment
+  legend:
+    A set of heavy metal greaves made for basic combat users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
@@ -7154,11 +7391,12 @@ a3e:
 I3T:
   id: I3T
   name: Acid Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct acid magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct acid magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7181,11 +7419,12 @@ I3T:
 sFA:
   id: sFA
   name: Ash Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct ash magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct ash magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7208,11 +7447,12 @@ sFA:
 B99:
   id: B99
   name: Explosion Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct explosion magic, usually worn by
+  legend:
+    An arcanium-fabric hat made to conduct explosion magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7239,11 +7479,12 @@ B99:
 q8I:
   id: q8I
   name: Ice Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct ice magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct ice magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7266,11 +7507,12 @@ q8I:
 GPh:
   id: GPh
   name: Metal Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct metal magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct metal magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7295,11 +7537,12 @@ GPh:
 Nss:
   id: Nss
   name: Plasma Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct plasma magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct plasma magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7322,11 +7565,12 @@ Nss:
 BUK:
   id: BUK
   name: Poison Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct poison magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct poison magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7349,11 +7593,12 @@ BUK:
 9Wi:
   id: 9Wi
   name: Sand Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct sand magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct sand magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7376,11 +7621,12 @@ BUK:
 5SF:
   id: 5SF
   name: Snow Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct snow magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct snow magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7403,11 +7649,12 @@ BUK:
 Zqc:
   id: Zqc
   name: Wind Arcmancer Hat
-  legend: An arcanium-fabric hat made to conduct wind magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct wind magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7433,11 +7680,12 @@ Zqc:
 ejh:
   id: ejh
   name: Crystal Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct crystal magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct crystal magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -7464,11 +7712,12 @@ ejh:
 ltw:
   id: ltw
   name: Explosion Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct explosion magic, usually
+  legend:
+    A set of arcanium-fabric robes made to conduct explosion magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -7495,11 +7744,12 @@ ltw:
 9ii:
   id: 9ii
   name: Lightning Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct lightning magic, usually worn by
+  legend:
+    An arcanium metal helmet made to conduct lightning magic, usually worn by
     mages for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -7523,11 +7773,12 @@ ltw:
 Bio:
   id: Bio
   name: Poison Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct poison magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct poison magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -7551,11 +7802,12 @@ Bio:
 jlf:
   id: jlf
   name: Sand Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct sand magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct sand magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -7579,11 +7831,12 @@ jlf:
 ToV:
   id: ToV
   name: Wind Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct wind magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct wind magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -7610,11 +7863,12 @@ ToV:
 rYz:
   id: rYz
   name: Crystal Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct crystal magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct crystal magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -7638,11 +7892,12 @@ rYz:
 Nkt:
   id: Nkt
   name: Ice Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct ice magic, usually worn by
+  legend:
+    A set of plated arcanium armor made to conduct ice magic, usually worn by
     mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -7668,11 +7923,12 @@ Nkt:
 8R2:
   id: 8R2
   name: Light Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct light magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct light magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -7698,11 +7954,12 @@ Nkt:
 oZr:
   id: oZr
   name: Wind Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct wind magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct wind magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -7728,11 +7985,12 @@ oZr:
 jdc:
   id: jdc
   name: Ice Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct ice magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct ice magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -7756,11 +8014,12 @@ jdc:
 9RL:
   id: 9RL
   name: Fire Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct fire magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct fire magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7784,11 +8043,12 @@ jdc:
 Pkm:
   id: Pkm
   name: Glass Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct glass magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct glass magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7814,11 +8074,12 @@ Pkm:
 MQC:
   id: MQC
   name: Ice Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct ice magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct ice magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7842,11 +8103,12 @@ MQC:
 R98:
   id: R98
   name: Ice Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct ice magic, usually worn by
+  legend:
+    A set of arcanium-fabric pants made to conduct ice magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -7870,11 +8132,12 @@ R98:
 BlG:
   id: BlG
   name: Light Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct light magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct light magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7902,11 +8165,12 @@ BlG:
 NR3:
   id: NR3
   name: Poison Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct poison magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct poison magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7933,11 +8197,12 @@ NR3:
 ram:
   id: ram
   name: Sand Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct sand magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct sand magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -7961,11 +8226,12 @@ ram:
 JgU:
   id: JgU
   name: Shadow Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct shadow magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct shadow magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -7989,7 +8255,8 @@ JgU:
 QbS:
   id: QbS
   name: Water Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct water magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct water magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
@@ -8017,11 +8284,12 @@ QbS:
 gko:
   id: gko
   name: Fire Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct fire magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct fire magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8045,11 +8313,12 @@ gko:
 CEz:
   id: CEz
   name: Ash Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct ash magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct ash magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8073,11 +8342,12 @@ CEz:
 rfZ:
   id: rfZ
   name: Crystal Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct crystal magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct crystal magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8101,11 +8371,12 @@ rfZ:
 meC:
   id: meC
   name: Lightning Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct lightning magic, usually worn by
+  legend:
+    An arcanium-fabric coat made to conduct lightning magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8131,11 +8402,12 @@ meC:
 dHq:
   id: dHq
   name: Wood Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct wood magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct wood magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8185,12 +8457,13 @@ WIv:
 cig:
   id: cig
   name: Oracle Bracelet
-  legend: An old bracelet that was enchanted to store spirit energy, something only
+  legend:
+    An old bracelet that was enchanted to store spirit energy, something only
     a very skilled enchanter and oracle can do. Oracles can store or call upon spirit
     energy from the robes to boost the power of their spirit weapons.
   mainType: Accessory
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     attackSpeed: 0.5
@@ -8214,12 +8487,13 @@ cig:
 eoR:
   id: eoR
   name: Oracle Hat
-  legend: A set of old robes that was enchanted to store spirit energy, something
+  legend:
+    A set of old robes that was enchanted to store spirit energy, something
     only a very skilled enchanter and oracle can do. Oracles can store or call upon
     spirit energy from the robes to boost the power of their spirit weapons.
   mainType: Accessory
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.375
@@ -8243,11 +8517,12 @@ eoR:
 M5W:
   id: M5W
   name: Fire Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct fire magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct fire magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.36
@@ -8270,11 +8545,12 @@ M5W:
 q1Q:
   id: q1Q
   name: Lightning Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct lightning magic, usually
+  legend:
+    A set of arcanium-fabric robes made to conduct lightning magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8300,11 +8576,12 @@ q1Q:
 0ce:
   id: 0ce
   name: Magma Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct magma magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct magma magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8331,11 +8608,12 @@ q1Q:
 uiz:
   id: uiz
   name: Plasma Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct plasma magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct plasma magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8358,11 +8636,12 @@ uiz:
 NRo:
   id: NRo
   name: Sand Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct sand magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct sand magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8387,11 +8666,12 @@ NRo:
 Pf8:
   id: Pf8
   name: Wood Arcmancer Robes
-  legend: A set of arcanium-fabric robes made to conduct wood magic, usually worn
+  legend:
+    A set of arcanium-fabric robes made to conduct wood magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8416,11 +8696,12 @@ Pf8:
 fE8:
   id: fE8
   name: Fire Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct fire magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct fire magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.27
@@ -8443,11 +8724,12 @@ fE8:
 WlU:
   id: WlU
   name: Magma Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct magma magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct magma magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8472,11 +8754,12 @@ WlU:
 MRr:
   id: MRr
   name: Shadow Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct shadow magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct shadow magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8503,11 +8786,12 @@ MRr:
 fvl:
   id: fvl
   name: Snow Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct snow magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct snow magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8530,11 +8814,12 @@ fvl:
 Oi4:
   id: Oi4
   name: Explosion Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct explosion magic, usually worn by
+  legend:
+    An arcanium metal helmet made to conduct explosion magic, usually worn by
     mages for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -8562,11 +8847,12 @@ Oi4:
 3wR:
   id: 3wR
   name: Glass Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct glass magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct glass magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -8592,11 +8878,12 @@ Oi4:
 1XY:
   id: 1XY
   name: Metal Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct metal magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct metal magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -8622,11 +8909,12 @@ Oi4:
 ndw:
   id: ndw
   name: Plasma Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct plasma magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct plasma magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -8650,11 +8938,12 @@ ndw:
 QAl:
   id: QAl
   name: Shadow Arcanium Helmet
-  legend: An arcanium metal helmet made to conduct shadow magic, usually worn by mages
+  legend:
+    An arcanium metal helmet made to conduct shadow magic, usually worn by mages
     for protection as well as amplifying certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Helmet
   statType: Magic
@@ -8680,11 +8969,12 @@ QAl:
 OtN:
   id: OtN
   name: Explosion Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct explosion magic, usually
+  legend:
+    A set of plated arcanium armor made to conduct explosion magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8712,11 +9002,12 @@ OtN:
 cAw:
   id: cAw
   name: Fire Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct fire magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct fire magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8740,7 +9031,8 @@ cAw:
 dXh:
   id: dXh
   name: Glass Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct glass magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct glass magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
@@ -8770,11 +9062,12 @@ dXh:
 fMj:
   id: fMj
   name: Metal Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct metal magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct metal magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8800,11 +9093,12 @@ fMj:
 Ne7:
   id: Ne7
   name: Shadow Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct shadow magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct shadow magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8828,11 +9122,12 @@ Ne7:
 7jl:
   id: 7jl
   name: Water Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct water magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct water magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8858,11 +9153,12 @@ Ne7:
 haw:
   id: haw
   name: Wood Arcanium Armor
-  legend: A set of plated arcanium armor made to conduct wood magic, usually worn
+  legend:
+    A set of plated arcanium armor made to conduct wood magic, usually worn
     by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8886,11 +9182,12 @@ haw:
 wNU:
   id: wNU
   name: Ash Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct ash magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct ash magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8914,11 +9211,12 @@ wNU:
 IBj:
   id: IBj
   name: Crystal Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct crystal magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct crystal magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8942,11 +9240,12 @@ IBj:
 sJm:
   id: sJm
   name: Lightning Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct lightning magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct lightning magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8970,11 +9269,12 @@ sJm:
 73R:
   id: 73R
   name: Plasma Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct plasma magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct plasma magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -8998,11 +9298,12 @@ sJm:
 jON:
   id: jON
   name: Wind Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct wind magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct wind magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9029,11 +9330,12 @@ jON:
 9Lm:
   id: 9Lm
   name: Wood Arcanium Boots
-  legend: A set of plated arcanium metal boots made to conduct wood magic, usually
+  legend:
+    A set of plated arcanium metal boots made to conduct wood magic, usually
     worn by mages for protection as well as amplifying certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9057,11 +9359,12 @@ jON:
 gjC:
   id: gjC
   name: Ash Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct ash magic, usually worn by
+  legend:
+    A set of arcanium-fabric pants made to conduct ash magic, usually worn by
     mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9085,11 +9388,12 @@ gjC:
 iYu:
   id: iYu
   name: Crystal Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct crystal magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct crystal magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9113,11 +9417,12 @@ iYu:
 7Wm:
   id: 7Wm
   name: Earth Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct earth magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct earth magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9143,11 +9448,12 @@ iYu:
 uiC:
   id: uiC
   name: Glass Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct glass magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct glass magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9173,11 +9479,12 @@ uiC:
 dCL:
   id: dCL
   name: Lightning Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct lightning magic, usually
+  legend:
+    A set of arcanium-fabric pants made to conduct lightning magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9201,11 +9508,12 @@ dCL:
 p8f:
   id: p8f
   name: Magma Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct magma magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct magma magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -9229,11 +9537,12 @@ p8f:
 uzw:
   id: uzw
   name: Plasma Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct plasma magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct plasma magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -9257,11 +9566,12 @@ uzw:
 Umm:
   id: Umm
   name: Plasma Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct plasma magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct plasma magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9285,11 +9595,12 @@ Umm:
 r1X:
   id: r1X
   name: Sand Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct sand magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct sand magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -9313,11 +9624,12 @@ r1X:
 mb5:
   id: mb5
   name: Shadow Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct shadow magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct shadow magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9341,11 +9653,12 @@ mb5:
 6FY:
   id: 6FY
   name: Snow Arcanium Mage Hat
-  legend: An arcanium-fabric hat made to conduct snow magic, usually worn by mages
+  legend:
+    An arcanium-fabric hat made to conduct snow magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Hat
   statType: Magic
@@ -9369,11 +9682,12 @@ mb5:
 pdq:
   id: pdq
   name: Snow Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct snow magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct snow magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9397,11 +9711,12 @@ pdq:
 m6o:
   id: m6o
   name: Wind Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct wind magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct wind magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9428,11 +9743,12 @@ m6o:
 rDD:
   id: rDD
   name: Wood Arcanium Mage Pants
-  legend: A set of arcanium-fabric pants made to conduct wood magic, usually worn
+  legend:
+    A set of arcanium-fabric pants made to conduct wood magic, usually worn
     by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9456,11 +9772,12 @@ rDD:
 Y3G:
   id: Y3G
   name: Sand Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct sand magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct sand magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9484,11 +9801,12 @@ Y3G:
 0Ec:
   id: 0Ec
   name: Snow Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct snow magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct snow magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9514,7 +9832,8 @@ Y3G:
 q1d:
   id: q1d
   name: Water Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct water magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct water magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
@@ -9544,11 +9863,12 @@ q1d:
 wIy:
   id: wIy
   name: Wind Arcanium Mage Coat
-  legend: An arcanium-fabric coat made to conduct wind magic, usually worn by mages
+  legend:
+    An arcanium-fabric coat made to conduct wind magic, usually worn by mages
     to amplify certain aspects of their magic.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -9624,7 +9944,8 @@ WOz:
 EXn:
   id: EXn
   name: Armor Piercing Amulet [Fair]
-  legend: Five fire opal gemstones embedded in a bronze chain necklace. The gemstones
+  legend:
+    Five fire opal gemstones embedded in a bronze chain necklace. The gemstones
     seem to give a decent amount of armor piercing.
   mainType: Accessory
   rarity: Uncommon
@@ -9651,13 +9972,14 @@ EXn:
 91R:
   id: 91R
   name: Oracle Pants
-  legend: The lower part of a set of old robes that were enchanted to store spirit
+  legend:
+    The lower part of a set of old robes that were enchanted to store spirit
     energy, something only a very skilled enchanter and oracle can do. Oracles can
     store or call upon spirit energy from the robes to boost the power of their spirit
     weapons.
   mainType: Pants
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.375
@@ -9681,11 +10003,12 @@ EXn:
 Q5a:
   id: Q5a
   name: Thermo Fist Balteus
-  legend: A balteus made for thermo fist users, designed to compliment the style's
+  legend:
+    A balteus made for thermo fist users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Waist
   statType: Strength
@@ -9716,11 +10039,12 @@ Q5a:
 KbI:
   id: KbI
   name: Iron Leg Chestplate
-  legend: A heavy metal chestplate with exposed arms for freedom of movement, made
+  legend:
+    A heavy metal chestplate with exposed arms for freedom of movement, made
     for iron leg users, designed to compliment the style's strengths.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -9746,11 +10070,12 @@ KbI:
 zUw:
   id: zUw
   name: Iron Leg Armor
-  legend: A set of lightweight armor made for iron leg users, designed to compliment
+  legend:
+    A set of lightweight armor made for iron leg users, designed to compliment
     the style's strengths.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -9775,11 +10100,12 @@ zUw:
 4HH:
   id: 4HH
   name: Iron Leg Greaves
-  legend: A set of heavy metal greaves made for iron leg users, designed to compliment
+  legend:
+    A set of heavy metal greaves made for iron leg users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -9805,11 +10131,12 @@ zUw:
 VSl:
   id: VSl
   name: Iron Leg Belt
-  legend: A thick belt made for iron leg users, designed to compliment the style's
+  legend:
+    A thick belt made for iron leg users, designed to compliment the style's
     strenghts.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Waist
   statType: Strength
@@ -9834,7 +10161,8 @@ VSl:
 HGp:
   id: HGp
   name: Sailor Style Handwraps
-  legend: A set of handwraps made for sailor style users, designed to compliment the
+  legend:
+    A set of handwraps made for sailor style users, designed to compliment the
     style's strengths.
   mainType: Accessory
   rarity: Uncommon
@@ -9865,11 +10193,12 @@ HGp:
 5f7:
   id: 5f7
   name: Snow Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -9887,11 +10216,12 @@ HGp:
 8FB:
   id: 8FB
   name: Shadow Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -9907,11 +10237,12 @@ HGp:
 ggg:
   id: ggg
   name: Sand Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -9927,11 +10258,12 @@ ggg:
 3Ly:
   id: 3Ly
   name: Poison Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -9949,11 +10281,12 @@ ggg:
 7U7:
   id: 7U7
   name: Magma Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -9969,11 +10302,12 @@ ggg:
 Vub:
   id: Vub
   name: Lightning Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -9991,11 +10325,12 @@ Vub:
 Cvl:
   id: Cvl
   name: Light Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -10013,11 +10348,12 @@ Cvl:
 KyL:
   id: KyL
   name: Ice Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -10033,11 +10369,12 @@ KyL:
 Kqb:
   id: Kqb
   name: Earth Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -10053,11 +10390,12 @@ Kqb:
 ZeB:
   id: ZeB
   name: Acid Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -10073,7 +10411,8 @@ ZeB:
 tLS:
   id: tLS
   name: Visigoth Leggings
-  legend: A rusted ancient set of leggings that were found at Makrinoas in the Nimbus
+  legend:
+    A rusted ancient set of leggings that were found at Makrinoas in the Nimbus
     Sea.
   mainType: Pants
   rarity: Uncommon
@@ -10102,7 +10441,8 @@ tLS:
 yAZ:
   id: yAZ
   name: Rear Admiral Amelia's Tarnished Cloak
-  legend: The ruined cloak of the Warden of Shieldguard in the Nimbus Sea, Real Admiral
+  legend:
+    The ruined cloak of the Warden of Shieldguard in the Nimbus Sea, Real Admiral
     Amelia.
   mainType: Accessory
   rarity: Exotic
@@ -10123,7 +10463,8 @@ yAZ:
 C3F:
   id: C3F
   name: Architect Kalliste's Cape
-  legend: The cape of Architect Kalliste the Rumbling Fist, an Architect of the Assassin
+  legend:
+    The cape of Architect Kalliste the Rumbling Fist, an Architect of the Assassin
     Syndicate that operates in the Dead Halls, their hideout in the nimbus sea.
   mainType: Accessory
   rarity: Rare
@@ -10143,7 +10484,8 @@ C3F:
 Stc:
   id: Stc
   name: Diatrys Leggings
-  legend: A set of well-forged leggings that protects the wearer's mind from the effects
+  legend:
+    A set of well-forged leggings that protects the wearer's mind from the effects
     of insanity, while increasing the power of their attacks.
   mainType: Pants
   rarity: Rare
@@ -10164,7 +10506,8 @@ Stc:
 ojh:
   id: ojh
   name: Dromeas Boots
-  legend: A well-fashioned pair of boots, enhanced by magic energy from the Dark Sea.
+  legend:
+    A well-fashioned pair of boots, enhanced by magic energy from the Dark Sea.
     It seems to grant tremendous dexterity, at a price.
   mainType: Pants
   rarity: Rare
@@ -10185,7 +10528,8 @@ ojh:
 wyx:
   id: wyx
   name: Sophragos Hood
-  legend: A sorcerer's hood enhanced by the energy of the Dark Sea. It seems to grant
+  legend:
+    A sorcerer's hood enhanced by the energy of the Dark Sea. It seems to grant
     immense power, at the cost of the wearer's own wellbeing.
   mainType: Accessory
   rarity: Rare
@@ -10205,7 +10549,8 @@ wyx:
 NNF:
   id: NNF
   name: Lost Diplomat Pants
-  legend: The lower part of a high quality purple and silver robe. They once belonged
+  legend:
+    The lower part of a high quality purple and silver robe. They once belonged
     to an infuential figure in the War Seas, but have been traded around by merchants
     as a valuable piece ever since.
   mainType: Pants
@@ -10226,7 +10571,8 @@ NNF:
 kSB:
   id: kSB
   name: Mountainbreaker Armor
-  legend: A lightweight chespiece adorned with leather straps and heavy left armor,
+  legend:
+    A lightweight chespiece adorned with leather straps and heavy left armor,
     intended to be a counterweight for a heavy weapon to be used in the right hand.
   mainType: Chestplate
   rarity: Uncommon
@@ -10370,13 +10716,14 @@ dUn:
 AmC:
   id: AmC
   name: Alitheia Pants
-  legend: The lower part of a set of mysterious robes that were enchanted to store
+  legend:
+    The lower part of a set of mysterious robes that were enchanted to store
     spirit energy, something only a very skilled enchanter and oracle can do. Oracles
     can store or call upon spirit energy from the robes to boost the power of their
     spirit weapons.
   mainType: Pants
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     intensity: 0.45
@@ -10400,12 +10747,13 @@ AmC:
 Zm2:
   id: Zm2
   name: Alitheia Robes
-  legend: A set of mysterious old robes that were enchanted to store spirit energy,
+  legend:
+    A set of mysterious old robes that were enchanted to store spirit energy,
     something only a very skilled enchanter and oracle can do. Oracles can store or
     call upon spirit energy from the robes to boost the power of their spirit weapons.
   mainType: Chestplate
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     intensity: 0.6
@@ -10429,11 +10777,12 @@ Zm2:
 gag:
   id: gag
   name: Thermo Fist Headband
-  legend: A long headband made for thermo fist users, designed to compliment the style's
+  legend:
+    A long headband made for thermo fist users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   statType: Strength
@@ -10463,11 +10812,12 @@ gag:
 bRB:
   id: bRB
   name: Thermo Fist Handwraps
-  legend: A set of hand wrappings made for thermo fist users, designed to compliment
+  legend:
+    A set of hand wrappings made for thermo fist users, designed to compliment
     the style's strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arms
   statType: Strength
@@ -10497,11 +10847,12 @@ bRB:
 xBo:
   id: xBo
   name: Iron Leg Robes
-  legend: A fine robe made for iron leg users, designed to compliment the style's
+  legend:
+    A fine robe made for iron leg users, designed to compliment the style's
     strengths.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -10527,11 +10878,12 @@ xBo:
 QEM:
   id: QEM
   name: Wood Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -10547,11 +10899,12 @@ QEM:
 aSQ:
   id: aSQ
   name: Wind Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -10569,11 +10922,12 @@ aSQ:
 Hkd:
   id: Hkd
   name: Fire Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -10589,11 +10943,12 @@ Hkd:
 qco:
   id: qco
   name: Crystal Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -10612,7 +10967,7 @@ qco:
   legend: A tailored cape with a trimmed border that exudes regalness.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     attackSpeed: 0.3
@@ -10636,11 +10991,12 @@ qco:
 bG8:
   id: bG8
   name: Thermo Fist Belt
-  legend: A thick belt made for thermo fist users, designed to compliment the style's
+  legend:
+    A thick belt made for thermo fist users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Waist
   statType: Strength
@@ -10665,11 +11021,12 @@ bG8:
 LHL:
   id: LHL
   name: Thermo Fist Greaves
-  legend: A set of heavy metal greaves made for thermo fist users, designed to compliment
+  legend:
+    A set of heavy metal greaves made for thermo fist users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -10700,7 +11057,8 @@ LHL:
 xwU:
   id: xwU
   name: Mountainbreaker Cape
-  legend: A torn red cape that was taken from Evander the Mountainbreaker, a bounty
+  legend:
+    A torn red cape that was taken from Evander the Mountainbreaker, a bounty
     hunter from the Thorne Empire who wanders the Bronze Sea.
   mainType: Accessory
   rarity: Uncommon
@@ -10739,7 +11097,8 @@ kkG:
 oRu:
   id: oRu
   name: Diatrys Armor
-  legend: A set of well-forged armor that protects the wearer's mind from the effects
+  legend:
+    A set of well-forged armor that protects the wearer's mind from the effects
     of insanity, while increasing the power of their attacks.
   mainType: Chestplate
   rarity: Rare
@@ -10760,7 +11119,8 @@ oRu:
 0Bq:
   id: 0Bq
   name: Dromeas Trappings
-  legend: A set of accessories worn by a former charming rogue. They seem to grant
+  legend:
+    A set of accessories worn by a former charming rogue. They seem to grant
     tremendous dexterity, at a price.
   mainType: Accessory
   rarity: Rare
@@ -10829,10 +11189,10 @@ OM2:
 mY5:
   id: mY5
   name: Aviator Jacket
-  legend: '[Place Holder]'
+  legend: "[Place Holder]"
   mainType: Chestplate
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: None
@@ -10855,10 +11215,10 @@ mY5:
 F8L:
   id: F8L
   name: Marauder's cloak
-  legend: '[Place Holder]'
+  legend: "[Place Holder]"
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     attackSpeed: 0.45
@@ -10882,11 +11242,12 @@ F8L:
 lVx:
   id: lVx
   name: Thermo Fist Boots
-  legend: A set of lightweight boots made for thermo fist users, designed to compliment
+  legend:
+    A set of lightweight boots made for thermo fist users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -10916,11 +11277,12 @@ lVx:
 3P3:
   id: 3P3
   name: Thermo Fist Chestplate
-  legend: A heavy metal chestplate with exposed arms for freedom of movement, made
+  legend:
+    A heavy metal chestplate with exposed arms for freedom of movement, made
     for thermo fist users, designed to compliment the style's strengths.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -10947,11 +11309,12 @@ lVx:
 AEY:
   id: AEY
   name: Iron Leg Headband
-  legend: A long headband made for iron leg users, designed to compliment the style's
+  legend:
+    A long headband made for iron leg users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.27
@@ -10975,11 +11338,12 @@ AEY:
 Je4:
   id: Je4
   name: Iron Leg Boots
-  legend: A set of lightweight boots made for iron leg users, designed to compliment
+  legend:
+    A set of lightweight boots made for iron leg users, designed to compliment
     the style's strengths.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -11004,11 +11368,12 @@ Je4:
 gFi:
   id: gFi
   name: Light Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct light magic, usually
+  legend:
+    The lower part of arcanium-fabric robes made to conduct light magic, usually
     worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -11033,7 +11398,8 @@ gFi:
 A5b:
   id: A5b
   name: Water Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
@@ -11055,11 +11421,12 @@ A5b:
 2iB:
   id: 2iB
   name: Metal Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -11075,11 +11442,12 @@ A5b:
 g5t:
   id: g5t
   name: Oracle Amulet [Poor]
-  legend: 'An old gemstone necklace that was enchanted to store spirit energy, something
-    only a very skilled enchanter and oracle can do. '
+  legend:
+    "An old gemstone necklace that was enchanted to store spirit energy, something
+    only a very skilled enchanter and oracle can do. "
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     defense: 0.375
@@ -11103,7 +11471,8 @@ g5t:
 93A:
   id: 93A
   name: Dapper Witch Hat
-  legend: A dapper hat for dapper people. It can be enchanted by an Alchemist in order
+  legend:
+    A dapper hat for dapper people. It can be enchanted by an Alchemist in order
     to increase its stats.
   mainType: Accessory
   rarity: Uncommon
@@ -11131,11 +11500,12 @@ g5t:
 tRD:
   id: tRD
   name: Thermo Fist Shoulderpads
-  legend: A set of lightweight shoulderpads made for thermo fist users, designed to
+  legend:
+    A set of lightweight shoulderpads made for thermo fist users, designed to
     compliment the style's strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Shoulder
   statType: Strength
@@ -11160,11 +11530,12 @@ tRD:
 juO:
   id: juO
   name: Thermo Fist Armor
-  legend: A set of lightweight armor made for thermo fist users, designed to compliment
+  legend:
+    A set of lightweight armor made for thermo fist users, designed to compliment
     the style's strengths.
   mainType: Chestplate
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -11187,11 +11558,12 @@ juO:
 wUi:
   id: wUi
   name: Iron Leg Handwraps
-  legend: A set of hand wrappings made for iron leg users, designed to complument
+  legend:
+    A set of hand wrappings made for iron leg users, designed to complument
     the style's strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arms
   statType: Strength
@@ -11219,7 +11591,7 @@ NnZ:
   legend: A balteus made for boxing users, designed to compliment the style's strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Waist
   statType: Strength
@@ -11246,11 +11618,12 @@ NnZ:
 d0C:
   id: d0C
   name: Cannon Fist Headband
-  legend: A long headband made for cannon fist users, designed to compliment the style's
+  legend:
+    A long headband made for cannon fist users, designed to compliment the style's
     strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Head
   statType: Strength
@@ -11276,7 +11649,8 @@ d0C:
 7MF:
   id: 7MF
   name: Sophragos Robes
-  legend: A set of sorcerer's robes enhanced by the energy of the Dark Sea. It seems
+  legend:
+    A set of sorcerer's robes enhanced by the energy of the Dark Sea. It seems
     to grant immense power, at the cost of the wearer's own wellbeing.
   mainType: Chestplate
   rarity: Rare
@@ -11296,7 +11670,8 @@ d0C:
 5KL:
   id: 5KL
   name: Visigoth Chestplate
-  legend: A rusted ancient set of chestplate that were found at Makrinoas in the Nimbus
+  legend:
+    A rusted ancient set of chestplate that were found at Makrinoas in the Nimbus
     Sea.
   mainType: Chestplate
   rarity: Uncommon
@@ -11325,7 +11700,8 @@ d0C:
 3v0:
   id: 3v0
   name: Mountainbreaker Boots
-  legend: A lightweight set of boots adorned with upper leg armor. These boots were
+  legend:
+    A lightweight set of boots adorned with upper leg armor. These boots were
     taken from Evander the Mountainbreaker, a bounty hunter from the Thorne Empire
     who wanders the Bronze Sea
   mainType: Pants
@@ -11346,7 +11722,8 @@ d0C:
 AfY:
   id: AfY
   name: Diatrys Hood
-  legend: A high quality hood that protects the wearer's mind from the effects of
+  legend:
+    A high quality hood that protects the wearer's mind from the effects of
     insanity, while increasing the power of their attacks.
   mainType: Accessory
   rarity: Rare
@@ -11367,7 +11744,8 @@ AfY:
 36k:
   id: 36k
   name: Sophragos Pants
-  legend: A set of sorcerer's pants enhanced by the energy of the Dark Sea. It seems
+  legend:
+    A set of sorcerer's pants enhanced by the energy of the Dark Sea. It seems
     to grant immense power, at the cost of the wearer's own wellbeing.
   mainType: Pants
   rarity: Rare
@@ -11406,7 +11784,8 @@ yVa:
 ska:
   id: ska
   name: Lost Diplomat Pauldrons
-  legend: The shoulder pieces of high quality purple and silver gauntlets. They once
+  legend:
+    The shoulder pieces of high quality purple and silver gauntlets. They once
     belonged to an influential figure in the War Seas, but have been traded around
     by merchants as a valuable piece ever since. They were recently uncovered as part
     of a buried treasure. It can be enchanted by an Alchemist in order to increase
@@ -11429,10 +11808,10 @@ ska:
 j7o:
   id: j7o
   name: Royal Dress Bottom
-  legend: '[Place Holder]'
+  legend: "[Place Holder]"
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: None
@@ -11498,12 +11877,13 @@ nXE:
 dRj:
   id: dRj
   name: Alitheia Hat
-  legend: A mysterious old hat that was enchanted to store spirit energy, something
+  legend:
+    A mysterious old hat that was enchanted to store spirit energy, something
     only a very skilled enchanter and oracle can do. Oracles can store or call upon
     spirit energy from the robes to boost the power of their spirit weapons.
   mainType: Accessory
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     intensity: 0.45
@@ -11527,11 +11907,12 @@ dRj:
 FzT:
   id: FzT
   name: Thermo Fist Robes
-  legend: A fine robe made for thermo fist users, designed to compliment the style's
+  legend:
+    A fine robe made for thermo fist users, designed to compliment the style's
     strengths.
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -11560,7 +11941,7 @@ WAI:
   legend: A balteus made for iron leg users, designed to compliment the style's strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Waist
   statType: Strength
@@ -11586,11 +11967,12 @@ WAI:
 X7J:
   id: X7J
   name: Iron Leg Shoulderpads
-  legend: A set of lightweight shoulderpads made for iron leg users, designed to compliment
+  legend:
+    A set of lightweight shoulderpads made for iron leg users, designed to compliment
     the style's strengths.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Shoulder
   statType: Strength
@@ -11615,11 +11997,12 @@ X7J:
 sE6:
   id: sE6
   name: Iron Leg Leggings
-  legend: A set of lightweight armored leggings made for iron leg users, designed
+  legend:
+    A set of lightweight armored leggings made for iron leg users, designed
     to compliment the style's strengths.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -11644,11 +12027,12 @@ sE6:
 geZ:
   id: geZ
   name: Lightning Arcmancer Pants
-  legend: The lower part of arcanium-fabric robes made to conduct lightning magic,
+  legend:
+    The lower part of arcanium-fabric robes made to conduct lightning magic,
     usually worn by mages to amplify certain aspects of their magic.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Magic
@@ -11673,11 +12057,12 @@ geZ:
 JJ3:
   id: JJ3
   name: Plasma Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arms
   statType: Magic
@@ -11695,11 +12080,12 @@ JJ3:
 HHw:
   id: HHw
   name: Glass Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -11715,11 +12101,12 @@ HHw:
 KaZ:
   id: KaZ
   name: Explosion Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -11739,11 +12126,12 @@ KaZ:
 uJX:
   id: uJX
   name: Ash Arcanium Bracelet
-  legend: A bracelet made out of arcanium metal, capable of conducting some magic.
+  legend:
+    A bracelet made out of arcanium metal, capable of conducting some magic.
     It can be worn on the wrist to increase the wearer's power.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: Magic
@@ -11759,11 +12147,12 @@ uJX:
 tNX:
   id: tNX
   name: Thermo Fist Leggings
-  legend: A set of lightweight armored leggings made for thermo fist users, designed
+  legend:
+    A set of lightweight armored leggings made for thermo fist users, designed
     to compliment the style's strengths.
   mainType: Pants
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: Strength
@@ -11788,7 +12177,8 @@ tNX:
 79a:
   id: 79a
   name: Visigoth Helmet
-  legend: A rusted ancient set of helmet that were found at Makrinoas in the Nimbus
+  legend:
+    A rusted ancient set of helmet that were found at Makrinoas in the Nimbus
     Sea.
   mainType: Accessory
   rarity: Uncommon
@@ -11817,7 +12207,8 @@ tNX:
 EKC:
   id: EKC
   name: Dromeas Tunic
-  legend: A well-fashioned tunic, enhanced by magic energy from the Dark Sea. It seems
+  legend:
+    A well-fashioned tunic, enhanced by magic energy from the Dark Sea. It seems
     to grant tremendous dexterity, at a price.
   mainType: Chestplate
   rarity: Rare
@@ -11838,7 +12229,8 @@ EKC:
 YEu:
   id: YEu
   name: Scorching Sentinel Pauldrons
-  legend: A set of red metal pauldrons adorned with bronze trims and a grey drape.
+  legend:
+    A set of red metal pauldrons adorned with bronze trims and a grey drape.
     It was made specifically for General Valerii, the Scorching Stentinel, and was
     taken from him when he was defeated at Fort Castrum in the Bronze Sea
   mainType: Accessory
@@ -11887,7 +12279,8 @@ zD7:
 Afh:
   id: Afh
   name: Scorching Sentinel Leggings
-  legend: blah blah blah xtremev13 was here (special appearance by arceyplayz by adding
+  legend:
+    blah blah blah xtremev13 was here (special appearance by arceyplayz by adding
     the image), you get them by defeating the boss at wave 10 on Fort Castrum, Bobby
     is awesome
   mainType: Pants
@@ -11968,7 +12361,7 @@ hkn:
   legend: A practical jacket
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     attackSize: 0.75
@@ -11992,10 +12385,10 @@ hkn:
 G74:
   id: G74
   name: Royal Dress Top
-  legend: '[Place Holder]'
+  legend: "[Place Holder]"
   mainType: Chestplate
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: None
@@ -12088,7 +12481,7 @@ JbW:
   legend: A pair of magical glasses made for a gifted magic-user.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.375
@@ -12105,7 +12498,7 @@ umm:
   legend: A band forged from gold adorned with silver studs.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     defense: 0.1667
@@ -12123,7 +12516,7 @@ DXa:
   legend: Spiked Bracelets.
   mainType: Accessory
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.14375
@@ -12162,7 +12555,7 @@ ut8:
   legend: A fancy coat with many layers of fabric, often worn by wealthy merchants.
   mainType: Chestplate
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: None
@@ -12198,7 +12591,7 @@ iNX:
   legend: Please fill out this field.
   mainType: Accessory
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: -0.4
@@ -12217,7 +12610,7 @@ DHN:
   legend: Please fill out this field.
   mainType: Pants
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: -0.4
@@ -12236,7 +12629,7 @@ e7N:
   legend: Please fill out this field.
   mainType: Chestplate
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: None
   statType: None
@@ -12255,7 +12648,7 @@ jqv:
   legend: Please fill out this field.
   mainType: Accessory
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   subType: Arm
   statType: None
@@ -12275,7 +12668,7 @@ J3c:
   legend: None
   mainType: Chestplate
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.3475
@@ -12294,7 +12687,7 @@ GN5:
   legend: None
   mainType: Accessory
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.260625
@@ -12313,7 +12706,7 @@ c6n:
   legend: None
   mainType: Pants
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   scaling:
     power: 0.260625

@@ -1,5 +1,6 @@
 - name: Sword
-  legend: A one handed sword that is in decent condition, it would serve nicely as
+  legend:
+    A one handed sword that is in decent condition, it would serve nicely as
     a weapon.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/8/89/Sword.png/revision/latest/scale-to-width-down/100?cb=20240316154548
@@ -11,7 +12,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Greathammer
-  legend: A massive iron hammer that is in decent condition, it will serve nicely
+  legend:
+    A massive iron hammer that is in decent condition, it will serve nicely
     as a weapon.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/9/9a/Iron_Greathammer.png/revision/latest/scale-to-width-down/100?cb=20240309215008
@@ -23,7 +25,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Greataxe
-  legend: A large two-handed axe that is in decent condition, it would serve nicely
+  legend:
+    A large two-handed axe that is in decent condition, it would serve nicely
     as a weapon.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/0/0b/Greataxe.png/revision/latest/scale-to-width-down/100?cb=20240308224243
@@ -35,7 +38,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Greatsword
-  legend: A large two-handed sword that is in decent condition, it would serve nicely
+  legend:
+    A large two-handed sword that is in decent condition, it would serve nicely
     as a weapon.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/6/68/Greatsword.png/revision/latest/scale-to-width-down/100?cb=20240310184744
@@ -91,7 +95,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Dual Swords
-  legend: A set of one-handed swords that are in decent condition, they would serve
+  legend:
+    A set of one-handed swords that are in decent condition, they would serve
     nicely as weapons.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/b/b4/Dual_Swords.png/revision/latest/scale-to-width-down/100?cb=20240308222739
@@ -125,7 +130,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Claws
-  legend: A set of iron claws that are in decent condition, they would serve nicely
+  legend:
+    A set of iron claws that are in decent condition, they would serve nicely
     as a weapon.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/e/ed/Iron_Claws.png/revision/latest/scale-to-width-down/100?cb=20240306192053
@@ -181,7 +187,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Wooden Shield
-  legend: A lightweight shield made of wood. Use it for blocking in order to increase
+  legend:
+    A lightweight shield made of wood. Use it for blocking in order to increase
     your damage resistance.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/6/61/Wooden_Shield.png/revision/latest/scale-to-width-down/100?cb=20240315193914
@@ -215,7 +222,8 @@
   blockingPower: 0.15
   weight: 18
 - name: Iron Shield
-  legend: A shield made out of iron. Use it for blocking in order to increase your
+  legend:
+    A shield made out of iron. Use it for blocking in order to increase your
     damage resistance.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/f/ff/Iron_Shield.png/revision/latest/scale-to-width-down/100?cb=20240315192732
@@ -260,7 +268,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Ravenna Sword
-  legend: A one-handed sword made out of bronze, made to be used by the Bronze Legion
+  legend:
+    A one-handed sword made out of bronze, made to be used by the Bronze Legion
     of the Ravenna Realm.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/c/c6/Ravenna_Sword.png/revision/latest/scale-to-width-down/100?cb=20240316154829
@@ -272,7 +281,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Ravenna Shield
-  legend: A shield made out of bronze, bearing the symbol of the Ravenna Realm. Use
+  legend:
+    A shield made out of bronze, bearing the symbol of the Ravenna Realm. Use
     it for blocking in order to increase your damage resistance.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/3/31/Ravenna_Shield.png/revision/latest/scale-to-width-down/100?cb=20240315193935
@@ -284,7 +294,8 @@
   blockingPower: 0.125
   weight: 18
 - name: Samerian Shield
-  legend: A shield made out of brass and wood, bearing the symbol of the Sameria Province.
+  legend:
+    A shield made out of brass and wood, bearing the symbol of the Sameria Province.
     Use it for blocking in order to increase your damage resistance.
   rarity: Common
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/3/32/Samerian_Shield.png/revision/latest/scale-to-width-down/100?cb=20240403002829
@@ -318,7 +329,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Ravenna War Shield
-  legend: A heavy tower shield made out of bronze, bearing the symbol and colors of
+  legend:
+    A heavy tower shield made out of bronze, bearing the symbol and colors of
     the Ravenna Realm.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/1/12/Ravenna_War_Shield.png/revision/latest/scale-to-width-down/100?cb=20240315192935
@@ -330,7 +342,8 @@
   blockingPower: 0.2
   weight: 30
 - name: Poison Tooth Dagger
-  legend: A dagger crafted from a Poison Jaws' tooth. It seems to make a sturdy weapon,
+  legend:
+    A dagger crafted from a Poison Jaws' tooth. It seems to make a sturdy weapon,
     and its magic properties leave enemies poisoned.
   rarity: Rare
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/0/09/Poison_Tooth_Dagger.png/revision/latest/scale-to-width-down/100?cb=20240307205618
@@ -342,7 +355,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Ravenna Greatsword
-  legend: A large two-handed sword made out of bronze, made to be used by the Bronze
+  legend:
+    A large two-handed sword made out of bronze, made to be used by the Bronze
     Legion of the Ravenna Realm.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/b/b8/Ravenna_Greatsword.png/revision/latest/scale-to-width-down/100?cb=20240310184735
@@ -354,7 +368,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Ravenna Greataxe
-  legend: A large two-handed axe made of bronze that is in decent condition, it would
+  legend:
+    A large two-handed axe made of bronze that is in decent condition, it would
     serve nicely as a weapon.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/5/50/Ravenna_Greataxe.png/revision/latest/scale-to-width-down/100?cb=20240308224332
@@ -366,7 +381,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Sunken Staff
-  legend: An ornate green and gold staff made out of arcanium metal that has spent
+  legend:
+    An ornate green and gold staff made out of arcanium metal that has spent
     hundreds of years underwater, causing its properties to change. It seems to constantly
     produce water.
   rarity: Rare
@@ -401,7 +417,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Thalassi
-  legend: A long cutlass with a weathered blade adorned with a dark red grip and a
+  legend:
+    A long cutlass with a weathered blade adorned with a dark red grip and a
     purple guard, representing the colors of Pirate Duke De'Roy. It was taken from
     Captain Maria after she was defeated in the Nimbus Sea.
   rarity: Rare
@@ -414,7 +431,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Lance of Loyalty
-  legend: A heavy lance made out of bronze with a red trim. It was specifically made
+  legend:
+    A heavy lance made out of bronze with a red trim. It was specifically made
     for General Argos, the Lion of Old Ravenna, and was stolen from him after he was
     killed in the dungeons of Fort Talos in the Bronze Sea.
   rarity: Rare
@@ -427,7 +445,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Commodore Kai's Saber
-  legend: A well-made sabre that was forged for Red Sabre Kai, the Grand Navy Commodore
+  legend:
+    A well-made sabre that was forged for Red Sabre Kai, the Grand Navy Commodore
     of Silverhold in the Bronze Sea.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/4/42/Commodore_Kai%E2%80%99s_Sabre.png/revision/latest/scale-to-width-down/100?cb=20240312013102
@@ -450,7 +469,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Stormcaller
-  legend: An ornate bow that was custom-made for the Ravenna noble Lord Elius, but
+  legend:
+    An ornate bow that was custom-made for the Ravenna noble Lord Elius, but
     was stolen after he was defeated in the sky of the Bronze Sea.
   rarity: Rare
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/a/aa/Stormcaller.png/revision/latest/scale-to-width-down/100?cb=20240306190639
@@ -462,7 +482,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Plunderers
-  legend: A set of four identical flintlocks with a purple and red colour scheme,
+  legend:
+    A set of four identical flintlocks with a purple and red colour scheme,
     representing the colours of Pirate Lord Duke De'Roy. They were taken from Captain
     Maria after she was defeated in the Nimbus Sea.
   rarity: Rare
@@ -475,7 +496,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Lion's Halberd
-  legend: An enormous halberd made out of bronze. It was specifically made for General
+  legend:
+    An enormous halberd made out of bronze. It was specifically made for General
     Argos, the Lion of Old Ravenna, and was stolen from him after he was killed in
     the dungeons of Fort Talos in the Bronze Sea.
   rarity: Rare
@@ -488,7 +510,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Atlantean Shield
-  legend: A large crustacean shell used as a shield by the Atlanteans of the Dark
+  legend:
+    A large crustacean shell used as a shield by the Atlanteans of the Dark
     Sea.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/3/35/Atlantean_Shield.png/revision/latest/scale-to-width-down/100?cb=20240315193958
@@ -500,7 +523,8 @@
   blockingPower: 0.1
   weight: 18
 - name: Atlantean Rapier
-  legend: A mutilated swordfish that can be used as a rapier, usually wielded by Atlanteans
+  legend:
+    A mutilated swordfish that can be used as a rapier, usually wielded by Atlanteans
     in the Dark Sea.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/d/dc/Atlantean_Rapier.png/revision/latest/scale-to-width-down/100?cb=20240314182537
@@ -512,7 +536,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Sunken Sword
-  legend: A medium-sized, one handed sword made out of arcanium metal that has spent
+  legend:
+    A medium-sized, one handed sword made out of arcanium metal that has spent
     hundreds of years underwater, causing its properties to change. It seems to constantly
     produce water.
   rarity: Rare
@@ -525,7 +550,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Silent Blades
-  legend: A pair of high quality metal claws used by Merlot the Waltz of Death, an
+  legend:
+    A pair of high quality metal claws used by Merlot the Waltz of Death, an
     Architect of the Assassin Syndicate that operates in the Red Corner, their hideout
     in the Bronze Sea.
   rarity: Uncommon
@@ -538,7 +564,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Sanguine
-  legend: A high quality blood-red dagger used by Merlot the Waltz of Death, an Architect
+  legend:
+    A high quality blood-red dagger used by Merlot the Waltz of Death, an Architect
     of the Assassin Syndicate that operates in the Red Corner, their hideout in the
     Bronze Sea.
   rarity: Uncommon
@@ -551,7 +578,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Atlantean Cutlass
-  legend: A cutlass that has been altered by the constant exposure to the Dark Sea's
+  legend:
+    A cutlass that has been altered by the constant exposure to the Dark Sea's
     rain.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/5/55/Atlantean_Cutlass.png/revision/latest/scale-to-width-down/100?cb=20240307205150
@@ -574,7 +602,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Siren Bow
-  legend: A bow made of a fine silver metal adorned with gold decorations, usually
+  legend:
+    A bow made of a fine silver metal adorned with gold decorations, usually
     used by Sirens, a mythical creature found in the Dark Sea. They appear as beautiful
     women, singing, only to lure in sailors and kill them with their wings and fangs.
   rarity: Uncommon
@@ -587,7 +616,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Noble Thunderspear
-  legend: An ornate spear that was custom-made for the Ravenna noble Lord Elius, but
+  legend:
+    An ornate spear that was custom-made for the Ravenna noble Lord Elius, but
     was stolen after he was defeated in the sky of the Bronze Sea.
   rarity: Rare
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/6/6d/Noble_Thunderspear.png/revision/latest/scale-to-width-down/100?cb=20250125162223
@@ -599,7 +629,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Scimitars of Storm
-  legend: A set of bronze scimitars that were custom-made for the Ravenna noble Lord
+  legend:
+    A set of bronze scimitars that were custom-made for the Ravenna noble Lord
     Elius, but were stolen after he was defeated in the sky of the Bronze Sea.
   rarity: Rare
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/e/ee/Scimitars_of_Storm.png/revision/latest/scale-to-width-down/100?cb=20240308222718
@@ -611,7 +642,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Triasta of Bronze
-  legend: A trident made of arcanium-bronze alloy, to allow it to conduct some magic.
+  legend:
+    A trident made of arcanium-bronze alloy, to allow it to conduct some magic.
     It was specifically made for King Calvus IV, the Third King of Ravenna, and was
     stolen from him after he was killed in Ravenna Castello, at the heart of the Ravenna
     Realm in the Bronze Sea.
@@ -625,7 +657,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Vindicator
-  legend: An exquisite greathammer made of white metal, embedded with a bright sapphire
+  legend:
+    An exquisite greathammer made of white metal, embedded with a bright sapphire
     gemstone. Legends say it once belonged to a powerful member of the Grand Navy,
     who disappeared without a trace...
   rarity: Rare
@@ -638,7 +671,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Scald Tooth Dagger
-  legend: A dagger crafted from the tooth of an unknown sea monster. It seems to make
+  legend:
+    A dagger crafted from the tooth of an unknown sea monster. It seems to make
     a sturdy weapon, and its magic properties leave enemies burning.
   rarity: Rare
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/9/95/Scald_Tooth_Dagger.png/revision/latest/scale-to-width-down/100?cb=20240307205712
@@ -650,7 +684,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Atlantean Mace
-  legend: A large bone with a sea urchin attached to it, used as a sharp mace-like
+  legend:
+    A large bone with a sea urchin attached to it, used as a sharp mace-like
     weapon by Atlanteans in the Dark Sea.
   rarity: Rare
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/c/cf/Atlantean_Mace.png/revision/latest/scale-to-width-down/100?cb=20240312173600
@@ -662,7 +697,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Atlantean Greatsword
-  legend: A large two-handed sword that has been altered by constant exposure to the
+  legend:
+    A large two-handed sword that has been altered by constant exposure to the
     Dark Sea's rain.
   rarity: Rare
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/e/eb/Atlantean_Greatsword.png/revision/latest/scale-to-width-down/100?cb=20240310185049
@@ -674,7 +710,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Nocturne
-  legend: A high quality dagger that once once used by the One Beyond Reach, a mysterious
+  legend:
+    A high quality dagger that once once used by the One Beyond Reach, a mysterious
     woman who killed members of the Assassin Syndicate for nearly a decade, unable
     to be traced down.
   rarity: Rare
@@ -687,7 +724,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Goldreaver
-  legend: An enormous cutlass that was forged for ceremonial purposes before it was
+  legend:
+    An enormous cutlass that was forged for ceremonial purposes before it was
     stolen and painted gold by the notorious pirate Captain Crowe, leader of the Goldsail
     Pirates based in the Nimbus Sea.
   rarity: Uncommon
@@ -700,11 +738,12 @@
   blockingPower: 0.0
   weight: 0
 - name: Khepri
-  legend: A scimitar made of gold-enameled steel, with a sunstone gem embedded in
+  legend:
+    A scimitar made of gold-enameled steel, with a sunstone gem embedded in
     the hilt intended for storing magic energy. It was one of the signature weapons
     of Commander Hathor, the castellan of Fort Montu
   rarity: Uncommon
-  imageId: ' https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/6/63/Khepri.webp/revision/latest?cb=20260110123338'
+  imageId: " https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/6/63/Khepri.webp/revision/latest?cb=20260110123338"
   damage: 1.125
   speed: 0.925
   size: 1.0
@@ -713,7 +752,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Lost Chief's Axe and Maw
-  legend: A set of one-handed swords that are most likely decades old, but still seem
+  legend:
+    A set of one-handed swords that are most likely decades old, but still seem
     to be usable.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/6/63/Lost_Chief%27s_Axe_and_Maw.webp/revision/latest?cb=20260110123338
@@ -725,11 +765,12 @@
   blockingPower: 0.0
   weight: 0
 - name: Siderros
-  legend: A pair of large, high quality axes that were once used by Jarl Ivar of the
+  legend:
+    A pair of large, high quality axes that were once used by Jarl Ivar of the
     Keraxe Kingdom, and were taken from him when he was killed in single combat during
     the Keraxe-Sameria War.
   rarity: Rare
-  imageId: ''
+  imageId: ""
   damage: 1.1
   speed: 0.95
   size: 1.0
@@ -738,11 +779,12 @@
   blockingPower: 0.0
   weight: 0
 - name: Sinbane
-  legend: A greatsword with a large crossguard and pommel that was taken from Delamere
+  legend:
+    A greatsword with a large crossguard and pommel that was taken from Delamere
     the Blessed Knight in the Nimbus Sea, a member of a mysterious order that will
     allegedly bring peace to the War Seas.
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   damage: 1.1
   speed: 1.1
   size: 0.8
@@ -751,7 +793,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Colossal Greatsword
-  legend: An enourmous steel greatsword that was wielded by Evander the Mountainbreaker,
+  legend:
+    An enourmous steel greatsword that was wielded by Evander the Mountainbreaker,
     a bounty hunter from the Thorne Empire that wanders the Bronze Sea.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/d/dd/Colossal_Greatsword.png/revision/latest?cb=20250424024411
@@ -763,12 +806,13 @@
   blockingPower: 0.0
   weight: 0
 - name: Ruined Sifenya
-  legend: The ruined ancestral weapon of the Ozun family, a light, thin greatsword
+  legend:
+    The ruined ancestral weapon of the Ozun family, a light, thin greatsword
     with a large sapphire embedded in the pommel. It was taken from Meng Ozun's corpse
     at Pefkos in the Nimbus Sea, where it was found slightly rusted after being exposed
     to the elements.
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   damage: 0.925
   speed: 1.15
   size: 1.0
@@ -777,12 +821,13 @@
   blockingPower: 0.0
   weight: 0
 - name: Rusty Zweihander
-  legend: An enormous zweihander sword that has been weathered down over the years,
+  legend:
+    An enormous zweihander sword that has been weathered down over the years,
     giving its edge a hazardous sting. The blade still seems strong enough to be used,
     though it would require a fair amount of strength to wield adequately. It was
     found inside a deadly cave need in the Nimbus Wilds of the Nimbus Sea's sky.
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   damage: 1.0
   speed: 0.7
   size: 1.35
@@ -791,7 +836,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Poison Axe
-  legend: A worn axe coated in a layer of poison, originally wielded by Veyne, leader
+  legend:
+    A worn axe coated in a layer of poison, originally wielded by Veyne, leader
     of the Veridian Hunters bounty hunting group based in the Bronze Sea.
   rarity: Rare
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/f/fc/Poison_Axe.png/revision/latest?cb=20260103085637
@@ -803,7 +849,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Beast Bone Cleaver
-  legend: A large beast bone carved into the shape of a cleaver, originally wielded
+  legend:
+    A large beast bone carved into the shape of a cleaver, originally wielded
     by Captain Vatnulf, Quartermaster of the Jaw Pirates based in the Bronze Sea.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/3/33/Beast_Bone_Cleaver.png/revision/latest?cb=20260103085619
@@ -815,7 +862,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Ravenwing
-  legend: A two-handed axe with good reach adorned with a historical Keraxe design
+  legend:
+    A two-handed axe with good reach adorned with a historical Keraxe design
     on the blade. It was originally wielded by Thane Harjvindr, leader of the Shadow
     Ravens, a secret Keraxe scouting force that is sometiems found in the Nimbus Sea.
   rarity: Uncommon
@@ -828,7 +876,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Fossil Spear
-  legend: A spear fashioned out of the bone of some long dead beast, a weapon used
+  legend:
+    A spear fashioned out of the bone of some long dead beast, a weapon used
     by the Grey Ones of the Nimbus Wilds.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/3/33/Beast_Bone_Cleaver.png/revision/latest?cb=20260103085619
@@ -840,7 +889,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Fossil Spear
-  legend: A spear fashioned out of the bone of some long dead beast, a weapon used
+  legend:
+    A spear fashioned out of the bone of some long dead beast, a weapon used
     by the Grey Ones of the Nimbus Wilds.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/3/33/Beast_Bone_Cleaver.png/revision/latest?cb=20260103085619
@@ -852,7 +902,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Fossil Club
-  legend: The bone of some long dead beast, usually used as a weapon used by the Grey
+  legend:
+    The bone of some long dead beast, usually used as a weapon used by the Grey
     Ones of the Nimbus Wilds.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/3/3a/Fossil_Club.png/revision/latest?cb=20260103085622
@@ -864,11 +915,12 @@
   blockingPower: 0.0
   weight: 0
 - name: Atum
-  legend: A morning star made of gold-enameled steel, with a sunstone gem embedded
+  legend:
+    A morning star made of gold-enameled steel, with a sunstone gem embedded
     in it intended in it for storing magic energy. It was one of the signature weapons
     of Commander Hathor, the castellan of Fort Montu.
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   damage: 1.125
   speed: 0.925
   size: 1.0
@@ -877,7 +929,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Ruined Fulmenor
-  legend: A bronze mace that was once wielded by King Octavious Caesar, the Second
+  legend:
+    A bronze mace that was once wielded by King Octavious Caesar, the Second
     King of Ravenna. Exposure to the elements has damaged it heavily, but the gemstones
     embedded in its head still swim with energy.
   rarity: Rare
@@ -890,7 +943,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Spiked Greatclub
-  legend: A giant wooden club reinforced with metal spikes, originally wielded by
+  legend:
+    A giant wooden club reinforced with metal spikes, originally wielded by
     Harzog, leader of the Bearpaw Bandits based in the Bronze Sea.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/4/40/Spiked_Greatclub.png/revision/latest?cb=20260102214322
@@ -902,7 +956,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Skull Greathammer
-  legend: A human skull stuck on the end of a stick, a weapon used by the Grey Chief,
+  legend:
+    A human skull stuck on the end of a stick, a weapon used by the Grey Chief,
     leader of the Grey Ones of the Nimbus Wilds
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/a/ab/Skull_Greathammer.png/revision/latest?cb=20260103085752
@@ -925,10 +980,11 @@
   blockingPower: 0.2
   weight: 30
 - name: Dual Swiftstrider Flintlocks
-  legend: A set of high quality flintlock pistols originally used by the Swiftstriders
+  legend:
+    A set of high quality flintlock pistols originally used by the Swiftstriders
     bounty hunting group based in the Nimbus Sea.
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   damage: 1.0
   speed: 1.2
   size: 0.9
@@ -937,10 +993,11 @@
   blockingPower: 0.0
   weight: 0
 - name: Swiftstrider Flintlock
-  legend: A high quality flintlock pistol originally used by the Swiftstriders bounty
+  legend:
+    A high quality flintlock pistol originally used by the Swiftstriders bounty
     hunting group based in the Nimbus Sea.
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   damage: 1.0
   speed: 1.2
   size: 0.9
@@ -949,7 +1006,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Swiftshot
-  legend: A high quality musket originally wielded by Lady Lysara, the leader of the
+  legend:
+    A high quality musket originally wielded by Lady Lysara, the leader of the
     Swiftstriders bounty hunting group based in the Nimbus Sea.
   rarity: Uncommon
   imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/9/99/Swiftshot.png/revision/latest?cb=20260103085805
@@ -961,7 +1019,8 @@
   blockingPower: 0.0
   weight: 0
 - name: Greatbow
-  legend: A large heavy bow made of high quality wood, painted black and polished.
+  legend:
+    A large heavy bow made of high quality wood, painted black and polished.
     It was wielded by Maine the Hunter, a criminal from an unknown organization in
     the Nimbus Sea.
   rarity: Uncommon

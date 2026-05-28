@@ -10,7 +10,8 @@ aZ2:
 CTP:
   id: CTP
   name: Malachite
-  legend: Malachi was a mostly-anonymous prophet whose ministry occurred in Jerusalem
+  legend:
+    Malachi was a mostly-anonymous prophet whose ministry occurred in Jerusalem
     during the era of Nehemiah and Ezra. Although he spoke primarily to a specific
     time and place in history, Malachi also prophesied of the messianic “forerunner”
     who would announce the appearance of Christ more than 400 years after his lifetime.
@@ -53,7 +54,7 @@ nca:
   legend: Its adventure time!!!
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   regeneration: 19
 AAF:
@@ -67,7 +68,8 @@ AAF:
 GYC:
   id: GYC
   name: Variscite
-  legend: An exotic gem - Xtremev13 was here. Hello xtremev13, Bob here. Please fix
+  legend:
+    An exotic gem - Xtremev13 was here. Hello xtremev13, Bob here. Please fix
     this ASAP.
   mainType: Gem
   rarity: Exotic
@@ -120,7 +122,7 @@ DuG:
   legend: Armor Piercing Gem.
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   piercing: 19
 CBH:
@@ -129,7 +131,7 @@ CBH:
   legend: Ultraman Azul
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 19
 sKB:
@@ -187,7 +189,7 @@ XOW:
   legend: fused agate + agate
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 48
   attackSize: 8
@@ -197,7 +199,7 @@ i0a:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4
   agility: 4
@@ -208,7 +210,7 @@ i0a:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4
   attackSpeed: 4
@@ -219,7 +221,7 @@ zCi:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4
   attackSpeed: 8
@@ -229,7 +231,7 @@ zCi:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   defense: 24
@@ -240,7 +242,7 @@ B2g:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4
   agility: 8
@@ -250,7 +252,7 @@ ISO:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4
   attackSize: 8
@@ -260,7 +262,7 @@ ISO:
   legend: Please fill in this field.
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   defense: 24
@@ -272,7 +274,7 @@ v9g:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   attackSpeed: 12
@@ -282,7 +284,7 @@ v9g:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   attackSpeed: 6
@@ -293,7 +295,7 @@ uJ6:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeed: 6
   intensity: 6
@@ -304,7 +306,7 @@ kmW:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   intensity: 6
@@ -315,7 +317,7 @@ bMc:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   attackSize: 6
@@ -326,7 +328,7 @@ z4V:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 6
@@ -337,7 +339,7 @@ cVQ:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   attackSpeed: 10
@@ -348,7 +350,7 @@ aV5:
   legend: None
   mainType: Gem
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 24
   agility: 6
@@ -360,7 +362,7 @@ VI5:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 224
   drawback: 2
@@ -370,7 +372,7 @@ QDU:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 6
@@ -382,7 +384,7 @@ wSE:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeed: 12
   intensity: 12
@@ -392,7 +394,7 @@ WAx:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   attackSize: 12
@@ -402,7 +404,7 @@ bDg:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 6
@@ -414,7 +416,7 @@ Y3q:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   attackSpeed: 4
@@ -426,7 +428,7 @@ k8N:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   attackSize: 6
@@ -437,7 +439,7 @@ nIw:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   attackSpeed: 6
@@ -449,7 +451,7 @@ I3F:
   legend: None
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   intensity: 12
