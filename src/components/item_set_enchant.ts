@@ -24,6 +24,8 @@ export default class ItemSetEnchantButton extends ComponentCommand {
     if (!embed) {
       await ctx.editResponse({
         content: "Error: previous message did not contain a valid embed.",
+        embeds: [],
+        components: [],
       });
       return;
     }
