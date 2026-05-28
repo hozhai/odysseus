@@ -60,7 +60,7 @@ export default class AboutCommand extends Command {
         .setStyle(ButtonStyle.Link),
       new Button()
         .setURL("https://ko-fi.com/khzhai")
-        .setLabel("Ko-Fi")
+        .setLabel("Ko-fi")
         .setStyle(ButtonStyle.Link),
     ]);
 
