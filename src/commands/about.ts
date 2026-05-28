@@ -11,7 +11,7 @@ import { ButtonStyle } from "seyfert/lib/types";
 
 @Declare({
   name: "about",
-  description: "Displays an about me for Odysseus",
+  description: "Displays the about page for Odysseus",
 })
 export default class AboutCommand extends Command {
   override async run(ctx: CommandContext) {
