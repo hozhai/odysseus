@@ -194,18 +194,18 @@ export async function emojiToGem(
 
 export async function emojiToEnchant(
   emoji: APIMessageComponentEmoji | null
-): Promise<Item | null> {
-  const itemsData = (await getData()).items;
+): Promise<Enchant | null> {
+  const enchantData = (await getData()).enchants;
 
   if (emoji == null) {
     return (
-      Object.values(itemsData).filter(
+      Object.values(enchantData).filter(
         (val) => val.id === EMPTY_ENCHANTMENT_ID
       )[0] ?? null
     );
   }
 
-  const enchant = Object.values(itemsData)
+  const enchant = Object.values(enchantData)
     .filter((val) => val.mainType === "Enchant")
     .filter((enchant) => enchant.name.toLowerCase() === emoji?.name);
 
@@ -218,18 +218,18 @@ export async function emojiToEnchant(
 
 export async function emojiToModifier(
   emoji: APIMessageComponentEmoji | null
-): Promise<Item | null> {
-  const itemsData = (await getData()).items;
+): Promise<Modifier | null> {
+  const modifierData = (await getData()).modifiers;
 
   if (emoji == null) {
     return (
-      Object.values(itemsData).filter(
+      Object.values(modifierData).filter(
         (val) => val.id === EMPTY_MODIFIER_ID
       )[0] ?? null
     );
   }
 
-  const modifier = Object.values(itemsData)
+  const modifier = Object.values(modifierData)
     .filter((val) => val.mainType === "Modifier")
     .filter((modifier) => modifier.name.toLowerCase() === emoji.name);
 
@@ -270,20 +270,21 @@ export async function parseEmbedIntoSlot(
   }
 
   const item_id = embed.title?.split(" | ")[1];
-  const level = Number(
-    embed.fields?.find((field) => field.name === "Level")?.value
-  );
+
+  const fieldMap = new Map(embed.fields?.map((f) => [f.name, f.value]) ?? []);
+
+  const level = Number(fieldMap.get("Level") ?? 170);
   const gemEmojis =
-    embed.fields?.find((field) => field.name === "Gems")?.value.split(" ") ??
-    [];
-  const enchantEmoji =
-    embed.fields?.find((field) => field.name === "Enchant")?.value ?? "";
-  const modifierEmoji =
-    embed.fields?.find((field) => field.name === "Modifier")?.value ?? "";
+    fieldMap
+      .get("Gem(s)")
+      ?.split(" ")
+      .filter((gem) => gem !== "") ?? [];
+  const enchantEmoji = fieldMap.get("Enchant") ?? "";
+  const modifierEmoji = fieldMap.get("Modifier") ?? "";
 
   const gems = await Promise.all(
-    gemEmojis.map(async (emojiText) => {
-      const emoji = textToEmoji(emojiText);
+    gemEmojis.map(async (text) => {
+      const emoji = textToEmoji(text);
       const gem = await emojiToGem(emoji);
       return gem?.id;
     })
@@ -309,7 +310,7 @@ export async function parseEmbedIntoSlot(
     slot.modifier_id = modifier.id;
   }
 
-  if (level) {
+  if (Number.isFinite(level)) {
     slot.level = level;
   }
 
@@ -380,6 +381,7 @@ export async function slotIntoEmbed(
     fields.push({
       name: "Enchant",
       value: componentEmojiToText(itemEnchantToEmoji(enchant)),
+      inline: true,
     });
   }
 
@@ -389,6 +391,7 @@ export async function slotIntoEmbed(
     fields.push({
       name: "Modifier",
       value: componentEmojiToText(itemModifierToEmoji(modifier)),
+      inline: true,
     });
   }
 
@@ -404,8 +407,9 @@ export async function slotIntoEmbed(
       .join(" ");
 
     fields.push({
-      name: gems.length > 1 ? "Gems" : "Gem",
+      name: "Gem(s)",
       value: gemEmojis,
+      inline: true,
     });
   }
 
@@ -474,4 +478,20 @@ export async function findEnchantByName(name: string): Promise<Enchant | null> {
   );
 
   return enchant ?? null;
+}
+
+/**
+ * Find a modifier from the name
+ * @param name The name of the modifier to find
+ * @returns A Promise that resolves to either the modifier if found or null if not found
+ */
+export async function findModifierByName(
+  name: string
+): Promise<Modifier | null> {
+  const modifierData = (await getData()).modifiers;
+  const modifier = Object.values(modifierData).find(
+    (mod) => mod.name.toLowerCase() === name.toLowerCase()
+  );
+
+  return modifier ?? null;
 }
