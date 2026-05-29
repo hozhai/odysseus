@@ -1,0 +1,457 @@
+aZ2:
+  id: aZ2
+  name: Intensity Gem
+  legend: Max Intensity Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemIntensityMaxPlaceholder.jpg?raw=true
+  deleted: false
+  intensity: 10
+CTP:
+  id: CTP
+  name: Malachite
+  legend:
+    Malachi was a mostly-anonymous prophet whose ministry occurred in Jerusalem
+    during the era of Nehemiah and Ezra. Although he spoke primarily to a specific
+    time and place in history, Malachi also prophesied of the messianic “forerunner”
+    who would announce the appearance of Christ more than 400 years after his lifetime.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectMalachite.jpg?raw=true
+  deleted: false
+  power: 4
+  attackSize: 6
+qGg:
+  id: qGg
+  name: Defense Gem
+  legend: Max Defense Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemDefenseMaxPlaceholder.jpg?raw=true
+  deleted: false
+  defense: 31
+fY6:
+  id: fY6
+  name: Attack Speed Gem
+  legend: Max Attack Speed Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAttackSpeedMaxPlaceholder.jpg?raw=true
+  deleted: false
+  attackSpeed: 10
+2ST:
+  id: 2ST
+  name: Attack Size Gem
+  legend: Max Attack Size Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAttackSizeMaxPlaceholder.jpg?raw=true
+  deleted: false
+  attackSize: 10
+nca:
+  id: nca
+  name: Perfect Aventurine
+  legend: Its adventure time!!!
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  regeneration: 19
+AAF:
+  id: AAF
+  name: None
+  legend: Shine bright like a NOTHING
+  mainType: Gem
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/master/static/assets/images/gem/0.jpg
+  deleted: false
+GYC:
+  id: GYC
+  name: Variscite
+  legend:
+    An exotic gem - Xtremev13 was here. Hello xtremev13, Bob here. Please fix
+    this ASAP.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectVariscite.jpg?raw=true
+  deleted: false
+  agility: 9
+  attackSize: 9
+9pe:
+  id: 9pe
+  name: Painite
+  legend: The world shall know pain.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectPainite.jpg?raw=true
+  deleted: false
+  defense: 188
+  drawback: 1
+N9w:
+  id: N9w
+  name: Larimar
+  legend: LAMAR FROM GTA V !?????
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectLarimar.jpg?raw=true
+  deleted: false
+  attackSpeed: 9
+  intensity: 9
+XpP:
+  id: XpP
+  name: Candelaria
+  legend: Sounds like that one pokemon
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectCandaleria.jpg?raw=true
+  deleted: false
+  power: 4
+  attackSpeed: 6
+0ma:
+  id: 0ma
+  name: Agility Gem
+  legend: Max Agility Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAgilityMaxPlaceholder.jpg?raw=true
+  deleted: false
+  agility: 10
+DuG:
+  id: DuG
+  name: Perfect Fire Opal
+  legend: Armor Piercing Gem.
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  piercing: 19
+CBH:
+  id: CBH
+  name: Perfect Azurite
+  legend: Ultraman Azul
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  resistance: 19
+sKB:
+  id: sKB
+  name: Morenci
+  legend: Ngl this reminds me of mordecai from the regular show.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectMorenci.jpg?raw=true
+  deleted: false
+  power: 4
+  agility: 6
+ozh:
+  id: ozh
+  name: Lapiz Lazuli
+  legend: MINECRAFT REFERENCE?!!?!?@112
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectLapisLazuli.jpg?raw=true
+  deleted: false
+  agility: 9
+  attackSpeed: 9
+91q:
+  id: 91q
+  name: Kyanite
+  legend: We have cyan at home.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectCyanite.jpg?raw=true
+  deleted: false
+  agility: 9
+  intensity: 9
+XUx:
+  id: XUx
+  name: Agate
+  legend: Agaga goo goo gaa gaa
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectAgate.jpg?raw=true
+  deleted: false
+  defense: 39
+  attackSize: 6
+NU7:
+  id: NU7
+  name: Power Gem
+  legend: Max Power Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemPowerMaxPlaceholder.jpg?raw=true
+  deleted: false
+  power: 3
+XOW:
+  id: XOW
+  name: 2x agate
+  legend: fused agate + agate
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  defense: 48
+  attackSize: 8
+i0a:
+  id: i0a
+  name: candelaria-morenci
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 4
+  agility: 4
+  attackSpeed: 4
+3VF:
+  id: 3VF
+  name: candelaria-malachite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 4
+  attackSpeed: 4
+  attackSize: 4
+zCi:
+  id: zCi
+  name: 2x candelaria
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 4
+  attackSpeed: 8
+3Z5:
+  id: 3Z5
+  name: malachite-agate
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  defense: 24
+  attackSize: 8
+B2g:
+  id: B2g
+  name: 2x morenci
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 4
+  agility: 8
+ISO:
+  id: ISO
+  name: 2x malachite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 4
+  attackSize: 8
+7ja:
+  id: 7ja
+  name: agate-candelaria
+  legend: Please fill in this field.
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  defense: 24
+  attackSpeed: 4
+  attackSize: 4
+v9g:
+  id: v9g
+  name: 2x lapis lazuli
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 12
+  attackSpeed: 12
+0sr:
+  id: 0sr
+  name: aventurine-lapis lazuli
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  attackSpeed: 6
+  regeneration: 11
+uJ6:
+  id: uJ6
+  name: larimar-aventurine
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  attackSpeed: 6
+  intensity: 6
+  regeneration: 11
+kmW:
+  id: kmW
+  name: kyanite-aventurine
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  intensity: 6
+  regeneration: 11
+bMc:
+  id: bMc
+  name: aventurine-variscite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  attackSize: 6
+  regeneration: 11
+z4V:
+  id: z4V
+  name: lapis-candelaria
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  agility: 6
+  attackSpeed: 10
+cVQ:
+  id: cVQ
+  name: larimar-candelaria
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  attackSpeed: 10
+  intensity: 6
+aV5:
+  id: aV5
+  name: lapis-agate
+  legend: None
+  mainType: Gem
+  rarity: None
+  imageId: ""
+  deleted: false
+  defense: 24
+  agility: 6
+  attackSpeed: 6
+  attackSize: 4
+VI5:
+  id: VI5
+  name: 2x painite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  defense: 224
+  drawback: 2
+QDU:
+  id: QDU
+  name: malachite-lapis
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  agility: 6
+  attackSpeed: 6
+  attackSize: 4
+wSE:
+  id: wSE
+  name: 2x larimar
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  attackSpeed: 12
+  intensity: 12
+WAx:
+  id: WAx
+  name: 2x variscite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 12
+  attackSize: 12
+bDg:
+  id: bDg
+  name: candelaria-kyanite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  agility: 6
+  attackSpeed: 4
+  intensity: 6
+Y3q:
+  id: Y3q
+  name: malachite-kyanite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  attackSpeed: 4
+  attackSize: 6
+  intensity: 6
+k8N:
+  id: k8N
+  name: kyanite-variscite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 12
+  attackSize: 6
+  intensity: 6
+nIw:
+  id: nIw
+  name: larimar-variscite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  attackSpeed: 6
+  attackSize: 6
+  intensity: 6
+I3F:
+  id: I3F
+  name: 2x kyanite
+  legend: None
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 12
+  intensity: 12

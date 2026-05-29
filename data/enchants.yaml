@@ -1,0 +1,375 @@
+e9N:
+  id: e9N
+  name: Deadeye
+  legend: +2.625 points of Agility for every 10 levels
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantAgile.jpg?raw=true
+  deleted: false
+  enchantTypes:
+    gear:
+      agilityIncrement: 2.625
+Tf4:
+  id: Tf4
+  name: Brisk
+  legend: +2.625 points of Attack Speed for every 10 levels
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantBrisk.jpg?raw=true
+  deleted: false
+  enchantTypes:
+    gear:
+      attackSpeedIncrement: 2.625
+    ship:
+      hull:
+        speed: 7
+        turning: 15
+      sail:
+        speed: 15
+      cannon:
+        reloadTime: -2
+      siegeWeapon:
+        reloadTime: -3
+Z1a:
+  id: Z1a
+  name: Enhanced
+  legend: +2.625 points of Intensity for every 10 levels
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantEnhanced.jpg?raw=true
+  deleted: false
+  enchantTypes:
+    gear:
+      intensityIncrement: 2.625
+    ship:
+      cannon:
+        rangeMultiplier: 0.5
+      siegeWeapon:
+        rangeMultiplier: 0.5
+yAq:
+  id: yAq
+  name: Amplified
+  legend: +1.5 points of Intensity for every 10 levels
+  mainType: Enchant
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantAmplified.jpg?raw=true
+  deleted: false
+  enchantTypes:
+    gear:
+      intensityIncrement: 1.5
+    ship:
+      cannon:
+        rangeMultiplier: 0.3
+      siegeWeapon:
+        rangeMultiplier: 0.25
+AAt:
+  id: AAt
+  name: Powerful
+  legend: Le powerful scroller
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Enchants/Exotic/enchantPowerful.jpg
+  deleted: false
+  enchantTypes:
+    gear:
+      powerIncrement: 0.875
+    ship:
+      ram:
+        ramStrength: 900
+      hull:
+        ramStrength: 900
+        stability: 20
+      cannon:
+        damageMultiplier: 0.3
+      siegeWeapon:
+        damageMultiplier: 0.3
+fXr:
+  id: fXr
+  name: Hasty
+  legend:
+    +1.41 points of Attack Speed for every 10 levels +1.41 points of Agility
+    for every 10 levels
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantHasty.jpg?raw=true
+  deleted: false
+  agilityIncrement: 1.40625
+  attackSpeedIncrement: 1.40625
+  enchantTypes:
+    gear:
+      agilityIncrement: 1.40625
+      attackSpeedIncrement: 1.40625
+Xjp:
+  id: Xjp
+  name: Strong
+  legend: +0.5 points of Power for every 10 levels
+  mainType: Enchant
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantStrong.jpg?raw=true
+  deleted: false
+  enchantTypes:
+    gear:
+      powerIncrement: 0.5
+    ship:
+      ram:
+        ramStrength: 450
+      hull:
+        ramStrength: 300
+        stability: 10
+      cannon:
+        damageMultiplier: 0.2
+      siegeWeapon:
+        damageMultiplier: 0.2
+AVS:
+  id: AVS
+  name: Nimble
+  legend: +1.5 points of Agility for every 10 levels
+  mainType: Enchant
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantNimble.jpg?raw=true
+  deleted: false
+  agilityIncrement: 1.5
+  enchantTypes:
+    gear:
+      agilityIncrement: 1.5
+W7S:
+  id: W7S
+  name: Hard
+  legend: +5.5 points of Defense for every 10 levels
+  mainType: Enchant
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantDefense.jpg?raw=true
+  deleted: false
+  defenseIncrement: 4.5
+  enchantTypes:
+    gear:
+      defenseIncrement: 5.5
+    ship:
+      ram:
+        durability: 400
+        ramDefense: 300
+      hull:
+        durability: 300
+        ramDefense: 100
+      sail:
+        durability: 100
+97d:
+  id: 97d
+  name: Bursting
+  legend: +1.5 points of Attack Size for every 10 levels
+  mainType: Enchant
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantBursting.jpg?raw=true
+  deleted: false
+  enchantTypes:
+    gear:
+      attackSizeIncrement: 1.5
+    ship:
+      siegeWeapon:
+        spreadMultiplier: 0.2
+8SI:
+  id: 8SI
+  name: Healing
+  legend:
+    A scroll containing the Healing enchantment. When clicked in the inventory,
+    it can be applied to one compatible item, causing it to be used up. The Healing
+    enchantment increases regeneration.
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantHealing.JPG?raw=true
+  deleted: false
+  regenerationIncrement: 2.625
+  enchantTypes:
+    gear:
+      regenerationIncrement: 2.625
+I13:
+  id: I13
+  name: Piercing
+  legend:
+    A scroll containing the Piercing enchantment. When clicked in the inventory,
+    it can be applied to one compatible item, causing it to be used up. The Piercing
+    enchantment increases armor piercing.
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantPiercing.png?raw=true
+  deleted: false
+  piercingIncrement: 2.625
+  enchantTypes:
+    gear:
+      piercingIncrement: 2.625
+AAD:
+  id: AAD
+  name: None
+  legend: Nope nothing enchanting about this at all
+  mainType: Enchant
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/master/static/assets/images/enchant/0.jpg
+  deleted: false
+  enchantTypes:
+    gear: {}
+JEI:
+  id: JEI
+  name: Charged
+  legend:
+    0.61 points of Power for every 10 levels +1.41 points of Intensity for every
+    10 levels
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantCharged.jpg?raw=true
+  deleted: false
+  enchantTypes:
+    gear:
+      powerIncrement: 0.609375
+      intensityIncrement: 1.40625
+    ship:
+      cannon:
+        damageMultiplier: 0.2
+        rangeMultiplier: 0.3
+      siegeWeapon:
+        damageMultiplier: 0.1
+        rangeMultiplier: 0.2
+hD4:
+  id: hD4
+  name: Explosive
+  legend: +2.625 points of Attack Size for every 10 levels
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantExplosive.jpg?raw=true
+  deleted: false
+  enchantTypes:
+    gear:
+      attackSizeIncrement: 2.625
+    ship:
+      siegeWeapon:
+        spreadMultiplier: 0.4
+Mod:
+  id: Mod
+  name: Armored
+  legend: +9.625 points of Defense for every 10 levels
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantArmored.jpg?raw=true
+  deleted: false
+  defenseIncrement: 8
+  enchantTypes:
+    gear:
+      defenseIncrement: 8
+    ship:
+      ram:
+        durability: 1200
+        ramDefense: 900
+      hull:
+        durability: 3000
+        ramDefense: 900
+      sail:
+        durability: 2400
+RlR:
+  id: RlR
+  name: Virtuous
+  legend:
+    +4.5 points of Defense for every 10 levels +1 point of Warding  Removes
+    Atlantean Modifier
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantVirtuous.jpg?raw=true
+  deleted: false
+  defenseIncrement: 4.5
+  warding: 1
+  enchantTypes:
+    gear:
+      defenseIncrement: 4.5
+      warding: 1
+jv5:
+  id: jv5
+  name: Swift
+  legend: +1.5 points of Attack Speed for every 10 levels
+  mainType: Enchant
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantSwift.jpg?raw=true
+  deleted: false
+  enchantTypes:
+    gear:
+      attackSpeedIncrement: 1.5
+    ship:
+      hull:
+        speed: 5
+        turning: 10
+      sail:
+        speed: 10
+      cannon:
+        reloadTime: -1
+      siegeWeapon:
+        reloadTime: -2
+iVI:
+  id: iVI
+  name: Resilience
+  legend:
+    A scroll containing the Resilience enchantment. When clicked in the inventory,
+    it can be applied to one compatible item, causing it to be used up. The Resilience
+    enchantment increases resistance.
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantResilience.png?raw=true
+  deleted: false
+  resistanceIncrement: 2.625
+  enchantTypes:
+    gear:
+      resistanceIncrement: 2.625
+tPg:
+  id: tPg
+  name: Sturdy
+  legend: Im sturdy rn
+  mainType: Enchant
+  rarity: Rare
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Enchants/Rare/enchantSturdy.jpg
+  deleted: false
+  enchantTypes:
+    ship:
+      sail:
+        resilience: 10
+        speed: 5
+kmI:
+  id: kmI
+  name: Reinforced
+  legend: Reinforced innit
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Enchants/Exotic/enchantReinforced.jpg
+  deleted: false
+  enchantTypes:
+    ship:
+      sail:
+        resilience: 20
+        speed: 8
+KhY:
+  id: KhY
+  name: Warship
+  legend: Warrrrr
+  mainType: Enchant
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilderImages/main/Enchants/Exotic/enchantWarship.jpg
+  deleted: false
+  enchantTypes:
+    ship:
+      ram:
+        ramDefense: -450
+        ramStrength: 1200
+      hull:
+        durability: 4000
+        ramDefense: 900
+        ramStrength: 450
+        speed: -7
+        stability: 20
+      sail:
+        durability: -4000
+        resilience: 10
+        speed: 25
+        turning: 10
+      cannon:
+        damageMultiplier: 0.5
+        rangeMultiplier: 0.5
+        reloadTime: 2
+      siegeWeapon:
+        damageMultiplier: 0.5
+        spreadMultiplier: 0.4
+        reloadTime: 4
