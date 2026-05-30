@@ -60,6 +60,204 @@ export function getScalingMultiplier(statType: statType) {
   }
 }
 
+export function getImbuePieceMultiplier(item: Item): number {
+  const name = item.name.toLowerCase();
+  if (
+    item.mainType === "Chestplate" ||
+    name.includes("arcsphere") ||
+    name.includes("bracelet")
+  ) {
+    return 1.0;
+  }
+  return 0.75;
+}
+
+export function getImbueStatMultiplier(
+  imbue: string,
+  statType: statType
+): number {
+  switch (imbue) {
+    case "acid":
+      return statType === "piercing" ? 1.0 : 0.0;
+
+    case "ash":
+      if (statType === "attackSize") return 0.75;
+      if (statType === "power") return 0.25;
+      return 0.0;
+
+    case "crystal":
+      if (statType === "defense") return 0.5;
+      if (statType === "intensity") return 0.5;
+      return 0.0;
+
+    case "earth":
+      if (statType === "defense") return 0.75;
+      if (statType === "attackSize") return 0.25;
+      return 0.0;
+
+    case "explosion":
+      return statType === "attackSize" ? 1.0 : 0.0;
+
+    case "fire":
+      return statType === "power" ? 1.0 : 0.0;
+
+    case "glass":
+      if (statType === "power") return 1.25;
+      if (statType === "defense") return -0.25;
+      return 0.0;
+
+    case "ice":
+      if (statType === "defense") return 0.25;
+      if (statType === "resistance") return 0.75;
+      return 0.0;
+
+    case "light":
+      if (statType === "attackSpeed") return 1.25;
+      if (statType === "attackSize") return -0.25;
+      return 0.0;
+
+    case "lightning":
+      if (statType === "attackSpeed") return 0.75;
+      if (statType === "agility") return 0.25;
+      return 0.0;
+
+    case "magma":
+      if (statType === "power") return 0.5;
+      if (statType === "attackSize") return 0.5;
+      return 0.0;
+
+    case "metal":
+      if (statType === "defense") return 1.0;
+      if (statType === "agility") return -0.25;
+      if (statType === "resistance") return 0.25;
+      return 0.0;
+
+    case "plasma":
+      if (statType === "power") return 0.75;
+      if (statType === "intensity") return 0.25;
+      return 0.0;
+
+    case "poison":
+      if (statType === "power") return 0.75;
+      if (statType === "piercing") return 0.25;
+      return 0.0;
+
+    case "sand":
+      return statType === "intensity" ? 1.0 : 0.0;
+
+    case "shadow":
+      if (statType === "power") return 0.5;
+      if (statType === "attackSpeed") return 0.5;
+      return 0.0;
+
+    case "snow":
+      if (statType === "attackSpeed") return 0.25;
+      if (statType === "attackSize") return 0.75;
+      return 0.0;
+
+    case "water":
+      if (statType === "intensity") return 0.25;
+      if (statType === "attackSize") return 0.75;
+      return 0.0;
+
+    case "wind":
+      if (statType === "agility") return 0.25;
+      if (statType === "attackSize") return 0.25;
+      if (statType === "attackSpeed") return 0.5;
+      return 0.0;
+
+    case "wood":
+      if (statType === "power") return 0.25;
+      if (statType === "defense") return 0.75;
+      return 0.0;
+
+    case "basic":
+      if (statType === "power") return 0.5;
+      if (statType === "intensity") return 0.5;
+      return 0.0;
+
+    case "boxing":
+      if (statType === "agility") return 0.5;
+      if (statType === "resistance") return 0.5;
+      return 0.0;
+
+    case "cannon fist":
+      if (statType === "piercing") return 0.5;
+      if (statType === "intensity") return 0.5;
+      return 0.0;
+
+    case "iron leg":
+      if (statType === "attackSpeed") return -0.25;
+      if (statType === "power") return 0.5;
+      if (statType === "resistance") return 0.75;
+      return 0.0;
+
+    case "sailor style":
+      if (statType === "attackSize") return 0.5;
+      if (statType === "power") return 0.5;
+      return 0.0;
+
+    case "thermo fist":
+      if (statType === "attackSpeed") return 0.75;
+      if (statType === "intensity") return 0.5;
+      if (statType === "attackSize") return -0.25;
+      return 0.0;
+
+    default:
+      return 0.0;
+  }
+}
+
+export function getImbueCategoryMultiplier(statType: statType): number {
+  switch (statType) {
+    case "defense":
+      return 0.334;
+    case "power":
+      return 0.285716;
+    default:
+      return 0.595;
+  }
+}
+
+export function detectImbue(item: Item): string | null {
+  const name = item.name.toLowerCase();
+
+  const candidates: Array<[string, string]> = [
+    ["acid", "acid"],
+    ["ash", "ash"],
+    ["crystal", "crystal"],
+    ["earth", "earth"],
+    ["explosion", "explosion"],
+    ["fire", "fire"],
+    ["glass", "glass"],
+    ["ice", "ice"],
+    ["lightning", "lightning"],
+    ["light", "light"],
+    ["magma", "magma"],
+    ["metal", "metal"],
+    ["plasma", "plasma"],
+    ["poison", "poison"],
+    ["sand", "sand"],
+    ["shadow", "shadow"],
+    ["snow", "snow"],
+    ["water", "water"],
+    ["wind", "wind"],
+    ["wood", "wood"],
+    ["basic combat", "basic"],
+    ["boxing", "boxing"],
+    ["cannon fist", "cannon fist"],
+    ["iron leg", "iron leg"],
+    ["sailor style", "sailor style"],
+    ["thermo fist", "thermo fist"],
+  ];
+
+  for (const [needle, key] of candidates) {
+    if (name.includes(needle)) return key;
+  }
+
+  return null;
+}
+
 export function createEmptyTotalStats(): TotalStats {
   const totalStats: TotalStats = {
     power: 0,
@@ -84,48 +282,134 @@ export function calculateItemStats(item: Item | null): TotalStats {
 
   if (!item) return totalStats;
 
-  totalStats.power += Math.floor(
-    (item?.scaling?.power ?? 0) * MAX_LEVEL * getScalingMultiplier("power")
-  );
+  const imbue = detectImbue(item) ?? "None";
 
-  totalStats.defense += Math.floor(
-    (item?.scaling?.defense ?? 0) * MAX_LEVEL * getScalingMultiplier("defense")
-  );
+  totalStats.power +=
+    Math.floor(
+      (item?.scaling?.power ?? 0) * MAX_LEVEL * getScalingMultiplier("power")
+    ) +
+    Math.floor(
+      getImbueStatMultiplier(imbue, "power") *
+        getImbuePieceMultiplier(item) *
+        getImbueCategoryMultiplier("power") *
+        getScalingMultiplier("power") *
+        MAX_LEVEL
+    );
 
-  totalStats.agility += Math.floor(
-    (item?.scaling?.agility ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-  );
+  totalStats.defense +=
+    Math.floor(
+      (item?.scaling?.defense ?? 0) *
+        MAX_LEVEL *
+        getScalingMultiplier("defense")
+    ) +
+    Math.floor(
+      getImbueStatMultiplier(imbue, "defense") *
+        getImbuePieceMultiplier(item) *
+        getImbueCategoryMultiplier("defense") *
+        getScalingMultiplier("defense") *
+        MAX_LEVEL
+    );
 
-  totalStats.attackSpeed += Math.floor(
-    (item?.scaling?.attackSpeed ?? 0) *
-      MAX_LEVEL *
-      getScalingMultiplier("other")
-  );
+  totalStats.agility +=
+    Math.floor(
+      (item?.scaling?.agility ?? 0) *
+        MAX_LEVEL *
+        getScalingMultiplier("agility")
+    ) +
+    Math.floor(
+      getImbueStatMultiplier(imbue, "agility") *
+        getImbuePieceMultiplier(item) *
+        getImbueCategoryMultiplier("agility") *
+        getScalingMultiplier("agility") *
+        MAX_LEVEL
+    );
 
-  totalStats.attackSize += Math.floor(
-    (item?.scaling?.attackSize ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-  );
+  totalStats.attackSpeed +=
+    Math.floor(
+      (item?.scaling?.attackSpeed ?? 0) *
+        MAX_LEVEL *
+        getScalingMultiplier("attackSpeed")
+    ) +
+    Math.floor(
+      getImbueStatMultiplier(imbue, "attackSpeed") *
+        getImbuePieceMultiplier(item) *
+        getImbueCategoryMultiplier("attackSpeed") *
+        getScalingMultiplier("attackSpeed") *
+        MAX_LEVEL
+    );
 
-  totalStats.intensity += Math.floor(
-    (item?.scaling?.intensity ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-  );
+  totalStats.attackSize +=
+    Math.floor(
+      (item?.scaling?.attackSize ?? 0) *
+        MAX_LEVEL *
+        getScalingMultiplier("attackSize")
+    ) +
+    Math.floor(
+      getImbueStatMultiplier(imbue, "attackSize") *
+        getImbuePieceMultiplier(item) *
+        getImbueCategoryMultiplier("attackSize") *
+        getScalingMultiplier("attackSize") *
+        MAX_LEVEL
+    );
 
-  totalStats.regeneration += Math.floor(
-    (item?.scaling?.regeneration ?? 0) *
-      MAX_LEVEL *
-      getScalingMultiplier("other")
-  );
+  totalStats.intensity +=
+    Math.floor(
+      (item?.scaling?.intensity ?? 0) *
+        MAX_LEVEL *
+        getScalingMultiplier("intensity")
+    ) +
+    Math.floor(
+      getImbueStatMultiplier(imbue, "intensity") *
+        getImbuePieceMultiplier(item) *
+        getImbueCategoryMultiplier("intensity") *
+        getScalingMultiplier("intensity") *
+        MAX_LEVEL
+    );
+
+  totalStats.regeneration +=
+    Math.floor(
+      (item?.scaling?.regeneration ?? 0) *
+        MAX_LEVEL *
+        getScalingMultiplier("regeneration")
+    ) +
+    Math.floor(
+      getImbueStatMultiplier(imbue, "regeneration") *
+        getImbuePieceMultiplier(item) *
+        getImbueCategoryMultiplier("regeneration") *
+        getScalingMultiplier("regeneration") *
+        MAX_LEVEL
+    );
 
   // we skip insanity because there is currently no item
-  // that has insanity scaling
+  // that has insanity scaling nor flat insanity increases
 
-  totalStats.piercing += Math.floor(
-    (item?.scaling?.piercing ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-  );
+  totalStats.piercing +=
+    Math.floor(
+      (item?.scaling?.piercing ?? 0) *
+        MAX_LEVEL *
+        getScalingMultiplier("piercing")
+    ) +
+    Math.floor(
+      getImbueStatMultiplier(imbue, "piercing") *
+        getImbuePieceMultiplier(item) *
+        getImbueCategoryMultiplier("piercing") *
+        getScalingMultiplier("piercing") *
+        MAX_LEVEL
+    );
 
-  totalStats.resistance += Math.floor(
-    (item?.scaling?.resistance ?? 0) * MAX_LEVEL * getScalingMultiplier("other")
-  );
+  totalStats.resistance +=
+    Math.floor(
+      (item?.scaling?.resistance ?? 0) *
+        MAX_LEVEL *
+        getScalingMultiplier("resistance")
+    ) +
+    Math.floor(
+      getImbueStatMultiplier(imbue, "resistance") *
+        getImbuePieceMultiplier(item) *
+        getImbueCategoryMultiplier("resistance") *
+        getScalingMultiplier("resistance") *
+        MAX_LEVEL
+    );
 
   // we do not multiply warding by the scaling multiplier because
   // it comes already with the actual value in the item data
