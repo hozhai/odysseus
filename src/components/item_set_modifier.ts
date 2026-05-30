@@ -51,7 +51,7 @@ export default class ItemSetModifierButton extends ComponentCommand {
     Object.values(modifierData)
       .filter(
         // allow 'None' to pass as a way for the user to remove the modifier
-        (val) => item.validModifiers?.includes(val.name)
+        (val) => item.validModifiers?.includes(val.name) || val.name === "None"
       )
       .forEach((mod) => {
         const option = new StringSelectOption();
