@@ -4,5 +4,5 @@
 
 - [] fix item_set_gems
 - [] create item_select_gems
-- [] refactor all code to take in the ID of the item-like type instead of the item-like object as a whole.
-- [] add jsdocs all appropriate functions
+- [] refactor all code to take in the item object of the item-like type instead of the ID.
+- [] add jsdocs to all appropriate functions
