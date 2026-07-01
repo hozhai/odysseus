@@ -1,13 +1,6 @@
-import {
-  ActionRow,
-  ComponentCommand,
-  ComponentContext,
-  StringSelectMenu,
-  StringSelectOption,
-  type ActionBuilderComponents,
-} from "seyfert";
-import { getData } from "../data/load";
-import { findItemById, itemGemToEmoji } from "../utils";
+import { ActionRow, Button, ComponentCommand, ComponentContext } from "seyfert";
+import { findItemById } from "../utils";
+import { ButtonStyle } from "seyfert/lib/types";
 
 export default class ItemSetGemsButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -31,8 +24,6 @@ export default class ItemSetGemsButton extends ComponentCommand {
       return;
     }
 
-    const gemData = (await getData()).gems;
-
     const item = await findItemById(embed.title?.split(" | ")[1] ?? "");
 
     if (!item) {
@@ -42,8 +33,6 @@ export default class ItemSetGemsButton extends ComponentCommand {
       });
       return;
     }
-
-    const selectMenus: StringSelectMenu[] = [];
 
     const gemNo = item.gemNo;
 
@@ -55,40 +44,30 @@ export default class ItemSetGemsButton extends ComponentCommand {
       return;
     }
 
-    for (let i = 0; i < gemNo; i++) {
-      selectMenus.push(
-        new StringSelectMenu()
-          .setCustomId("item_select_gems")
-          .setPlaceholder(`Select gem #${i + 1}...`)
-          .setRequired(true)
-          .setValuesLength({ max: 1, min: 1 })
-      );
-    }
+    const regularGemsBtn = new Button()
+      .setCustomId("item_set_gems_regular")
+      .setLabel("Regular Gems")
+      .setStyle(ButtonStyle.Secondary);
 
-    Object.values(gemData).forEach((gem) => {
-      const option = new StringSelectOption();
-      option.setLabel(gem.name);
-      option.setValue(gem.name.toLowerCase());
+    const hybridGemsBtn = new Button()
+      .setCustomId("item_set_gems_hybrid")
+      .setLabel("Hybrid Gems")
+      .setStyle(ButtonStyle.Secondary);
 
-      const emoji = itemGemToEmoji(gem);
-      if (emoji) {
-        option.setEmoji(emoji);
-      }
+    const backBtn = new Button()
+      .setCustomId("item_set_gems_back")
+      .setLabel("Back")
+      .setStyle(ButtonStyle.Danger);
 
-      selectMenus.forEach((selectMenu) => selectMenu.addOption(option));
-    });
-
-    const rows: ActionRow<ActionBuilderComponents>[] = [];
-
-    for (let i = 0; i < gemNo; i++) {
-      // we know that selectMenus[i] will not be undefined
-      // because each gemNo is guaranteed to have a matching selectMenu
-      rows.push(new ActionRow().setComponents(selectMenus[i]!));
-    }
+    const row = new ActionRow().setComponents([
+      regularGemsBtn,
+      hybridGemsBtn,
+      backBtn,
+    ]);
 
     await ctx.editResponse({
       embeds: [embed],
-      components: rows,
+      components: [row],
     });
   }
 }
