@@ -1,6 +1,7 @@
 aZ2:
   id: aZ2
   name: Intensity Gem
+  hybrid: false
   legend: Max Intensity Gem Innit
   mainType: Gem
   rarity: Rare
@@ -10,6 +11,7 @@ aZ2:
 CTP:
   id: CTP
   name: Malachite
+  hybrid: false
   legend:
     Malachi was a mostly-anonymous prophet whose ministry occurred in Jerusalem
     during the era of Nehemiah and Ezra. Although he spoke primarily to a specific
@@ -24,6 +26,7 @@ CTP:
 qGg:
   id: qGg
   name: Defense Gem
+  hybrid: false
   legend: Max Defense Gem Innit
   mainType: Gem
   rarity: Rare
@@ -33,6 +36,7 @@ qGg:
 fY6:
   id: fY6
   name: Attack Speed Gem
+  hybrid: false
   legend: Max Attack Speed Gem Innit
   mainType: Gem
   rarity: Rare
@@ -42,6 +46,7 @@ fY6:
 2ST:
   id: 2ST
   name: Attack Size Gem
+  hybrid: false
   legend: Max Attack Size Gem Innit
   mainType: Gem
   rarity: Rare
@@ -51,6 +56,7 @@ fY6:
 nca:
   id: nca
   name: Perfect Aventurine
+  hybrid: false
   legend: Its adventure time!!!
   mainType: Gem
   rarity: Exotic
@@ -60,6 +66,7 @@ nca:
 AAF:
   id: AAF
   name: None
+  hybrid: false
   legend: Shine bright like a NOTHING
   mainType: Gem
   rarity: None
@@ -68,6 +75,7 @@ AAF:
 GYC:
   id: GYC
   name: Variscite
+  hybrid: false
   legend:
     An exotic gem - Xtremev13 was here. Hello xtremev13, Bob here. Please fix
     this ASAP.
@@ -80,6 +88,7 @@ GYC:
 9pe:
   id: 9pe
   name: Painite
+  hybrid: false
   legend: The world shall know pain.
   mainType: Gem
   rarity: Exotic
@@ -90,6 +99,7 @@ GYC:
 N9w:
   id: N9w
   name: Larimar
+  hybrid: false
   legend: LAMAR FROM GTA V !?????
   mainType: Gem
   rarity: Exotic
@@ -100,6 +110,7 @@ N9w:
 XpP:
   id: XpP
   name: Candelaria
+  hybrid: false
   legend: Sounds like that one pokemon
   mainType: Gem
   rarity: Exotic
@@ -110,6 +121,7 @@ XpP:
 0ma:
   id: 0ma
   name: Agility Gem
+  hybrid: false
   legend: Max Agility Gem Innit
   mainType: Gem
   rarity: Rare
@@ -119,6 +131,7 @@ XpP:
 DuG:
   id: DuG
   name: Perfect Fire Opal
+  hybrid: false
   legend: Armor Piercing Gem.
   mainType: Gem
   rarity: Exotic
@@ -128,6 +141,7 @@ DuG:
 CBH:
   id: CBH
   name: Perfect Azurite
+  hybrid: false
   legend: Ultraman Azul
   mainType: Gem
   rarity: Exotic
@@ -137,6 +151,7 @@ CBH:
 sKB:
   id: sKB
   name: Morenci
+  hybrid: false
   legend: Ngl this reminds me of mordecai from the regular show.
   mainType: Gem
   rarity: Exotic
@@ -147,6 +162,7 @@ sKB:
 ozh:
   id: ozh
   name: Lapiz Lazuli
+  hybrid: false
   legend: MINECRAFT REFERENCE?!!?!?@112
   mainType: Gem
   rarity: Exotic
@@ -157,6 +173,7 @@ ozh:
 91q:
   id: 91q
   name: Kyanite
+  hybrid: false
   legend: We have cyan at home.
   mainType: Gem
   rarity: Exotic
@@ -167,6 +184,7 @@ ozh:
 XUx:
   id: XUx
   name: Agate
+  hybrid: false
   legend: Agaga goo goo gaa gaa
   mainType: Gem
   rarity: Exotic
@@ -177,6 +195,7 @@ XUx:
 NU7:
   id: NU7
   name: Power Gem
+  hybrid: false
   legend: Max Power Gem Innit
   mainType: Gem
   rarity: Rare
@@ -186,6 +205,7 @@ NU7:
 XOW:
   id: XOW
   name: 2x agate
+  hybrid: true
   legend: fused agate + agate
   mainType: Gem
   rarity: Exotic
@@ -196,6 +216,7 @@ XOW:
 i0a:
   id: i0a
   name: candelaria-morenci
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -207,6 +228,7 @@ i0a:
 3VF:
   id: 3VF
   name: candelaria-malachite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -218,6 +240,7 @@ i0a:
 zCi:
   id: zCi
   name: 2x candelaria
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -228,6 +251,7 @@ zCi:
 3Z5:
   id: 3Z5
   name: malachite-agate
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -239,6 +263,7 @@ zCi:
 B2g:
   id: B2g
   name: 2x morenci
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -249,6 +274,7 @@ B2g:
 ISO:
   id: ISO
   name: 2x malachite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -259,6 +285,7 @@ ISO:
 7ja:
   id: 7ja
   name: agate-candelaria
+  hybrid: true
   legend: Please fill in this field.
   mainType: Gem
   rarity: Exotic
@@ -271,6 +298,7 @@ ISO:
 v9g:
   id: v9g
   name: 2x lapis lazuli
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -281,6 +309,7 @@ v9g:
 0sr:
   id: 0sr
   name: aventurine-lapis lazuli
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -292,6 +321,7 @@ v9g:
 uJ6:
   id: uJ6
   name: larimar-aventurine
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -303,6 +333,7 @@ uJ6:
 kmW:
   id: kmW
   name: kyanite-aventurine
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -314,6 +345,7 @@ kmW:
 bMc:
   id: bMc
   name: aventurine-variscite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -325,6 +357,7 @@ bMc:
 z4V:
   id: z4V
   name: lapis-candelaria
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -336,6 +369,7 @@ z4V:
 cVQ:
   id: cVQ
   name: larimar-candelaria
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -347,6 +381,7 @@ cVQ:
 aV5:
   id: aV5
   name: lapis-agate
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: None
@@ -359,6 +394,7 @@ aV5:
 VI5:
   id: VI5
   name: 2x painite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -369,6 +405,7 @@ VI5:
 QDU:
   id: QDU
   name: malachite-lapis
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -381,6 +418,7 @@ QDU:
 wSE:
   id: wSE
   name: 2x larimar
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -391,6 +429,7 @@ wSE:
 WAx:
   id: WAx
   name: 2x variscite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -401,6 +440,7 @@ WAx:
 bDg:
   id: bDg
   name: candelaria-kyanite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -413,6 +453,7 @@ bDg:
 Y3q:
   id: Y3q
   name: malachite-kyanite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -425,6 +466,7 @@ Y3q:
 k8N:
   id: k8N
   name: kyanite-variscite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -436,6 +478,7 @@ k8N:
 nIw:
   id: nIw
   name: larimar-variscite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
@@ -448,6 +491,7 @@ nIw:
 I3F:
   id: I3F
   name: 2x kyanite
+  hybrid: true
   legend: None
   mainType: Gem
   rarity: Exotic
