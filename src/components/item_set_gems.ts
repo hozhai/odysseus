@@ -52,7 +52,9 @@ export default class ItemSetGemsButton extends ComponentCommand {
     const hybridGemsBtn = new Button()
       .setCustomId("item_set_gems_hybrid")
       .setLabel("Hybrid Gems")
-      .setStyle(ButtonStyle.Secondary);
+      .setStyle(ButtonStyle.Secondary)
+      // enable when we have fused gems figured out
+      .setDisabled(true);
 
     const backBtn = new Button()
       .setCustomId("item_set_gems_back")

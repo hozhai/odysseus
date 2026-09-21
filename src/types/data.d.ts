@@ -118,6 +118,7 @@ export interface Gem {
   rarity: string;
   imageId: string;
   deleted: boolean;
+  hybrid: boolean;
 
   insanity?: number | null;
   warding?: number | null;
