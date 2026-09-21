@@ -284,132 +284,105 @@ export function calculateItemStats(item: Item | null): TotalStats {
 
   const imbue = detectImbue(item) ?? "None";
 
-  totalStats.power +=
-    Math.floor(
-      (item?.scaling?.power ?? 0) * MAX_LEVEL * getScalingMultiplier("power")
-    ) +
-    Math.floor(
+  totalStats.power += Math.floor(
+    (item?.scaling?.power ?? 0) * MAX_LEVEL * getScalingMultiplier("power") +
       getImbueStatMultiplier(imbue, "power") *
         getImbuePieceMultiplier(item) *
         getImbueCategoryMultiplier("power") *
         getScalingMultiplier("power") *
         MAX_LEVEL
-    );
+  );
 
-  totalStats.defense +=
-    Math.floor(
-      (item?.scaling?.defense ?? 0) *
-        MAX_LEVEL *
-        getScalingMultiplier("defense")
-    ) +
-    Math.floor(
+  totalStats.defense += Math.floor(
+    (item?.scaling?.defense ?? 0) *
+      MAX_LEVEL *
+      getScalingMultiplier("defense") +
       getImbueStatMultiplier(imbue, "defense") *
         getImbuePieceMultiplier(item) *
         getImbueCategoryMultiplier("defense") *
         getScalingMultiplier("defense") *
         MAX_LEVEL
-    );
+  );
 
-  totalStats.agility +=
-    Math.floor(
-      (item?.scaling?.agility ?? 0) *
-        MAX_LEVEL *
-        getScalingMultiplier("agility")
-    ) +
-    Math.floor(
+  totalStats.agility += Math.floor(
+    (item?.scaling?.agility ?? 0) *
+      MAX_LEVEL *
+      getScalingMultiplier("agility") +
       getImbueStatMultiplier(imbue, "agility") *
         getImbuePieceMultiplier(item) *
         getImbueCategoryMultiplier("agility") *
         getScalingMultiplier("agility") *
         MAX_LEVEL
-    );
+  );
 
-  totalStats.attackSpeed +=
-    Math.floor(
-      (item?.scaling?.attackSpeed ?? 0) *
-        MAX_LEVEL *
-        getScalingMultiplier("attackSpeed")
-    ) +
-    Math.floor(
+  totalStats.attackSpeed += Math.floor(
+    (item?.scaling?.attackSpeed ?? 0) *
+      MAX_LEVEL *
+      getScalingMultiplier("attackSpeed") +
       getImbueStatMultiplier(imbue, "attackSpeed") *
         getImbuePieceMultiplier(item) *
         getImbueCategoryMultiplier("attackSpeed") *
         getScalingMultiplier("attackSpeed") *
         MAX_LEVEL
-    );
+  );
 
-  totalStats.attackSize +=
-    Math.floor(
-      (item?.scaling?.attackSize ?? 0) *
-        MAX_LEVEL *
-        getScalingMultiplier("attackSize")
-    ) +
-    Math.floor(
+  totalStats.attackSize += Math.floor(
+    (item?.scaling?.attackSize ?? 0) *
+      MAX_LEVEL *
+      getScalingMultiplier("attackSize") +
       getImbueStatMultiplier(imbue, "attackSize") *
         getImbuePieceMultiplier(item) *
         getImbueCategoryMultiplier("attackSize") *
         getScalingMultiplier("attackSize") *
         MAX_LEVEL
-    );
+  );
 
-  totalStats.intensity +=
-    Math.floor(
-      (item?.scaling?.intensity ?? 0) *
-        MAX_LEVEL *
-        getScalingMultiplier("intensity")
-    ) +
-    Math.floor(
+  totalStats.intensity += Math.floor(
+    (item?.scaling?.intensity ?? 0) *
+      MAX_LEVEL *
+      getScalingMultiplier("intensity") +
       getImbueStatMultiplier(imbue, "intensity") *
         getImbuePieceMultiplier(item) *
         getImbueCategoryMultiplier("intensity") *
         getScalingMultiplier("intensity") *
         MAX_LEVEL
-    );
+  );
 
-  totalStats.regeneration +=
-    Math.floor(
-      (item?.scaling?.regeneration ?? 0) *
-        MAX_LEVEL *
-        getScalingMultiplier("regeneration")
-    ) +
-    Math.floor(
+  totalStats.regeneration += Math.floor(
+    (item?.scaling?.regeneration ?? 0) *
+      MAX_LEVEL *
+      getScalingMultiplier("regeneration") +
       getImbueStatMultiplier(imbue, "regeneration") *
         getImbuePieceMultiplier(item) *
         getImbueCategoryMultiplier("regeneration") *
         getScalingMultiplier("regeneration") *
         MAX_LEVEL
-    );
+  );
 
   // we skip insanity because there is currently no item
   // that has insanity scaling nor flat insanity increases
 
-  totalStats.piercing +=
-    Math.floor(
-      (item?.scaling?.piercing ?? 0) *
-        MAX_LEVEL *
-        getScalingMultiplier("piercing")
-    ) +
-    Math.floor(
+  totalStats.piercing += Math.floor(
+    (item?.scaling?.piercing ?? 0) *
+      MAX_LEVEL *
+      getScalingMultiplier("piercing") +
       getImbueStatMultiplier(imbue, "piercing") *
         getImbuePieceMultiplier(item) *
         getImbueCategoryMultiplier("piercing") *
         getScalingMultiplier("piercing") *
         MAX_LEVEL
-    );
+  );
 
-  totalStats.resistance +=
-    Math.floor(
-      (item?.scaling?.resistance ?? 0) *
-        MAX_LEVEL *
-        getScalingMultiplier("resistance")
-    ) +
-    Math.floor(
+  totalStats.resistance += Math.floor(
+    (item?.scaling?.resistance ?? 0) *
+      MAX_LEVEL *
+      getScalingMultiplier("resistance") +
       getImbueStatMultiplier(imbue, "resistance") *
         getImbuePieceMultiplier(item) *
         getImbueCategoryMultiplier("resistance") *
         getScalingMultiplier("resistance") *
         MAX_LEVEL
-    );
+  );
 
   // we do not multiply warding by the scaling multiplier because
   // it comes already with the actual value in the item data
