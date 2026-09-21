@@ -171,25 +171,21 @@ export function textToEmoji(
 
 export async function emojiToGem(
   emoji: APIMessageComponentEmoji | null
-): Promise<Item | null> {
-  const itemsData = (await getData()).items;
+): Promise<Gem | null> {
+  const gemsData = (await getData()).gems;
 
   if (emoji == null) {
+    return gemsData[EMPTY_GEM_ID] ?? null;
+  }
+
+  const gem = Object.values(gemsData).find((gem) => {
+    const gemEmoji = itemGemToEmoji(gem);
     return (
-      Object.values(itemsData).filter((val) => val.id === EMPTY_GEM_ID)[0] ??
-      null
+      gemEmoji?.name === emoji.name && (!emoji.id || gemEmoji?.id === emoji.id)
     );
-  }
+  });
 
-  const gem = Object.values(itemsData)
-    .filter((val) => val.mainType === "Gem")
-    .filter((gem) => gem.name.toLowerCase() === emoji.name);
-
-  if (gem.length == 0) {
-    return null;
-  }
-
-  return gem[0] ?? null;
+  return gem ?? null;
 }
 
 export async function emojiToEnchant(
@@ -207,13 +203,15 @@ export async function emojiToEnchant(
 
   const enchant = Object.values(enchantData)
     .filter((val) => val.mainType === "Enchant")
-    .filter((enchant) => enchant.name.toLowerCase() === emoji?.name);
+    .find((enchant) => {
+      const enchantEmoji = itemEnchantToEmoji(enchant);
+      return (
+        enchantEmoji?.name === emoji.name &&
+        (!emoji.id || enchantEmoji?.id === emoji.id)
+      );
+    });
 
-  if (enchant.length == 0) {
-    return null;
-  }
-
-  return enchant[0] ?? null;
+  return enchant ?? null;
 }
 
 export async function emojiToModifier(
@@ -231,13 +229,15 @@ export async function emojiToModifier(
 
   const modifier = Object.values(modifierData)
     .filter((val) => val.mainType === "Modifier")
-    .filter((modifier) => modifier.name.toLowerCase() === emoji.name);
+    .find((modifier) => {
+      const modifierEmoji = itemModifierToEmoji(modifier);
+      return (
+        modifierEmoji?.name === emoji.name &&
+        (!emoji.id || modifierEmoji?.id === emoji.id)
+      );
+    });
 
-  if (modifier.length == 0) {
-    return null;
-  }
-
-  return modifier[0] ?? null;
+  return modifier ?? null;
 }
 
 /**
