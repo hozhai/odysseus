@@ -5,6 +5,7 @@ import {
   Embed,
   ActionRow,
   Button,
+  Formatter,
 } from "seyfert";
 import { EMBED_COLOR_DEFAULT, EMBED_FOOTER, VERSION } from "../constants";
 import { ButtonStyle } from "seyfert/lib/types";
@@ -28,7 +29,7 @@ export default class AboutCommand extends Command {
         `
         Odysseus is a utility bot for Arcane Odyssey, a Roblox game where you embark through an epic journey through the War Seas. 
         
-        This is a side project by <@360235359746916352> and used to be an excuse to learn Go and Rust, though those versions were mostly vibe-coded so it was rewritten into this v2 version written in Typescript with Seyfert through the Bun runtime.
+        This is a side project by ${Formatter.userMention("360235359746916352")} and used to be an excuse to learn Go and Rust, though those versions were mostly vibe-coded so it was rewritten into this v2 version written in Typescript with Seyfert through the Bun runtime.
         `
       )
       .setFields([
