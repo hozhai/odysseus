@@ -1,5 +1,6 @@
 import { CommandContext, Embed } from "seyfert";
 import {
+  EMBED_COLOR_DEFAULT,
   EMPTY_BOOTS_ID,
   EMPTY_CHESTPLATE_ID,
   EMPTY_ENCHANTMENT_ID,
@@ -199,6 +200,7 @@ export function parsePlayerIntoEmbed(
   const embed = new Embed();
 
   embed.setTitle(`${ctx.author.username}'s build`);
+  embed.setColor(EMBED_COLOR_DEFAULT);
 
   const fields: APIEmbedField[] = [];
 
