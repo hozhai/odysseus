@@ -36,6 +36,12 @@ export default class ItemCommand extends Command {
     const url = ctx.options.url;
     const gatekeep = ctx.options.gatekeep ?? false;
 
+    if (gatekeep) {
+      await ctx.deferReply(true);
+    } else {
+      await ctx.deferReply(false);
+    }
+
     // validate URL
     if (
       !url.startsWith(BUILD_URL_PREFIX_BOBBY) &&
