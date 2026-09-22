@@ -6,7 +6,45 @@ import {
   EMPTY_MODIFIER_ID,
 } from "../constants";
 import { type Player, type Slot } from "../types";
-import type { APIEmbedField } from "seyfert/lib/types";
+import type {
+  APIEmbedField,
+  APIMessageComponentEmoji,
+} from "seyfert/lib/types";
+import { fsToEmoji, magicToEmoji } from "./emoji";
+
+export enum MagicsEnum {
+  Acid = 0,
+  Ash = 1,
+  Crystal = 2,
+  Earth = 3,
+  Explosion = 4,
+  Fire = 5,
+  Glass = 6,
+  Ice = 7,
+  Light = 8,
+  Lightning = 9,
+  Magma = 10,
+  Metal = 11,
+  Plasma = 12,
+  Poison = 13,
+  Sand = 14,
+  Shadow = 15,
+  Snow = 16,
+  Water = 17,
+  Wind = 18,
+  Wood = 19,
+}
+
+export enum FightingStylesEnum {
+  BasicCombat = 20,
+  Boxing = 21,
+  IronLeg = 22,
+  CannonFist = 23,
+  PowderFist = 24,
+  SailorStyle = 25,
+  ThermoFist = 26,
+  VanishingStyle = 27,
+}
 
 export function createEmptyPlayer(): Player {
   const player: Player = {
@@ -37,7 +75,13 @@ export function createEmptyPlayer(): Player {
   return player;
 }
 
-export function unhashBuildCode(code: string): Player {
+export function unhashBuildCode(code: string | undefined): Player {
+  const player = createEmptyPlayer();
+
+  if (!code) {
+    return player;
+  }
+
   const slotCodeArray = code.split("|").map((section) => section.split(","));
 
   if (slotCodeArray.length < 8) {
@@ -46,7 +90,6 @@ export function unhashBuildCode(code: string): Player {
     );
   }
 
-  const player = createEmptyPlayer();
   const stats = getRequiredSection(slotCodeArray, 0);
 
   if (stats.length < 5) {
@@ -79,7 +122,7 @@ export function unhashBuildCode(code: string): Player {
   const fightingStyleIndexes = parseIndexes(
     getRequiredSection(slotCodeArray, 2),
     "fighting style",
-    6
+    8
   );
   player.fightingStyles = fightingStyleIndexes.map((index) => index + 20);
 
@@ -171,10 +214,22 @@ export function parsePlayerIntoEmbed(
     inline: true,
   });
 
-  const magicFsString = "";
+  let magicFsString = "";
 
-  player.magics.forEach((_magic) => {
-    // todo
+  player.magics.forEach((magic) => {
+    const magicEmoji: APIMessageComponentEmoji | null = magicToEmoji(
+      magic as MagicsEnum
+    );
+    if (!magicEmoji) return;
+    magicFsString += `<:${magicEmoji.name}:${magicEmoji.id}>`;
+  });
+
+  player.fightingStyles.forEach((fs) => {
+    const fsEmoji: APIMessageComponentEmoji | null = fsToEmoji(
+      fs as FightingStylesEnum
+    );
+    if (!fsEmoji) return;
+    magicFsString += `<:${fsEmoji.name}:${fsEmoji.id}>`;
   });
 
   fields.push({

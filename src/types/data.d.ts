@@ -172,38 +172,6 @@ export interface TotalStats {
   drawback: number;
 }
 
-export enum MagicsEnum {
-  Acid = 0,
-  Ash = 1,
-  Crystal = 2,
-  Earth = 3,
-  Explosion = 4,
-  Fire = 5,
-  Glass = 6,
-  Ice = 7,
-  Light = 8,
-  Lightning = 9,
-  Magma = 10,
-  Metal = 11,
-  Plasma = 12,
-  Poison = 13,
-  Sand = 14,
-  Shadow = 15,
-  Snow = 16,
-  Water = 17,
-  Wind = 18,
-  Wood = 19,
-}
-
-export enum FightingStylesEnum {
-  BasicCombat = 20,
-  Boxing = 21,
-  IronLeg = 22,
-  CannonFist = 23,
-  SailorStyle = 24,
-  ThermoFist = 25,
-}
-
 export interface WikiSearchResult {
   title: string;
   description: string;
