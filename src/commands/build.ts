@@ -12,7 +12,7 @@ import {
   BUILD_URL_PREFIX_WOODY,
   EMBED_COLOR_ERROR,
 } from "../constants";
-import { parsePlayerIntoEmbed, unhashBuildCode } from "../utils/build";
+import { parsePlayerIntoEmbed, unhashBuildCode } from "../utils";
 import { MessageFlags } from "seyfert/lib/types";
 
 const options = {
@@ -31,7 +31,7 @@ const options = {
   description: "Displays a build from a GearBuilder-type link.",
 })
 @Options(options)
-export default class ItemCommand extends Command {
+export default class BuildCommand extends Command {
   override async run(ctx: CommandContext<typeof options>) {
     const url = ctx.options.url;
     const gatekeep = ctx.options.gatekeep ?? false;
@@ -64,22 +64,22 @@ export default class ItemCommand extends Command {
         )
         .setColor(EMBED_COLOR_ERROR);
 
-      await ctx.write({ embeds: [embed] });
+      await ctx.editOrReply({ embeds: [embed] });
       return;
     }
 
-    const player = unhashBuildCode(url.split("#")[1]!);
+    const player = unhashBuildCode(url.split("#")[1]);
 
     if (gatekeep) {
       await ctx.client.messages.write(ctx.channelId, {
         content: JSON.stringify(player, null, 2),
       });
-      await ctx.write({
+      await ctx.editOrReply({
         content: "Succesfully sent gatekept build!",
         flags: MessageFlags.Ephemeral,
       });
     }
 
-    await ctx.write({ embeds: [parsePlayerIntoEmbed(ctx, player)] });
+    await ctx.editOrReply({ embeds: [parsePlayerIntoEmbed(ctx, player)] });
   }
 }
