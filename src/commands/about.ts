@@ -29,7 +29,7 @@ export default class AboutCommand extends Command {
         `
         Odysseus is a utility bot for Arcane Odyssey, a Roblox game where you embark through an epic journey through the War Seas. 
         
-        This is a side project by ${Formatter.userMention("360235359746916352")} and used to be an excuse to learn Go and Rust, though those versions were mostly vibe-coded so it was rewritten into this v2 version written in Typescript with Seyfert through the Bun runtime.
+        This is a side project by ${Formatter.userMention("360235359746916352")} and used to be an excuse to learn Go and Rust, but is now an excuse to further my knowledge of TypeScript and the Bun runtime.
         `
       )
       .setFields([
@@ -39,7 +39,7 @@ export default class AboutCommand extends Command {
           inline: true,
         },
         {
-          name: "Process uptime",
+          name: "Process Uptime",
           value: `\`${uptimeHours}\` hour(s)`,
           inline: true,
         },
