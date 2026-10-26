@@ -17,7 +17,7 @@ import { ButtonStyle } from "seyfert/lib/types";
 
 const options = {
   name: createStringOption({
-    description: "The name of the item to search for",
+    description: "The name of the item to search for.",
     required: true,
     autocomplete: async (interaction) => {
       const itemsData = (await getData()).items;
@@ -95,7 +95,7 @@ export default class ItemCommand extends Command {
 
     const components = [
       new Button()
-        .setLabel("Add Enchant")
+        .setLabel("Set Enchant")
         .setCustomId("item_set_enchant")
         .setStyle(ButtonStyle.Secondary),
     ];
@@ -103,7 +103,7 @@ export default class ItemCommand extends Command {
     if (item.validModifiers) {
       components.push(
         new Button()
-          .setLabel("Add Modifier")
+          .setLabel("Set Modifier")
           .setCustomId("item_set_modifier")
           .setStyle(ButtonStyle.Secondary)
       );
@@ -112,7 +112,7 @@ export default class ItemCommand extends Command {
     if (item.gemNo) {
       components.push(
         new Button()
-          .setLabel("Add Gems")
+          .setLabel("Set Gems")
           .setCustomId("item_set_gems")
           .setStyle(ButtonStyle.Secondary)
       );
