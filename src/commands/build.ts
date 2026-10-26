@@ -33,6 +33,21 @@ const options = {
 @Options(options)
 export default class BuildCommand extends Command {
   override async run(ctx: CommandContext<typeof options>) {
+    {
+      const embed = new Embed()
+        .setAuthor({
+          name: ctx.author.username,
+          iconUrl: ctx.author.avatarURL(),
+        })
+        .setTitle("WIP")
+        .setDescription(
+          "This command is still under construction. Join our [Discord](https://discord.gg/Z3uKnGHvMN) for more information!"
+        );
+
+      await ctx.write({ embeds: [embed] });
+      return;
+    }
+
     const url = ctx.options.url;
     const gatekeep = ctx.options.gatekeep ?? false;
 
