@@ -1,6 +1,7 @@
-import { Client, ParseClient } from "seyfert";
+import type { ParseClient, Client } from "seyfert";
 
 declare module "seyfert" {
-  // oxlint-disable-next-line typescript/no-empty-object-type
-  interface UsingClient extends ParseClient<Client<true>> {}
+  interface SeyfertRegistry {
+    client: ParseClient<Client<true>>; // Gateway
+  }
 }
