@@ -9,6 +9,7 @@ import {
 } from "seyfert";
 import { EMBED_COLOR_DEFAULT, EMBED_FOOTER, VERSION } from "../constants";
 import { ButtonStyle } from "seyfert/lib/types";
+import { formatSeconds } from "../utils/misc";
 
 @Declare({
   name: "about",
@@ -17,7 +18,8 @@ import { ButtonStyle } from "seyfert/lib/types";
 export default class AboutCommand extends Command {
   override async run(ctx: CommandContext) {
     const ping = ctx.client.gateway.latency;
-    const uptimeHours = (Bun.nanoseconds() / 1e9 / 3600).toFixed(2); // round to 2 decimal digits;
+    const uptimeHours = formatSeconds(Bun.nanoseconds() / 1e9);
+    const memoryUsed = process.memoryUsage().rss / 1024 / 1024;
 
     const embed = new Embed()
       .setAuthor({
@@ -34,14 +36,18 @@ export default class AboutCommand extends Command {
       )
       .setFields([
         {
-          name: "Bot's Latency",
+          name: "Bot Latency",
           value: `\`${ping}ms\``,
           inline: true,
         },
         {
           name: "Process Uptime",
-          value: `\`${uptimeHours}\` hour(s)`,
+          value: `\`${uptimeHours}\``,
           inline: true,
+        },
+        {
+          name: "Memory Usage (RSS)",
+          value: `\`${memoryUsed.toFixed(2)}\` MB`,
         },
       ])
       .setImage(
