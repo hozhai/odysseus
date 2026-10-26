@@ -5,7 +5,7 @@
 <h1 align="center">Odysseus</h1>
 <h3 align="center">An Arcane Odyssey utility bot</h3>
 
-## 🔨 Building
+## 🔨Running
 
 Clone the repository
 
