@@ -1,4 +1,4 @@
-import yaml from "js-yaml";
+import { load } from "js-yaml";
 import type {
   BotData,
   Enchants,
@@ -28,12 +28,12 @@ export async function getData(): Promise<BotData> {
   const modifiersText = await modifiersFile.text();
   const gemsText = await gemsFile.text();
 
-  const itemsContent = yaml.load(itemsText) as Items;
-  const magicsContent = yaml.load(magicsText) as Magics;
-  const weaponsContent = yaml.load(weaponsText) as Weapons;
-  const enchantsContent = yaml.load(enchantsText) as Enchants;
-  const modifiersContent = yaml.load(modifiersText) as Modifiers;
-  const gemsContent = yaml.load(gemsText) as Gems;
+  const itemsContent = load(itemsText) as Items;
+  const magicsContent = load(magicsText) as Magics;
+  const weaponsContent = load(weaponsText) as Weapons;
+  const enchantsContent = load(enchantsText) as Enchants;
+  const modifiersContent = load(modifiersText) as Modifiers;
+  const gemsContent = load(gemsText) as Gems;
 
   data = {
     items: itemsContent,
