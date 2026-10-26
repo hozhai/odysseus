@@ -1,17 +1,12 @@
 import { ActionRow, Button, ComponentCommand, ComponentContext } from "seyfert";
-import {
-  findItemById,
-  findModifierByName,
-  parseEmbedIntoSlot,
-  slotIntoEmbed,
-} from "../utils";
+import { findItemById, parseEmbedIntoSlot } from "../../utils";
 import { ButtonStyle } from "seyfert/lib/types";
 
-export default class ItemSelectModifierSelectMenu extends ComponentCommand {
-  componentType = "StringSelect" as const;
+export default class ItemSetGemsBackButton extends ComponentCommand {
+  componentType = "Button" as const;
 
   override filter(ctx: ComponentContext<typeof this.componentType>) {
-    return ctx.customId === "item_select_modifier";
+    return ctx.customId === "item_set_gems_back";
   }
 
   async run(ctx: ComponentContext<typeof this.componentType>) {
@@ -21,7 +16,7 @@ export default class ItemSelectModifierSelectMenu extends ComponentCommand {
     const oldEmbed = msg?.embeds?.[0];
 
     if (!oldEmbed) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
         components: [],
@@ -29,33 +24,13 @@ export default class ItemSelectModifierSelectMenu extends ComponentCommand {
       return;
     }
 
-    const enchantName = ctx.interaction.data.values[0] ?? "";
-
     const slot = await parseEmbedIntoSlot(oldEmbed);
-    const modifier = await findModifierByName(enchantName);
-
-    if (!modifier) {
-      await ctx.editResponse({
-        content:
-          "Error: selected modifier does not exist (somehow?). Please report this to the developer.",
-        embeds: [],
-        components: [],
-      });
-      return;
-    }
-
-    slot.modifier_id = modifier.id;
-
-    const embed = await slotIntoEmbed(ctx, slot);
 
     const item = await findItemById(slot.item_id);
 
     if (!item) {
-      await ctx.editResponse({
-        content:
-          "Error: item id stored in previous embed does not seem to be valid. Please report this to the developer.",
-        embeds: [],
-        components: [],
+      await ctx.editOrReply({
+        content: "Error: previous message did not contain a valid item id.",
       });
       return;
     }
@@ -87,8 +62,8 @@ export default class ItemSelectModifierSelectMenu extends ComponentCommand {
 
     const row = new ActionRow().setComponents(components);
 
-    await ctx.editResponse({
-      embeds: [embed],
+    await ctx.editOrReply({
+      embeds: [oldEmbed],
       components: [row],
     });
   }

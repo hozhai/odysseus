@@ -5,8 +5,8 @@ import {
   StringSelectMenu,
   StringSelectOption,
 } from "seyfert";
-import { getData } from "../data/load";
-import { findItemById, itemGemToEmoji, parseEmbedIntoSlot } from "../utils";
+import { getData } from "../../data/load";
+import { findItemById, itemGemToEmoji, parseEmbedIntoSlot } from "../../utils";
 
 export default class ItemSetGemsRegularButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -22,7 +22,7 @@ export default class ItemSetGemsRegularButton extends ComponentCommand {
     const embed = msg?.embeds?.[0];
 
     if (!embed) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
         components: [],
@@ -59,7 +59,7 @@ export default class ItemSetGemsRegularButton extends ComponentCommand {
 
     const row = new ActionRow().setComponents([selectMenu]);
 
-    await ctx.editResponse({
+    await ctx.editOrReply({
       embeds: [embed],
       components: [row],
     });

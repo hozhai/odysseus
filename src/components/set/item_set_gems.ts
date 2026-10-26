@@ -1,5 +1,5 @@
 import { ActionRow, Button, ComponentCommand, ComponentContext } from "seyfert";
-import { findItemById } from "../utils";
+import { findItemById } from "../../utils";
 import { ButtonStyle } from "seyfert/lib/types";
 
 export default class ItemSetGemsButton extends ComponentCommand {
@@ -16,7 +16,7 @@ export default class ItemSetGemsButton extends ComponentCommand {
     const embed = msg?.embeds?.[0];
 
     if (!embed) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
         components: [],
@@ -27,7 +27,7 @@ export default class ItemSetGemsButton extends ComponentCommand {
     const item = await findItemById(embed.title?.split(" | ")[1] ?? "");
 
     if (!item) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content:
           "Error: previous message embed does not contain a valid item id. Please report this to the developer.",
       });
@@ -37,7 +37,7 @@ export default class ItemSetGemsButton extends ComponentCommand {
     const gemNo = item.gemNo;
 
     if (!gemNo || gemNo === 0) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content:
           "Error: item with gemNo suddenly has no gemNo. Please report this to the developer.",
       });
@@ -67,7 +67,7 @@ export default class ItemSetGemsButton extends ComponentCommand {
       backBtn,
     ]);
 
-    await ctx.editResponse({
+    await ctx.editOrReply({
       embeds: [embed],
       components: [row],
     });

@@ -5,8 +5,8 @@ import {
   StringSelectMenu,
   StringSelectOption,
 } from "seyfert";
-import { getData } from "../data/load";
-import { findItemById, itemModifierToEmoji } from "../utils";
+import { getData } from "../../data/load";
+import { findItemById, itemModifierToEmoji } from "../../utils";
 
 export default class ItemSetModifierButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -22,7 +22,7 @@ export default class ItemSetModifierButton extends ComponentCommand {
     const embed = msg?.embeds?.[0];
 
     if (!embed) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
         components: [],
@@ -35,7 +35,7 @@ export default class ItemSetModifierButton extends ComponentCommand {
     const item = await findItemById(embed.title?.split(" | ")[1] ?? "");
 
     if (!item) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content:
           "Error: previous message embed does not contain a valid item id. Please report this to the developer.",
       });
@@ -68,7 +68,7 @@ export default class ItemSetModifierButton extends ComponentCommand {
 
     const row = new ActionRow().setComponents([selectMenu]);
 
-    await ctx.editResponse({
+    await ctx.editOrReply({
       embeds: [embed],
       components: [row],
     });

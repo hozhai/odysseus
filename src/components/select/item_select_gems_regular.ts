@@ -1,12 +1,13 @@
 import { ActionRow, Button, ComponentCommand, ComponentContext } from "seyfert";
-import { findItemById, parseEmbedIntoSlot } from "../utils";
+import { EMPTY_GEM_ID } from "../../constants";
+import { findItemById, parseEmbedIntoSlot, slotIntoEmbed } from "../../utils";
 import { ButtonStyle } from "seyfert/lib/types";
 
-export default class ItemSetGemsBackButton extends ComponentCommand {
-  componentType = "Button" as const;
+export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {
+  componentType = "StringSelect" as const;
 
   override filter(ctx: ComponentContext<typeof this.componentType>) {
-    return ctx.customId === "item_set_gems_back";
+    return ctx.customId === "item_select_gems_regular";
   }
 
   async run(ctx: ComponentContext<typeof this.componentType>) {
@@ -16,7 +17,7 @@ export default class ItemSetGemsBackButton extends ComponentCommand {
     const oldEmbed = msg?.embeds?.[0];
 
     if (!oldEmbed) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
         components: [],
@@ -26,18 +27,31 @@ export default class ItemSetGemsBackButton extends ComponentCommand {
 
     const slot = await parseEmbedIntoSlot(oldEmbed);
 
+    const gemIds = ctx.interaction.data.values;
+
+    if (gemIds.includes(EMPTY_GEM_ID)) {
+      slot.gem_ids = [];
+    } else {
+      slot.gem_ids.push(...gemIds);
+    }
+
+    const embed = await slotIntoEmbed(ctx, slot);
+
     const item = await findItemById(slot.item_id);
 
     if (!item) {
-      await ctx.editResponse({
-        content: "Error: previous message did not contain a valid item id.",
+      await ctx.editOrReply({
+        content:
+          "Error: item id stored in previous embed does not seem to be valid. Please report this to the developer.",
+        embeds: [],
+        components: [],
       });
       return;
     }
 
     const components = [
       new Button()
-        .setLabel("Add Enchant")
+        .setLabel("Set Enchant")
         .setCustomId("item_set_enchant")
         .setStyle(ButtonStyle.Secondary),
     ];
@@ -45,7 +59,7 @@ export default class ItemSetGemsBackButton extends ComponentCommand {
     if (item.validModifiers) {
       components.push(
         new Button()
-          .setLabel("Add Modifier")
+          .setLabel("Set Modifier")
           .setCustomId("item_set_modifier")
           .setStyle(ButtonStyle.Secondary)
       );
@@ -54,7 +68,7 @@ export default class ItemSetGemsBackButton extends ComponentCommand {
     if (item.gemNo) {
       components.push(
         new Button()
-          .setLabel("Add Gems")
+          .setLabel("Set Gems")
           .setCustomId("item_set_gems")
           .setStyle(ButtonStyle.Secondary)
       );
@@ -62,8 +76,8 @@ export default class ItemSetGemsBackButton extends ComponentCommand {
 
     const row = new ActionRow().setComponents(components);
 
-    await ctx.editResponse({
-      embeds: [oldEmbed],
+    await ctx.editOrReply({
+      embeds: [embed],
       components: [row],
     });
   }

@@ -4,7 +4,7 @@ import {
   findItemById,
   parseEmbedIntoSlot,
   slotIntoEmbed,
-} from "../utils";
+} from "../../utils";
 import { ButtonStyle } from "seyfert/lib/types";
 
 export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
@@ -21,7 +21,7 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
     const oldEmbed = msg?.embeds?.[0];
 
     if (!oldEmbed) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
         components: [],
@@ -35,7 +35,7 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
     const enchant = await findEnchantByName(enchantName);
 
     if (!enchant) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content:
           "Error: selected enchant does not exist (somehow?). Please report this to the developer.",
         embeds: [],
@@ -51,7 +51,7 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
     const item = await findItemById(slot.item_id);
 
     if (!item) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content:
           "Error: item id stored in previous embed does not seem to be valid. Please report this to the developer.",
         embeds: [],
@@ -62,7 +62,7 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
 
     const components = [
       new Button()
-        .setLabel("Add Enchant")
+        .setLabel("Set Enchant")
         .setCustomId("item_set_enchant")
         .setStyle(ButtonStyle.Secondary),
     ];
@@ -70,7 +70,7 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
     if (item.validModifiers) {
       components.push(
         new Button()
-          .setLabel("Add Modifier")
+          .setLabel("Set Modifier")
           .setCustomId("item_set_modifier")
           .setStyle(ButtonStyle.Secondary)
       );
@@ -79,7 +79,7 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
     if (item.gemNo) {
       components.push(
         new Button()
-          .setLabel("Add Gems")
+          .setLabel("Set Gems")
           .setCustomId("item_set_gems")
           .setStyle(ButtonStyle.Secondary)
       );
@@ -87,7 +87,7 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
 
     const row = new ActionRow().setComponents(components);
 
-    await ctx.editResponse({
+    await ctx.editOrReply({
       embeds: [embed],
       components: [row],
     });

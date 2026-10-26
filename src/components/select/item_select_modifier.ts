@@ -1,13 +1,17 @@
 import { ActionRow, Button, ComponentCommand, ComponentContext } from "seyfert";
-import { EMPTY_GEM_ID } from "../constants";
-import { findItemById, parseEmbedIntoSlot, slotIntoEmbed } from "../utils";
+import {
+  findItemById,
+  findModifierByName,
+  parseEmbedIntoSlot,
+  slotIntoEmbed,
+} from "../../utils";
 import { ButtonStyle } from "seyfert/lib/types";
 
-export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {
+export default class ItemSelectModifierSelectMenu extends ComponentCommand {
   componentType = "StringSelect" as const;
 
   override filter(ctx: ComponentContext<typeof this.componentType>) {
-    return ctx.customId === "item_select_gems_regular";
+    return ctx.customId === "item_select_modifier";
   }
 
   async run(ctx: ComponentContext<typeof this.componentType>) {
@@ -17,7 +21,7 @@ export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {
     const oldEmbed = msg?.embeds?.[0];
 
     if (!oldEmbed) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
         components: [],
@@ -25,22 +29,29 @@ export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {
       return;
     }
 
+    const enchantName = ctx.interaction.data.values[0] ?? "";
+
     const slot = await parseEmbedIntoSlot(oldEmbed);
+    const modifier = await findModifierByName(enchantName);
 
-    const gemIds = ctx.interaction.data.values;
-
-    if (gemIds.includes(EMPTY_GEM_ID)) {
-      slot.gem_ids = [];
-    } else {
-      slot.gem_ids.push(...gemIds);
+    if (!modifier) {
+      await ctx.editOrReply({
+        content:
+          "Error: selected modifier does not exist (somehow?). Please report this to the developer.",
+        embeds: [],
+        components: [],
+      });
+      return;
     }
+
+    slot.modifier_id = modifier.id;
 
     const embed = await slotIntoEmbed(ctx, slot);
 
     const item = await findItemById(slot.item_id);
 
     if (!item) {
-      await ctx.editResponse({
+      await ctx.editOrReply({
         content:
           "Error: item id stored in previous embed does not seem to be valid. Please report this to the developer.",
         embeds: [],
@@ -51,7 +62,7 @@ export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {
 
     const components = [
       new Button()
-        .setLabel("Add Enchant")
+        .setLabel("Set Enchant")
         .setCustomId("item_set_enchant")
         .setStyle(ButtonStyle.Secondary),
     ];
@@ -59,7 +70,7 @@ export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {
     if (item.validModifiers) {
       components.push(
         new Button()
-          .setLabel("Add Modifier")
+          .setLabel("Set Modifier")
           .setCustomId("item_set_modifier")
           .setStyle(ButtonStyle.Secondary)
       );
@@ -68,7 +79,7 @@ export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {
     if (item.gemNo) {
       components.push(
         new Button()
-          .setLabel("Add Gems")
+          .setLabel("Set Gems")
           .setCustomId("item_set_gems")
           .setStyle(ButtonStyle.Secondary)
       );
@@ -76,7 +87,7 @@ export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {
 
     const row = new ActionRow().setComponents(components);
 
-    await ctx.editResponse({
+    await ctx.editOrReply({
       embeds: [embed],
       components: [row],
     });
