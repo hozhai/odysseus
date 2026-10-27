@@ -1,6 +1,6 @@
 import { ActionRow, Button, ComponentCommand, ComponentContext } from "seyfert";
 import { findItemById, parseEmbedIntoSlot } from "../../utils";
-import { ButtonStyle } from "seyfert/lib/types";
+import { ButtonStyle, MessageFlags } from "seyfert/lib/types";
 
 export default class ItemSetGemsBackButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -20,6 +20,14 @@ export default class ItemSetGemsBackButton extends ComponentCommand {
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
         components: [],
+      });
+      return;
+    }
+
+    if (ctx.author.username !== oldEmbed?.author?.name) {
+      await ctx.followup({
+        content: "You can only edit your own item.",
+        flags: MessageFlags.Ephemeral,
       });
       return;
     }

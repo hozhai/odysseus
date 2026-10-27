@@ -19,9 +19,9 @@ export default class ItemSetModifierButton extends ComponentCommand {
     await ctx.deferUpdate(); // do not remove lmao
 
     const msg = ctx.interaction?.message;
-    const embed = msg?.embeds?.[0];
+    const oldEmbed = msg?.embeds?.[0];
 
-    if (!embed) {
+    if (!oldEmbed) {
       await ctx.editOrReply({
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
@@ -32,7 +32,7 @@ export default class ItemSetModifierButton extends ComponentCommand {
 
     const modifierData = (await getData()).modifiers;
 
-    const item = await findItemById(embed.title?.split(" | ")[1] ?? "");
+    const item = await findItemById(oldEmbed.title?.split(" | ")[1] ?? "");
 
     if (!item) {
       await ctx.editOrReply({
@@ -69,7 +69,7 @@ export default class ItemSetModifierButton extends ComponentCommand {
     const row = new ActionRow().setComponents([selectMenu]);
 
     await ctx.editOrReply({
-      embeds: [embed],
+      embeds: [oldEmbed],
       components: [row],
     });
   }

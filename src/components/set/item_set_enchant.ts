@@ -2,6 +2,7 @@ import {
   ActionRow,
   ComponentCommand,
   ComponentContext,
+  MessageFlags,
   StringSelectMenu,
   StringSelectOption,
 } from "seyfert";
@@ -19,13 +20,21 @@ export default class ItemSetEnchantButton extends ComponentCommand {
     await ctx.deferUpdate(); // do not remove lmao
 
     const msg = ctx.interaction?.message;
-    const embed = msg?.embeds?.[0];
+    const oldEmbed = msg?.embeds?.[0];
 
-    if (!embed) {
+    if (!oldEmbed) {
       await ctx.editOrReply({
-        content: "Error: previous message did not contain a valid embed.",
+        content: "Error: previous message did not contain a valid oldEmbed.",
         embeds: [],
         components: [],
+      });
+      return;
+    }
+
+    if (ctx.author.username !== oldEmbed?.author?.name) {
+      await ctx.followup({
+        content: "You can only edit your own item.",
+        flags: MessageFlags.Ephemeral,
       });
       return;
     }
@@ -62,7 +71,7 @@ export default class ItemSetEnchantButton extends ComponentCommand {
     const row = new ActionRow().setComponents([selectMenu]);
 
     await ctx.editOrReply({
-      embeds: [embed],
+      embeds: [oldEmbed],
       components: [row],
     });
   }

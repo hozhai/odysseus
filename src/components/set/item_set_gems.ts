@@ -1,6 +1,6 @@
 import { ActionRow, Button, ComponentCommand, ComponentContext } from "seyfert";
 import { findItemById } from "../../utils";
-import { ButtonStyle } from "seyfert/lib/types";
+import { ButtonStyle, MessageFlags } from "seyfert/lib/types";
 
 export default class ItemSetGemsButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -13,9 +13,9 @@ export default class ItemSetGemsButton extends ComponentCommand {
     await ctx.deferUpdate(); // do not remove lmao
 
     const msg = ctx.interaction?.message;
-    const embed = msg?.embeds?.[0];
+    const oldEmbed = msg?.embeds?.[0];
 
-    if (!embed) {
+    if (!oldEmbed) {
       await ctx.editOrReply({
         content: "Error: previous message did not contain a valid embed.",
         embeds: [],
@@ -24,7 +24,15 @@ export default class ItemSetGemsButton extends ComponentCommand {
       return;
     }
 
-    const item = await findItemById(embed.title?.split(" | ")[1] ?? "");
+    if (ctx.author.username !== oldEmbed?.author?.name) {
+      await ctx.followup({
+        content: "You can only edit your own item.",
+        flags: MessageFlags.Ephemeral,
+      });
+      return;
+    }
+
+    const item = await findItemById(oldEmbed.title?.split(" | ")[1] ?? "");
 
     if (!item) {
       await ctx.editOrReply({
@@ -68,7 +76,7 @@ export default class ItemSetGemsButton extends ComponentCommand {
     ]);
 
     await ctx.editOrReply({
-      embeds: [embed],
+      embeds: [oldEmbed],
       components: [row],
     });
   }
