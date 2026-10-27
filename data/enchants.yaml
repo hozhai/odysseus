@@ -1,7 +1,7 @@
 e9N:
   id: e9N
   name: Deadeye
-  legend: +2.625 points of Agility for every 10 levels
+  legend: +2.625 points of Range for every 10 levels
   mainType: Enchant
   rarity: Exotic
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantAgile.jpg?raw=true
@@ -12,7 +12,7 @@ e9N:
 Tf4:
   id: Tf4
   name: Brisk
-  legend: +2.625 points of Attack Speed for every 10 levels
+  legend: +2.625 points of Dexterity for every 10 levels
   mainType: Enchant
   rarity: Exotic
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantBrisk.jpg?raw=true
@@ -65,14 +65,14 @@ yAq:
 AAt:
   id: AAt
   name: Powerful
-  legend: Le powerful scroller
+  legend: +0.7875 points of Power for every 10 levels
   mainType: Enchant
   rarity: Exotic
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Enchants/Exotic/enchantPowerful.jpg
   deleted: false
   enchantTypes:
     gear:
-      powerIncrement: 0.875
+      powerIncrement: 0.7875
     ship:
       ram:
         ramStrength: 900
@@ -85,16 +85,12 @@ AAt:
         damageMultiplier: 0.3
 fXr:
   id: fXr
-  name: Hasty
-  legend:
-    +1.41 points of Attack Speed for every 10 levels +1.41 points of Agility
-    for every 10 levels
+  name: Tracking
+  legend: +1.40625 points of Dexterity and Range for every 10 levels
   mainType: Enchant
   rarity: Exotic
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantHasty.jpg?raw=true
   deleted: false
-  agilityIncrement: 1.40625
-  attackSpeedIncrement: 1.40625
   enchantTypes:
     gear:
       agilityIncrement: 1.40625
@@ -102,14 +98,14 @@ fXr:
 Xjp:
   id: Xjp
   name: Strong
-  legend: +0.5 points of Power for every 10 levels
+  legend: +0.45 points of Power for every 10 levels
   mainType: Enchant
   rarity: Rare
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantStrong.jpg?raw=true
   deleted: false
   enchantTypes:
     gear:
-      powerIncrement: 0.5
+      powerIncrement: 0.45
     ship:
       ram:
         ramStrength: 450
@@ -135,15 +131,14 @@ AVS:
 W7S:
   id: W7S
   name: Hard
-  legend: +5.5 points of Defense for every 10 levels
+  legend: +4.5 points of Defense for every 10 levels
   mainType: Enchant
   rarity: Rare
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantDefense.jpg?raw=true
   deleted: false
-  defenseIncrement: 4.5
   enchantTypes:
     gear:
-      defenseIncrement: 5.5
+      defenseIncrement: 4.5
     ship:
       ram:
         durability: 400
@@ -156,7 +151,7 @@ W7S:
 97d:
   id: 97d
   name: Bursting
-  legend: +1.5 points of Attack Size for every 10 levels
+  legend: +1.5 points of Size for every 10 levels
   mainType: Enchant
   rarity: Rare
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantBursting.jpg?raw=true
@@ -170,30 +165,22 @@ W7S:
 8SI:
   id: 8SI
   name: Healing
-  legend:
-    A scroll containing the Healing enchantment. When clicked in the inventory,
-    it can be applied to one compatible item, causing it to be used up. The Healing
-    enchantment increases regeneration.
+  legend: +2.625 points of Regeneration for every 10 levels
   mainType: Enchant
   rarity: Exotic
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantHealing.JPG?raw=true
   deleted: false
-  regenerationIncrement: 2.625
   enchantTypes:
     gear:
       regenerationIncrement: 2.625
 I13:
   id: I13
   name: Piercing
-  legend:
-    A scroll containing the Piercing enchantment. When clicked in the inventory,
-    it can be applied to one compatible item, causing it to be used up. The Piercing
-    enchantment increases armor piercing.
+  legend: +2.625 points of Pierce for every 10 levels
   mainType: Enchant
   rarity: Exotic
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantPiercing.png?raw=true
   deleted: false
-  piercingIncrement: 2.625
   enchantTypes:
     gear:
       piercingIncrement: 2.625
@@ -210,16 +197,14 @@ AAD:
 JEI:
   id: JEI
   name: Charged
-  legend:
-    0.61 points of Power for every 10 levels +1.41 points of Intensity for every
-    10 levels
+  legend: +0.5166 points of Power and 1.40625 points of Intensity for every 10 levels
   mainType: Enchant
   rarity: Exotic
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantCharged.jpg?raw=true
   deleted: false
   enchantTypes:
     gear:
-      powerIncrement: 0.609375
+      powerIncrement: 0.5166
       intensityIncrement: 1.40625
     ship:
       cannon:
@@ -245,12 +230,11 @@ hD4:
 Mod:
   id: Mod
   name: Armored
-  legend: +9.625 points of Defense for every 10 levels
+  legend: +8 points of Defense for every 10 levels
   mainType: Enchant
   rarity: Exotic
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantArmored.jpg?raw=true
   deleted: false
-  defenseIncrement: 8
   enchantTypes:
     gear:
       defenseIncrement: 8
@@ -266,18 +250,16 @@ Mod:
 RlR:
   id: RlR
   name: Virtuous
-  legend:
-    +4.5 points of Defense for every 10 levels +1 point of Warding  Removes
+  legend: >-
+    +5.625 points of Defense for every 10 levels +1 point of Warding  Removes
     Atlantean Modifier
   mainType: Enchant
   rarity: Exotic
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantVirtuous.jpg?raw=true
   deleted: false
-  defenseIncrement: 4.5
-  warding: 1
   enchantTypes:
     gear:
-      defenseIncrement: 4.5
+      defenseIncrement: 5.625
       warding: 1
 jv5:
   id: jv5
@@ -303,15 +285,11 @@ jv5:
 iVI:
   id: iVI
   name: Resilience
-  legend:
-    A scroll containing the Resilience enchantment. When clicked in the inventory,
-    it can be applied to one compatible item, causing it to be used up. The Resilience
-    enchantment increases resistance.
+  legend: +2.625 points of Resistance for every 10 levels
   mainType: Enchant
   rarity: Exotic
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Exotic/enchantResilience.png?raw=true
   deleted: false
-  resistanceIncrement: 2.625
   enchantTypes:
     gear:
       resistanceIncrement: 2.625

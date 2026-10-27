@@ -6,8 +6,8 @@ AAu:
   rarity: Exotic
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
   deleted: false
-  powerIncrement: 0.765
-  defenseIncrement: 6.825
+  powerIncrement: 0.70875
+  defenseIncrement: 6.8495625
   agilityIncrement: 2.25
   attackSpeedIncrement: 2.25
   attackSizeIncrement: 2.25
@@ -21,8 +21,8 @@ LoL: # lol lmao
   rarity: Common
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierDrowned.jpg
   deleted: false
-  defenseIncrement: 2.2491
-  attackSizeIncrement: 0.84375
+  defenseIncrement: 2.317275
+  attackSizeIncrement: 0.84335
 AAE:
   id: AAE
   name: None
@@ -34,12 +34,12 @@ AAE:
 sC6:
   id: sC6
   name: Blasted
-  legend: Adds power for each 10 levels
+  legend: Adds 0.4725 power for each 10 levels
   mainType: Modifier
   rarity: Common
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierBlasted.jpg
   deleted: false
-  powerIncrement: 0.500003
+  powerIncrement: 0.4725
 giu:
   id: giu
   name: Archaic
@@ -48,7 +48,7 @@ giu:
   rarity: Common
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierArchaic.jpg
   deleted: false
-  attackSizeIncrement: 1.465
+  attackSizeIncrement: 1.5
 Pun:
   id: Pun
   name: Superheated
@@ -64,21 +64,21 @@ Pun:
 faX:
   id: faX
   name: Crystalline
-  legend: Adds Attack Speed for each 10 levels
+  legend: Adds 1.465 dexterity for each 10 levels
   mainType: Modifier
   rarity: Common
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierCrystalline.jpg
   deleted: false
-  attackSpeedIncrement: 1.465
+  attackSpeedIncrement: 1.5
 wpg:
   id: wpg
   name: Frozen
-  legend: Adds extra defense for each 10 levels
+  legend: Adds 4.5657 defense for each 10 levels
   mainType: Modifier
   rarity: Common
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierFrozen.jpg
   deleted: false
-  defenseIncrement: 4.4982
+  defenseIncrement: 4.544775
 b13:
   id: b13
   name: Sandy
@@ -87,23 +87,395 @@ b13:
   rarity: Common
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/modifierSandy.jpg
   deleted: false
-  intensityIncrement: 1.465
+  intensityIncrement: 1.5
 8fN:
   id: 8fN
   name: Abyssal
   legend: Adds low defense and medium resistance for each 10 levels.
   mainType: Modifier
   rarity: Rare
-  imageId: ""
+  imageId: ''
   deleted: false
-  defenseIncrement: 2.2491
-  resistanceIncrement: 1.64
+  defenseIncrement: 2.317275
+  resistanceIncrement: 1.6867
 RO9:
   id: RO9
-  name: Goldsail
+  name: Goldsail Pirates
+  legend: This item originally belonged to the Goldsail Pirates group.
+  mainType: Modifier
+  rarity: Common
+  imageId: ''
+  deleted: false
+  piercingIncrement: 1.4118
+PJi:
+  id: PJi
+  name: Gilded
+  legend: >-
+    Adds 1 gem slot to item. It seems to be imbued with traces of gold metal,
+    changing its appearance and stats permanently.
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/1/1d/Overlay_Gilded.png
+  deleted: false
+  gemNo: 1
+EJQ:
+  id: EJQ
+  name: Jaw Pirates
+  legend: This item originally belonged to the Jaw Pirate group.
+  mainType: Modifier
+  rarity: Common
+  imageId: ''
+  deleted: false
+  defenseIncrement: 4.4706
+zEv:
+  id: zEv
+  name: Bearpaw Bandits
+  legend: This item originally belonged to the Bearpaw Bandit group.
+  mainType: Modifier
+  rarity: Common
+  imageId: ''
+  deleted: false
+  intensityIncrement: 1.4118
+IEa:
+  id: IEa
+  name: Veridian Hunters
+  legend: This item originally belonged to the Veridian Hunters group.
+  mainType: Modifier
+  rarity: Common
+  imageId: ''
+  deleted: false
+  attackSizeIncrement: 1.4118
+0Lm:
+  id: 0Lm
+  name: Swiftstriders
+  legend: This item originally belonged to the Swiftriders group.
+  mainType: Modifier
+  rarity: Common
+  imageId: ''
+  deleted: false
+  attackSpeedIncrement: 1.4118
+OTB:
+  id: OTB
+  name: Shadow Ravens
+  legend: This item originally belonged to the Shadow Ravens group.
+  mainType: Modifier
+  rarity: Common
+  imageId: ''
+  deleted: false
+  resistanceIncrement: 1.4118
+Llo:
+  id: Llo
+  name: Imbued
+  legend: >-
+    Years of being buried in magic-rich soil have caused its appearance and
+    stats to be permanently altered.
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/b/bf/Overlay_Imbued.png
+  deleted: false
+kYM:
+  id: kYM
+  name: Atlantean Essence + Jaw Pirates
+  legend: This item originally belonged to the Jaw Pirate group.
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  defenseIncrement: 4.4706
+QHZ:
+  id: QHZ
+  name: Atlantean Essence + Bearpaw Bandits
+  legend: This item originally belonged to the Bearpaw Bandit group.
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  intensityIncrement: 1.4118
+CU3:
+  id: CU3
+  name: Atlantean Essence + Veridian Hunters
+  legend: This item originally belonged to the Veridian Hunters group.
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  attackSizeIncrement: 1.4118
+laq:
+  id: laq
+  name: Atlantean Essence + Goldsail Pirates
+  legend: This item originally belonged to the Goldsail Pirates group.
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  piercingIncrement: 1.4118
+2ny:
+  id: 2ny
+  name: Atlantean Essence + Swiftstriders
+  legend: This item originally belonged to the Swiftriders group.
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  attackSpeedIncrement: 1.4118
+WTj:
+  id: WTj
+  name: Atlantean Essence + Shadow Ravens
+  legend: This item originally belonged to the Shadow Ravens group.
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  resistanceIncrement: 1.4118
+jU2:
+  id: jU2
+  name: Black
   legend: None
   mainType: Modifier
-  rarity: None
-  imageId: ""
+  rarity: Exotic
+  imageId: ''
   deleted: false
-  piercingIncrement: 1.465
+  powerIncrement: 0.94
+H6G:
+  id: H6G
+  name: Blue
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  attackSpeedIncrement: 2
+lS4:
+  id: lS4
+  name: Brown
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  defenseIncrement: 1.1111
+Oxi:
+  id: Oxi
+  name: Golden
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  intensityIncrement: 2
+ouZ:
+  id: ouZ
+  name: Green
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  attackSizeIncrement: 2
+fQ4:
+  id: fQ4
+  name: Purple
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  agilityIncrement: 2
+eO0:
+  id: eO0
+  name: Red
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  piercingIncrement: 2
+RyT:
+  id: RyT
+  name: Teal
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  resistanceIncrement: 2
+1Sl:
+  id: 1Sl
+  name: White
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  regenerationIncrement: 2
+Mhe:
+  id: Mhe
+  name: Atlantean Essence + Black
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  powerIncrement: 0.94
+knc:
+  id: knc
+  name: Atlantean Essence + Blue
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  attackSpeedIncrement: 2
+mmm:
+  id: mmm
+  name: Atlantean Essence + Brown
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  defenseIncrement: 1.1111
+e1q:
+  id: e1q
+  name: Atlantean Essence + Golden
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  intensityIncrement: 2
+Aep:
+  id: Aep
+  name: Atlantean Essence + Green
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  attackSizeIncrement: 2
+Not:
+  id: Not
+  name: Atlantean Essence + Purple
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  agilityIncrement: 2
+vCo:
+  id: vCo
+  name: Atlantean Essence + Red
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  piercingIncrement: 2
+NHC:
+  id: NHC
+  name: Atlantean Essence + Teal
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  resistanceIncrement: 2
+4U7:
+  id: 4U7
+  name: Atlantean Essence + White
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  regenerationIncrement: 2
+oni:
+  id: oni
+  name: Blood
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  attackSpeedIncrement: 2
+O5r:
+  id: O5r
+  name: Corrupted
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  resistanceIncrement: 2
+U9B:
+  id: U9B
+  name: Crystal
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  attackSizeIncrement: 2
+TIk:
+  id: TIk
+  name: Molten
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  piercingIncrement: 2
+VjL:
+  id: VjL
+  name: Stone
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: ''
+  deleted: false
+  defenseIncrement: 1.1111
+sZT:
+  id: sZT
+  name: Atlantean Essence + Blood
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  attackSpeedIncrement: 2
+OFg:
+  id: OFg
+  name: Atlantean Essence + Corrupted
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  resistanceIncrement: 2
+qnR:
+  id: qnR
+  name: Atlantean Essence + Crystal
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  attackSizeIncrement: 2
+LQb:
+  id: LQb
+  name: Atlantean Essence + Molten
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  piercingIncrement: 2
+UYP:
+  id: UYP
+  name: Atlantean Essence + Stone
+  legend: None
+  mainType: Modifier
+  rarity: Exotic
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/typescript/static/assets/images/Modifiers/atlanteanEssence.jpg
+  deleted: false
+  defenseIncrement: 1.1111
