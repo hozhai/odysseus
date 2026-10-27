@@ -32,7 +32,7 @@ export function formatSeconds(seconds: number): string {
   }
 
   if (mins > 0) {
-    formattedString += `${mins}m`;
+    formattedString += `${mins}m `;
   }
 
   if (secs > 0) {
