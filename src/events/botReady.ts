@@ -1,6 +1,9 @@
 import { createEvent } from "seyfert";
 import { getData } from "../data/load";
+import { captureLeaderboardSnapshot } from "../data/leaderboardHistory";
 import { VERSION } from "../constants";
+
+const SNAPSHOT_POLL_INTERVAL_MS = 5 * 60 * 1000;
 
 export default createEvent({
   // botReady is triggered when all shards and servers are ready.
@@ -27,5 +30,41 @@ export default createEvent({
     client.logger.info(`gems.yaml: ${Object.values(data.gems).length}`);
 
     client.logger.info("==============");
+
+    let snapshotPollRunning = false;
+    const pollLeaderboardSnapshots = async () => {
+      if (snapshotPollRunning) return;
+      snapshotPollRunning = true;
+
+      try {
+        const results = await Promise.allSettled(
+          (["clan", "guild"] as const).map(async (type) => ({
+            type,
+            inserted: await captureLeaderboardSnapshot(type),
+          }))
+        );
+
+        for (const result of results) {
+          if (result.status === "rejected") {
+            client.logger.error(
+              "Failed to capture a leaderboard snapshot:",
+              result.reason
+            );
+          } else if (result.value.inserted) {
+            client.logger.info(
+              `Captured a new ${result.value.type} leaderboard snapshot.`
+            );
+          }
+        }
+      } finally {
+        snapshotPollRunning = false;
+      }
+    };
+
+    void pollLeaderboardSnapshots();
+    setInterval(
+      () => void pollLeaderboardSnapshots(),
+      SNAPSHOT_POLL_INTERVAL_MS
+    );
   },
 });
