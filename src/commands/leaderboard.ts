@@ -41,7 +41,7 @@ export default class LeaderBoardCommand extends Command {
     try {
       entries = (await fetchLeaderboard(type)).entries;
     } catch (error) {
-      console.error(
+      ctx.client.logger.error(
         `Failed to load the ${title.toLowerCase()} leaderboard:`,
         error
       );

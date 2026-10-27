@@ -9,6 +9,7 @@ export interface LeaderboardEntry {
 
 export interface LeaderboardSnapshot {
   updatedAt: number;
+  capturedAt?: number;
   entries: LeaderboardEntry[];
 }
 

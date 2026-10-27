@@ -19,8 +19,8 @@ const options = {
     description: "Choose clans or guilds.",
     required: true,
     choices: [
-      { name: "Clans (Infamy)", value: "clan" },
-      { name: "Guilds (Reputation)", value: "guild" },
+      { name: "Infamy", value: "clan" },
+      { name: "Reputation", value: "guild" },
     ],
   }),
 };
@@ -30,6 +30,13 @@ const periods = [
   { label: "Past 24 hours", durationMs: 24 * 60 * 60 * 1000 },
   { label: "Past week", durationMs: 7 * 24 * 60 * 60 * 1000 },
 ] as const;
+const MAX_ONE_HOUR_BASELINE_DRIFT_MS = 5 * 60 * 1000;
+
+type PeriodResult = {
+  hasBaseline: boolean;
+  gainLines: string[];
+  value: string;
+};
 
 @Declare({
   name: "leaderboard-diff",
@@ -52,10 +59,25 @@ export default class LeaderboardDiffCommand extends Command {
       return;
     }
 
-    const fields = periods.map(({ label, durationMs }) => ({
-      name: label,
-      value: createPeriodValue(snapshots, current, durationMs, metric),
-    }));
+    const results = periods.map(({ durationMs }) =>
+      createPeriodValue(snapshots, current, durationMs, metric)
+    );
+    const oneHourResult = results[0]!;
+    const fields = periods.map(({ label }, index) => {
+      const result = results[index]!;
+      const canUseOneHourFallback =
+        index > 0 && !result.hasBaseline && oneHourResult.gainLines.length > 0;
+
+      return {
+        name: label,
+        value: canUseOneHourFallback
+          ? fitFieldValue([
+              // `Past 1 hour only; no snapshot available for ${label.toLowerCase()}.`,
+              ...oneHourResult.gainLines,
+            ])
+          : result.value,
+      };
+    });
 
     const embed = new Embed()
       .setAuthor({
@@ -64,7 +86,7 @@ export default class LeaderboardDiffCommand extends Command {
       })
       .setTitle(`${type === "guild" ? "Guild" : "Clan"} ${metric} Gains`)
       .setDescription(
-        `Latest source update: <t:${Math.floor(current.updatedAt / 1000)}:R>\nOnly gains are shown. Entities must appear in both snapshots to be compared.`
+        `Last updated: <t:${Math.floor(current.updatedAt / 1000)}:R> - Only gains are shown.`
       )
       .setColor(EMBED_COLOR_DEFAULT)
       .setFields(fields)
@@ -79,14 +101,23 @@ function createPeriodValue(
   current: LeaderboardSnapshot,
   durationMs: number,
   metric: string
-): string {
-  const baselineTime = current.updatedAt - durationMs;
-  const baseline = snapshots.find(
-    (snapshot) => snapshot.updatedAt <= baselineTime
-  );
+): PeriodResult {
+  const currentTime = current.capturedAt ?? current.updatedAt;
+  const baselineTime = currentTime - durationMs;
+  const isOneHourPeriod = durationMs === periods[0].durationMs;
+  const baseline = isOneHourPeriod
+    ? findOneHourBaseline(snapshots, baselineTime)
+    : snapshots.find(
+        (snapshot) =>
+          (snapshot.capturedAt ?? snapshot.updatedAt) <= baselineTime
+      );
 
   if (!baseline) {
-    return "Not enough snapshot history yet.";
+    return {
+      hasBaseline: false,
+      gainLines: [],
+      value: "Not enough snapshot history yet.",
+    };
   }
 
   const diffs = getGains(current.entries, baseline.entries);
@@ -95,14 +126,47 @@ function createPeriodValue(
     .sort((left, right) => right.gained - left.gained);
 
   if (!positiveGains.length) {
-    return "No positive gains recorded.";
+    return {
+      hasBaseline: true,
+      gainLines: [],
+      value: "No gains recorded.",
+    };
   }
 
-  const lines = positiveGains.map(
+  const gainLines = positiveGains.map(
     ({ entry, gained }) =>
-      `${entry.name} — +${gained.toLocaleString("en-US")} ${metric}`
+      `#${entry.position} ${entry.name} > +${gained.toLocaleString("en-US")} ${metric}`
   );
-  return fitFieldValue(lines);
+  return {
+    hasBaseline: true,
+    gainLines,
+    value: fitFieldValue(gainLines),
+  };
+}
+
+function findOneHourBaseline(
+  snapshots: LeaderboardSnapshot[],
+  baselineTime: number
+): LeaderboardSnapshot | undefined {
+  if (
+    !snapshots.some(
+      (snapshot) => (snapshot.capturedAt ?? snapshot.updatedAt) <= baselineTime
+    )
+  ) {
+    return undefined;
+  }
+
+  for (let index = snapshots.length - 1; index > 0; index--) {
+    const snapshot = snapshots[index]!;
+    const snapshotTime = snapshot.capturedAt ?? snapshot.updatedAt;
+    if (snapshotTime >= baselineTime) {
+      return snapshotTime - baselineTime <= MAX_ONE_HOUR_BASELINE_DRIFT_MS
+        ? snapshot
+        : undefined;
+    }
+  }
+
+  return undefined;
 }
 
 function getGains(
