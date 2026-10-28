@@ -7,52 +7,53 @@ import {
   EMPTY_MODIFIER_ID,
 } from "../constants";
 import { FightingStylesEnum, MagicsEnum } from "./build";
+import { Formatter } from "seyfert";
+import type { EmojiResolvable } from "seyfert/lib/common";
 
 /**
  * Turns an enchant item type to a APIMessageComponentEmoji
  * @param enchantItem
- * @returns { APIMessageComponentEmoji}
  */
 export function itemEnchantToEmoji(
   enchantItem: Enchant
-): APIMessageComponentEmoji | null {
+): EmojiResolvable | null {
   switch (enchantItem.name) {
     case "Deadeye":
-      return { name: "agile", id: "1393732132588752946" };
+      return Formatter.emojiMention("1393732132588752946", "agile");
     case "Brisk":
-      return { name: "brisk", id: "1393732137315733564" };
+      return Formatter.emojiMention("1393732137315733564", "brisk");
     case "Enhanced":
-      return { name: "enhanced", id: "1393732142772781076" };
+      return Formatter.emojiMention("1393732142772781076", "enhanced");
     case "Amplified":
-      return { name: "amplified", id: "1393732134249828422" };
+      return Formatter.emojiMention("1393732134249828422", "amplified");
     case "Powerful":
-      return { name: "powerful", id: "1393732190595973180" };
+      return Formatter.emojiMention("1393732190595973180", "powerful");
     case "Hasty":
-      return { name: "hasty", id: "1393732148699332718" };
+      return Formatter.emojiMention("1393732148699332718", "hasty");
     case "Strong":
-      return { name: "strong", id: "1393732208673685615" };
+      return Formatter.emojiMention("1393732208673685615", "strong");
     case "Nimble":
-      return { name: "nimble", id: "1393732189136359656" };
+      return Formatter.emojiMention("1393732189136359656", "nimble");
     case "Hard":
-      return { name: "hard", id: "1393732146514100334" };
+      return Formatter.emojiMention("1393732146514100334", "hard");
     case "Bursting":
-      return { name: "bursting", id: "1393732138754375801" };
+      return Formatter.emojiMention("1393732138754375801", "bursting");
     case "Healing":
-      return { name: "healing", id: "1393732150288711690" };
+      return Formatter.emojiMention("1393732150288711690", "healing");
     case "Piercing":
-      return { name: "piercing", id: "1393732154491408507" };
+      return Formatter.emojiMention("1393732154491408507", "piercing");
     case "Charged":
-      return { name: "charged", id: "1393732140533026846" };
+      return Formatter.emojiMention("1393732140533026846", "charged");
     case "Explosive":
-      return { name: "explosive", id: "1393732144869806151" };
+      return Formatter.emojiMention("1393732144869806151", "explosive");
     case "Armored":
-      return { name: "armored", id: "1393732135604584489" };
+      return Formatter.emojiMention("1393732135604584489", "armored");
     case "Virtuous":
-      return { name: "virtuous", id: "1393732213480099940" };
+      return Formatter.emojiMention("1393732213480099940", "virtuous");
     case "Swift":
-      return { name: "swift", id: "1393732211379011624" };
+      return Formatter.emojiMention("1393732211379011624", "swift");
     case "Resilience":
-      return { name: "resilience", id: "1393732207155216404" };
+      return Formatter.emojiMention("1393732207155216404", "resilience");
     default:
       return null;
   }
@@ -60,176 +61,164 @@ export function itemEnchantToEmoji(
 
 export function itemModifierToEmoji(
   modifierItem: Modifier
-): APIMessageComponentEmoji | null {
+): EmojiResolvable | null {
   switch (modifierItem.name) {
     case "Abyssal":
-      return { name: "abyssal", id: "1393733751279718591" };
+      return Formatter.emojiMention("1393733751279718591", "abyssal");
     case "Archaic":
-      return { name: "archaic", id: "1393733752877744178" };
+      return Formatter.emojiMention("1393733752877744178", "archaic");
     case "Atlantean Essence":
-      return { name: "atlantean", id: "1393733755088404665" };
+      return Formatter.emojiMention("1393733755088404665", "atlantean");
     case "Blasted":
-      return { name: "blasted", id: "1393733757537882144" };
+      return Formatter.emojiMention("1393733757537882144", "blasted");
     case "Crystalline":
-      return { name: "crystalline", id: "1393733759114936443" };
+      return Formatter.emojiMention("1393733759114936443", "crystalline");
     case "Drowned":
-      return { name: "drowned", id: "1393733760670896128" };
+      return Formatter.emojiMention("1393733760670896128", "drowned");
     case "Frozen":
-      return { name: "frozen", id: "1393733762541682870" };
+      return Formatter.emojiMention("1393733762541682870", "frozen");
     case "Sandy":
-      return { name: "sandy", id: "1393733763938386000" };
+      return Formatter.emojiMention("1393733763938386000", "sandy");
     case "Superheated":
-      return { name: "superheated", id: "1393733766517887006" };
+      return Formatter.emojiMention("1393733766517887006", "superheated");
     default:
       return null;
   }
 }
 
-export function itemGemToEmoji(gemItem: Gem): APIMessageComponentEmoji | null {
+export function itemGemToEmoji(gemItem: Gem): EmojiResolvable | null {
   switch (gemItem.name) {
     case "Defense Gem":
-      return { name: "defensegem", id: "1393733031927349268" };
+      return Formatter.emojiMention("1393733031927349268", "defensegem");
     case "Power Gem":
-      return { name: "powergem", id: "1393733189289115710" };
+      return Formatter.emojiMention("1393733189289115710", "powergem");
     case "Attack Speed Gem":
-      return { name: "attackspeedgem", id: "1393733075699105943" };
+      return Formatter.emojiMention("1393733075699105943", "attackspeedgem");
     case "Attack Size Gem":
-      return { name: "attacksizegem", id: "1393733045210845336" };
+      return Formatter.emojiMention("1393733045210845336", "attacksizegem");
     case "Agility Gem":
-      return { name: "agilitygem", id: "1393733033659469926" };
+      return Formatter.emojiMention("1393733033659469926", "agilitygem");
     case "Intensity Gem":
-      return { name: "intensitygem", id: "1393733041079324734" };
+      return Formatter.emojiMention("1393733041079324734", "intensitygem");
     case "Lapiz Lazuli":
-      return { name: "lapislazuli", id: "1393733050508251177" };
+      return Formatter.emojiMention("1393733050508251177", "lapislazuli");
     case "Larimar":
-      return { name: "larimar", id: "1393733187091435520" };
+      return Formatter.emojiMention("1393733187091435520", "larimar");
     case "Agate":
-      return { name: "agate", id: "1393733030019076177" };
+      return Formatter.emojiMention("1393733030019076177", "agate");
     case "Malachite":
-      return { name: "malachite", id: "1393733054895231077" };
+      return Formatter.emojiMention("1393733054895231077", "malachite");
     case "Candelaria":
-      return { name: "candelaria", id: "1393733039049408657" };
+      return Formatter.emojiMention("1393733039049408657", "candelaria");
     case "Morenci":
-      return { name: "morenci", id: "1393733059039465562" };
+      return Formatter.emojiMention("1393733059039465562", "morenci");
     case "Painite":
-      return { name: "painite", id: "1393733069969817762" };
+      return Formatter.emojiMention("1393733069969817762", "painite");
     case "Kyanite":
-      return { name: "kyanite", id: "1393733049115611136" };
+      return Formatter.emojiMention("1393733049115611136", "kyanite");
     case "Variscite":
-      return { name: "variscite", id: "1393733193798123560" };
+      return Formatter.emojiMention("1393733193798123560", "variscite");
     case "Perfect Azurite":
-      return { name: "azurite", id: "1393733037447184394" };
+      return Formatter.emojiMention("1393733037447184394", "azurite");
     case "Perfect Aventurine":
-      return { name: "aventurine", id: "1393733035450699910" };
+      return Formatter.emojiMention("1393733035450699910", "aventurine");
     case "Perfect Fire Opal":
-      return { name: "fireopal", id: "1393733046792093837" };
+      return Formatter.emojiMention("1393733046792093837", "fireopal");
     default:
       return null;
   }
 }
 
-export function magicToEmoji(
-  magic: MagicsEnum
-): APIMessageComponentEmoji | null {
+export function magicToEmoji(magic: MagicsEnum): EmojiResolvable | null {
   switch (magic) {
     case MagicsEnum.Acid:
-      return { name: "acid", id: "1393706537419145378" };
+      return Formatter.emojiMention("1393706537419145378", "acid");
     case MagicsEnum.Ash:
-      return { name: "ash", id: "1393706539273162842" };
+      return Formatter.emojiMention("1393706539273162842", "ash");
     case MagicsEnum.Crystal:
-      return { name: "crystal", id: "1393706540850090064" };
+      return Formatter.emojiMention("1393706540850090064", "crystal");
     case MagicsEnum.Earth:
-      return { name: "earth", id: "1393706543157088307" };
+      return Formatter.emojiMention("1393706543157088307", "earth");
     case MagicsEnum.Explosion:
-      return { name: "explosion", id: "1393706544926949516" };
+      return Formatter.emojiMention("1393706544926949516", "explosion");
     case MagicsEnum.Fire:
-      return { name: "fire", id: "1393706546453544980" };
+      return Formatter.emojiMention("1393706546453544980", "fire");
     case MagicsEnum.Glass:
-      return { name: "glass", id: "1393706547950915666" };
+      return Formatter.emojiMention("1393706547950915666", "glass");
     case MagicsEnum.Ice:
-      return { name: "ice", id: "1393706549716717628" };
+      return Formatter.emojiMention("1393706549716717628", "ice");
     case MagicsEnum.Light:
-      return { name: "light", id: "1393706551495233629" };
+      return Formatter.emojiMention("1393706551495233629", "light");
     case MagicsEnum.Lightning:
-      return { name: "lightning", id: "1393706553650974831" };
+      return Formatter.emojiMention("1393706553650974831", "lightning");
     case MagicsEnum.Magma:
-      return { name: "magma", id: "1393706555572224030" };
+      return Formatter.emojiMention("1393706555572224030", "magma");
     case MagicsEnum.Metal:
-      return { name: "metal", id: "1393706594142916808" };
+      return Formatter.emojiMention("1393706594142916808", "metal");
     case MagicsEnum.Plasma:
-      return { name: "plasma", id: "1393706559401365674" };
+      return Formatter.emojiMention("1393706559401365674", "plasma");
     case MagicsEnum.Poison:
-      return { name: "poison", id: "1393706598400135238" };
+      return Formatter.emojiMention("1393706598400135238", "poison");
     case MagicsEnum.Sand:
-      return { name: "sand", id: "1393706514249810062" };
+      return Formatter.emojiMention("1393706514249810062", "sand");
     case MagicsEnum.Shadow:
-      return { name: "shadow", id: "1393706515747180596" };
+      return Formatter.emojiMention("1393706515747180596", "shadow");
     case MagicsEnum.Snow:
-      return { name: "snow", id: "1393706517718372402" };
+      return Formatter.emojiMention("1393706517718372402", "snow");
     case MagicsEnum.Water:
-      return { name: "water", id: "1393706519442489446" };
+      return Formatter.emojiMention("1393706519442489446", "water");
     case MagicsEnum.Wind:
-      return { name: "wind", id: "1393706520889397360" };
+      return Formatter.emojiMention("1393706520889397360", "wind");
     case MagicsEnum.Wood:
-      return { name: "wood", id: "1393706523032682619" };
+      return Formatter.emojiMention("1393706523032682619", "wood");
     default:
       return null;
   }
 }
 
-export function fsToEmoji(
-  fs: FightingStylesEnum
-): APIMessageComponentEmoji | null {
+export function fsToEmoji(fs: FightingStylesEnum): EmojiResolvable | null {
   switch (fs) {
     case FightingStylesEnum.BasicCombat:
-      return { name: "basiccombat", id: "1393706037227556864" };
+      return Formatter.emojiMention("1393706037227556864", "basiccombat");
     case FightingStylesEnum.Boxing:
-      return { name: "boxing", id: "1393706038892560626" };
+      return Formatter.emojiMention("1393706038892560626", "boxing");
     case FightingStylesEnum.IronLeg:
-      return { name: "ironleg", id: "1393706043057504378" };
+      return Formatter.emojiMention("1393706043057504378", "ironleg");
     case FightingStylesEnum.CannonFist:
-      return { name: "cannonfist", id: "1393706041124061386" };
+      return Formatter.emojiMention("1393706041124061386", "cannonfist");
     case FightingStylesEnum.PowderFist:
-      return { name: "powderfist", id: "1393706044743483402" };
+      return Formatter.emojiMention("1393706044743483402", "powderfist");
     case FightingStylesEnum.SailorStyle:
-      return { name: "sailorstyle", id: "1393706011428393031" };
+      return Formatter.emojiMention("1393706011428393031", "sailorstyle");
     case FightingStylesEnum.ThermoFist:
-      return { name: "thermofist", id: "1393706015010324572" };
+      return Formatter.emojiMention("1393706015010324572", "thermofist");
     case FightingStylesEnum.VanishingStyle:
-      return { name: "vanishingstyle", id: "1393706016486457374" };
+      return Formatter.emojiMention("1393706016486457374", "vanishingstyle");
     default:
       return null;
   }
-}
-
-export function textToEmoji(
-  emojiText: string
-): APIMessageComponentEmoji | null {
-  if (emojiText === "" || !emojiText) {
-    return null;
-  }
-
-  const name_and_id = emojiText
-    .substring(1, emojiText.length - 1)
-    .split(":")
-    .slice(1);
-
-  return { name: name_and_id[0], id: name_and_id[1] };
 }
 
 export async function emojiToGem(
-  emoji: APIMessageComponentEmoji | null
+  emoji: EmojiResolvable | null
 ): Promise<Gem | null> {
   const gemsData = (await getData()).gems;
 
-  if (emoji == null) {
+  if (emoji === null) {
     return gemsData[EMPTY_GEM_ID] ?? null;
   }
 
   const gem = Object.values(gemsData).find((gem) => {
     const gemEmoji = itemGemToEmoji(gem);
     return (
-      gemEmoji?.name === emoji.name && (!emoji.id || gemEmoji?.id === emoji.id)
+      gemEmoji ===
+      (typeof emoji === "string"
+        ? emoji
+        : Formatter.emojiMention(
+            emoji.id ?? "",
+            emoji.name ?? "",
+            emoji.animated
+          ))
     );
   });
 
@@ -237,7 +226,7 @@ export async function emojiToGem(
 }
 
 export async function emojiToEnchant(
-  emoji: APIMessageComponentEmoji | null
+  emoji: EmojiResolvable | null
 ): Promise<Enchant | null> {
   const enchantData = (await getData()).enchants;
 
@@ -254,8 +243,14 @@ export async function emojiToEnchant(
     .find((enchant) => {
       const enchantEmoji = itemEnchantToEmoji(enchant);
       return (
-        enchantEmoji?.name === emoji.name &&
-        (!emoji.id || enchantEmoji?.id === emoji.id)
+        enchantEmoji ===
+        (typeof emoji === "string"
+          ? emoji
+          : Formatter.emojiMention(
+              emoji.id ?? "",
+              emoji.name ?? "",
+              emoji.animated
+            ))
       );
     });
 
@@ -263,7 +258,7 @@ export async function emojiToEnchant(
 }
 
 export async function emojiToModifier(
-  emoji: APIMessageComponentEmoji | null
+  emoji: EmojiResolvable | null
 ): Promise<Modifier | null> {
   const modifierData = (await getData()).modifiers;
 
@@ -280,8 +275,14 @@ export async function emojiToModifier(
     .find((modifier) => {
       const modifierEmoji = itemModifierToEmoji(modifier);
       return (
-        modifierEmoji?.name === emoji.name &&
-        (!emoji.id || modifierEmoji?.id === emoji.id)
+        modifierEmoji ===
+        (typeof emoji === "string"
+          ? emoji
+          : Formatter.emojiMention(
+              emoji.id ?? "",
+              emoji.name ?? "",
+              emoji.animated
+            ))
       );
     });
 
@@ -300,4 +301,26 @@ export function componentEmojiToText(
     return "";
   }
   return `<${emoji.animated ? "a" : ""}:${emoji.name}:${emoji.id}>`;
+}
+
+/**
+ * Turns an emoji in string format into an EmojiResolvable
+ * @param text The emoji text
+ * @returns An EmojiResolvable type
+ */
+export function emojiTextToResolvable(
+  text: string | null
+): EmojiResolvable | null {
+  if (!text) return null;
+
+  const match = text.match(/<(a?):([a-zA-Z0-9_]+):([0-9]+)>/g);
+
+  if (!match) return null;
+
+  const [, animated, name, id] = match;
+  return {
+    animated: animated === "a",
+    name: name,
+    id: id,
+  };
 }

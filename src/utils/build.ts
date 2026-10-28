@@ -7,11 +7,9 @@ import {
   EMPTY_MODIFIER_ID,
 } from "../constants";
 import { type Player, type Slot } from "../types";
-import type {
-  APIEmbedField,
-  APIMessageComponentEmoji,
-} from "seyfert/lib/types";
+import type { APIEmbedField } from "seyfert/lib/types";
 import { fsToEmoji, magicToEmoji } from "./emoji";
+import type { EmojiResolvable } from "seyfert/lib/common";
 
 export enum MagicsEnum {
   Acid = 0,
@@ -219,19 +217,17 @@ export function parsePlayerIntoEmbed(
   let magicFsString = "";
 
   player.magics.forEach((magic) => {
-    const magicEmoji: APIMessageComponentEmoji | null = magicToEmoji(
+    const magicEmoji: EmojiResolvable | null = magicToEmoji(
       magic as MagicsEnum
     );
     if (!magicEmoji) return;
-    magicFsString += `<:${magicEmoji.name}:${magicEmoji.id}>`;
+    magicFsString += magicEmoji as string;
   });
 
   player.fightingStyles.forEach((fs) => {
-    const fsEmoji: APIMessageComponentEmoji | null = fsToEmoji(
-      fs as FightingStylesEnum
-    );
+    const fsEmoji: EmojiResolvable | null = fsToEmoji(fs as FightingStylesEnum);
     if (!fsEmoji) return;
-    magicFsString += `<:${fsEmoji.name}:${fsEmoji.id}>`;
+    magicFsString += fsEmoji as string;
   });
 
   fields.push({

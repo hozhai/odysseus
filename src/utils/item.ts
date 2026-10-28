@@ -14,14 +14,13 @@ import { getData } from "../data/load";
 import { ComponentContext, Embed, InMessageEmbed } from "seyfert";
 import { formatTotalStats, slotToTotalStats } from "./stats";
 import {
-  componentEmojiToText,
+  emojiTextToResolvable,
   emojiToEnchant,
   emojiToGem,
   emojiToModifier,
   itemEnchantToEmoji,
   itemGemToEmoji,
   itemModifierToEmoji,
-  textToEmoji,
 } from ".";
 
 /**
@@ -72,15 +71,15 @@ export async function parseEmbedIntoSlot(
 
   const gems = await Promise.all(
     gemEmojis.map(async (text) => {
-      const emoji = textToEmoji(text);
+      const emoji = emojiTextToResolvable(text);
       const gem = await emojiToGem(emoji);
       return gem?.id;
     })
   );
 
-  const enchant = await emojiToEnchant(textToEmoji(enchantEmoji));
+  const enchant = await emojiToEnchant(emojiTextToResolvable(enchantEmoji));
 
-  const modifier = await emojiToModifier(textToEmoji(modifierEmoji));
+  const modifier = await emojiToModifier(emojiTextToResolvable(modifierEmoji));
 
   if (item_id) {
     slot.item_id = item_id;
@@ -168,7 +167,7 @@ export async function slotIntoEmbed(
   if (enchant !== null && enchant.id !== EMPTY_ENCHANTMENT_ID) {
     fields.push({
       name: "Enchant",
-      value: componentEmojiToText(itemEnchantToEmoji(enchant)),
+      value: (itemEnchantToEmoji(enchant) as string) ?? "",
       inline: true,
     });
   }
@@ -178,7 +177,7 @@ export async function slotIntoEmbed(
   if (modifier !== null && modifier.id !== EMPTY_MODIFIER_ID) {
     fields.push({
       name: "Modifier",
-      value: componentEmojiToText(itemModifierToEmoji(modifier)),
+      value: (itemModifierToEmoji(modifier) as string) ?? "",
       inline: true,
     });
   }
@@ -191,7 +190,7 @@ export async function slotIntoEmbed(
 
   if (gems.length !== 0) {
     const gemEmojis = gems
-      .map((gem) => componentEmojiToText(itemGemToEmoji(gem)))
+      .map((gem) => itemGemToEmoji(gem) as string)
       .join(" ");
 
     fields.push({
