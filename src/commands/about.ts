@@ -13,7 +13,7 @@ import { formatSeconds } from "../utils/misc";
 
 @Declare({
   name: "about",
-  description: "Displays the about page for Odysseus",
+  description: "Displays the about page for Odysseus.",
 })
 export default class AboutCommand extends Command {
   override async run(ctx: CommandContext) {
