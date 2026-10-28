@@ -43,6 +43,27 @@ const options = {
 @Options(options)
 export default class ItemCommand extends Command {
   override async run(ctx: CommandContext<typeof options>) {
+    {
+      const embed = new Embed()
+        .setAuthor({
+          name: ctx.author.username,
+          iconUrl: ctx.author.avatarURL(),
+        })
+        .setTitle("WIP")
+        .setDescription(
+          `
+          This command is still under construction.
+
+          *This is due to the insane amounts of modifiers and fused gems added to the game, which means there needs to be an emoji for each. There is a workaround to this; however, it's not ideal, so we'll keep working on it!*
+
+          Join our [Discord](https://discord.gg/Z3uKnGHvMN) for more information!
+          `
+        );
+
+      await ctx.write({ embeds: [embed] });
+      return;
+    }
+
     const response = ctx.options.name;
     const itemsData = (await getData()).items;
     const item = itemsData[response];
