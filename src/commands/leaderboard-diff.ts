@@ -32,12 +32,6 @@ const periods = [
 ] as const;
 const MAX_ONE_HOUR_BASELINE_DRIFT_MS = 5 * 60 * 1000;
 
-type PeriodResult = {
-  hasBaseline: boolean;
-  gainLines: string[];
-  value: string;
-};
-
 @Declare({
   name: "leaderboard-diff",
   description:
@@ -59,25 +53,10 @@ export default class LeaderboardDiffCommand extends Command {
       return;
     }
 
-    const results = periods.map(({ durationMs }) =>
-      createPeriodValue(snapshots, current, durationMs, metric)
-    );
-    const oneHourResult = results[0]!;
-    const fields = periods.map(({ label }, index) => {
-      const result = results[index]!;
-      const canUseOneHourFallback =
-        index > 0 && !result.hasBaseline && oneHourResult.gainLines.length > 0;
-
-      return {
-        name: label,
-        value: canUseOneHourFallback
-          ? fitFieldValue([
-              // `Past 1 hour only; no snapshot available for ${label.toLowerCase()}.`,
-              ...oneHourResult.gainLines,
-            ])
-          : result.value,
-      };
-    });
+    const fields = periods.map(({ label, durationMs }) => ({
+      name: label,
+      value: createPeriodValue(snapshots, current, durationMs, metric),
+    }));
 
     const embed = new Embed()
       .setAuthor({
@@ -101,23 +80,23 @@ function createPeriodValue(
   current: LeaderboardSnapshot,
   durationMs: number,
   metric: string
-): PeriodResult {
+): string {
   const currentTime = current.capturedAt ?? current.updatedAt;
   const baselineTime = currentTime - durationMs;
   const isOneHourPeriod = durationMs === periods[0].durationMs;
-  const baseline = isOneHourPeriod
-    ? findOneHourBaseline(snapshots, baselineTime)
+  const exactBaseline = isOneHourPeriod
+    ? undefined
     : snapshots.find(
         (snapshot) =>
           (snapshot.capturedAt ?? snapshot.updatedAt) <= baselineTime
       );
+  const baseline = isOneHourPeriod
+    ? findOneHourBaseline(snapshots, baselineTime)
+    : (exactBaseline ?? snapshots.at(-1));
+  const isPartialHistory = !isOneHourPeriod && !exactBaseline;
 
   if (!baseline) {
-    return {
-      hasBaseline: false,
-      gainLines: [],
-      value: "Not enough snapshot history yet.",
-    };
+    return "Not enough snapshot history yet.";
   }
 
   const diffs = getGains(current.entries, baseline.entries);
@@ -126,47 +105,42 @@ function createPeriodValue(
     .sort((left, right) => right.gained - left.gained);
 
   if (!positiveGains.length) {
-    return {
-      hasBaseline: true,
-      gainLines: [],
-      value: "No gains recorded.",
-    };
+    return isPartialHistory
+      ? `No gains recorded in available history since <t:${Math.floor((baseline.capturedAt ?? baseline.updatedAt) / 1000)}:R>.`
+      : "No gains recorded.";
   }
 
   const gainLines = positiveGains.map(
     ({ entry, gained }) =>
       `#${entry.position} ${entry.name} > +${gained.toLocaleString("en-US")} ${metric}`
   );
-  return {
-    hasBaseline: true,
-    gainLines,
-    value: fitFieldValue(gainLines),
-  };
+  if (isPartialHistory) {
+    gainLines.unshift(
+      `Available history since <t:${Math.floor((baseline.capturedAt ?? baseline.updatedAt) / 1000)}:R>:`
+    );
+  }
+  return fitFieldValue(gainLines);
 }
 
 function findOneHourBaseline(
   snapshots: LeaderboardSnapshot[],
   baselineTime: number
 ): LeaderboardSnapshot | undefined {
-  if (
-    !snapshots.some(
-      (snapshot) => (snapshot.capturedAt ?? snapshot.updatedAt) <= baselineTime
-    )
-  ) {
-    return undefined;
-  }
+  let baseline: LeaderboardSnapshot | undefined;
+  let closestDistance = Number.POSITIVE_INFINITY;
 
-  for (let index = snapshots.length - 1; index > 0; index--) {
-    const snapshot = snapshots[index]!;
+  for (const snapshot of snapshots.slice(1)) {
     const snapshotTime = snapshot.capturedAt ?? snapshot.updatedAt;
-    if (snapshotTime >= baselineTime) {
-      return snapshotTime - baselineTime <= MAX_ONE_HOUR_BASELINE_DRIFT_MS
-        ? snapshot
-        : undefined;
+    const distance = Math.abs(snapshotTime - baselineTime);
+    if (distance < closestDistance) {
+      baseline = snapshot;
+      closestDistance = distance;
     }
   }
 
-  return undefined;
+  return closestDistance <= MAX_ONE_HOUR_BASELINE_DRIFT_MS
+    ? baseline
+    : undefined;
 }
 
 function getGains(
