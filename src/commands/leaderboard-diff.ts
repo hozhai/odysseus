@@ -30,7 +30,7 @@ const periods = [
   { label: "Past 24 hours", durationMs: 24 * 60 * 60 * 1000 },
   { label: "Past week", durationMs: 7 * 24 * 60 * 60 * 1000 },
 ] as const;
-const MAX_ONE_HOUR_BASELINE_DRIFT_MS = 5 * 60 * 1000;
+const MAX_ONE_HOUR_BASELINE_DRIFT_MS = 15 * 60 * 1000;
 
 @Declare({
   name: "leaderboard-diff",
