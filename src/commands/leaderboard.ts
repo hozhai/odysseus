@@ -30,7 +30,7 @@ const options = {
   description: "Displays the leaderboard for clans or guilds.",
 })
 @Options(options)
-export default class LeaderBoardCommand extends Command {
+export default class LeaderboardCommand extends Command {
   override async run(ctx: CommandContext<typeof options>) {
     const type = (ctx.options.name ?? "clan") as LeaderboardType;
     const isGuild = type === "guild";

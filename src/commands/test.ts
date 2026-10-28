@@ -6,7 +6,7 @@ import type { EmojiResolvable } from "seyfert/lib/common";
   name: "test",
   description: "Miscellaneous testing stuff.",
 })
-export default class AboutCommand extends Command {
+export default class TestCommand extends Command {
   override async run(ctx: CommandContext) {
     if (ctx.author.id !== "360235359746916352") {
       await ctx.write({

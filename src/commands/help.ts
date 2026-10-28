@@ -12,7 +12,7 @@ import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
   name: "help",
   description: "Displays Odysseus' commands.",
 })
-export default class AboutCommand extends Command {
+export default class HelpCommand extends Command {
   override async run(ctx: CommandContext) {
     const commands: Command[] = (await Bun.file(
       "./commands.json"
