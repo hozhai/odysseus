@@ -65,7 +65,7 @@ export default class LeaderboardDiffCommand extends Command {
       })
       .setTitle(`${type === "guild" ? "Guild" : "Clan"} ${metric} Gains`)
       .setDescription(
-        `Last updated: <t:${Math.floor(current.updatedAt / 1000)}:R> - Only gains are shown.`
+        `Last updated: <t:${Math.floor(current.updatedAt / 1000)}:R>. Only gains are shown.`
       )
       .setColor(EMBED_COLOR_DEFAULT)
       .setFields(fields)
