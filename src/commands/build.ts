@@ -41,7 +41,13 @@ export default class BuildCommand extends Command {
         })
         .setTitle("WIP")
         .setDescription(
-          "This command is still under construction. Join our [Discord](https://discord.gg/Z3uKnGHvMN) for more information!"
+          `
+          This command is still under construction.
+
+          *This is due to the insane amounts of modifiers and fused gems added to the game, which means there needs to be an emoji for each. There is a workaround to this; however, it's not ideal, so we'll keep working on it!*
+
+          Join our [Discord](https://discord.gg/Z3uKnGHvMN) for more information!
+          `
         );
 
       await ctx.write({ embeds: [embed] });
