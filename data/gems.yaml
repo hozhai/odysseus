@@ -55,7 +55,7 @@ nca:
   legend: Its adventure time!!!
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   regeneration: 19
 AAF:
@@ -123,7 +123,7 @@ DuG:
   legend: Armor Piercing Gem.
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   piercing: 19
 CBH:
@@ -132,7 +132,7 @@ CBH:
   legend: Ultraman Azul
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 19
 sKB:
@@ -190,7 +190,7 @@ XOW:
   legend: Fused jewel of Agate and Agate
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 48
   attackSize: 8
@@ -200,7 +200,7 @@ i0a:
   legend: Fused jewel of Candelaria and Morenci
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4
   agility: 4
@@ -211,7 +211,7 @@ i0a:
   legend: Fused jewel of Candelaria and Malachite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4
   attackSpeed: 4
@@ -222,7 +222,7 @@ zCi:
   legend: Fused jewel of Candelaria and Candelaria
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4.8
   attackSpeed: 9.5
@@ -232,7 +232,7 @@ zCi:
   legend: Fused jewel of Agate and Malachite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   defense: 24
@@ -243,7 +243,7 @@ B2g:
   legend: Fused jewel of Morenci and Morenci
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4.8
   agility: 9.5
@@ -253,7 +253,7 @@ ISO:
   legend: Fused jewel of Malachite and Malachite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4.8
   attackSize: 9.5
@@ -263,7 +263,7 @@ ISO:
   legend: Fused jewel of Agate and Candelaria
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   defense: 24
@@ -275,7 +275,7 @@ v9g:
   legend: Fused jewel of Lapis Lazuli and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   attackSpeed: 12
@@ -285,7 +285,7 @@ v9g:
   legend: Fused jewel of Aventurine and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   attackSpeed: 6
@@ -296,7 +296,7 @@ uJ6:
   legend: Fused jewel of Aventurine and Larimar
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeed: 6
   intensity: 6
@@ -307,7 +307,7 @@ kmW:
   legend: Fused jewel of Aventurine and Kyanite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   intensity: 6
@@ -318,7 +318,7 @@ bMc:
   legend: Fused jewel of Aventurine and Variscite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   attackSize: 6
@@ -329,7 +329,7 @@ z4V:
   legend: Fused jewel of Lapis Lazuli and Candelaria
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 6
@@ -340,7 +340,7 @@ cVQ:
   legend: Fused jewel of Candelaria and Larimar
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   attackSpeed: 10
@@ -351,7 +351,7 @@ aV5:
   legend: Fused jewel of Agate and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 24
   agility: 6
@@ -363,7 +363,7 @@ VI5:
   legend: Fused jewel of Painite and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 224
   drawback: 1
@@ -373,7 +373,7 @@ QDU:
   legend: Fused jewel of Malachite and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 6
@@ -385,7 +385,7 @@ wSE:
   legend: Fused jewel of Larimar and Larimar
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeed: 12
   intensity: 12
@@ -395,7 +395,7 @@ WAx:
   legend: Fused jewel of Variscite and Variscite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   attackSize: 12
@@ -405,7 +405,7 @@ bDg:
   legend: Fused jewel of Candelaria and Kyanite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 6
@@ -417,7 +417,7 @@ Y3q:
   legend: Fused jewel of Kyanite and Malachite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 6
@@ -429,7 +429,7 @@ k8N:
   legend: Fused jewel of Variscite and Kyanite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   attackSize: 6
@@ -440,7 +440,7 @@ nIw:
   legend: Fused jewel of Variscite and Larimar
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   attackSpeed: 6
@@ -452,7 +452,7 @@ I3F:
   legend: Fused jewel of Kyanite and Kyanite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   intensity: 12
@@ -462,7 +462,7 @@ jkq:
   legend: Fused jewel of Aventurine and Aventurine
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   regeneration: 22
 n7Q:
@@ -471,7 +471,7 @@ n7Q:
   legend: Fused jewel of Variscite and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   attackSpeed: 6
@@ -482,7 +482,7 @@ n7Q:
   legend: Fused jewel of Fire Opal and Fire Opal
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   piercing: 22
 kE3:
@@ -491,7 +491,7 @@ kE3:
   legend: Fused jewel of Morenci and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 10
@@ -502,7 +502,7 @@ kE3:
   legend: Fused jewel of Fire Opal and Larimar
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeed: 6
   intensity: 6
@@ -513,7 +513,7 @@ bhs:
   legend: Fused jewel of Lapis Lazuli and Fire Opal
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   attackSpeed: 6
@@ -524,7 +524,7 @@ auD:
   legend: Fused jewel of Fire Opal and Kyanite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   intensity: 6
@@ -535,7 +535,7 @@ auD:
   legend: Fused jewel of Painite and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 112
   agility: 6
@@ -547,7 +547,7 @@ Aln:
   legend: Fused jewel of Variscite and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 112
   agility: 6
@@ -559,7 +559,7 @@ Aln:
   legend: Fused jewel of Agate and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 136
   attackSize: 4
@@ -570,7 +570,7 @@ Aln:
   legend: Fused jewel of Aventurine and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 112
   regeneration: 11
@@ -581,7 +581,7 @@ Pmu:
   legend: Fused jewel of Agate and Aventurine
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 24
   attackSize: 4
@@ -592,7 +592,7 @@ RkS:
   legend: Fused jewel of Agate and Azurite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 24
   attackSize: 4
@@ -603,7 +603,7 @@ A7Q:
   legend: Fused jewel of Agate and Fire Opal
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 24
   attackSize: 4
@@ -614,7 +614,7 @@ L4L:
   legend: Fused jewel of Agate and Kyanite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 24
   attackSize: 4
@@ -626,7 +626,7 @@ L4L:
   legend: Fused jewel of Agate and Larimar
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 24
   attackSize: 4
@@ -638,7 +638,7 @@ L4L:
   legend: Fused jewel of Agate and Morenci
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 24
   attackSize: 4
@@ -650,7 +650,7 @@ L93:
   legend: Fused jewel of Agate and Variscite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defense: 24
   attackSize: 10
@@ -661,7 +661,7 @@ A2g:
   legend: Fused jewel of Aventurine and Azurite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   regeneration: 11
   resistance: 11
@@ -671,7 +671,7 @@ CJf:
   legend: Fused jewel of Aventurine and Candelaria
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   regeneration: 11
   power: 2
@@ -682,7 +682,7 @@ Yld:
   legend: Fused jewel of Aventurine and Fire Opal
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   regeneration: 11
   piercing: 11
@@ -692,7 +692,7 @@ tGq:
   legend: Fused jewel of Aventurine and Malachite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   regeneration: 11
   power: 2
@@ -703,7 +703,7 @@ wm8:
   legend: Fused jewel of Aventurine and Morenci
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   regeneration: 11
   power: 2
@@ -714,7 +714,7 @@ UH2:
   legend: Fused jewel of Azurite and Azurite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 22
 Eoq:
@@ -723,7 +723,7 @@ Eoq:
   legend: Fused jewel of Azurite and Candelaria
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 11
   power: 2
@@ -734,7 +734,7 @@ SMd:
   legend: Fused jewel of Azurite and Fire Opal
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 11
   piercing: 11
@@ -744,7 +744,7 @@ od6:
   legend: Fused jewel of Azurite and Kyanite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 11
   agility: 6
@@ -755,7 +755,7 @@ kgW:
   legend: Fused jewel of Azurite and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 11
   agility: 6
@@ -766,7 +766,7 @@ kgW:
   legend: Fused jewel of Azurite and Larimar
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 11
   attackSpeed: 6
@@ -777,7 +777,7 @@ eEg:
   legend: Fused jewel of Azurite and Malachite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 11
   power: 2
@@ -788,7 +788,7 @@ DXw:
   legend: Fused jewel of Azurite and Morenci
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 11
   power: 2
@@ -799,7 +799,7 @@ kKf:
   legend: Fused jewel of Azurite and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 11
   defense: 112
@@ -810,7 +810,7 @@ H6U:
   legend: Fused jewel of Azurite and Variscite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistance: 11
   agility: 6
@@ -821,7 +821,7 @@ H6U:
   legend: Fused jewel of Candelaria and Fire Opal
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   attackSpeed: 4
@@ -832,7 +832,7 @@ TAR:
   legend: Fused jewel of Candelaria and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   attackSpeed: 4
@@ -844,7 +844,7 @@ MPf:
   legend: Fused jewel of Candelaria and Variscite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   attackSpeed: 4
@@ -856,7 +856,7 @@ GXg:
   legend: Fused jewel of Fire Opal and Malachite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   piercing: 11
   power: 2
@@ -867,7 +867,7 @@ GXg:
   legend: Fused jewel of Fire Opal and Morenci
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   piercing: 11
   power: 2
@@ -878,7 +878,7 @@ szC:
   legend: Fused jewel of Fire Opal and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   piercing: 11
   defense: 112
@@ -889,7 +889,7 @@ AqB:
   legend: Fused jewel of Fire Opal and Variscite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   piercing: 11
   agility: 6
@@ -900,7 +900,7 @@ vxm:
   legend: Fused jewel of Kyanite and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 12
   intensity: 6
@@ -911,7 +911,7 @@ Tm6:
   legend: Fused jewel of Kyanite and Larimar
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   intensity: 12
@@ -922,7 +922,7 @@ Mqc:
   legend: Fused jewel of Kyanite and Morenci
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 10
   intensity: 6
@@ -933,7 +933,7 @@ xFu:
   legend: Fused jewel of Kyanite and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   intensity: 6
@@ -945,7 +945,7 @@ xFu:
   legend: Fused jewel of Lapis Lazuli and Larimar
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agility: 6
   attackSpeed: 12
@@ -956,7 +956,7 @@ KcS:
   legend: Fused jewel of Larimar and Malachite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeed: 6
   intensity: 6
@@ -968,7 +968,7 @@ KcS:
   legend: Fused jewel of Larimar and Morenci
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeed: 6
   intensity: 6
@@ -980,7 +980,7 @@ PLE:
   legend: Fused jewel of Larimar and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeed: 6
   intensity: 6
@@ -992,7 +992,7 @@ ZX9:
   legend: Fused jewel of Malachite and Morenci
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 4
   attackSize: 4
@@ -1003,7 +1003,7 @@ JvI:
   legend: Fused jewel of Malachite and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   attackSize: 4
@@ -1015,7 +1015,7 @@ dWE:
   legend: Fused jewel of Malachite and Variscite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   attackSize: 10
@@ -1026,7 +1026,7 @@ HER:
   legend: Fused jewel of Morenci and Painite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 4
@@ -1038,7 +1038,7 @@ q7U:
   legend: Fused jewel of Morenci and Variscite
   mainType: Gem
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   power: 2
   agility: 10

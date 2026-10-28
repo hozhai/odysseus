@@ -1,13 +1,13 @@
 #################################
 # ship.yaml is currently UNUSED #
 #################################
-'155':
-  id: '155'
+"155":
+  id: "155"
   name: Saiboat
   legend: Sailboat innit
   mainType: Ship
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 1200
   resilience: 65
@@ -83,7 +83,7 @@ e3d:
     your ship's durability and resilience slightly.
   mainType: Sail Material
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 60
   resilience: 10
@@ -93,7 +93,7 @@ e3d:
   legend: A set of cannons reinforced with bronze metal, increasing their damage.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1.4
@@ -106,7 +106,7 @@ Xt7:
   legend: A set of cannons built for firing powerful shots at a close range.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1.8
@@ -119,7 +119,7 @@ vmj:
   legend: A set of bronze reinforced cannons built for firing at a long range.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1.2
@@ -132,7 +132,7 @@ vmj:
   legend: A set of bronze-reinforced iron cannons built for firing at long range.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1.4
@@ -149,7 +149,7 @@ sXk:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -167,7 +167,7 @@ FRG:
     and applying additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -185,7 +185,7 @@ Eut:
     and applying additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -203,7 +203,7 @@ Eut:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -221,7 +221,7 @@ rhx:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -239,7 +239,7 @@ CrG:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -257,7 +257,7 @@ ilb:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -275,7 +275,7 @@ Xv7:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -286,10 +286,10 @@ Xv7:
 ZRP:
   id: ZRP
   name: Iron Axe Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 400
   ramStrength: 1330
@@ -304,7 +304,7 @@ zoh:
     an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -321,7 +321,7 @@ Xci:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -338,7 +338,7 @@ jqu:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -355,7 +355,7 @@ jqu:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -372,7 +372,7 @@ lPJ:
     an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -385,7 +385,7 @@ uSS:
   legend: +10 Turning Speed
   mainType: Deckhand
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   turning: 10
 I4z:
@@ -394,7 +394,7 @@ I4z:
   legend: +300 Ram Defense
   mainType: Deckhand
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   ramDefense: 300
 zPX:
@@ -403,16 +403,16 @@ zPX:
   legend: +475 Magic Storage
   mainType: Deckhand
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 475
 GEO:
   id: GEO
   name: Bronze Howitzers
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -3
   damageMultiplier: 1.6
@@ -426,7 +426,7 @@ JuN:
   legend: briggy
   mainType: Ship
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 12000
   ramStrength: 1200
@@ -525,7 +525,7 @@ IIV:
     by an Alchemist in order to increase its stats.
   mainType: Hull Armor
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 7800
   ramDefense: 598
@@ -539,7 +539,7 @@ IIV:
     slightly. 
   mainType: Hull Armor
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 3900
   speed: 8
@@ -552,7 +552,7 @@ yUJ:
     increase your ship's speed slightly.
   mainType: Sail Material
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: 6
 QaE:
@@ -561,7 +561,7 @@ QaE:
   legend: A set of heavy expensive cannons.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1.2
@@ -578,7 +578,7 @@ ciJ:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -596,7 +596,7 @@ ciJ:
     applying additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -614,7 +614,7 @@ squ:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -632,7 +632,7 @@ OUh:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -650,7 +650,7 @@ XDe:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -668,7 +668,7 @@ LQ7:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -686,7 +686,7 @@ HK0:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -697,10 +697,10 @@ HK0:
 P87:
   id: P87
   name: Rugged Axe Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 250
   ramStrength: 925
@@ -708,10 +708,10 @@ P87:
 S67:
   id: S67
   name: Iron Reinforced Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 100
   ramDefense: 368
@@ -720,10 +720,10 @@ S67:
 2j2:
   id: 2j2
   name: Rugged Battering Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 125
   ramDefense: 57
@@ -732,10 +732,10 @@ S67:
 ClS:
   id: ClS
   name: Iron Cleaving Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 200
   ramDefense: 92
@@ -744,10 +744,10 @@ ClS:
 jdN:
   id: jdN
   name: Rugged Spiked Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 125
   ramDefense: 115
@@ -756,10 +756,10 @@ jdN:
 t62:
   id: t62
   name: Reinforced Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 62
   ramDefense: 230
@@ -768,10 +768,10 @@ t62:
 ipc:
   id: ipc
   name: Hammerhead Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 600
   ramStrength: 2086
@@ -786,7 +786,7 @@ ZfS:
     an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -795,7 +795,7 @@ ZfS:
   ramSpeed: 1.5
 0mW:
   id: 0mW
-  name: 'Lesser Ash Ram '
+  name: "Lesser Ash Ram "
   legend: >-
     A basic ram made out of lesser arcanium metal, forged to conduct ash magic.
     When activating Ramming Speed with this equipped, it will overflow with
@@ -803,7 +803,7 @@ ZfS:
     an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -820,7 +820,7 @@ R75:
     an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -837,7 +837,7 @@ N0n:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -854,7 +854,7 @@ eyK:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -871,7 +871,7 @@ Nb5:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -887,7 +887,7 @@ Fwo:
     jobs well enough.
   mainType: Ship Crew
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   stability: 5
 bCd:
@@ -901,7 +901,7 @@ bCd:
     ramming.
   mainType: Ship Crew
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   ramDefense: 300
   resilience: 10
@@ -916,7 +916,7 @@ Oag:
     of the sea and the workings of a ship.
   mainType: Ship Crew
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 300
   resilience: 5
@@ -926,7 +926,7 @@ RZw:
   legend: lol
   mainType: Deckhand
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   stability: 6
 ItZ:
@@ -935,16 +935,16 @@ ItZ:
   legend: +11% Resilience
   mainType: Deckhand
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   resilience: 11
 8GU:
   id: 8GU
   name: Heavy Mortars
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -5
   damageMultiplier: 1.7
@@ -955,10 +955,10 @@ ItZ:
 I5M:
   id: I5M
   name: Coehorns
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -1
   damageMultiplier: 1
@@ -969,10 +969,10 @@ I5M:
 yDz:
   id: yDz
   name: Bronze Mortars
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -3
   damageMultiplier: 1.7
@@ -983,10 +983,10 @@ yDz:
 NTt:
   id: NTt
   name: Heavy Bronze Mortars
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -5
   damageMultiplier: 2
@@ -1000,7 +1000,7 @@ j9o:
   legend: Craaaave
   mainType: Ship
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 2500
   resilience: 65
@@ -1020,7 +1020,7 @@ yb7:
   legend: gethc
   mainType: Ship
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 4000
   resilience: 65
@@ -1133,7 +1133,7 @@ SW6:
     your ship's durability and resilience slightly.
   mainType: Sail Material
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 160
   resilience: 12
@@ -1176,10 +1176,10 @@ kTu:
 Bu6:
   id: Bu6
   name: Reinforced Sailcloth
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Sail Material
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 260
   resilience: 13
@@ -1189,7 +1189,7 @@ Bu6:
   legend: A set of lightweight, cheap cannons.
   mainType: Cannon
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -5
   damageMultiplier: 0.8
@@ -1202,7 +1202,7 @@ zTZ:
   legend: A set of standard ship cannons.
   mainType: Cannon
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1
@@ -1212,10 +1212,10 @@ zTZ:
 xQr:
   id: xQr
   name: Heavy Iron Cannons
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1.8
@@ -1232,7 +1232,7 @@ X6X:
     and applying additional effects.
   mainType: Cannon
   rarity: Seasonal
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -1250,7 +1250,7 @@ Tvq:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -1268,7 +1268,7 @@ BW1:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -1279,10 +1279,10 @@ BW1:
 sMF:
   id: sMF
   name: Iron Battering Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 200
   ramDefense: 92
@@ -1291,10 +1291,10 @@ sMF:
 erc:
   id: erc
   name: Iron Blade Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 400
   ramStrength: 1330
@@ -1302,21 +1302,21 @@ erc:
 mbk:
   id: mbk
   name: Rugged Blade Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 250
   ramStrength: 925
   ramSpeed: 1.5
 YYt:
   id: YYt
-  name: 'Rugged Cleaving Ram '
-  legend: '[plz fix]'
+  name: "Rugged Cleaving Ram "
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 125
   ramDefense: 57
@@ -1332,7 +1332,7 @@ EME:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1349,7 +1349,7 @@ BEg:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1366,7 +1366,7 @@ Du4:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1383,7 +1383,7 @@ Du4:
     an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1396,16 +1396,16 @@ JHF:
   legend: +600 Ram Strength
   mainType: Deckhand
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   ramStrength: 600
 rBU:
   id: rBU
   name: Mortar
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -3
   damageMultiplier: 1.5
@@ -1416,10 +1416,10 @@ rBU:
 M2t:
   id: M2t
   name: Howitzers
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -3
   damageMultiplier: 1.4
@@ -1484,7 +1484,7 @@ aFt:
   legend: +4 Speed Deckhand
   mainType: Deckhand
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: 4
 TKr:
@@ -1495,7 +1495,7 @@ TKr:
     damage.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1.6
@@ -1510,7 +1510,7 @@ jgm:
     close range.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1.9
@@ -1523,7 +1523,7 @@ gnG:
   legend: A set of cannons built for firing at long range.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 1.1
@@ -1538,7 +1538,7 @@ M8Q:
     close range.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -7
   damageMultiplier: 2.1
@@ -1554,7 +1554,7 @@ M8Q:
     additional damage to nearby ships.
   mainType: Cannon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -10
   damageMultiplier: 2
@@ -1571,7 +1571,7 @@ M8Q:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -5
   damageMultiplier: 1.3
@@ -1589,7 +1589,7 @@ xom:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -1607,7 +1607,7 @@ gyP:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -1625,7 +1625,7 @@ yPI:
     additional effects.
   mainType: Cannon
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   magicStorage: 135
   speed: -5
@@ -1636,10 +1636,10 @@ yPI:
 l6m:
   id: l6m
   name: Iron Spiked Ram
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Ram
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 200
   ramDefense: 184
@@ -1655,7 +1655,7 @@ qEc:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1672,7 +1672,7 @@ lcV:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1689,7 +1689,7 @@ eS4:
     an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1706,7 +1706,7 @@ nSv:
     an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1723,7 +1723,7 @@ nSv:
     creating an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1740,7 +1740,7 @@ W9L:
     an explosion of magic energy.
   mainType: Ram
   rarity: Uncommon
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 225
   magicStorage: 360
@@ -1753,16 +1753,16 @@ IjV:
   legend: +1050 Durability
   mainType: Deckhand
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 1050
 sRl:
   id: sRl
   name: Ruined Archaic Mortars
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -5
   damageMultiplier: 1.2
@@ -1773,10 +1773,10 @@ sRl:
 a2s:
   id: a2s
   name: Bronze Coehorns
-  legend: '[plz fix]'
+  legend: "[plz fix]"
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -1
   damageMultiplier: 1.2
@@ -1790,7 +1790,7 @@ t1G:
   legend: Robot Innit
   mainType: Ship
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 350
   speed: 30
@@ -1804,7 +1804,7 @@ t1G:
   legend: Light Bronze Hull
   mainType: Hull Armor
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 5850
   stability: 2
@@ -1828,7 +1828,7 @@ cvA:
   legend: None
   mainType: Hull Armor
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 5100
   speed: 9
@@ -1839,7 +1839,7 @@ pdd:
   legend: None
   mainType: Hull Armor
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 7650
   stability: 3
@@ -1850,7 +1850,7 @@ f5a:
   legend: None
   mainType: Ram
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 600
   ramStrength: 2302
@@ -1861,7 +1861,7 @@ ATm:
   legend: None
   mainType: Ram
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 187
   ramDefense: 690
@@ -1873,7 +1873,7 @@ gyS:
   legend: None
   mainType: Ram
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 375
   ramDefense: 345
@@ -1885,7 +1885,7 @@ wOw:
   legend: None
   mainType: Ram
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 750
   ramStrength: 2275
@@ -1896,7 +1896,7 @@ tel:
   legend: None
   mainType: Ram
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 750
   ramStrength: 2275
@@ -1907,7 +1907,7 @@ sZK:
   legend: None
   mainType: Ram
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 375
   ramDefense: 172
@@ -1919,7 +1919,7 @@ iD9:
   legend: None
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -3
   damageMultiplier: 1.867
@@ -1933,7 +1933,7 @@ iD9:
   legend: None
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -5
   damageMultiplier: 2.167
@@ -1947,7 +1947,7 @@ Qkp:
   legend: None
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -3
   damageMultiplier: 1.767
@@ -1961,7 +1961,7 @@ sJS:
   legend: None
   mainType: Siege Weapon
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   speed: -1
   damageMultiplier: 1.367
@@ -1975,7 +1975,7 @@ sJS:
   legend: None
   mainType: Ship Crew
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   ramStrength: 800
 JxO:
@@ -1984,7 +1984,7 @@ JxO:
   legend: None
   mainType: Ship Crew
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 800
   ramDefense: 600
@@ -1995,7 +1995,7 @@ NWo:
   legend: None
   mainType: Ship Crew
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 600
   ramDefense: 600
@@ -2007,7 +2007,7 @@ NWo:
   legend: None
   mainType: Ship Crew
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 400
   ramDefense: 300
@@ -2018,7 +2018,7 @@ rdo:
   legend: None
   mainType: Ship Crew
   rarity: None
-  imageId: ''
+  imageId: ""
   deleted: false
   durability: 400
   ramStrength: 300

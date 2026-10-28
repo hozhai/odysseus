@@ -94,7 +94,7 @@ b13:
   legend: Adds low defense and medium resistance for each 10 levels.
   mainType: Modifier
   rarity: Rare
-  imageId: ''
+  imageId: ""
   deleted: false
   defenseIncrement: 2.317275
   resistanceIncrement: 1.6867
@@ -104,7 +104,7 @@ RO9:
   legend: This item originally belonged to the Goldsail Pirates group.
   mainType: Modifier
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   piercingIncrement: 1.4118
 PJi:
@@ -124,7 +124,7 @@ EJQ:
   legend: This item originally belonged to the Jaw Pirate group.
   mainType: Modifier
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   defenseIncrement: 4.4706
 zEv:
@@ -133,7 +133,7 @@ zEv:
   legend: This item originally belonged to the Bearpaw Bandit group.
   mainType: Modifier
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   intensityIncrement: 1.4118
 IEa:
@@ -142,7 +142,7 @@ IEa:
   legend: This item originally belonged to the Veridian Hunters group.
   mainType: Modifier
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSizeIncrement: 1.4118
 0Lm:
@@ -151,7 +151,7 @@ IEa:
   legend: This item originally belonged to the Swiftriders group.
   mainType: Modifier
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeedIncrement: 1.4118
 OTB:
@@ -160,7 +160,7 @@ OTB:
   legend: This item originally belonged to the Shadow Ravens group.
   mainType: Modifier
   rarity: Common
-  imageId: ''
+  imageId: ""
   deleted: false
   resistanceIncrement: 1.4118
 Llo:
@@ -233,7 +233,7 @@ jU2:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   powerIncrement: 0.94
 H6G:
@@ -242,7 +242,7 @@ H6G:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeedIncrement: 2
 lS4:
@@ -251,7 +251,7 @@ lS4:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defenseIncrement: 1.1111
 Oxi:
@@ -260,7 +260,7 @@ Oxi:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   intensityIncrement: 2
 ouZ:
@@ -269,7 +269,7 @@ ouZ:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSizeIncrement: 2
 fQ4:
@@ -278,7 +278,7 @@ fQ4:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   agilityIncrement: 2
 eO0:
@@ -287,7 +287,7 @@ eO0:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   piercingIncrement: 2
 RyT:
@@ -296,7 +296,7 @@ RyT:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistanceIncrement: 2
 1Sl:
@@ -305,7 +305,7 @@ RyT:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   regenerationIncrement: 2
 Mhe:
@@ -395,7 +395,7 @@ oni:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSpeedIncrement: 2
 O5r:
@@ -404,7 +404,7 @@ O5r:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   resistanceIncrement: 2
 U9B:
@@ -413,7 +413,7 @@ U9B:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   attackSizeIncrement: 2
 TIk:
@@ -422,7 +422,7 @@ TIk:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   piercingIncrement: 2
 VjL:
@@ -431,7 +431,7 @@ VjL:
   legend: None
   mainType: Modifier
   rarity: Exotic
-  imageId: ''
+  imageId: ""
   deleted: false
   defenseIncrement: 1.1111
 sZT:
