@@ -17,3 +17,8 @@ export interface FandomSearchResponse {
     search?: SearchResult[];
   };
 }
+
+export interface WikiPageResult {
+  title: string;
+  url: string;
+}

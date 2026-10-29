@@ -7,7 +7,7 @@ import {
   Embed,
 } from "seyfert";
 import { EMBED_COLOR_DEFAULT, EMBED_FOOTER, WIKI_URL } from "../constants";
-import type { FandomSearchResponse } from "../types";
+import type { FandomSearchResponse, WikiPageResult } from "../types";
 
 const options = {
   query: createStringOption({
@@ -53,11 +53,6 @@ export default class WikiCommand extends Command {
 
     await ctx.editResponse({ embeds: [embed] });
   }
-}
-
-interface WikiPageResult {
-  title: string;
-  url: string;
 }
 
 async function searchWiki(
