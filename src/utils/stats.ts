@@ -14,7 +14,7 @@ import {
   findGemById,
   findItemById,
   findModifierById,
-} from "./item.ts";
+} from ".";
 
 /**
  * formatTotalStats formats the TotalStats passed into it by prepending an appropriate
