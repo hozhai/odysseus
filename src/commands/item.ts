@@ -70,7 +70,7 @@ export default class ItemCommand extends Command {
 
     if (!item) {
       await ctx.write({
-        content: `Error: selected item does not exist: ${response}`,
+        content: `Selected item does not exist! Item: ${response}`,
       });
       return;
     }
@@ -94,10 +94,6 @@ export default class ItemCommand extends Command {
           value: item.legend,
         },
         {
-          name: "Stats",
-          value: formattedStats,
-        },
-        {
           name: "Type",
           value: item.mainType,
           inline: true,
@@ -111,6 +107,10 @@ export default class ItemCommand extends Command {
           name: "Rarity",
           value: item.rarity,
           inline: true,
+        },
+        {
+          name: "Stats",
+          value: formattedStats,
         },
       ]);
 
