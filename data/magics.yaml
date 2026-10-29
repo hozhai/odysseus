@@ -633,7 +633,7 @@
     size:
       conjurer: 1.111
       warlock: 1
-  specialEffect: snowy
+  specialEffect: Snowy
   clash:
     over:
       - Shadow
