@@ -52,11 +52,15 @@ export default class WeaponCommand extends Command {
         name: "Description",
         value: weapon.legend,
       },
-      {
+    ];
+
+    if (weapon.specialEffect !== "None") {
+      fields.push({
         name: "Special Effect",
         value: weapon.specialEffect,
-      },
-    ];
+        inline: true,
+      });
+    }
 
     if (weapon.defense) {
       fields.push({
@@ -116,7 +120,7 @@ export default class WeaponCommand extends Command {
   }
 }
 
-export function createWeaponStatBar(
+function createWeaponStatBar(
   value: number,
   min: number,
   max: number,
