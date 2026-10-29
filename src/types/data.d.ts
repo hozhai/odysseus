@@ -38,7 +38,7 @@ export interface Scaling {
 export interface Weapon {
   name: string;
   legend: string;
-  rarity: string;
+  rarity: Rarity;
   imageId: string;
   damage: number;
   speed: number;
