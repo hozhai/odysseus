@@ -31,7 +31,7 @@ const options = {
 
 @Declare({
   name: "weapon",
-  description: "Displays Odysseus' commands.",
+  description: "Gets the stats of weapon given its name.",
 })
 @Options(options)
 export default class WeaponCommand extends Command {
