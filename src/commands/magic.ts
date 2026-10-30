@@ -5,6 +5,7 @@ import {
   createStringOption,
   Options,
   Embed,
+  MessageFlags,
 } from "seyfert";
 import { getData } from "../data/load";
 import { findMagicByName, MagicsEnum, magicToEmoji } from "../utils";
@@ -128,6 +129,24 @@ export default class MagicCommand extends Command {
     await ctx.write({
       embeds: [embed],
     });
+
+    {
+      const oldDataEmbed = new Embed()
+        .setAuthor({
+          name: ctx.author.username,
+          iconUrl: ctx.author.avatarURL(),
+        })
+        .setDescription(
+          `Thanks for using the /${this.name} command! Please keep in mind data **may not be complete or updated**. We're actively working on it!`
+        )
+        .setColor(EMBED_COLOR_DEFAULT)
+        .setFooter({ text: EMBED_FOOTER });
+
+      await ctx.followup({
+        embeds: [oldDataEmbed],
+        flags: MessageFlags.Ephemeral,
+      });
+    }
   }
 }
 
