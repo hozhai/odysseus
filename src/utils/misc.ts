@@ -41,3 +41,12 @@ export function formatSeconds(seconds: number): string {
 
   return formattedString.trim();
 }
+
+/**
+ * Floors a number to 1 decimal digit
+ * @param num The number to floor
+ * @returns The floored number
+ */
+export function floorTo1(num: number): number {
+  return Math.floor(num * 10) / 10;
+}
