@@ -26,6 +26,9 @@ lerna-debug.log*
 .yarn/install-state.gz
 .pnp.*
 
+# seyfert
+commands.json
+
 # other
 **/*.DS_Store
 .temp-example
