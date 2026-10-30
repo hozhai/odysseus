@@ -6,10 +6,11 @@ import {
   Options,
   Embed,
   type APIEmbedField,
+  MessageFlags,
 } from "seyfert";
 import { getData } from "../data/load";
 import { getRarityColor } from "../utils";
-import { EMBED_FOOTER } from "../constants";
+import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
 import { clamp } from "../utils/misc";
 
 const options = {
@@ -117,6 +118,24 @@ export default class WeaponCommand extends Command {
     await ctx.write({
       embeds: [embed],
     });
+
+    {
+      const oldDataEmbed = new Embed()
+        .setAuthor({
+          name: ctx.author.username,
+          iconUrl: ctx.author.avatarURL(),
+        })
+        .setDescription(
+          `Thanks for using the /${this.name} command! Please keep in mind data **may not be complete or updated**. We're actively working on it!`
+        )
+        .setColor(EMBED_COLOR_DEFAULT)
+        .setFooter({ text: EMBED_FOOTER });
+
+      await ctx.followup({
+        embeds: [oldDataEmbed],
+        flags: MessageFlags.Ephemeral,
+      });
+    }
   }
 }
 
