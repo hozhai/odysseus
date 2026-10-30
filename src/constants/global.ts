@@ -1,4 +1,4 @@
-export const VERSION = "2.0.0-testing";
+export const VERSION = "2.0.0";
 export const BUILD_URL_PREFIX_BOBBY =
   "https://tools.arcaneodyssey.net/gearBuilder#";
 export const BUILD_URL_PREFIX_WOODY =
