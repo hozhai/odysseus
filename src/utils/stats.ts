@@ -14,6 +14,7 @@ import {
   findGemById,
   findItemById,
   findModifierById,
+  floorTo1,
 } from ".";
 
 /**
@@ -23,8 +24,7 @@ import {
  * @returns {string} A String with the stats formatted with their respective emojis
  */
 export function formatTotalStats(stats: TotalStats): string {
-  const normalizedStat = (value: number | undefined): number =>
-    Number.isFinite(value) ? Math.floor(value ?? 0) : 0;
+  const normalizedStat = (value: number | undefined): number => value ?? 0;
 
   const statEntries: Array<[string, number]> = [
     ["<:power:1392363667059904632>", normalizedStat(stats.power)],
@@ -273,7 +273,7 @@ export function calculateItemStats(item: Item | null): TotalStats {
 
   const imbue = detectImbue(item) ?? "None";
 
-  totalStats.power += Math.floor(
+  totalStats.power += floorTo1(
     (item?.scaling?.power ?? 0) * MAX_LEVEL * getScalingMultiplier("power") +
       getImbueStatMultiplier(imbue, "power") *
         getImbuePieceMultiplier(item) *
@@ -281,7 +281,7 @@ export function calculateItemStats(item: Item | null): TotalStats {
         MAX_LEVEL
   );
 
-  totalStats.defense += Math.floor(
+  totalStats.defense += floorTo1(
     (item?.scaling?.defense ?? 0) *
       MAX_LEVEL *
       getScalingMultiplier("defense") +
@@ -291,7 +291,7 @@ export function calculateItemStats(item: Item | null): TotalStats {
         MAX_LEVEL
   );
 
-  totalStats.agility += Math.floor(
+  totalStats.agility += floorTo1(
     (item?.scaling?.agility ?? 0) *
       MAX_LEVEL *
       getScalingMultiplier("agility") +
@@ -301,7 +301,7 @@ export function calculateItemStats(item: Item | null): TotalStats {
         MAX_LEVEL
   );
 
-  totalStats.attackSpeed += Math.floor(
+  totalStats.attackSpeed += floorTo1(
     (item?.scaling?.attackSpeed ?? 0) *
       MAX_LEVEL *
       getScalingMultiplier("attackSpeed") +
@@ -311,7 +311,7 @@ export function calculateItemStats(item: Item | null): TotalStats {
         MAX_LEVEL
   );
 
-  totalStats.attackSize += Math.floor(
+  totalStats.attackSize += floorTo1(
     (item?.scaling?.attackSize ?? 0) *
       MAX_LEVEL *
       getScalingMultiplier("attackSize") +
@@ -321,7 +321,7 @@ export function calculateItemStats(item: Item | null): TotalStats {
         MAX_LEVEL
   );
 
-  totalStats.intensity += Math.floor(
+  totalStats.intensity += floorTo1(
     (item?.scaling?.intensity ?? 0) *
       MAX_LEVEL *
       getScalingMultiplier("intensity") +
@@ -331,7 +331,7 @@ export function calculateItemStats(item: Item | null): TotalStats {
         MAX_LEVEL
   );
 
-  totalStats.regeneration += Math.floor(
+  totalStats.regeneration += floorTo1(
     (item?.scaling?.regeneration ?? 0) *
       MAX_LEVEL *
       getScalingMultiplier("regeneration") +
@@ -344,7 +344,7 @@ export function calculateItemStats(item: Item | null): TotalStats {
   // we skip insanity because there is currently no item
   // that has insanity scaling nor flat insanity increases
 
-  totalStats.piercing += Math.floor(
+  totalStats.piercing += floorTo1(
     (item?.scaling?.piercing ?? 0) *
       MAX_LEVEL *
       getScalingMultiplier("piercing") +
@@ -354,7 +354,7 @@ export function calculateItemStats(item: Item | null): TotalStats {
         MAX_LEVEL
   );
 
-  totalStats.resistance += Math.floor(
+  totalStats.resistance += floorTo1(
     (item?.scaling?.resistance ?? 0) *
       MAX_LEVEL *
       getScalingMultiplier("resistance") +
