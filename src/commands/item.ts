@@ -1,6 +1,4 @@
 import {
-  ActionRow,
-  Button,
   Command,
   CommandContext,
   createStringOption,
@@ -13,7 +11,6 @@ import type { TotalStats } from "../types";
 import { EMBED_FOOTER } from "../constants";
 import { calculateItemStats, formatTotalStats } from "../utils";
 import { getRarityColor } from "../utils";
-import { ButtonStyle } from "seyfert/lib/types";
 
 const options = {
   name: createStringOption({
@@ -43,27 +40,6 @@ const options = {
 @Options(options)
 export default class ItemCommand extends Command {
   override async run(ctx: CommandContext<typeof options>) {
-    {
-      const embed = new Embed()
-        .setAuthor({
-          name: ctx.author.username,
-          iconUrl: ctx.author.avatarURL(),
-        })
-        .setTitle("WIP")
-        .setDescription(
-          `
-          This command is still under construction.
-
-          *This is due to the insane amounts of modifiers and fused gems added to the game, which means there needs to be an emoji for each. There is a workaround to this; however, it's not ideal, so we'll keep working on it!*
-
-          Join our [Discord](https://discord.gg/Z3uKnGHvMN) for more information!
-          `
-        );
-
-      await ctx.write({ embeds: [embed] });
-      return;
-    }
-
     const response = ctx.options.name;
     const itemsData = (await getData()).items;
     const item = itemsData[response];
@@ -114,36 +90,36 @@ export default class ItemCommand extends Command {
         },
       ]);
 
-    const components = [
-      new Button()
-        .setLabel("Set Enchant")
-        .setCustomId("item_set_enchant")
-        .setStyle(ButtonStyle.Secondary),
-    ];
+    // const components = [
+    //   new Button()
+    //     .setLabel("Set Enchant")
+    //     .setCustomId("item_set_enchant")
+    //     .setStyle(ButtonStyle.Secondary),
+    // ];
 
-    if (item.validModifiers) {
-      components.push(
-        new Button()
-          .setLabel("Set Modifier")
-          .setCustomId("item_set_modifier")
-          .setStyle(ButtonStyle.Secondary)
-      );
-    }
+    // if (item.validModifiers) {
+    //   components.push(
+    //     new Button()
+    //       .setLabel("Set Modifier")
+    //       .setCustomId("item_set_modifier")
+    //       .setStyle(ButtonStyle.Secondary)
+    //   );
+    // }
 
-    if (item.gemNo) {
-      components.push(
-        new Button()
-          .setLabel("Set Gems")
-          .setCustomId("item_set_gems")
-          .setStyle(ButtonStyle.Secondary)
-      );
-    }
+    // if (item.gemNo) {
+    //   components.push(
+    //     new Button()
+    //       .setLabel("Set Gems")
+    //       .setCustomId("item_set_gems")
+    //       .setStyle(ButtonStyle.Secondary)
+    //   );
+    // }
 
-    const row = new ActionRow().setComponents(components);
+    // const row = new ActionRow().setComponents(components);
 
     await ctx.write({
       embeds: [embed],
-      components: [row],
+      // components: [row],
     });
   }
 }
