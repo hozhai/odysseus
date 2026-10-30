@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp">
+  <img src="https://github.com/hozhai/odysseus/blob/prod/assets/banner.webp?raw=true">
 </p>
 
 <h1 align="center">Odysseus</h1>
