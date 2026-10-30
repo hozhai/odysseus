@@ -32,7 +32,9 @@ export default class AboutCommand extends Command {
         Odysseus is a utility bot for Arcane Odyssey, a Roblox game where you embark through an epic journey through the War Seas. 
         
         This is a side project by ${Formatter.userMention("360235359746916352")} and used to be an excuse to learn Go and Rust, but is now an excuse to further my knowledge of TypeScript and the Bun runtime.
-        `
+
+        Get started by running \`/help\`!
+       `
       )
       .setFields([
         {
