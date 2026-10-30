@@ -9,6 +9,7 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "typecheck": "tsc",
+    "test": "bun test",
     "start": "bun run src/index"
   },
   "devDependencies": {

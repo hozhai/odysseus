@@ -9,10 +9,10 @@ import {
 import { getLeaderboardSnapshots } from "../data/leaderboardHistory";
 import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
 import type {
-  LeaderboardEntry,
   LeaderboardSnapshot,
   LeaderboardType,
 } from "../utils/leaderboard";
+import { getLeaderboardGains } from "../utils/leaderboard-diff";
 
 const options = {
   type: createStringOption({
@@ -99,7 +99,7 @@ function createPeriodValue(
     return "Not enough snapshot history yet.";
   }
 
-  const diffs = getGains(current.entries, baseline.entries);
+  const diffs = getLeaderboardGains(current.entries, baseline.entries);
   const positiveGains = diffs
     .filter(({ gained }) => gained > 0)
     .sort((left, right) => right.gained - left.gained);
@@ -141,44 +141,6 @@ function findOneHourBaseline(
   return closestDistance <= MAX_ONE_HOUR_BASELINE_DRIFT_MS
     ? baseline
     : undefined;
-}
-
-function getGains(
-  currentEntries: LeaderboardEntry[],
-  baselineEntries: LeaderboardEntry[]
-): { entry: LeaderboardEntry; gained: number }[] {
-  const currentByName = groupByName(currentEntries);
-  const baselineByName = groupByName(baselineEntries);
-  const gains: { entry: LeaderboardEntry; gained: number }[] = [];
-
-  for (const [name, currentMatches] of currentByName) {
-    const baselineMatches = baselineByName.get(name);
-    if (currentMatches.length !== 1 || baselineMatches?.length !== 1) {
-      continue;
-    }
-
-    const entry = currentMatches[0]!;
-    const baselineEntry = baselineMatches[0]!;
-    gains.push({
-      entry,
-      gained: Math.max(0, entry.score - baselineEntry.score),
-    });
-  }
-
-  return gains;
-}
-
-function groupByName(
-  entries: LeaderboardEntry[]
-): Map<string, LeaderboardEntry[]> {
-  const grouped = new Map<string, LeaderboardEntry[]>();
-  for (const entry of entries) {
-    const key = entry.name.toLocaleLowerCase();
-    const matches = grouped.get(key) ?? [];
-    matches.push(entry);
-    grouped.set(key, matches);
-  }
-  return grouped;
 }
 
 function fitFieldValue(lines: string[]): string {

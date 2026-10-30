@@ -18,7 +18,6 @@ export async function fetchLeaderboard(
 ): Promise<LeaderboardSnapshot> {
   const isGuild = type === "guild";
   const title = isGuild ? "Guilds" : "Clans";
-  const expectedMetric = isGuild ? "Reputation" : "Infamy";
   const response = await fetch(
     `https://leaderboards.arcaneodyssey.dev/${type}s`,
     { signal: AbortSignal.timeout(15_000) }
@@ -31,11 +30,23 @@ export async function fetchLeaderboard(
   }
 
   const html = await response.text();
+  const { updatedAt, entries } = parseLeaderboardHtml(html, type);
+
+  return { updatedAt, entries };
+}
+
+export function parseLeaderboardHtml(
+  html: string,
+  type: LeaderboardType
+): LeaderboardSnapshot {
+  const expectedMetric = type === "guild" ? "Reputation" : "Infamy";
   const updatedAt = parseUpdatedAt(html);
   const entries = parseLeaderboard(html, expectedMetric);
 
   if (!entries.length) {
-    throw new Error(`No ${title.toLowerCase()} leaderboard entries found.`);
+    throw new Error(
+      `No ${type === "guild" ? "guilds" : "clans"} leaderboard entries found.`
+    );
   }
 
   return { updatedAt, entries };
