@@ -7,6 +7,7 @@ aZ2:
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemIntensityMaxPlaceholder.jpg?raw=true
   deleted: false
   intensity: 10
+  fused: false
 CTP:
   id: CTP
   name: Malachite
@@ -22,6 +23,7 @@ CTP:
   deleted: false
   power: 3.9
   attackSize: 6.5
+  fused: false
 qGg:
   id: qGg
   name: Defense Gem
@@ -31,6 +33,7 @@ qGg:
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemDefenseMaxPlaceholder.jpg?raw=true
   deleted: false
   defense: 31
+  fused: false
 fY6:
   id: fY6
   name: Attack Speed Gem
@@ -40,6 +43,7 @@ fY6:
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAttackSpeedMaxPlaceholder.jpg?raw=true
   deleted: false
   attackSpeed: 10
+  fused: false
 2ST:
   id: 2ST
   name: Attack Size Gem
@@ -49,6 +53,7 @@ fY6:
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAttackSizeMaxPlaceholder.jpg?raw=true
   deleted: false
   attackSize: 10
+  fused: false
 nca:
   id: nca
   name: Perfect Aventurine
@@ -58,6 +63,7 @@ nca:
   imageId: ""
   deleted: false
   regeneration: 19
+  fused: false
 AAF:
   id: AAF
   name: None
@@ -66,6 +72,7 @@ AAF:
   rarity: None
   imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/master/static/assets/images/gem/0.jpg
   deleted: false
+  fused: ~
 GYC:
   id: GYC
   name: Variscite
@@ -78,6 +85,7 @@ GYC:
   deleted: false
   agility: 9
   attackSize: 9
+  fused: false
 9pe:
   id: 9pe
   name: Painite
@@ -88,6 +96,7 @@ GYC:
   deleted: false
   defense: 188
   drawback: 1
+  fused: false
 N9w:
   id: N9w
   name: Larimar
@@ -98,6 +107,7 @@ N9w:
   deleted: false
   attackSpeed: 9
   intensity: 9
+  fused: false
 XpP:
   id: XpP
   name: Candelaria
@@ -108,6 +118,7 @@ XpP:
   deleted: false
   power: 3.9
   attackSpeed: 6.5
+  fused: false
 0ma:
   id: 0ma
   name: Agility Gem
@@ -117,6 +128,7 @@ XpP:
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAgilityMaxPlaceholder.jpg?raw=true
   deleted: false
   agility: 10
+  fused: false
 DuG:
   id: DuG
   name: Perfect Fire Opal
@@ -126,6 +138,7 @@ DuG:
   imageId: ""
   deleted: false
   piercing: 19
+  fused: false
 CBH:
   id: CBH
   name: Perfect Azurite
@@ -135,6 +148,7 @@ CBH:
   imageId: ""
   deleted: false
   resistance: 19
+  fused: false
 sKB:
   id: sKB
   name: Morenci
@@ -145,6 +159,7 @@ sKB:
   deleted: false
   power: 4
   agility: 6
+  fused: false
 ozh:
   id: ozh
   name: Lapiz Lazuli
@@ -155,6 +170,7 @@ ozh:
   deleted: false
   agility: 9
   attackSpeed: 9
+  fused: false
 91q:
   id: 91q
   name: Kyanite
@@ -165,6 +181,7 @@ ozh:
   deleted: false
   agility: 9
   intensity: 9
+  fused: false
 XUx:
   id: XUx
   name: Agate
@@ -175,6 +192,7 @@ XUx:
   deleted: false
   defense: 39
   attackSize: 6
+  fused: false
 NU7:
   id: NU7
   name: Power Gem
@@ -184,6 +202,7 @@ NU7:
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemPowerMaxPlaceholder.jpg?raw=true
   deleted: false
   power: 3
+  fused: false
 XOW:
   id: XOW
   name: 2x Agate
@@ -194,6 +213,7 @@ XOW:
   deleted: false
   defense: 48
   attackSize: 8
+  fused: true
 i0a:
   id: i0a
   name: Candelaria-Morenci
@@ -205,6 +225,7 @@ i0a:
   power: 4
   agility: 4
   attackSpeed: 4
+  fused: true
 3VF:
   id: 3VF
   name: Candelaria-Malachite
@@ -216,6 +237,7 @@ i0a:
   power: 4
   attackSpeed: 4
   attackSize: 4
+  fused: true
 zCi:
   id: zCi
   name: 2x Candelaria
@@ -226,6 +248,7 @@ zCi:
   deleted: false
   power: 4.8
   attackSpeed: 9.5
+  fused: true
 3Z5:
   id: 3Z5
   name: Agate-Malachite
@@ -237,6 +260,7 @@ zCi:
   power: 2
   defense: 24
   attackSize: 8
+  fused: true
 B2g:
   id: B2g
   name: 2x Morenci
@@ -247,6 +271,7 @@ B2g:
   deleted: false
   power: 4.8
   agility: 9.5
+  fused: true
 ISO:
   id: ISO
   name: 2x Malachite
@@ -257,6 +282,7 @@ ISO:
   deleted: false
   power: 4.8
   attackSize: 9.5
+  fused: true
 7ja:
   id: 7ja
   name: Agate-Candelaria
@@ -269,6 +295,7 @@ ISO:
   defense: 24
   attackSpeed: 4
   attackSize: 4
+  fused: true
 v9g:
   id: v9g
   name: 2x Lapis Lazuli
@@ -279,6 +306,7 @@ v9g:
   deleted: false
   agility: 12
   attackSpeed: 12
+  fused: true
 0sr:
   id: 0sr
   name: Aventurine-Lapis Lazuli
@@ -290,6 +318,7 @@ v9g:
   agility: 6
   attackSpeed: 6
   regeneration: 11
+  fused: true
 uJ6:
   id: uJ6
   name: Aventurine-Larimar
@@ -301,6 +330,7 @@ uJ6:
   attackSpeed: 6
   intensity: 6
   regeneration: 11
+  fused: true
 kmW:
   id: kmW
   name: Aventurine-Kyanite
@@ -312,6 +342,7 @@ kmW:
   agility: 6
   intensity: 6
   regeneration: 11
+  fused: true
 bMc:
   id: bMc
   name: Aventurine-Variscite
@@ -323,6 +354,7 @@ bMc:
   agility: 6
   attackSize: 6
   regeneration: 11
+  fused: true
 z4V:
   id: z4V
   name: Lapis Lazuli-Candelaria
@@ -334,6 +366,7 @@ z4V:
   power: 2
   agility: 6
   attackSpeed: 10
+  fused: true
 cVQ:
   id: cVQ
   name: Candelaria-Larimar
@@ -345,6 +378,7 @@ cVQ:
   power: 2
   attackSpeed: 10
   intensity: 6
+  fused: true
 aV5:
   id: aV5
   name: Agate-Lapis Lazuli
@@ -357,6 +391,7 @@ aV5:
   agility: 6
   attackSpeed: 6
   attackSize: 4
+  fused: true
 VI5:
   id: VI5
   name: 2x Painite
@@ -367,6 +402,7 @@ VI5:
   deleted: false
   defense: 224
   drawback: 1
+  fused: true
 QDU:
   id: QDU
   name: Malachite-Lapis Lazuli
@@ -379,6 +415,7 @@ QDU:
   agility: 6
   attackSpeed: 6
   attackSize: 4
+  fused: true
 wSE:
   id: wSE
   name: 2x Larimar
@@ -389,6 +426,7 @@ wSE:
   deleted: false
   attackSpeed: 12
   intensity: 12
+  fused: true
 WAx:
   id: WAx
   name: 2x Variscite
@@ -399,6 +437,7 @@ WAx:
   deleted: false
   agility: 12
   attackSize: 12
+  fused: true
 bDg:
   id: bDg
   name: Candelaria-Kyanite
@@ -411,6 +450,7 @@ bDg:
   agility: 6
   attackSpeed: 4
   intensity: 6
+  fused: true
 Y3q:
   id: Y3q
   name: Kyanite-Malachite
@@ -423,6 +463,7 @@ Y3q:
   agility: 6
   attackSize: 4
   intensity: 6
+  fused: true
 k8N:
   id: k8N
   name: Variscite-Kyanite
@@ -434,6 +475,7 @@ k8N:
   agility: 12
   attackSize: 6
   intensity: 6
+  fused: true
 nIw:
   id: nIw
   name: Variscite-Larimar
@@ -446,6 +488,7 @@ nIw:
   attackSpeed: 6
   attackSize: 6
   intensity: 6
+  fused: true
 I3F:
   id: I3F
   name: 2x Kyanite
@@ -456,6 +499,7 @@ I3F:
   deleted: false
   agility: 12
   intensity: 12
+  fused: true
 jkq:
   id: jkq
   name: 2x Aventurine
@@ -465,6 +509,7 @@ jkq:
   imageId: ""
   deleted: false
   regeneration: 22
+  fused: true
 n7Q:
   id: n7Q
   name: Variscite-Lapis Lazuli
@@ -476,6 +521,7 @@ n7Q:
   agility: 12
   attackSpeed: 6
   attackSize: 6
+  fused: true
 0xS:
   id: 0xS
   name: 2x Fire Opal
@@ -485,6 +531,7 @@ n7Q:
   imageId: ""
   deleted: false
   piercing: 22
+  fused: true
 kE3:
   id: kE3
   name: Morenci-Lapis Lazuli
@@ -496,6 +543,7 @@ kE3:
   power: 2
   agility: 10
   attackSpeed: 6
+  fused: true
 5Rr:
   id: 5Rr
   name: Fire Opal-Larimar
@@ -507,6 +555,7 @@ kE3:
   attackSpeed: 6
   intensity: 6
   piercing: 11
+  fused: true
 bhs:
   id: bhs
   name: Lapis Lazuli-Fire Opal
@@ -518,6 +567,7 @@ bhs:
   agility: 6
   attackSpeed: 6
   piercing: 11
+  fused: true
 auD:
   id: auD
   name: Fire Opal-Kyanite
@@ -529,6 +579,7 @@ auD:
   agility: 6
   intensity: 6
   piercing: 11
+  fused: true
 3NK:
   id: 3NK
   name: Painite-Lapis Lazuli
@@ -541,6 +592,7 @@ auD:
   agility: 6
   attackSpeed: 6
   drawback: 0.5
+  fused: true
 Aln:
   id: Aln
   name: Variscite-Painite
@@ -553,6 +605,7 @@ Aln:
   agility: 6
   attackSize: 6
   drawback: 0.5
+  fused: true
 3H8:
   id: 3H8
   name: Agate-Painite
@@ -564,6 +617,7 @@ Aln:
   defense: 136
   attackSize: 4
   drawback: 0.5
+  fused: true
 42u:
   id: 42u
   name: Aventurine-Painite
@@ -575,6 +629,7 @@ Aln:
   defense: 112
   regeneration: 11
   drawback: 0.5
+  fused: true
 Pmu:
   id: Pmu
   name: Agate-Aventurine
@@ -586,6 +641,7 @@ Pmu:
   defense: 24
   attackSize: 4
   regeneration: 11
+  fused: true
 RkS:
   id: RkS
   name: Agate-Azurite
@@ -597,6 +653,7 @@ RkS:
   defense: 24
   attackSize: 4
   resistance: 11
+  fused: true
 A7Q:
   id: A7Q
   name: Agate-Fire Opal
@@ -608,6 +665,7 @@ A7Q:
   defense: 24
   attackSize: 4
   piercing: 11
+  fused: true
 L4L:
   id: L4L
   name: Agate-Kyanite
@@ -620,6 +678,7 @@ L4L:
   attackSize: 4
   agility: 6
   intensity: 6
+  fused: true
 4KO:
   id: 4KO
   name: Agate-Larimar
@@ -632,6 +691,7 @@ L4L:
   attackSize: 4
   attackSpeed: 6
   intensity: 6
+  fused: true
 56W:
   id: 56W
   name: Agate-Morenci
@@ -644,6 +704,7 @@ L4L:
   attackSize: 4
   power: 2
   agility: 4
+  fused: true
 L93:
   id: L93
   name: Agate-Variscite
@@ -655,6 +716,7 @@ L93:
   defense: 24
   attackSize: 10
   agility: 6
+  fused: true
 A2g:
   id: A2g
   name: Aventurine-Azurite
@@ -665,6 +727,7 @@ A2g:
   deleted: false
   regeneration: 11
   resistance: 11
+  fused: true
 CJf:
   id: CJf
   name: Aventurine-Candelaria
@@ -676,6 +739,7 @@ CJf:
   regeneration: 11
   power: 2
   attackSpeed: 4
+  fused: true
 Yld:
   id: Yld
   name: Aventurine-Fire Opal
@@ -686,6 +750,7 @@ Yld:
   deleted: false
   regeneration: 11
   piercing: 11
+  fused: true
 tGq:
   id: tGq
   name: Aventurine-Malachite
@@ -697,6 +762,7 @@ tGq:
   regeneration: 11
   power: 2
   attackSize: 4
+  fused: true
 wm8:
   id: wm8
   name: Aventurine-Morenci
@@ -708,6 +774,7 @@ wm8:
   regeneration: 11
   power: 2
   agility: 4
+  fused: true
 UH2:
   id: UH2
   name: 2x Azurite
@@ -717,6 +784,7 @@ UH2:
   imageId: ""
   deleted: false
   resistance: 22
+  fused: true
 Eoq:
   id: Eoq
   name: Azurite-Candelaria
@@ -728,6 +796,7 @@ Eoq:
   resistance: 11
   power: 2
   attackSpeed: 4
+  fused: true
 SMd:
   id: SMd
   name: Azurite-Fire Opal
@@ -738,6 +807,7 @@ SMd:
   deleted: false
   resistance: 11
   piercing: 11
+  fused: true
 od6:
   id: od6
   name: Azurite-Kyanite
@@ -749,6 +819,7 @@ od6:
   resistance: 11
   agility: 6
   intensity: 6
+  fused: true
 kgW:
   id: kgW
   name: Azurite-Lapis Lazuli
@@ -760,6 +831,7 @@ kgW:
   resistance: 11
   agility: 6
   attackSpeed: 6
+  fused: true
 2YQ:
   id: 2YQ
   name: Azurite-Larimar
@@ -771,6 +843,7 @@ kgW:
   resistance: 11
   attackSpeed: 6
   intensity: 6
+  fused: true
 eEg:
   id: eEg
   name: Azurite-Malachite
@@ -782,6 +855,7 @@ eEg:
   resistance: 11
   power: 2
   attackSize: 4
+  fused: true
 DXw:
   id: DXw
   name: Azurite-Morenci
@@ -793,6 +867,7 @@ DXw:
   resistance: 11
   power: 2
   agility: 4
+  fused: true
 kKf:
   id: kKf
   name: Azurite-Painite
@@ -804,6 +879,7 @@ kKf:
   resistance: 11
   defense: 112
   drawback: 0.5
+  fused: true
 H6U:
   id: H6U
   name: Azurite-Variscite
@@ -815,6 +891,7 @@ H6U:
   resistance: 11
   agility: 6
   attackSize: 6
+  fused: true
 0Pu:
   id: 0Pu
   name: Candelaria-Fire Opal
@@ -826,6 +903,7 @@ H6U:
   power: 2
   attackSpeed: 4
   piercing: 11
+  fused: true
 TAR:
   id: TAR
   name: Candelaria-Painite
@@ -838,6 +916,7 @@ TAR:
   attackSpeed: 4
   defense: 112
   drawback: 0.5
+  fused: true
 MPf:
   id: MPf
   name: Candelaria-Variscite
@@ -850,6 +929,7 @@ MPf:
   attackSpeed: 4
   agility: 6
   attackSize: 6
+  fused: true
 GXg:
   id: GXg
   name: Fire Opal-Malachite
@@ -861,6 +941,7 @@ GXg:
   piercing: 11
   power: 2
   attackSize: 4
+  fused: true
 6r6:
   id: 6r6
   name: Fire Opal-Morenci
@@ -872,6 +953,7 @@ GXg:
   piercing: 11
   power: 2
   agility: 4
+  fused: true
 szC:
   id: szC
   name: Fire Opal-Painite
@@ -883,6 +965,7 @@ szC:
   piercing: 11
   defense: 112
   drawback: 0.5
+  fused: true
 AqB:
   id: AqB
   name: Fire Opal-Variscite
@@ -894,6 +977,7 @@ AqB:
   piercing: 11
   agility: 6
   attackSize: 6
+  fused: true
 vxm:
   id: vxm
   name: Kyanite-Lapis Lazuli
@@ -905,6 +989,7 @@ vxm:
   agility: 12
   intensity: 6
   attackSpeed: 6
+  fused: true
 Tm6:
   id: Tm6
   name: Kyanite-Larimar
@@ -916,6 +1001,7 @@ Tm6:
   agility: 6
   intensity: 12
   attackSpeed: 6
+  fused: true
 Mqc:
   id: Mqc
   name: Kyanite-Morenci
@@ -927,6 +1013,7 @@ Mqc:
   agility: 10
   intensity: 6
   power: 2
+  fused: true
 xFu:
   id: xFu
   name: Kyanite-Painite
@@ -939,6 +1026,7 @@ xFu:
   intensity: 6
   defense: 112
   drawback: 0.5
+  fused: true
 1Zk:
   id: 1Zk
   name: Lapis Lazuli-Larimar
@@ -950,6 +1038,7 @@ xFu:
   agility: 6
   attackSpeed: 12
   intensity: 6
+  fused: true
 KcS:
   id: KcS
   name: Larimar-Malachite
@@ -962,6 +1051,7 @@ KcS:
   intensity: 6
   power: 2
   attackSize: 4
+  fused: true
 61P:
   id: 61P
   name: Larimar-Morenci
@@ -974,6 +1064,7 @@ KcS:
   intensity: 6
   power: 2
   agility: 4
+  fused: true
 PLE:
   id: PLE
   name: Larimar-Painite
@@ -986,6 +1077,7 @@ PLE:
   intensity: 6
   defense: 112
   drawback: 0.5
+  fused: true
 ZX9:
   id: ZX9
   name: Malachite-Morenci
@@ -997,6 +1089,7 @@ ZX9:
   power: 4
   attackSize: 4
   agility: 4
+  fused: true
 JvI:
   id: JvI
   name: Malachite-Painite
@@ -1009,6 +1102,7 @@ JvI:
   attackSize: 4
   defense: 112
   drawback: 0.5
+  fused: true
 dWE:
   id: dWE
   name: Malachite-Variscite
@@ -1020,6 +1114,7 @@ dWE:
   power: 2
   attackSize: 10
   agility: 6
+  fused: true
 HER:
   id: HER
   name: Morenci-Painite
@@ -1032,6 +1127,7 @@ HER:
   agility: 4
   defense: 112
   drawback: 0.5
+  fused: true
 q7U:
   id: q7U
   name: Morenci-Variscite
@@ -1043,3 +1139,4 @@ q7U:
   power: 2
   agility: 10
   attackSize: 6
+  fused: true
