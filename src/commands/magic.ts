@@ -193,7 +193,6 @@ function magicNameToEnum(magicName: string): MagicsEnum | null {
     case "wood":
       return MagicsEnum.Wood;
     default:
-      console.log(magicName.toLowerCase());
       return null;
   }
 }
