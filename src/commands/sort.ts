@@ -6,9 +6,10 @@ import {
   Embed,
   Options,
 } from "seyfert";
-import { getData } from "../data/load";
+import { getData } from "../data/loadData";
 import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
-import type { Item, TotalStats } from "../types";
+import type { TotalStats } from "../types";
+import type { Item } from "../data/schemas";
 import { calculateItemStats } from "../utils";
 import { createPagination } from "../utils/pagination";
 

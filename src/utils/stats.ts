@@ -1,5 +1,4 @@
-import type { Item, Modifier, Slot, TotalStats } from "../types";
-import type { statType } from "../types";
+import type { Slot, statType, TotalStats } from "../types";
 import {
   MAX_LEVEL,
   ATL_POWER_CAP,
@@ -16,6 +15,7 @@ import {
   findModifierById,
   floorTo1,
 } from ".";
+import type { Item, Modifier } from "../data/schemas";
 
 /**
  * formatTotalStats formats the TotalStats passed into it by prepending an appropriate

@@ -1,6 +1,5 @@
 import type { APIMessageComponentEmoji } from "seyfert/lib/types";
-import { type Enchant, type Gem, type Modifier } from "../types";
-import { getData } from "../data/load";
+import { getData } from "../data/loadData";
 import {
   EMPTY_ENCHANTMENT_ID,
   EMPTY_GEM_ID,
@@ -9,6 +8,7 @@ import {
 import { FightingStylesEnum, MagicsEnum } from "./build";
 import { Formatter } from "seyfert";
 import type { EmojiResolvable } from "seyfert/lib/common";
+import type { Enchant, Gem, Modifier } from "../data/schemas";
 
 /**
  * Turns an enchant item type to a APIMessageComponentEmoji

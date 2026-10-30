@@ -7,7 +7,7 @@ import {
   Embed,
   MessageFlags,
 } from "seyfert";
-import { getData } from "../data/load";
+import { getData } from "../data/loadData";
 import { findMagicByName, MagicsEnum, magicToEmoji } from "../utils";
 import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
 

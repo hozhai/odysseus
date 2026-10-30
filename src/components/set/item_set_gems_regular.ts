@@ -6,7 +6,7 @@ import {
   StringSelectMenu,
   StringSelectOption,
 } from "seyfert";
-import { getData } from "../../data/load";
+import { getData } from "../../data/loadData";
 import { findItemById, itemGemToEmoji, parseEmbedIntoSlot } from "../../utils";
 
 export default class ItemSetGemsRegularButton extends ComponentCommand {
@@ -52,7 +52,7 @@ export default class ItemSetGemsRegularButton extends ComponentCommand {
       .setValuesLength({ max: item?.gemNo ?? 0, min: 0 });
 
     Object.values(gemData)
-      .filter((val) => !val.hybrid)
+      .filter((val) => !val.fused)
       .forEach((gem) => {
         const option = new StringSelectOption();
         option.setLabel(gem.name);

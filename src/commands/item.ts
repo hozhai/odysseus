@@ -6,7 +6,7 @@ import {
   Embed,
   Options,
 } from "seyfert";
-import { getData } from "../data/load";
+import { getData } from "../data/loadData";
 import type { TotalStats } from "../types";
 import { EMBED_FOOTER } from "../constants";
 import { calculateItemStats, formatTotalStats } from "../utils";

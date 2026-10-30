@@ -1,5 +1,5 @@
 import { createEvent } from "seyfert";
-import { getData } from "../data/load";
+import { getData } from "../data/loadData";
 import { captureLeaderboardSnapshot } from "../data/leaderboardHistory";
 import { VERSION } from "../constants";
 

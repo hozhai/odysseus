@@ -9,7 +9,7 @@ import {
   EMPTY_ENCHANTMENT_ID,
   EMPTY_MODIFIER_ID,
 } from "../constants";
-import type { Rarity, Slot } from "../types";
+import type { Slot } from "../types";
 import { ComponentContext, Embed, InMessageEmbed } from "seyfert";
 import { formatTotalStats, slotToTotalStats } from "./stats";
 import {
@@ -25,13 +25,14 @@ import {
   itemGemToEmoji,
   itemModifierToEmoji,
 } from ".";
+import type { Rarity } from "../data/schemas";
 
 /**
  * Gets the color of a rarity given the rarity.
  * @param rarity A rarity that can be "Common", "Uncommon", "Rare", or "Exotic" (case-sensitive)
  * @returns A hexadecimal number
  */
-export function getRarityColor(rarity: Rarity): number {
+export function getRarityColor(rarity: Rarity): number | undefined {
   switch (rarity) {
     case "Common":
       return COLOR_COMMON;
