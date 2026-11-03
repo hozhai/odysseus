@@ -247,6 +247,17 @@ export function detectImbue(item: Item): string | null {
   return null;
 }
 
+export function getImbueMultiplier(statType: statType): number {
+  switch (statType) {
+    case "defense":
+      return 0.22345;
+    case "power":
+      return 0.19575;
+    default:
+      return 0.4;
+  }
+}
+
 export function createEmptyTotalStats(): TotalStats {
   const totalStats: TotalStats = {
     power: 0,
@@ -276,8 +287,10 @@ export function calculateItemStats(item: Item | null): TotalStats {
   totalStats.power += floorTo1(
     (item?.scaling?.power ?? 0) * MAX_LEVEL * getScalingMultiplier("power") +
       getImbueStatMultiplier(imbue, "power") *
-        getImbuePieceMultiplier(item) *
         getScalingMultiplier("power") *
+        getImbuePieceMultiplier(item) *
+        getImbueMultiplier("power") *
+        1.5 *
         MAX_LEVEL
   );
 
@@ -288,6 +301,8 @@ export function calculateItemStats(item: Item | null): TotalStats {
       getImbueStatMultiplier(imbue, "defense") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("defense") *
+        getImbueMultiplier("defense") *
+        1.5 *
         MAX_LEVEL
   );
 
@@ -298,6 +313,8 @@ export function calculateItemStats(item: Item | null): TotalStats {
       getImbueStatMultiplier(imbue, "agility") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("agility") *
+        getImbueMultiplier("agility") *
+        1.5 *
         MAX_LEVEL
   );
 
@@ -308,6 +325,8 @@ export function calculateItemStats(item: Item | null): TotalStats {
       getImbueStatMultiplier(imbue, "attackSpeed") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("attackSpeed") *
+        getImbueMultiplier("attackSpeed") *
+        1.5 *
         MAX_LEVEL
   );
 
@@ -318,6 +337,8 @@ export function calculateItemStats(item: Item | null): TotalStats {
       getImbueStatMultiplier(imbue, "attackSize") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("attackSize") *
+        getImbueMultiplier("attackSize") *
+        1.5 *
         MAX_LEVEL
   );
 
@@ -328,6 +349,8 @@ export function calculateItemStats(item: Item | null): TotalStats {
       getImbueStatMultiplier(imbue, "intensity") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("intensity") *
+        getImbueMultiplier("intensity") *
+        1.5 *
         MAX_LEVEL
   );
 
@@ -338,6 +361,8 @@ export function calculateItemStats(item: Item | null): TotalStats {
       getImbueStatMultiplier(imbue, "regeneration") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("regeneration") *
+        getImbueMultiplier("regeneration") *
+        1.5 *
         MAX_LEVEL
   );
 
@@ -351,6 +376,8 @@ export function calculateItemStats(item: Item | null): TotalStats {
       getImbueStatMultiplier(imbue, "piercing") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("piercing") *
+        getImbueMultiplier("piercing") *
+        1.5 *
         MAX_LEVEL
   );
 
@@ -361,6 +388,8 @@ export function calculateItemStats(item: Item | null): TotalStats {
       getImbueStatMultiplier(imbue, "resistance") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("resistance") *
+        getImbueMultiplier("resistance") *
+        1.5 *
         MAX_LEVEL
   );
 
