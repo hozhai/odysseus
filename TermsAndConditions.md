@@ -1,6 +1,6 @@
 # Terms and Conditions - Odysseus Discord Bot
 
-**Last Updated:** 14th of July, 2025
+**Last Updated:** November 4, 2026
 
 ## 1. Acceptance of Terms
 
@@ -11,8 +11,11 @@ By using the Odysseus Discord bot ("the Bot"), you agree to be bound by these Te
 Odysseus is a Discord bot designed to provide utility features for the Roblox game "Arcane Odyssey," including:
 
 - Item information lookup
-- Build code parsing and display
+- Weapon and magic information lookup
+- Item sorting by stats
 - Wiki search functionality
+- Clan and guild leaderboards, including recent leaderboard comparisons
+- The `/build` command currently displays an under-construction notice and does not parse build codes
 - General game-related utilities
 
 ## 3. Use of the Bot
@@ -28,29 +31,34 @@ Odysseus is a Discord bot designed to provide utility features for the Roblox ga
 You may NOT:
 
 - Use the Bot for any illegal activities
-- Attempt to exploit, hack, or reverse-engineer the Bot
+- Attempt to gain unauthorized access to, disrupt, or degrade the hosted Bot or its infrastructure
 - Use the Bot to spam, harass, or abuse other users
 - Distribute malicious content through the Bot
 - Use the Bot in a way that violates Discord's Terms of Service
 - Attempt to overwhelm the Bot with excessive requests
 
+These restrictions apply to use of the hosted Bot and do not limit rights
+granted under the AGPL-3.0 to inspect, modify, or reverse-engineer licensed
+source code, or activity permitted by applicable law.
+
 ## 4. Data Collection and Privacy
 
 ### 4.1 Data We Collect
 
-- Discord user IDs for command interaction purposes
-- Server IDs where the Bot is used
-- No personal messages or private information is stored
+- Discord sends interaction data to the Bot when you use a command or component. The Bot uses available details, such as your Discord user ID, username, avatar, server or channel context, and command input, to respond and operate interactive controls.
+- The Bot stores public clan and guild leaderboard snapshots in a local SQLite database. These snapshots may include entry names, positions, scores, metric labels, and source and capture timestamps. They are not associated with Discord user IDs or command history.
+- The source code does not implement a database of command history or command usage analytics. Operational logs may be written, and the hosting provider's logging and retention practices depend on its configuration.
 
 ### 4.2 Data Usage
 
-- Data is used solely to provide Bot functionality
-- We do not sell, trade, or distribute user data to third parties
-- Data may be used for improving Bot performance and features
+- Interaction data is processed to provide Bot functionality.
+- Leaderboard snapshots support the leaderboard comparison feature and are not used to identify Discord users.
+- The Bot does not include Discord user IDs in its wiki or leaderboard requests. External services may receive ordinary network request metadata.
 
 ### 4.3 Data Retention
 
-- Temporary data is deleted after command execution
+- The Bot removes leaderboard snapshots older than eight days. Its database is stored on the Bot host's filesystem; backups and host-level retention depend on the deployment.
+- The source code does not define retention for Discord, external service, or hosting-provider data and logs.
 
 ## 5. Availability and Reliability
 
@@ -71,12 +79,12 @@ You may NOT:
 ### 6.1 Bot Ownership
 
 - The Bot's source code is licensed under GNU Affero General Public License v3.0
-- "Odysseus" name and associated branding are owned by the developer
+- The project name "Odysseus" is a reference to "Odyssey" in Arcane Odyssey; this is not a claim of ownership over the mythological Odysseus/Ulysses or Arcane Odyssey's names, marks, or content
 - You may not claim ownership of the Bot or its code
 
 ### 6.2 Third-Party Content
 
-- Game data is sourced from publicly available APIs
+- The game data files included with the Bot are an adaptation of the equipment data published by the Arcane Odyssey developers on the [Fandom wiki](https://roblox-arcane-odyssey.fandom.com/wiki/Module:Equipment/data)
 - Wiki content belongs to its respective owners
 - We do not claim ownership of Arcane Odyssey or related content
 
@@ -130,14 +138,15 @@ We may terminate or suspend access to the Bot:
 The Bot relies on:
 
 - Discord API and services
-- Arcane Odyssey game data APIs
-- Fandom wiki services
+- The Arcane Odyssey Fandom wiki for wiki searches
+- `leaderboards.arcaneodyssey.dev` for public clan and guild leaderboard pages
+- Adapted game data files included with the Bot's source code, based on the [Arcane Odyssey equipment data module](https://roblox-arcane-odyssey.fandom.com/wiki/Module:Equipment/data)
 
 ### 10.2 Third-Party Terms
 
 - Users must comply with Discord's Terms of Service
 - Third-party service availability affects Bot functionality
-- We are not responsible for third-party service issues
+- Third-party services may process requests under their own terms and privacy practices
 
 ## 11. Open Source License
 
