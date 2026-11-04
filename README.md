@@ -26,7 +26,7 @@ This project is licensed under the GNU Affero General Public License v3.0 - see 
 
 ## ✨ Contributing
 
-Contributions are welcome! By contributing, you agree that your contributions will be licensed under the same AGPL-3.0 license. Feel free to open issues or pull requests. You're welcome to join the [Discord](https://discord.gg/JwRCsJSH85) as well.
+Contributions are welcome! By contributing, you agree that your contributions will be licensed under the same AGPL-3.0 license. Feel free to open issues or pull requests. If you're opening a pull request, please target the `dev` branch. You're welcome to join the [Discord](https://discord.gg/JwRCsJSH85) as well.
 
 ## 📜 Credits
 
