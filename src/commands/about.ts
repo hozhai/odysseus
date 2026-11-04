@@ -53,7 +53,7 @@ export default class AboutCommand extends Command {
         },
       ])
       .setImage(
-        "https://raw.githubusercontent.com/hozhai/odysseus/refs/heads/main/assets/banner.webp"
+        "https://github.com/hozhai/odysseus/blob/prod/assets/banner.webp?raw=true"
       )
       .setColor(EMBED_COLOR_DEFAULT)
       .setFooter({ text: EMBED_FOOTER });
