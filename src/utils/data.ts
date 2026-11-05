@@ -1,4 +1,21 @@
+import { load } from "js-yaml";
+import type z from "zod";
 import type { BotData } from "@data";
+
+export async function parse<T>(path: string, schema: z.ZodType<T>): Promise<T> {
+  const yaml: unknown = load(await Bun.file(path).text());
+  const result = schema.safeParse(yaml);
+
+  if (!result.success) {
+    const details = result.error.issues
+      .map((issue) => `Invalid ${issue.path.join(".")}: ${issue.message}`)
+      .join("\n");
+
+    throw new Error(`Invalid ${path}:\n${details}`);
+  }
+
+  return result.data;
+}
 
 export function validateData(data: BotData): void {
   const errors: string[] = [];

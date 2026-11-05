@@ -1,4 +1,3 @@
-import { load } from "js-yaml";
 import {
   EnchantsSchema,
   GemsSchema,
@@ -7,9 +6,8 @@ import {
   ModifiersSchema,
   WeaponsSchema,
   type BotData,
-} from "./schemas";
-import type z from "zod";
-import { validateData } from "./validate";
+} from "@data";
+import { parse, validateData } from "@utils";
 
 let data: BotData | null = null;
 
@@ -39,19 +37,4 @@ export async function getData(): Promise<BotData> {
   data = parsedData;
 
   return data;
-}
-
-async function parse<T>(path: string, schema: z.ZodType<T>): Promise<T> {
-  const yaml: unknown = load(await Bun.file(path).text());
-  const result = schema.safeParse(yaml);
-
-  if (!result.success) {
-    const details = result.error.issues
-      .map((issue) => `Invalid ${issue.path.join(".")}: ${issue.message}`)
-      .join("\n");
-
-    throw new Error(`Invalid ${path}:\n${details}`);
-  }
-
-  return result.data;
 }
