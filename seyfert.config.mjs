@@ -1,7 +1,8 @@
+import { env } from "bun";
 import { config } from "seyfert";
 
 export default config.bot({
-  token: Bun.env.TOKEN ?? "",
+  token: env.TOKEN ?? "",
   locations: {
     base: "src",
     commands: "commands",
