@@ -8,10 +8,10 @@ import {
   EMPTY_CHESTPLATE_ID,
   EMPTY_ENCHANTMENT_ID,
   EMPTY_MODIFIER_ID,
-} from "../constants";
-import type { Slot } from "../types";
+} from "@constants";
+import type { Slot } from "@src-types";
 import { ComponentContext, Embed, InMessageEmbed } from "seyfert";
-import { formatTotalStats, slotToTotalStats } from "./stats";
+import { formatTotalStats, slotToTotalStats } from "@utils";
 import {
   emojiTextToResolvable,
   emojiToEnchant,
@@ -25,7 +25,7 @@ import {
   itemGemToEmoji,
   itemModifierToEmoji,
 } from ".";
-import type { Rarity } from "../data/schemas";
+import type { Rarity } from "@data";
 
 /**
  * Gets the color of a rarity given the rarity.

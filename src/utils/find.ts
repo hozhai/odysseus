@@ -1,5 +1,11 @@
-import { getData } from "../data/loadData";
-import type { Enchant, Gem, Item, Magic, Modifier } from "../data/schemas";
+import {
+  getData,
+  type Enchant,
+  type Gem,
+  type Item,
+  type Magic,
+  type Modifier,
+} from "@data";
 
 /**
  * Find an item from the ID.

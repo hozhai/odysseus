@@ -4,7 +4,7 @@ import {
   findItemById,
   parseEmbedIntoSlot,
   slotIntoEmbed,
-} from "../../utils";
+} from "@utils";
 import { ButtonStyle, MessageFlags } from "seyfert/lib/types";
 
 export default class ItemSelectEnchantSelectMenu extends ComponentCommand {

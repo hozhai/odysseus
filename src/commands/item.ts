@@ -6,11 +6,10 @@ import {
   Embed,
   Options,
 } from "seyfert";
-import { getData } from "../data/loadData";
-import type { TotalStats } from "../types";
-import { EMBED_FOOTER } from "../constants";
-import { calculateItemStats, formatTotalStats } from "../utils";
-import { getRarityColor } from "../utils";
+import { getData } from "@data";
+import type { TotalStats } from "@src-types";
+import { EMBED_FOOTER } from "@constants";
+import { calculateItemStats, formatTotalStats, getRarityColor } from "@utils";
 
 const options = {
   name: createStringOption({

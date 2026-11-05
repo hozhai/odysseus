@@ -4,7 +4,7 @@ import {
   findModifierByName,
   parseEmbedIntoSlot,
   slotIntoEmbed,
-} from "../../utils";
+} from "@utils";
 import { ButtonStyle, MessageFlags } from "seyfert/lib/types";
 
 export default class ItemSelectModifierSelectMenu extends ComponentCommand {

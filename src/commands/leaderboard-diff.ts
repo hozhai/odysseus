@@ -6,13 +6,13 @@ import {
   Embed,
   Options,
 } from "seyfert";
-import { getLeaderboardSnapshots } from "../data/leaderboardHistory";
-import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
-import type {
-  LeaderboardSnapshot,
-  LeaderboardType,
-} from "../utils/leaderboard";
-import { getLeaderboardGains } from "../utils/leaderboard-diff";
+import { getLeaderboardSnapshots } from "@data";
+import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "@constants";
+import {
+  getLeaderboardGains,
+  type LeaderboardSnapshot,
+  type LeaderboardType,
+} from "@utils";
 
 const options = {
   type: createStringOption({

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { unhashBuildCode } from "../src/utils/build";
+import { unhashBuildCode } from "@utils";
 
 describe("unhashBuildCode", () => {
   test("returns an empty player when no build code is provided", () => {

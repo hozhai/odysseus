@@ -1,5 +1,5 @@
 import { ActionRow, Button, ComponentCommand, ComponentContext } from "seyfert";
-import { findItemById, parseEmbedIntoSlot } from "../../utils";
+import { findItemById, parseEmbedIntoSlot } from "@utils";
 import { ButtonStyle, MessageFlags } from "seyfert/lib/types";
 
 export default class ItemSetGemsBackButton extends ComponentCommand {

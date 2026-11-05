@@ -1,6 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { parseLeaderboardHtml } from "../src/utils/leaderboard";
-import { getLeaderboardGains } from "../src/utils/leaderboard-diff";
+import { parseLeaderboardHtml, getLeaderboardGains } from "@utils";
 
 const leaderboardHtml = `
   <p>Last Updated: Mon Oct 26 2026 10:11:12 GMT+0000</p>

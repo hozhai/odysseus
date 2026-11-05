@@ -5,8 +5,8 @@ import {
   StringSelectMenu,
   StringSelectOption,
 } from "seyfert";
-import { getData } from "../../data/loadData";
-import { findItemById, itemModifierToEmoji } from "../../utils";
+import { getData } from "@data";
+import { findItemById, itemModifierToEmoji } from "@utils";
 
 export default class ItemSetModifierButton extends ComponentCommand {
   componentType = "Button" as const;

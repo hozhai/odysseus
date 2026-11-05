@@ -1,4 +1,4 @@
-import type { BotData } from "./schemas";
+import type { BotData } from "@data";
 
 export function validateData(data: BotData): void {
   const errors: string[] = [];

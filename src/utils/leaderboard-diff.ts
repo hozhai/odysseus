@@ -1,4 +1,4 @@
-import type { LeaderboardEntry } from "./leaderboard";
+import type { LeaderboardEntry } from "@utils";
 
 export function getLeaderboardGains(
   currentEntries: LeaderboardEntry[],

@@ -6,8 +6,8 @@ import {
   StringSelectMenu,
   StringSelectOption,
 } from "seyfert";
-import { getData } from "../../data/loadData";
-import { itemEnchantToEmoji } from "../../utils";
+import { getData } from "@data";
+import { itemEnchantToEmoji } from "@utils";
 
 export default class ItemSetEnchantButton extends ComponentCommand {
   componentType = "Button" as const;

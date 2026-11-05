@@ -3,7 +3,7 @@ import {
   fetchLeaderboard,
   type LeaderboardSnapshot,
   type LeaderboardType,
-} from "../utils/leaderboard";
+} from "@utils";
 
 const HISTORY_RETENTION_MS = 8 * 24 * 60 * 60 * 1000; // 8 days
 const MAX_SNAPSHOTS = 2500;

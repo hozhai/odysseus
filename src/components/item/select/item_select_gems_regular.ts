@@ -1,6 +1,6 @@
 import { ActionRow, Button, ComponentCommand, ComponentContext } from "seyfert";
-import { EMPTY_GEM_ID } from "../../constants";
-import { findItemById, parseEmbedIntoSlot, slotIntoEmbed } from "../../utils";
+import { EMPTY_GEM_ID } from "@constants";
+import { findItemById, parseEmbedIntoSlot, slotIntoEmbed } from "@utils";
 import { ButtonStyle, MessageFlags } from "seyfert/lib/types";
 
 export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {

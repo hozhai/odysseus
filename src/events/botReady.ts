@@ -1,7 +1,6 @@
 import { createEvent } from "seyfert";
-import { getData } from "../data/loadData";
-import { captureLeaderboardSnapshot } from "../data/leaderboardHistory";
-import { VERSION } from "../constants";
+import { getData, captureLeaderboardSnapshot } from "@data";
+import { VERSION } from "@constants";
 
 const SNAPSHOT_POLL_INTERVAL_MS = 5 * 60 * 1000;
 

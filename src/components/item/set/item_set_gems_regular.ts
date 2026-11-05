@@ -6,8 +6,8 @@ import {
   StringSelectMenu,
   StringSelectOption,
 } from "seyfert";
-import { getData } from "../../data/loadData";
-import { findItemById, itemGemToEmoji, parseEmbedIntoSlot } from "../../utils";
+import { getData } from "@data";
+import { findItemById, itemGemToEmoji, parseEmbedIntoSlot } from "@utils";
 
 export default class ItemSetGemsRegularButton extends ComponentCommand {
   componentType = "Button" as const;

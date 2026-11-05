@@ -11,8 +11,8 @@ import {
   BUILD_URL_PREFIX_BOBBY,
   BUILD_URL_PREFIX_WOODY,
   EMBED_COLOR_ERROR,
-} from "../constants";
-import { parsePlayerIntoEmbed, unhashBuildCode } from "../utils";
+} from "@constants";
+import { parsePlayerIntoEmbed, unhashBuildCode } from "@utils";
 import { MessageFlags } from "seyfert/lib/types";
 
 const options = {

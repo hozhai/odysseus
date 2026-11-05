@@ -6,13 +6,13 @@ import {
   createStringOption,
   Options,
 } from "seyfert";
-import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
-import { createPagination } from "../utils/pagination";
+import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "@constants";
 import {
   fetchLeaderboard,
+  createPagination,
   type LeaderboardEntry,
   type LeaderboardType,
-} from "../utils/leaderboard";
+} from "@utils";
 
 const options = {
   name: createStringOption({

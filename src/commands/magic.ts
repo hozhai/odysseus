@@ -7,9 +7,9 @@ import {
   Embed,
   MessageFlags,
 } from "seyfert";
-import { getData } from "../data/loadData";
-import { findMagicByName, MagicsEnum, magicToEmoji } from "../utils";
-import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
+import { getData } from "@data";
+import { findMagicByName, MagicsEnum, magicToEmoji } from "@utils";
+import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "@constants";
 
 const options = {
   name: createStringOption({

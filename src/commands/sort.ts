@@ -6,12 +6,11 @@ import {
   Embed,
   Options,
 } from "seyfert";
-import { getData } from "../data/loadData";
-import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
-import type { TotalStats } from "../types";
-import type { Item } from "../data/schemas";
-import { calculateItemStats } from "../utils";
-import { createPagination } from "../utils/pagination";
+import { getData } from "@data";
+import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "@constants";
+import type { TotalStats } from "@src-types";
+import type { Item } from "@data";
+import { calculateItemStats, createPagination } from "@utils";
 
 const statChoices = [
   { name: "Power", value: "power" },

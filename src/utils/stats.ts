@@ -1,4 +1,4 @@
-import type { Slot, statType, TotalStats } from "../types";
+import type { Slot, statType, TotalStats } from "@src-types";
 import {
   MAX_LEVEL,
   ATL_POWER_CAP,
@@ -7,15 +7,15 @@ import {
   ATL_ATTACK_SIZE_CAP,
   ATL_ATTACK_SPEED_CAP,
   ATL_INTENSITY_CAP,
-} from "../constants";
+} from "@constants";
 import {
   findEnchantById,
   findGemById,
   findItemById,
   findModifierById,
   floorTo1,
-} from ".";
-import type { Item, Modifier } from "../data/schemas";
+} from "@utils";
+import type { Item, Modifier } from "@data";
 
 /**
  * formatTotalStats formats the TotalStats passed into it by prepending an appropriate

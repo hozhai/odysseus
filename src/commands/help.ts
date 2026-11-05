@@ -6,7 +6,7 @@ import {
   type APIEmbedField,
   Formatter,
 } from "seyfert";
-import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
+import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "@constants";
 
 @Declare({
   name: "help",

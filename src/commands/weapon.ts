@@ -8,10 +8,9 @@ import {
   type APIEmbedField,
   MessageFlags,
 } from "seyfert";
-import { getData } from "../data/loadData";
-import { getRarityColor } from "../utils";
-import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "../constants";
-import { clamp } from "../utils/misc";
+import { getData } from "@data";
+import { getRarityColor, clamp } from "@utils";
+import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "@constants";
 
 const options = {
   name: createStringOption({

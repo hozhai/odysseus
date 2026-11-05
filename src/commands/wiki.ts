@@ -6,8 +6,8 @@ import {
   Options,
   Embed,
 } from "seyfert";
-import { EMBED_COLOR_DEFAULT, EMBED_FOOTER, WIKI_URL } from "../constants";
-import type { FandomSearchResponse, WikiPageResult } from "../types";
+import { EMBED_COLOR_DEFAULT, EMBED_FOOTER, WIKI_URL } from "@constants";
+import type { FandomSearchResponse, WikiPageResult } from "@src-types";
 
 const options = {
   query: createStringOption({

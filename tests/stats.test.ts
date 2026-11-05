@@ -1,7 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { MAX_LEVEL } from "../src/constants";
-import { getData } from "../src/data/loadData";
-import { ItemSchema } from "../src/data/schemas";
+import { MAX_LEVEL } from "@constants";
+import { getData, ItemSchema } from "@data";
 import {
   calculateGemStats,
   calculateItemStats,

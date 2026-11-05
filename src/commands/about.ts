@@ -7,9 +7,9 @@ import {
   Button,
   Formatter,
 } from "seyfert";
-import { EMBED_COLOR_DEFAULT, EMBED_FOOTER, VERSION } from "../constants";
+import { EMBED_COLOR_DEFAULT, EMBED_FOOTER, VERSION } from "@constants";
 import { ButtonStyle } from "seyfert/lib/types";
-import { formatSeconds } from "../utils/misc";
+import { formatSeconds } from "@utils";
 
 @Declare({
   name: "about",

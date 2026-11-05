@@ -5,10 +5,10 @@ import {
   EMPTY_CHESTPLATE_ID,
   EMPTY_ENCHANTMENT_ID,
   EMPTY_MODIFIER_ID,
-} from "../constants";
-import { type Player, type Slot } from "../types";
+} from "@constants";
+import { type Player, type Slot } from "@src-types";
 import type { APIEmbedField } from "seyfert/lib/types";
-import { fsToEmoji, magicToEmoji } from "./emoji";
+import { fsToEmoji, magicToEmoji } from "@utils";
 import type { EmojiResolvable } from "seyfert/lib/common";
 
 export enum MagicsEnum {
