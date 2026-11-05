@@ -118,8 +118,8 @@ Xjp:
         damageMultiplier: 0.2
 AVS:
   id: AVS
-  name: Nimble
-  legend: +1.5 points of Agility for every 10 levels
+  name: Accurate
+  legend: +1.5 points of Range for every 10 levels
   mainType: Enchant
   rarity: Rare
   imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Enchants/Rare/enchantNimble.jpg?raw=true
