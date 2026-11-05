@@ -25,14 +25,14 @@ import {
   itemGemToEmoji,
   itemModifierToEmoji,
 } from ".";
-import type { Rarity } from "@data";
+import type { RarityEnum } from "@data";
 
 /**
  * Gets the color of a rarity given the rarity.
  * @param rarity A rarity that can be "Common", "Uncommon", "Rare", or "Exotic" (case-sensitive)
  * @returns A hexadecimal number
  */
-export function getRarityColor(rarity: Rarity): number | undefined {
+export function getRarityColor(rarity: RarityEnum): number | undefined {
   switch (rarity) {
     case "Common":
       return COLOR_COMMON;

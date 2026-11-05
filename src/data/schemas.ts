@@ -8,7 +8,7 @@ export const RaritySchema = z.enum([
   "Exotic",
 ]);
 
-export type Rarity = z.infer<typeof RaritySchema>;
+export type RarityEnum = z.infer<typeof RaritySchema>;
 
 /* === ITEM === */
 
