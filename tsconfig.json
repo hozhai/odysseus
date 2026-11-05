@@ -38,6 +38,11 @@
 
     // Seyfert
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
-  }
+    "experimentalDecorators": true,
+    "noErrorTruncation": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+
+  "include": ["src"]
 }
