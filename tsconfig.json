@@ -41,8 +41,8 @@
     "experimentalDecorators": true,
     "noErrorTruncation": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "."
   },
 
-  "include": ["src"]
+  "include": ["src", "tests"]
 }
