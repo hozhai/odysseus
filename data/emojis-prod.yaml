@@ -1,0 +1,219 @@
+enchants:
+  Deadeye: { id: "1568037399789830144", name: deadeye }
+  Brisk: { id: "1568037394215739392", name: brisk }
+  Enhanced: { id: "1568037402080186418", name: enhanced }
+  Amplified: { id: "1568037390797381642", name: amplified }
+  Powerful: { id: "1568037412200783925", name: powerful }
+  Tracking: { id: "1568037418647552011", name: tracking }
+  Strong: { id: "1568037415514276010", name: strong }
+  Accurate: { id: "1568037388729712731", name: accurate }
+  Hard: { id: "1568037405892808806", name: hard }
+  Bursting: { id: "1568037395801055293", name: bursting }
+  Healing: { id: "1568037408203870288", name: healing }
+  Piercing: { id: "1568037409940050060", name: piercing }
+  Charged: { id: "1568037397751402577", name: charged }
+  Explosive: { id: "1568037404609093632", name: explosive }
+  Armored: { id: "1568037392504328192", name: armored }
+  Virtuous: { id: "1568037420996239410", name: virtuous }
+  Swift: { id: "1568037417334607892", name: swift }
+  Resilience: { id: "1568037414029496321", name: resilience }
+
+modifiers:
+  Abyssal: { id: "1568037981225353321", name: abyssal }
+  Archaic: { id: "1568037983225909430", name: archaic }
+  Atlantean Essence: { id: "1568037985004425216", name: atlantean }
+  Blasted: { id: "1568038037068456118", name: blasted }
+  Crystalline: { id: "1568038047210147951", name: crystalline }
+  Drowned: { id: "1568038051094208512", name: drowned }
+  Frozen: { id: "1568038052830384188", name: frozen }
+  Sandy: { id: "1568038076314427412", name: sandy }
+  Superheated: { id: "1568038082127597619", name: superheated }
+  Goldsail Pirates: { id: "1568038058735964160", name: goldsailpirates }
+  Gilded: { id: "1568038055208820821", name: gilded }
+  Jaw Pirates: { id: "1568038065006710984", name: jawpirates }
+  Bearpaw Bandits: { id: "1568038033343774913", name: bearpawbandits }
+  Veridian Hunters: { id: "1568038087743774841", name: veridianhunters }
+  Swiftstriders: { id: "1568038083704655892", name: swiftstriders }
+  Shadow Ravens: { id: "1568038078512373770", name: shadowravens }
+  Imbued: { id: "1568038062959886476", name: imbued }
+  Atlantean Essence + Jaw Pirates:
+    { id: "1568038006042919094", name: atlanteanjawpirates }
+  Atlantean Essence + Bearpaw Bandits:
+    { id: "1568037986807980122", name: atlanteanbearpawbandits }
+  Atlantean Essence + Veridian Hunters:
+    { id: "1568038029506125854", name: atlanteanveridianhunters }
+  Atlantean Essence + Goldsail Pirates:
+    { id: "1568038002020712521", name: atlanteangoldsailpirates }
+  Atlantean Essence + Swiftstriders:
+    { id: "1568038018755854336", name: atlanteanswiftstriders }
+  Atlantean Essence + Shadow Ravens:
+    { id: "1568038013877882910", name: atlanteanshadowravens }
+  Black: { id: "1568038035290071181", name: black }
+  Blue: { id: "1568038041292120217", name: blue }
+  Brown: { id: "1568038043309310042", name: brown }
+  Golden: { id: "1568038056945258516", name: golden }
+  Green: { id: "1568038060757622825", name: green }
+  Purple: { id: "1568038072250273802", name: purple }
+  Red: { id: "1568038074191974621", name: red }
+  Teal: { id: "1568038085479112774", name: teal }
+  White: { id: "1568040539616583780", name: white }
+  Atlantean Essence + Black: { id: "1568037988582166599", name: atlanteanblack }
+  Atlantean Essence + Blue: { id: "1568037991702732901", name: atlanteanblue }
+  Atlantean Essence + Brown: { id: "1568037994122969208", name: atlanteanbrown }
+  Atlantean Essence + Golden:
+    { id: "1568038000053592144", name: atlanteangolden }
+  Atlantean Essence + Green: { id: "1568038003589386331", name: atlanteangreen }
+  Atlantean Essence + Purple:
+    { id: "1568038009494831104", name: atlanteanpurple }
+  Atlantean Essence + Red: { id: "1568038011508232312", name: atlanteanred }
+  Atlantean Essence + Teal: { id: "1568038027589189652", name: atlanteanteal }
+  Atlantean Essence + White: { id: "1568038031644950590", name: atlanteanwhite }
+  Blood: { id: "1568038039425646684", name: blood }
+  Corrupted: { id: "1568038044953612398", name: corrupted }
+  Crystal: { id: "1568038049441517719", name: crystalmodifier }
+  Molten: { id: "1568038066533441646", name: molten }
+  Stone: { id: "1568038080701669446", name: stone }
+  Atlantean Essence + Blood: { id: "1568037990390046816", name: atlanteanblood }
+  Atlantean Essence + Corrupted:
+    { id: "1568037996253413477", name: atlanteancorrupted }
+  Atlantean Essence + Crystal:
+    { id: "1568037998392508507", name: atlanteancrystal }
+  Atlantean Essence + Molten:
+    { id: "1568038007859187823", name: atlanteanmolten }
+  Atlantean Essence + Stone: { id: "1568038016872615996", name: atlanteanstone }
+
+gems:
+  Defense Gem: { id: "1568037836622536864", name: defensegem }
+  Power Gem: { id: "1568037917480325221", name: powergem }
+  Attack Speed Gem: { id: "1568037839906541588", name: dexteritygem }
+  Attack Size Gem: { id: "1568037778845999104", name: attacksizegem }
+  Agility Gem: { id: "1568037919695044608", name: rangegem }
+  Intensity Gem: { id: "1568037856046489661", name: hastegem }
+  Lapiz Lazuli: { id: "1568037869765791867", name: lapislazuli }
+  Larimar: { id: "1568037878150201515", name: larimar }
+  Agate: { id: "1568037753671647273", name: agate }
+  Malachite: { id: "1568037887042134076", name: malachite }
+  Candelaria: { id: "1568037819123896450", name: candelaria }
+  Morenci: { id: "1568037896902934629", name: morenci }
+  Painite: { id: "1568037904758874142", name: painite }
+  Kyanite: { id: "1568037858303021199", name: kyanite }
+  Variscite: { id: "1568037921351794839", name: variscite }
+  Perfect Azurite: { id: "1568037802032234567", name: azurite }
+  Perfect Aventurine: { id: "1568037782125805708", name: aventurine }
+  Perfect Fire Opal: { id: "1568037842419196096", name: fireopal }
+  2x Agate: { id: "1568037721287430155", name: 2xagate }
+  Candelaria-Morenci: { id: "1568037829043556602", name: candelariamorenci }
+  Candelaria-Malachite: { id: "1568037825394253885", name: candelariamalachite }
+  2x Candelaria: { id: "1568037726891286600", name: 2xcandelaria }
+  Agate-Malachite: { id: "1568037770121707591", name: agatemalachite }
+  2x Morenci: { id: "1568037746784866476", name: 2xmorenci }
+  2x Malachite: { id: "1568037736668074074", name: 2xmalachite }
+  Agate-Candelaria: { id: "1568037760139534366", name: agatecandelaria }
+  2x Lapis Lazuli: { id: "1568037733438464080", name: 2xlapislazuli }
+  Aventurine-Lapis Lazuli:
+    { id: "1568037791621976294", name: aventurinelapislazuli }
+  Aventurine-Larimar: { id: "1568037793249099960", name: aventurinelarimar }
+  Aventurine-Kyanite: { id: "1568037789642129431", name: aventurinekyanite }
+  Aventurine-Variscite: { id: "1568037800337608805", name: aventurinevariscite }
+  Lapis Lazuli-Candelaria:
+    { id: "1568037871716270201", name: lapislazulicandelaria }
+  Candelaria-Larimar: { id: "1568037823804608694", name: candelarialarimar }
+  Agate-Lapis Lazuli: { id: "1568037766971924480", name: agatelapislazuli }
+  2x Painite: { id: "1568037749628469330", name: 2xpainite }
+  Malachite-Lapis Lazuli:
+    { id: "1568037888745021561", name: malachitelapislazuli }
+  2x Larimar: { id: "1568037734998741053", name: 2xlarimar }
+  2x Variscite: { id: "1568037751670972467", name: 2xvariscite }
+  Candelaria-Kyanite: { id: "1568037822227808376", name: candelariakyanite }
+  Kyanite-Malachite: { id: "1568037864133107742", name: kyanitemalachite }
+  Variscite-Kyanite: { id: "1568037923184578651", name: variscitekyanite }
+  Variscite-Larimar: { id: "1568037926447874058", name: variscitelarimar }
+  2x Kyanite: { id: "1568037730632335560", name: 2xkyanite }
+  2x Aventurine: { id: "1568037723531518064", name: 2xaventurine }
+  Variscite-Lapis Lazuli:
+    { id: "1568037924916822127", name: variscitelapislazuli }
+  2x Fire Opal: { id: "1568037728778457288", name: 2xfireopal }
+  Morenci-Lapis Lazuli: { id: "1568037898773860503", name: morencilapislazuli }
+  Fire Opal-Larimar: { id: "1568037846814695524", name: fireopallarimar }
+  Lapis Lazuli-Fire Opal:
+    { id: "1568037873599651911", name: lapislazulifireopal }
+  Fire Opal-Kyanite: { id: "1568037844444782732", name: fireopalkyanite }
+  Painite-Lapis Lazuli: { id: "1568037907267326062", name: painitelapislazuli }
+  Variscite-Painite: { id: "1568037928616329236", name: variscitepainite }
+  Agate-Painite: { id: "1568037773896720494", name: agatepainite }
+  Agate-Aventurine: { id: "1568037755387121735", name: agateaventurine }
+  Agate-Azurite: { id: "1568037757966618775", name: agateazurite }
+  Agate-Fire Opal: { id: "1568037762282819604", name: agatefireopal }
+  Agate-Kyanite: { id: "1568037764501348452", name: agatekyanite }
+  Agate-Larimar: { id: "1568037768603373699", name: agatelarimar }
+  Agate-Morenci: { id: "1568037771958943785", name: agatemorenci }
+  Agate-Variscite: { id: "1568037776241328128", name: agatevariscite }
+  Aventurine-Azurite: { id: "1568037783837351996", name: aventurineazurite }
+  Aventurine-Candelaria:
+    { id: "1568037785460539442", name: aventurinecandelaria }
+  Aventurine-Fire Opal: { id: "1568037787641577513", name: aventurinefireopal }
+  Aventurine-Malachite: { id: "1568037794788544613", name: aventurinemalachite }
+  Aventurine-Morenci: { id: "1568037796386447591", name: aventurinemorenci }
+  Aventurine-Painite: { id: "1568037798210961508", name: aventurinepainite }
+  2x Azurite: { id: "1568037725439795351", name: 2xazurite }
+  Azurite-Candelaria: { id: "1568037803818885160", name: azuritecandelaria }
+  Azurite-Fire Opal: { id: "1568037805572227142", name: azuritefireopal }
+  Azurite-Kyanite: { id: "1568037806977061014", name: azuritekyanite }
+  Azurite-Lapis Lazuli: { id: "1568037808705249280", name: azuritelapislazuli }
+  Azurite-Larimar: { id: "1568037810479308941", name: azuritelarimar }
+  Azurite-Malachite: { id: "1568037812513804298", name: azuritemalachite }
+  Azurite-Morenci: { id: "1568037814157975713", name: azuritemorenci }
+  Azurite-Painite: { id: "1568037815495823451", name: azuritepainite }
+  Azurite-Variscite: { id: "1568037817152573500", name: azuritevariscite }
+  Candelaria-Fire Opal: { id: "1568037820793225266", name: candelariafireopal }
+  Candelaria-Painite: { id: "1568037832507789513", name: candelariapainite }
+  Candelaria-Variscite: { id: "1568037834588426320", name: candelariavariscite }
+  Fire Opal-Malachite: { id: "1568037848597143733", name: fireopalmalachite }
+  Fire Opal-Morenci: { id: "1568037850446831777", name: fireopalmorenci }
+  Fire Opal-Painite: { id: "1568037852279869540", name: fireopalpainite }
+  Fire Opal-Variscite: { id: "1568037854104256592", name: fireopalvariscite }
+  Kyanite-Lapis Lazuli: { id: "1568037859795927092", name: kyanitelapislazuli }
+  Kyanite-Larimar: { id: "1568037862354722926", name: kyanitelarimar }
+  Kyanite-Morenci: { id: "1568037865701638225", name: kyanitemorenci }
+  Kyanite-Painite: { id: "1568037867911905430", name: kyanitepainite }
+  Lapis Lazuli-Larimar: { id: "1568037876036542614", name: lapislazulilarimar }
+  Larimar-Malachite: { id: "1568037879878385684", name: larimarmalachite }
+  Larimar-Morenci: { id: "1568037881774080000", name: larimarmorenci }
+  Larimar-Painite: { id: "1568037884886261851", name: larimarpainite }
+  Malachite-Morenci: { id: "1568037890548572180", name: malachitemorenci }
+  Malachite-Painite: { id: "1568037892058521640", name: malachitepainite }
+  Malachite-Variscite: { id: "1568037894059331709", name: malachitevariscite }
+  Morenci-Painite: { id: "1568037900527075410", name: morencipainite }
+  Morenci-Variscite: { id: "1568037902645203205", name: morencivariscite }
+
+magics:
+  Acid: { id: "1443732219628617880", name: acid }
+  Ash: { id: "1443732218043170887", name: ash }
+  Crystal: { id: "1443732216432820377", name: crystal }
+  Earth: { id: "1443732214515765279", name: earth }
+  Explosion: { id: "1443732212855078942", name: explosion }
+  Fire: { id: "1443732211500187788", name: fire }
+  Glass: { id: "1443732209927196834", name: glass }
+  Ice: { id: "1443732208308191302", name: ice }
+  Light: { id: "1443732206752370698", name: light }
+  Lightning: { id: "1443732205024182304", name: lightning }
+  Magma: { id: "1443732203639935158", name: magma }
+  Metal: { id: "1443732202402611320", name: metal }
+  Plasma: { id: "1443732201131741224", name: plasma }
+  Poison: { id: "1443732199705936083", name: poison }
+  Sand: { id: "1443732197914972271", name: sand }
+  Shadow: { id: "1443732196232790117", name: shadow }
+  Snow: { id: "1443732194697806116", name: snow }
+  Water: { id: "1443732192277692467", name: water }
+  Wind: { id: "1443732191036047494", name: wind }
+  Wood: { id: "1443732189601599599", name: wood }
+
+fightingStyles:
+  Basic Combat: { id: "1568037538956976259", name: basiccombat }
+  Boxing: { id: "1568037541033287741", name: boxing }
+  Iron Leg: { id: "1568037545009483816", name: ironleg }
+  Cannon Fist: { id: "1568037543046553700", name: cannonfist }
+  Powder Fist: { id: "1568037548134109204", name: powderfist }
+  Sailor Style: { id: "1568037551405797376", name: sailorstyle }
+  Thermo Fist: { id: "1568037554412851322", name: thermofist }
+  Vanishing Style: { id: "1568037557495664691", name: vanishingstyle }

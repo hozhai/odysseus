@@ -101,6 +101,8 @@ export default class BuildCommand extends Command {
       });
     }
 
-    await ctx.editOrReply({ embeds: [parsePlayerIntoEmbed(ctx, player)] });
+    await ctx.editOrReply({
+      embeds: [await parsePlayerIntoEmbed(ctx, player)],
+    });
   }
 }

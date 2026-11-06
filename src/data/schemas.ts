@@ -1,4 +1,4 @@
-import { string, z } from "zod";
+import { z } from "zod";
 
 export const RaritySchema = z.enum([
   "None",
@@ -201,7 +201,7 @@ export const UnimbuedStatsSchema = z.object({
 export const MagicSchema = z.object({
   name: z.string(),
   legend: z.string(),
-  imageId: string(),
+  imageId: z.string(),
   unimbued: UnimbuedStatsSchema,
   imbued: ImbuedStatsSchema,
   specialEffect: z.string(),
@@ -224,3 +224,20 @@ export const BotDataSchema = z.object({
 });
 
 export type BotData = z.infer<typeof BotDataSchema>;
+
+/* === EMOJIS === */
+
+export const EmojiSchema = z.object({
+  id: z.string().nonempty(),
+  name: z.string().nonempty(),
+});
+
+export const EmojiDataSchema = z.object({
+  enchants: z.record(z.string(), EmojiSchema),
+  modifiers: z.record(z.string(), EmojiSchema),
+  gems: z.record(z.string(), EmojiSchema),
+  magics: z.record(z.string(), EmojiSchema),
+  fightingStyles: z.record(z.string(), EmojiSchema),
+});
+
+export type EmojiData = z.infer<typeof EmojiDataSchema>;

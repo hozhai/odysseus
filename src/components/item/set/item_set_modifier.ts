@@ -7,6 +7,7 @@ import {
 } from "seyfert";
 import { getData } from "@data";
 import { findItemById, itemModifierToEmoji } from "@utils";
+import { EMPTY_MODIFIER_ID } from "@/constants";
 
 export default class ItemSetModifierButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -48,23 +49,26 @@ export default class ItemSetModifierButton extends ComponentCommand {
       .setRequired(true)
       .setValuesLength({ max: 1, min: 1 });
 
-    Object.values(modifierData)
-      .filter(
-        // allow 'None' to pass as a way for the user to remove the modifier
-        (val) => item.validModifiers?.includes(val.name) || val.name === "None"
+    for (const modifier of Object.values(modifierData)) {
+      if (
+        // De Morgan's law
+        !item.validModifiers?.includes(modifier.name) &&
+        modifier.id !== EMPTY_MODIFIER_ID
       )
-      .forEach((mod) => {
-        const option = new StringSelectOption();
-        option.setLabel(mod.name);
-        option.setValue(mod.name.toLowerCase());
+        continue;
 
-        const emoji = itemModifierToEmoji(mod);
-        if (emoji) {
-          option.setEmoji(emoji);
-        }
+      const option = new StringSelectOption()
+        .setLabel(modifier.name)
+        .setValue(modifier.name.toLowerCase());
 
-        selectMenu.addOption([option]);
-      });
+      const emoji = await itemModifierToEmoji(modifier);
+
+      if (emoji) {
+        option.setEmoji(emoji);
+      }
+
+      selectMenu.addOption([option]);
+    }
 
     const row = new ActionRow().setComponents([selectMenu]);
 

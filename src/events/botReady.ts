@@ -1,6 +1,8 @@
 import { createEvent } from "seyfert";
 import { getData, captureLeaderboardSnapshot } from "@data";
 import { VERSION } from "@constants";
+import { getEmojis } from "@data";
+import { env } from "bun";
 
 const SNAPSHOT_POLL_INTERVAL_MS = 5 * 60 * 1000;
 
@@ -16,6 +18,8 @@ export default createEvent({
 
     // Load data on startup
     const data = await getData();
+    const emojis = await getEmojis();
+
     client.logger.info("==============");
     client.logger.info("Loaded data");
 
@@ -27,6 +31,15 @@ export default createEvent({
       `modifiers.yaml: ${Object.values(data.modifiers).length}`
     );
     client.logger.info(`gems.yaml: ${Object.values(data.gems).length}`);
+
+    const loadedEmojis =
+      Object.values(emojis.enchants).length +
+      Object.values(emojis.fightingStyles).length +
+      Object.values(emojis.gems).length +
+      Object.values(emojis.magics).length +
+      Object.values(emojis.modifiers).length;
+
+    client.logger.info(`emojis-${env.BOT_ENV}.yaml: ${loadedEmojis}`);
 
     client.logger.info("==============");
 

@@ -47,26 +47,27 @@ export default class ItemSetEnchantButton extends ComponentCommand {
       .setRequired(true)
       .setValuesLength({ max: 1, min: 1 });
 
-    Object.values(enchantData)
-      .filter(
-        (val) =>
-          val.mainType === "Enchant" &&
-          val.name !== "Sturdy" &&
-          val.name !== "Reinforced" &&
-          val.name !== "Warship"
+    for (const enchant of Object.values(enchantData)) {
+      if (
+        enchant.mainType !== "Enchant" ||
+        enchant.name === "Sturdy" ||
+        enchant.name === "Reinforced" ||
+        enchant.name === "Warship"
       )
-      .forEach((ench) => {
-        const option = new StringSelectOption();
-        option.setLabel(ench.name);
-        option.setValue(ench.name.toLowerCase());
+        continue;
 
-        const emoji = itemEnchantToEmoji(ench);
-        if (emoji) {
-          option.setEmoji(emoji);
-        }
+      const option = new StringSelectOption()
+        .setLabel(enchant.name)
+        .setValue(enchant.name.toLowerCase());
 
-        selectMenu.addOption([option]);
-      });
+      const emoji = await itemEnchantToEmoji(enchant);
+
+      if (emoji) {
+        option.setEmoji(emoji);
+      }
+
+      selectMenu.addOption([option]);
+    }
 
     const row = new ActionRow().setComponents([selectMenu]);
 

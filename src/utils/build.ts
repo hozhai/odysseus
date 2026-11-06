@@ -191,10 +191,10 @@ function parseItemSlot(values: string[]): Slot {
   };
 }
 
-export function parsePlayerIntoEmbed(
+export async function parsePlayerIntoEmbed(
   ctx: CommandContext,
   player: Player
-): Embed {
+): Promise<Embed> {
   const embed = new Embed();
 
   embed.setTitle(`${ctx.author.username}'s build`);
@@ -216,19 +216,21 @@ export function parsePlayerIntoEmbed(
 
   let magicFsString = "";
 
-  player.magics.forEach((magic) => {
-    const magicEmoji: EmojiResolvable | null = magicToEmoji(
-      magic as MagicsEnum
+  for (const magic of player.magics) {
+    const magicEmoji: EmojiResolvable | null = await magicToEmoji(
+      magicEnumToName(magic as MagicsEnum)
     );
-    if (!magicEmoji) return;
+    if (!magicEmoji) continue;
     magicFsString += magicEmoji as string;
-  });
+  }
 
-  player.fightingStyles.forEach((fs) => {
-    const fsEmoji: EmojiResolvable | null = fsToEmoji(fs as FightingStylesEnum);
-    if (!fsEmoji) return;
+  for (const fs of player.fightingStyles) {
+    const fsEmoji: EmojiResolvable | null = await fsToEmoji(
+      fsEnumToName(fs as FightingStylesEnum)
+    );
+    if (!fsEmoji) continue;
     magicFsString += fsEmoji as string;
-  });
+  }
 
   fields.push({
     name: "Magics/Fighting Styles",
@@ -239,4 +241,70 @@ export function parsePlayerIntoEmbed(
   embed.setFields(fields);
 
   return embed;
+}
+
+function magicEnumToName(magic: MagicsEnum): string {
+  switch (magic) {
+    case MagicsEnum.Acid:
+      return "Acid";
+    case MagicsEnum.Ash:
+      return "Ash";
+    case MagicsEnum.Crystal:
+      return "Crystal";
+    case MagicsEnum.Earth:
+      return "Earth";
+    case MagicsEnum.Explosion:
+      return "Explosion";
+    case MagicsEnum.Fire:
+      return "Fire";
+    case MagicsEnum.Glass:
+      return "Glass";
+    case MagicsEnum.Ice:
+      return "Ice";
+    case MagicsEnum.Light:
+      return "Light";
+    case MagicsEnum.Lightning:
+      return "Lightning";
+    case MagicsEnum.Magma:
+      return "Magma";
+    case MagicsEnum.Metal:
+      return "Metal";
+    case MagicsEnum.Plasma:
+      return "Plasma";
+    case MagicsEnum.Poison:
+      return "Poison";
+    case MagicsEnum.Sand:
+      return "Sand";
+    case MagicsEnum.Shadow:
+      return "Shadow";
+    case MagicsEnum.Snow:
+      return "Snow";
+    case MagicsEnum.Water:
+      return "Water";
+    case MagicsEnum.Wind:
+      return "Wind";
+    case MagicsEnum.Wood:
+      return "Wood";
+  }
+}
+
+function fsEnumToName(fs: FightingStylesEnum): string {
+  switch (fs) {
+    case FightingStylesEnum.BasicCombat:
+      return "Basic Combat";
+    case FightingStylesEnum.Boxing:
+      return "Boxing";
+    case FightingStylesEnum.IronLeg:
+      return "Iron Leg";
+    case FightingStylesEnum.CannonFist:
+      return "Cannon Fist";
+    case FightingStylesEnum.PowderFist:
+      return "Powder Fist";
+    case FightingStylesEnum.SailorStyle:
+      return "Sailor Style";
+    case FightingStylesEnum.ThermoFist:
+      return "Thermo Fist";
+    case FightingStylesEnum.VanishingStyle:
+      return "Vanishing Style";
+  }
 }

@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { type BotData, ItemsSchema, getData, validateData } from "@data";
+import { type BotData, ItemsSchema, getData } from "@data";
+import { validateData } from "@/utils";
 
 function createValidData(): BotData {
   return {

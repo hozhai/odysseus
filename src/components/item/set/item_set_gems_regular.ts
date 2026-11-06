@@ -45,26 +45,35 @@ export default class ItemSetGemsRegularButton extends ComponentCommand {
 
     const item = await findItemById(slot.item_id);
 
+    if (!item) {
+      await ctx.editOrReply({
+        content:
+          "Error: previous message embed does not contain a valid item id. Please report this to the developer.",
+      });
+      return;
+    }
+
     const selectMenu = new StringSelectMenu()
       .setCustomId("item_select_gems_regular")
       .setPlaceholder("Select a regular gem...")
       .setRequired(true)
       .setValuesLength({ max: item?.gemNo ?? 0, min: 0 });
 
-    Object.values(gemData)
-      .filter((val) => !val.fused)
-      .forEach((gem) => {
-        const option = new StringSelectOption();
-        option.setLabel(gem.name);
-        option.setValue(gem.id); // ID INSTEAD OF NAME AS VALUE
+    for (const gem of Object.values(gemData)) {
+      if (gem.fused) continue;
 
-        const emoji = itemGemToEmoji(gem);
-        if (emoji) {
-          option.setEmoji(emoji);
-        }
+      const option = new StringSelectOption()
+        .setLabel(gem.name)
+        .setValue(gem.name.toLowerCase());
 
-        selectMenu.addOption([option]);
-      });
+      const emoji = await itemGemToEmoji(gem);
+
+      if (emoji) {
+        option.setEmoji(emoji);
+      }
+
+      selectMenu.addOption([option]);
+    }
 
     const row = new ActionRow().setComponents([selectMenu]);
 

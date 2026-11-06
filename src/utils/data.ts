@@ -1,6 +1,6 @@
 import { load } from "js-yaml";
 import type z from "zod";
-import type { BotData } from "@data";
+import type { BotData, EmojiData } from "@data";
 
 export async function parse<T>(path: string, schema: z.ZodType<T>): Promise<T> {
   const yaml: unknown = load(await Bun.file(path).text());
@@ -15,6 +15,44 @@ export async function parse<T>(path: string, schema: z.ZodType<T>): Promise<T> {
   }
 
   return result.data;
+}
+
+export function validateEmojis(emojis: EmojiData): void {
+  const errors: string[] = [];
+
+  Object.values(emojis.enchants).forEach((enchEmoji) => {
+    if (enchEmoji.id === "0") {
+      errors.push(`Emoji "${enchEmoji.name}" has an ID of 0`);
+    }
+  });
+
+  Object.values(emojis.modifiers).forEach((modEmoji) => {
+    if (modEmoji.id === "0") {
+      errors.push(`Emoji "${modEmoji.name}" has an ID of 0`);
+    }
+  });
+
+  Object.values(emojis.gems).forEach((gemEmoji) => {
+    if (gemEmoji.id === "0") {
+      errors.push(`Emoji ${gemEmoji.name} has an ID of 0`);
+    }
+  });
+
+  Object.values(emojis.magics).forEach((magicEmoji) => {
+    if (magicEmoji.id === "0") {
+      errors.push(`Emoji ${magicEmoji.name} has an ID of 0`);
+    }
+  });
+
+  Object.values(emojis.fightingStyles).forEach((fsEmoji) => {
+    if (fsEmoji.id === "0") {
+      errors.push(`Emoji ${fsEmoji.name} has an ID of 0`);
+    }
+  });
+
+  if (errors.length > 0) {
+    throw new Error(`Invalid data references:\n${errors.join("\n")}`);
+  }
 }
 
 export function validateData(data: BotData): void {

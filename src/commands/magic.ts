@@ -8,7 +8,7 @@ import {
   MessageFlags,
 } from "seyfert";
 import { getData } from "@data";
-import { findMagicByName, MagicsEnum, magicToEmoji } from "@utils";
+import { findMagicByName, magicToEmoji } from "@utils";
 import { EMBED_COLOR_DEFAULT, EMBED_FOOTER } from "@constants";
 
 const options = {
@@ -85,43 +85,41 @@ export default class MagicCommand extends Command {
         },
         {
           name: "Outclashes",
-          value: magic.clash.over
-            .map((name) => {
-              const magicEnum = magicNameToEnum(name);
-              // MagicsEnum.Acid = 0, !0 = true, true returns with ""
-              // so we have to check that it ISN'T acid.
-              if (!magicEnum && magicEnum !== MagicsEnum.Acid) return "";
-              const emoji = magicToEmoji(magicEnum);
-              if (!emoji) return "";
-              return emoji as string;
-            })
-            .join("\n"),
+          value: (
+            await Promise.all(
+              magic.clash.over.map(async (name) => {
+                const emoji = await magicToEmoji(name);
+                if (!emoji) return "";
+                return emoji as string;
+              })
+            )
+          ).join("\n"),
           inline: true,
         },
         {
           name: "Neutral to",
-          value: magic.clash.neutral
-            .map((name) => {
-              const magicEnum = magicNameToEnum(name);
-              if (!magicEnum && magicEnum !== MagicsEnum.Acid) return "";
-              const emoji = magicToEmoji(magicEnum);
-              if (!emoji) return "";
-              return emoji as string;
-            })
-            .join("\n"),
+          value: (
+            await Promise.all(
+              magic.clash.neutral.map(async (name) => {
+                const emoji = await magicToEmoji(name);
+                if (!emoji) return "";
+                return emoji as string;
+              })
+            )
+          ).join("\n"),
           inline: true,
         },
         {
           name: "Outclashed by",
-          value: magic.clash.under
-            .map((name) => {
-              const magicEnum = magicNameToEnum(name);
-              if (!magicEnum && magicEnum !== MagicsEnum.Acid) return "";
-              const emoji = magicToEmoji(magicEnum);
-              if (!emoji) return "";
-              return emoji as string;
-            })
-            .join("\n"),
+          value: (
+            await Promise.all(
+              magic.clash.under.map(async (name) => {
+                const emoji = await magicToEmoji(name);
+                if (!emoji) return "";
+                return emoji as string;
+              })
+            )
+          ).join("\n"),
           inline: true,
         },
       ]);
@@ -147,52 +145,5 @@ export default class MagicCommand extends Command {
         flags: MessageFlags.Ephemeral,
       });
     }
-  }
-}
-
-function magicNameToEnum(magicName: string): MagicsEnum | null {
-  switch (magicName.toLowerCase()) {
-    case "acid":
-      return MagicsEnum.Acid;
-    case "ash":
-      return MagicsEnum.Ash;
-    case "crystal":
-      return MagicsEnum.Crystal;
-    case "earth":
-      return MagicsEnum.Earth;
-    case "explosion":
-      return MagicsEnum.Explosion;
-    case "fire":
-      return MagicsEnum.Fire;
-    case "glass":
-      return MagicsEnum.Glass;
-    case "ice":
-      return MagicsEnum.Ice;
-    case "light":
-      return MagicsEnum.Light;
-    case "lightning":
-      return MagicsEnum.Lightning;
-    case "magma":
-      return MagicsEnum.Magma;
-    case "metal":
-      return MagicsEnum.Metal;
-    case "plasma":
-      return MagicsEnum.Plasma;
-    case "poison":
-      return MagicsEnum.Poison;
-    case "sand":
-      return MagicsEnum.Sand;
-    case "shadow":
-      return MagicsEnum.Shadow;
-    case "snow":
-      return MagicsEnum.Snow;
-    case "water":
-      return MagicsEnum.Water;
-    case "wind":
-      return MagicsEnum.Wind;
-    case "wood":
-      return MagicsEnum.Wood;
-    default:
-      return null;
   }
 }

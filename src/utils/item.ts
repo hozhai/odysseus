@@ -11,8 +11,9 @@ import {
 } from "@constants";
 import type { Slot } from "@src-types";
 import { ComponentContext, Embed, InMessageEmbed } from "seyfert";
-import { formatTotalStats, slotToTotalStats } from "@utils";
 import {
+  formatTotalStats,
+  slotToTotalStats,
   emojiTextToResolvable,
   emojiToEnchant,
   emojiToGem,
@@ -24,7 +25,7 @@ import {
   itemEnchantToEmoji,
   itemGemToEmoji,
   itemModifierToEmoji,
-} from ".";
+} from "@utils";
 import type { RarityEnum } from "@data";
 
 /**
@@ -171,7 +172,7 @@ export async function slotIntoEmbed(
   if (enchant !== null && enchant.id !== EMPTY_ENCHANTMENT_ID) {
     fields.push({
       name: "Enchant",
-      value: (itemEnchantToEmoji(enchant) as string) ?? "",
+      value: ((await itemEnchantToEmoji(enchant)) as string) ?? "",
       inline: true,
     });
   }
@@ -181,7 +182,7 @@ export async function slotIntoEmbed(
   if (modifier !== null && modifier.id !== EMPTY_MODIFIER_ID) {
     fields.push({
       name: "Modifier",
-      value: (itemModifierToEmoji(modifier) as string) ?? "",
+      value: ((await itemModifierToEmoji(modifier)) as string) ?? "",
       inline: true,
     });
   }
@@ -193,9 +194,11 @@ export async function slotIntoEmbed(
   ).filter((gem) => gem !== null);
 
   if (gems.length !== 0) {
-    const gemEmojis = gems
-      .map((gem) => itemGemToEmoji(gem) as string)
-      .join(" ");
+    const gemEmojis = (
+      await Promise.all(
+        gems.map(async (gem) => (await itemGemToEmoji(gem)) as string)
+      )
+    ).join(" ");
 
     fields.push({
       name: "Gem(s)",
