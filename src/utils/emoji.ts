@@ -11,47 +11,53 @@ import type { Enchant, Gem, Modifier } from "@data";
 import { getEmojis } from "@/data/loadEmojis";
 
 /**
- * Turns an enchant item type to a APIMessageComponentEmoji
+ * Turns an enchant item type to the corresponding emoji
  * @param enchantItem
+ * @returns An EmojiResolvable or null if emoji is not found
  */
 export async function itemEnchantToEmoji(
   enchantItem: Enchant
 ): Promise<EmojiResolvable | null> {
   const enchantEmojis = (await getEmojis()).enchants;
+  const emoji = enchantEmojis[enchantItem.name];
 
-  return enchantEmojis[enchantItem.name] ?? null;
+  return emoji ? Formatter.emojiMention(emoji.id, emoji.name) : null;
 }
 
 export async function itemModifierToEmoji(
   modifierItem: Modifier
 ): Promise<EmojiResolvable | null> {
   const modEmojis = (await getEmojis()).modifiers;
+  const emoji = modEmojis[modifierItem.name];
 
-  return modEmojis[modifierItem.name] ?? null;
+  return emoji ? Formatter.emojiMention(emoji.id, emoji.name) : null;
 }
 
 export async function itemGemToEmoji(
   gemItem: Gem
 ): Promise<EmojiResolvable | null> {
   const gemEmojis = (await getEmojis()).gems;
+  const emoji = gemEmojis[gemItem.name];
 
-  return gemEmojis[gemItem.name] ?? null;
+  return emoji ? Formatter.emojiMention(emoji.id, emoji.name) : null;
 }
 
 export async function magicToEmoji(
   magicName: string
 ): Promise<EmojiResolvable | null> {
-  const magicEmojis = (await getEmojis()).gems;
+  const magicEmojis = (await getEmojis()).magics;
+  const emoji = magicEmojis[magicName];
 
-  return magicEmojis[magicName] ?? null;
+  return emoji ? Formatter.emojiMention(emoji.id, emoji.name) : null;
 }
 
 export async function fsToEmoji(
   fsName: string
 ): Promise<EmojiResolvable | null> {
   const fsEmojis = (await getEmojis()).fightingStyles;
+  const emoji = fsEmojis[fsName];
 
-  return fsEmojis[fsName] ?? null;
+  return emoji ? Formatter.emojiMention(emoji.id, emoji.name) : null;
 }
 
 export async function emojiToGem(
@@ -156,7 +162,7 @@ export function componentEmojiToText(
 /**
  * Turns an emoji in string format into an EmojiResolvable
  * @param text The emoji text
- * @returns An EmojiResolvable type
+ * @returns An EmojiResolvable object type
  */
 export function emojiTextToResolvable(
   text: string | null
