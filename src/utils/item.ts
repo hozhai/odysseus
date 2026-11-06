@@ -26,7 +26,7 @@ import {
   itemGemToEmoji,
   itemModifierToEmoji,
 } from "@utils";
-import type { RarityEnum } from "@data";
+import { type RarityEnum } from "@data";
 
 /**
  * Gets the color of a rarity given the rarity.
