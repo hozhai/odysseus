@@ -7,6 +7,8 @@ import {
   ATL_ATTACK_SIZE_CAP,
   ATL_ATTACK_SPEED_CAP,
   ATL_INTENSITY_CAP,
+  ATL_ID,
+  MISC_ATL_IDS,
 } from "@constants";
 import {
   findEnchantById,
@@ -15,7 +17,7 @@ import {
   findModifierById,
   floorTo1,
 } from "@utils";
-import type { Item, Modifier } from "@data";
+import type { Item } from "@data";
 
 /**
  * formatTotalStats formats the TotalStats passed into it by prepending an appropriate
@@ -472,6 +474,7 @@ export async function calculateEnchantStats(
   totalStats.resistance +=
     (enchant.enchantTypes?.gear?.resistanceIncrement ?? 0) * multiplier;
 
+  // warding does not need any type of flooring as it will always be an integer
   totalStats.warding += (enchant.enchantTypes?.gear?.warding ?? 0) * multiplier;
 
   // skip drawback
@@ -479,11 +482,15 @@ export async function calculateEnchantStats(
   return totalStats;
 }
 
-export function calculateAtlanteanEssence(
-  item_stats: TotalStats,
-  atl: Modifier
-): TotalStats {
+export async function calculateAtlanteanEssence(
+  item_stats: TotalStats
+): Promise<TotalStats> {
   const totalStats = createEmptyTotalStats();
+  const atl = await findModifierById(ATL_ID);
+
+  if (!atl) {
+    throw Error("Atlantean Essence modifier item not found in modifiers.yaml");
+  }
 
   // alt essence always gives 1 insanity regardless
   totalStats.insanity += 1;
@@ -524,7 +531,7 @@ export function calculateAtlanteanEssence(
     // if all stats are present, roll back to power
     totalStats.power += Math.min(
       Math.floor((atl.powerIncrement ?? 0) * multiplier),
-      13
+      ATL_POWER_CAP
     );
   }
 
@@ -533,7 +540,7 @@ export function calculateAtlanteanEssence(
 
 export async function calculateModifierStats(
   modifier_id: string,
-  item_stats: TotalStats
+  itemStats: TotalStats
 ): Promise<TotalStats> {
   const modifier = await findModifierById(modifier_id);
 
@@ -544,8 +551,8 @@ export async function calculateModifierStats(
   }
 
   // atlantean essence calculation
-  if (modifier.id === "AAu") {
-    return calculateAtlanteanEssence(item_stats, modifier);
+  if (modifier.id === ATL_ID) {
+    return calculateAtlanteanEssence(itemStats);
   }
 
   const multiplier = MAX_LEVEL / 10;
@@ -562,6 +569,42 @@ export async function calculateModifierStats(
   totalStats.resistance += (modifier.resistanceIncrement ?? 0) * multiplier;
   // skip warding
   // skip drawback
+
+  if (MISC_ATL_IDS.includes(modifier_id)) {
+    const combinedTotalStats = createEmptyTotalStats();
+
+    combinedTotalStats.power += totalStats.power + itemStats.power;
+    combinedTotalStats.defense += totalStats.defense + itemStats.defense;
+    combinedTotalStats.agility += totalStats.agility + itemStats.agility;
+    combinedTotalStats.attackSpeed +=
+      totalStats.attackSpeed + itemStats.attackSpeed;
+    combinedTotalStats.attackSize +=
+      totalStats.attackSize + itemStats.attackSize;
+    combinedTotalStats.intensity += totalStats.intensity + itemStats.intensity;
+    combinedTotalStats.regeneration +=
+      totalStats.regeneration + itemStats.regeneration;
+    // skip insanity
+    combinedTotalStats.piercing += totalStats.piercing + itemStats.piercing;
+    combinedTotalStats.resistance +=
+      totalStats.resistance + itemStats.resistance;
+    // skip warding
+    // skip drawback
+
+    const atlanteanStats = await calculateAtlanteanEssence(combinedTotalStats);
+
+    totalStats.power += atlanteanStats.power;
+    totalStats.defense += atlanteanStats.defense;
+    totalStats.agility += atlanteanStats.agility;
+    totalStats.attackSpeed += atlanteanStats.attackSpeed;
+    totalStats.attackSize += atlanteanStats.attackSize;
+    totalStats.intensity += atlanteanStats.intensity;
+    // skip regeneration
+    totalStats.insanity += atlanteanStats.insanity; // don't skip insanity
+    // skip piercing
+    // skip resistance
+    // skip warding
+    // skip drawback
+  }
 
   return totalStats;
 }
@@ -632,6 +675,19 @@ export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {
   totalStats.resistance += modifierTotalStats.resistance;
   totalStats.warding += modifierTotalStats.warding;
   totalStats.drawback += modifierTotalStats.drawback;
+
+  totalStats.power = floorTo1(totalStats.power);
+  totalStats.defense = floorTo1(totalStats.defense);
+  totalStats.agility = floorTo1(totalStats.agility);
+  totalStats.attackSpeed = floorTo1(totalStats.attackSpeed);
+  totalStats.attackSize = floorTo1(totalStats.attackSize);
+  totalStats.intensity = floorTo1(totalStats.intensity);
+  totalStats.regeneration = floorTo1(totalStats.regeneration);
+  // skip insanity
+  totalStats.piercing = floorTo1(totalStats.piercing);
+  totalStats.resistance = floorTo1(totalStats.resistance);
+  // skip warding
+  // skip drawback
 
   return totalStats;
 }
