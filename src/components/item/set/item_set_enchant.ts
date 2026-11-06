@@ -8,6 +8,7 @@ import {
 } from "seyfert";
 import { getData } from "@data";
 import { itemEnchantToEmoji } from "@utils";
+import { EMPTY_ENCHANTMENT_ID } from "@/constants";
 
 export default class ItemSetEnchantButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -47,12 +48,17 @@ export default class ItemSetEnchantButton extends ComponentCommand {
       .setRequired(true)
       .setValuesLength({ max: 1, min: 1 });
 
+    selectMenu.addOption([
+      new StringSelectOption().setLabel("None").setValue("none"),
+    ]);
+
     for (const enchant of Object.values(enchantData)) {
       if (
         enchant.mainType !== "Enchant" ||
         enchant.name === "Sturdy" ||
         enchant.name === "Reinforced" ||
-        enchant.name === "Warship"
+        enchant.name === "Warship" ||
+        enchant.id === EMPTY_ENCHANTMENT_ID
       )
         continue;
 

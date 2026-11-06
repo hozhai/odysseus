@@ -8,6 +8,7 @@ import {
 } from "seyfert";
 import { getData } from "@data";
 import { findItemById, itemGemToEmoji, parseEmbedIntoSlot } from "@utils";
+import { EMPTY_GEM_ID } from "@/constants";
 
 export default class ItemSetGemsRegularButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -59,8 +60,12 @@ export default class ItemSetGemsRegularButton extends ComponentCommand {
       .setRequired(true)
       .setValuesLength({ max: item?.gemNo ?? 0, min: 0 });
 
+    selectMenu.addOption([
+      new StringSelectOption().setLabel("None").setValue("none"),
+    ]);
+
     for (const gem of Object.values(gemData)) {
-      if (gem.fused) continue;
+      if (gem.fused || gem.id === EMPTY_GEM_ID) continue;
 
       const option = new StringSelectOption()
         .setLabel(gem.name)

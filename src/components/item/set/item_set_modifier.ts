@@ -49,11 +49,15 @@ export default class ItemSetModifierButton extends ComponentCommand {
       .setRequired(true)
       .setValuesLength({ max: 1, min: 1 });
 
+    selectMenu.addOption([
+      new StringSelectOption().setLabel("None").setValue("none"),
+    ]);
+
     for (const modifier of Object.values(modifierData)) {
+      // De Morgan's law
       if (
-        // De Morgan's law
-        !item.validModifiers?.includes(modifier.name) &&
-        modifier.id !== EMPTY_MODIFIER_ID
+        !item.validModifiers?.includes(modifier.name) ||
+        item.id === EMPTY_MODIFIER_ID
       )
         continue;
 
