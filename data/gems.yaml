@@ -1,208 +1,3 @@
-aZ2:
-  id: aZ2
-  name: Intensity Gem
-  legend: Max Intensity Gem Innit
-  mainType: Gem
-  rarity: Rare
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemIntensityMaxPlaceholder.jpg?raw=true
-  deleted: false
-  intensity: 10
-  fused: false
-CTP:
-  id: CTP
-  name: Malachite
-  legend: >-
-    Malachi was a mostly-anonymous prophet whose ministry occurred in Jerusalem
-    during the era of Nehemiah and Ezra. Although he spoke primarily to a
-    specific time and place in history, Malachi also prophesied of the messianic
-    “forerunner” who would announce the appearance of Christ more than 400 years
-    after his lifetime.
-  mainType: Gem
-  rarity: Exotic
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectMalachite.jpg?raw=true
-  deleted: false
-  power: 3.9
-  attackSize: 6.5
-  fused: false
-qGg:
-  id: qGg
-  name: Defense Gem
-  legend: Max Defense Gem Innit
-  mainType: Gem
-  rarity: Rare
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemDefenseMaxPlaceholder.jpg?raw=true
-  deleted: false
-  defense: 31
-  fused: false
-fY6:
-  id: fY6
-  name: Attack Speed Gem
-  legend: Max Attack Speed Gem Innit
-  mainType: Gem
-  rarity: Rare
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAttackSpeedMaxPlaceholder.jpg?raw=true
-  deleted: false
-  attackSpeed: 10
-  fused: false
-2ST:
-  id: 2ST
-  name: Attack Size Gem
-  legend: Max Attack Size Gem Innit
-  mainType: Gem
-  rarity: Rare
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAttackSizeMaxPlaceholder.jpg?raw=true
-  deleted: false
-  attackSize: 10
-  fused: false
-nca:
-  id: nca
-  name: Perfect Aventurine
-  legend: Its adventure time!!!
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  regeneration: 19
-  fused: false
-AAF:
-  id: AAF
-  name: None
-  legend: Shine bright like a NOTHING
-  mainType: Gem
-  rarity: None
-  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/master/static/assets/images/gem/0.jpg
-  deleted: false
-  fused: ~
-GYC:
-  id: GYC
-  name: Variscite
-  legend: >-
-    An exotic gem - Xtremev13 was here. Hello xtremev13, Bob here. Please fix
-    this ASAP.
-  mainType: Gem
-  rarity: Exotic
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectVariscite.jpg?raw=true
-  deleted: false
-  agility: 9
-  attackSize: 9
-  fused: false
-9pe:
-  id: 9pe
-  name: Painite
-  legend: The world shall know pain.
-  mainType: Gem
-  rarity: Exotic
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectPainite.jpg?raw=true
-  deleted: false
-  defense: 188
-  drawback: 1
-  fused: false
-N9w:
-  id: N9w
-  name: Larimar
-  legend: LAMAR FROM GTA V !?????
-  mainType: Gem
-  rarity: Exotic
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectLarimar.jpg?raw=true
-  deleted: false
-  attackSpeed: 9
-  intensity: 9
-  fused: false
-XpP:
-  id: XpP
-  name: Candelaria
-  legend: Sounds like that one pokemon
-  mainType: Gem
-  rarity: Exotic
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectCandaleria.jpg?raw=true
-  deleted: false
-  power: 3.9
-  attackSpeed: 6.5
-  fused: false
-0ma:
-  id: 0ma
-  name: Agility Gem
-  legend: Max Agility Gem Innit
-  mainType: Gem
-  rarity: Rare
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAgilityMaxPlaceholder.jpg?raw=true
-  deleted: false
-  agility: 10
-  fused: false
-DuG:
-  id: DuG
-  name: Perfect Fire Opal
-  legend: Armor Piercing Gem.
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  piercing: 19
-  fused: false
-CBH:
-  id: CBH
-  name: Perfect Azurite
-  legend: Ultraman Azul
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  resistance: 19
-  fused: false
-sKB:
-  id: sKB
-  name: Morenci
-  legend: Ngl this reminds me of mordecai from the regular show.
-  mainType: Gem
-  rarity: Exotic
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectMorenci.jpg?raw=true
-  deleted: false
-  power: 4
-  agility: 6
-  fused: false
-ozh:
-  id: ozh
-  name: Lapiz Lazuli
-  legend: MINECRAFT REFERENCE?!!?!?@112
-  mainType: Gem
-  rarity: Exotic
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectLapisLazuli.jpg?raw=true
-  deleted: false
-  agility: 9
-  attackSpeed: 9
-  fused: false
-91q:
-  id: 91q
-  name: Kyanite
-  legend: We have cyan at home.
-  mainType: Gem
-  rarity: Exotic
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectCyanite.jpg?raw=true
-  deleted: false
-  agility: 9
-  intensity: 9
-  fused: false
-XUx:
-  id: XUx
-  name: Agate
-  legend: Agaga goo goo gaa gaa
-  mainType: Gem
-  rarity: Exotic
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectAgate.jpg?raw=true
-  deleted: false
-  defense: 39
-  attackSize: 6
-  fused: false
-NU7:
-  id: NU7
-  name: Power Gem
-  legend: Max Power Gem Innit
-  mainType: Gem
-  rarity: Rare
-  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemPowerMaxPlaceholder.jpg?raw=true
-  deleted: false
-  power: 3
-  fused: false
 XOW:
   id: XOW
   name: 2x Agate
@@ -214,29 +9,25 @@ XOW:
   defense: 48
   attackSize: 8
   fused: true
-i0a:
-  id: i0a
-  name: Candelaria-Morenci
-  legend: Fused jewel of Candelaria and Morenci
+jkq:
+  id: jkq
+  name: 2x Aventurine
+  legend: Fused jewel of Aventurine and Aventurine
   mainType: Gem
   rarity: Exotic
   imageId: ""
   deleted: false
-  power: 4
-  agility: 4
-  attackSpeed: 4
+  regeneration: 22
   fused: true
-3VF:
-  id: 3VF
-  name: Candelaria-Malachite
-  legend: Fused jewel of Candelaria and Malachite
+UH2:
+  id: UH2
+  name: 2x Azurite
+  legend: Fused jewel of Azurite and Azurite
   mainType: Gem
   rarity: Exotic
   imageId: ""
   deleted: false
-  power: 4
-  attackSpeed: 4
-  attackSize: 4
+  resistance: 22
   fused: true
 zCi:
   id: zCi
@@ -249,245 +40,15 @@ zCi:
   power: 4.8
   attackSpeed: 9.5
   fused: true
-3Z5:
-  id: 3Z5
-  name: Agate-Malachite
-  legend: Fused jewel of Agate and Malachite
+0xS:
+  id: 0xS
+  name: 2x Fire Opal
+  legend: Fused jewel of Fire Opal and Fire Opal
   mainType: Gem
   rarity: Exotic
   imageId: ""
   deleted: false
-  power: 2
-  defense: 24
-  attackSize: 8
-  fused: true
-B2g:
-  id: B2g
-  name: 2x Morenci
-  legend: Fused jewel of Morenci and Morenci
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  power: 4.8
-  agility: 9.5
-  fused: true
-ISO:
-  id: ISO
-  name: 2x Malachite
-  legend: Fused jewel of Malachite and Malachite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  power: 4.8
-  attackSize: 9.5
-  fused: true
-7ja:
-  id: 7ja
-  name: Agate-Candelaria
-  legend: Fused jewel of Agate and Candelaria
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  power: 2
-  defense: 24
-  attackSpeed: 4
-  attackSize: 4
-  fused: true
-v9g:
-  id: v9g
-  name: 2x Lapis Lazuli
-  legend: Fused jewel of Lapis Lazuli and Lapis Lazuli
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  agility: 12
-  attackSpeed: 12
-  fused: true
-0sr:
-  id: 0sr
-  name: Aventurine-Lapis Lazuli
-  legend: Fused jewel of Aventurine and Lapis Lazuli
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  agility: 6
-  attackSpeed: 6
-  regeneration: 11
-  fused: true
-uJ6:
-  id: uJ6
-  name: Aventurine-Larimar
-  legend: Fused jewel of Aventurine and Larimar
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  attackSpeed: 6
-  intensity: 6
-  regeneration: 11
-  fused: true
-kmW:
-  id: kmW
-  name: Aventurine-Kyanite
-  legend: Fused jewel of Aventurine and Kyanite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  agility: 6
-  intensity: 6
-  regeneration: 11
-  fused: true
-bMc:
-  id: bMc
-  name: Aventurine-Variscite
-  legend: Fused jewel of Aventurine and Variscite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  agility: 6
-  attackSize: 6
-  regeneration: 11
-  fused: true
-z4V:
-  id: z4V
-  name: Lapis Lazuli-Candelaria
-  legend: Fused jewel of Lapis Lazuli and Candelaria
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  power: 2
-  agility: 6
-  attackSpeed: 10
-  fused: true
-cVQ:
-  id: cVQ
-  name: Candelaria-Larimar
-  legend: Fused jewel of Candelaria and Larimar
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  power: 2
-  attackSpeed: 10
-  intensity: 6
-  fused: true
-aV5:
-  id: aV5
-  name: Agate-Lapis Lazuli
-  legend: Fused jewel of Agate and Lapis Lazuli
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  defense: 24
-  agility: 6
-  attackSpeed: 6
-  attackSize: 4
-  fused: true
-VI5:
-  id: VI5
-  name: 2x Painite
-  legend: Fused jewel of Painite and Painite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  defense: 224
-  drawback: 1
-  fused: true
-QDU:
-  id: QDU
-  name: Malachite-Lapis Lazuli
-  legend: Fused jewel of Malachite and Lapis Lazuli
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  power: 2
-  agility: 6
-  attackSpeed: 6
-  attackSize: 4
-  fused: true
-wSE:
-  id: wSE
-  name: 2x Larimar
-  legend: Fused jewel of Larimar and Larimar
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  attackSpeed: 12
-  intensity: 12
-  fused: true
-WAx:
-  id: WAx
-  name: 2x Variscite
-  legend: Fused jewel of Variscite and Variscite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  agility: 12
-  attackSize: 12
-  fused: true
-bDg:
-  id: bDg
-  name: Candelaria-Kyanite
-  legend: Fused jewel of Candelaria and Kyanite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  power: 2
-  agility: 6
-  attackSpeed: 4
-  intensity: 6
-  fused: true
-Y3q:
-  id: Y3q
-  name: Kyanite-Malachite
-  legend: Fused jewel of Kyanite and Malachite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  power: 2
-  agility: 6
-  attackSize: 4
-  intensity: 6
-  fused: true
-k8N:
-  id: k8N
-  name: Variscite-Kyanite
-  legend: Fused jewel of Variscite and Kyanite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  agility: 12
-  attackSize: 6
-  intensity: 6
-  fused: true
-nIw:
-  id: nIw
-  name: Variscite-Larimar
-  legend: Fused jewel of Variscite and Larimar
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  agility: 6
-  attackSpeed: 6
-  attackSize: 6
-  intensity: 6
+  piercing: 22
   fused: true
 I3F:
   id: I3F
@@ -500,136 +61,83 @@ I3F:
   agility: 12
   intensity: 12
   fused: true
-jkq:
-  id: jkq
-  name: 2x Aventurine
-  legend: Fused jewel of Aventurine and Aventurine
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  regeneration: 22
-  fused: true
-n7Q:
-  id: n7Q
-  name: Variscite-Lapis Lazuli
-  legend: Fused jewel of Variscite and Lapis Lazuli
+v9g:
+  id: v9g
+  name: 2x Lapis Lazuli
+  legend: Fused jewel of Lapis Lazuli and Lapis Lazuli
   mainType: Gem
   rarity: Exotic
   imageId: ""
   deleted: false
   agility: 12
-  attackSpeed: 6
+  attackSpeed: 12
+  fused: true
+wSE:
+  id: wSE
+  name: 2x Larimar
+  legend: Fused jewel of Larimar and Larimar
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  attackSpeed: 12
+  intensity: 12
+  fused: true
+ISO:
+  id: ISO
+  name: 2x Malachite
+  legend: Fused jewel of Malachite and Malachite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 4.8
+  attackSize: 9.5
+  fused: true
+B2g:
+  id: B2g
+  name: 2x Morenci
+  legend: Fused jewel of Morenci and Morenci
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 4.8
+  agility: 9.5
+  fused: true
+VI5:
+  id: VI5
+  name: 2x Painite
+  legend: Fused jewel of Painite and Painite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  defense: 224
+  drawback: 1
+  fused: true
+WAx:
+  id: WAx
+  name: 2x Variscite
+  legend: Fused jewel of Variscite and Variscite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 12
+  attackSize: 12
+  fused: true
+XUx:
+  id: XUx
+  name: Agate
+  legend: Agaga goo goo gaa gaa
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectAgate.jpg?raw=true
+  deleted: false
+  defense: 39
   attackSize: 6
-  fused: true
-0xS:
-  id: 0xS
-  name: 2x Fire Opal
-  legend: Fused jewel of Fire Opal and Fire Opal
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  piercing: 22
-  fused: true
-kE3:
-  id: kE3
-  name: Morenci-Lapis Lazuli
-  legend: Fused jewel of Morenci and Lapis Lazuli
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  power: 2
-  agility: 10
-  attackSpeed: 6
-  fused: true
-5Rr:
-  id: 5Rr
-  name: Fire Opal-Larimar
-  legend: Fused jewel of Fire Opal and Larimar
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  attackSpeed: 6
-  intensity: 6
-  piercing: 11
-  fused: true
-bhs:
-  id: bhs
-  name: Lapis Lazuli-Fire Opal
-  legend: Fused jewel of Lapis Lazuli and Fire Opal
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  agility: 6
-  attackSpeed: 6
-  piercing: 11
-  fused: true
-auD:
-  id: auD
-  name: Fire Opal-Kyanite
-  legend: Fused jewel of Fire Opal and Kyanite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  agility: 6
-  intensity: 6
-  piercing: 11
-  fused: true
-3NK:
-  id: 3NK
-  name: Painite-Lapis Lazuli
-  legend: Fused jewel of Painite and Lapis Lazuli
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  defense: 112
-  agility: 6
-  attackSpeed: 6
-  drawback: 0.5
-  fused: true
-Aln:
-  id: Aln
-  name: Variscite-Painite
-  legend: Fused jewel of Variscite and Painite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  defense: 112
-  agility: 6
-  attackSize: 6
-  drawback: 0.5
-  fused: true
-3H8:
-  id: 3H8
-  name: Agate-Painite
-  legend: Fused jewel of Agate and Painite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  defense: 136
-  attackSize: 4
-  drawback: 0.5
-  fused: true
-42u:
-  id: 42u
-  name: Aventurine-Painite
-  legend: Fused jewel of Aventurine and Painite
-  mainType: Gem
-  rarity: Exotic
-  imageId: ""
-  deleted: false
-  defense: 112
-  regeneration: 11
-  drawback: 0.5
-  fused: true
+  fused: false
 Pmu:
   id: Pmu
   name: Agate-Aventurine
@@ -653,6 +161,19 @@ RkS:
   defense: 24
   attackSize: 4
   resistance: 11
+  fused: true
+7ja:
+  id: 7ja
+  name: Agate-Candelaria
+  legend: Fused jewel of Agate and Candelaria
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  defense: 24
+  attackSpeed: 4
+  attackSize: 4
   fused: true
 A7Q:
   id: A7Q
@@ -679,6 +200,19 @@ L4L:
   agility: 6
   intensity: 6
   fused: true
+aV5:
+  id: aV5
+  name: Agate-Lapis Lazuli
+  legend: Fused jewel of Agate and Lapis Lazuli
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  defense: 24
+  agility: 6
+  attackSpeed: 6
+  attackSize: 4
+  fused: true
 4KO:
   id: 4KO
   name: Agate-Larimar
@@ -691,6 +225,18 @@ L4L:
   attackSize: 4
   attackSpeed: 6
   intensity: 6
+  fused: true
+3Z5:
+  id: 3Z5
+  name: Agate-Malachite
+  legend: Fused jewel of Agate and Malachite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  defense: 24
+  attackSize: 8
   fused: true
 56W:
   id: 56W
@@ -705,6 +251,18 @@ L4L:
   power: 2
   agility: 4
   fused: true
+3H8:
+  id: 3H8
+  name: Agate-Painite
+  legend: Fused jewel of Agate and Painite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  defense: 136
+  attackSize: 4
+  drawback: 0.5
+  fused: true
 L93:
   id: L93
   name: Agate-Variscite
@@ -717,6 +275,36 @@ L93:
   attackSize: 10
   agility: 6
   fused: true
+0ma:
+  id: 0ma
+  name: Agility Gem
+  legend: Max Agility Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAgilityMaxPlaceholder.jpg?raw=true
+  deleted: false
+  agility: 10
+  fused: false
+2ST:
+  id: 2ST
+  name: Attack Size Gem
+  legend: Max Attack Size Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAttackSizeMaxPlaceholder.jpg?raw=true
+  deleted: false
+  attackSize: 10
+  fused: false
+fY6:
+  id: fY6
+  name: Attack Speed Gem
+  legend: Max Attack Speed Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemAttackSpeedMaxPlaceholder.jpg?raw=true
+  deleted: false
+  attackSpeed: 10
+  fused: false
 A2g:
   id: A2g
   name: Aventurine-Azurite
@@ -751,6 +339,42 @@ Yld:
   regeneration: 11
   piercing: 11
   fused: true
+kmW:
+  id: kmW
+  name: Aventurine-Kyanite
+  legend: Fused jewel of Aventurine and Kyanite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  intensity: 6
+  regeneration: 11
+  fused: true
+0sr:
+  id: 0sr
+  name: Aventurine-Lapis Lazuli
+  legend: Fused jewel of Aventurine and Lapis Lazuli
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  attackSpeed: 6
+  regeneration: 11
+  fused: true
+uJ6:
+  id: uJ6
+  name: Aventurine-Larimar
+  legend: Fused jewel of Aventurine and Larimar
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  attackSpeed: 6
+  intensity: 6
+  regeneration: 11
+  fused: true
 tGq:
   id: tGq
   name: Aventurine-Malachite
@@ -775,15 +399,29 @@ wm8:
   power: 2
   agility: 4
   fused: true
-UH2:
-  id: UH2
-  name: 2x Azurite
-  legend: Fused jewel of Azurite and Azurite
+42u:
+  id: 42u
+  name: Aventurine-Painite
+  legend: Fused jewel of Aventurine and Painite
   mainType: Gem
   rarity: Exotic
   imageId: ""
   deleted: false
-  resistance: 22
+  defense: 112
+  regeneration: 11
+  drawback: 0.5
+  fused: true
+bMc:
+  id: bMc
+  name: Aventurine-Variscite
+  legend: Fused jewel of Aventurine and Variscite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  attackSize: 6
+  regeneration: 11
   fused: true
 Eoq:
   id: Eoq
@@ -892,6 +530,17 @@ H6U:
   agility: 6
   attackSize: 6
   fused: true
+XpP:
+  id: XpP
+  name: Candelaria
+  legend: Sounds like that one pokemon
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectCandaleria.jpg?raw=true
+  deleted: false
+  power: 3.9
+  attackSpeed: 6.5
+  fused: false
 0Pu:
   id: 0Pu
   name: Candelaria-Fire Opal
@@ -903,6 +552,55 @@ H6U:
   power: 2
   attackSpeed: 4
   piercing: 11
+  fused: true
+bDg:
+  id: bDg
+  name: Candelaria-Kyanite
+  legend: Fused jewel of Candelaria and Kyanite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  agility: 6
+  attackSpeed: 4
+  intensity: 6
+  fused: true
+cVQ:
+  id: cVQ
+  name: Candelaria-Larimar
+  legend: Fused jewel of Candelaria and Larimar
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  attackSpeed: 10
+  intensity: 6
+  fused: true
+3VF:
+  id: 3VF
+  name: Candelaria-Malachite
+  legend: Fused jewel of Candelaria and Malachite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 4
+  attackSpeed: 4
+  attackSize: 4
+  fused: true
+i0a:
+  id: i0a
+  name: Candelaria-Morenci
+  legend: Fused jewel of Candelaria and Morenci
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 4
+  agility: 4
+  attackSpeed: 4
   fused: true
 TAR:
   id: TAR
@@ -929,6 +627,40 @@ MPf:
   attackSpeed: 4
   agility: 6
   attackSize: 6
+  fused: true
+qGg:
+  id: qGg
+  name: Defense Gem
+  legend: Max Defense Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemDefenseMaxPlaceholder.jpg?raw=true
+  deleted: false
+  defense: 31
+  fused: false
+auD:
+  id: auD
+  name: Fire Opal-Kyanite
+  legend: Fused jewel of Fire Opal and Kyanite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  intensity: 6
+  piercing: 11
+  fused: true
+5Rr:
+  id: 5Rr
+  name: Fire Opal-Larimar
+  legend: Fused jewel of Fire Opal and Larimar
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  attackSpeed: 6
+  intensity: 6
+  piercing: 11
   fused: true
 GXg:
   id: GXg
@@ -978,6 +710,27 @@ AqB:
   agility: 6
   attackSize: 6
   fused: true
+aZ2:
+  id: aZ2
+  name: Intensity Gem
+  legend: Max Intensity Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemIntensityMaxPlaceholder.jpg?raw=true
+  deleted: false
+  intensity: 10
+  fused: false
+91q:
+  id: 91q
+  name: Kyanite
+  legend: We have cyan at home.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectCyanite.jpg?raw=true
+  deleted: false
+  agility: 9
+  intensity: 9
+  fused: false
 vxm:
   id: vxm
   name: Kyanite-Lapis Lazuli
@@ -1001,6 +754,19 @@ Tm6:
   agility: 6
   intensity: 12
   attackSpeed: 6
+  fused: true
+Y3q:
+  id: Y3q
+  name: Kyanite-Malachite
+  legend: Fused jewel of Kyanite and Malachite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  agility: 6
+  attackSize: 4
+  intensity: 6
   fused: true
 Mqc:
   id: Mqc
@@ -1027,6 +793,30 @@ xFu:
   defense: 112
   drawback: 0.5
   fused: true
+z4V:
+  id: z4V
+  name: Lapis Lazuli-Candelaria
+  legend: Fused jewel of Lapis Lazuli and Candelaria
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  agility: 6
+  attackSpeed: 10
+  fused: true
+bhs:
+  id: bhs
+  name: Lapis Lazuli-Fire Opal
+  legend: Fused jewel of Lapis Lazuli and Fire Opal
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  attackSpeed: 6
+  piercing: 11
+  fused: true
 1Zk:
   id: 1Zk
   name: Lapis Lazuli-Larimar
@@ -1039,6 +829,28 @@ xFu:
   attackSpeed: 12
   intensity: 6
   fused: true
+ozh:
+  id: ozh
+  name: Lapiz Lazuli
+  legend: MINECRAFT REFERENCE?!!?!?@112
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectLapisLazuli.jpg?raw=true
+  deleted: false
+  agility: 9
+  attackSpeed: 9
+  fused: false
+N9w:
+  id: N9w
+  name: Larimar
+  legend: LAMAR FROM GTA V !?????
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectLarimar.jpg?raw=true
+  deleted: false
+  attackSpeed: 9
+  intensity: 9
+  fused: false
 KcS:
   id: KcS
   name: Larimar-Malachite
@@ -1078,6 +890,35 @@ PLE:
   defense: 112
   drawback: 0.5
   fused: true
+CTP:
+  id: CTP
+  name: Malachite
+  legend: >-
+    Malachi was a mostly-anonymous prophet whose ministry occurred in Jerusalem
+    during the era of Nehemiah and Ezra. Although he spoke primarily to a
+    specific time and place in history, Malachi also prophesied of the messianic
+    “forerunner” who would announce the appearance of Christ more than 400 years
+    after his lifetime.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectMalachite.jpg?raw=true
+  deleted: false
+  power: 3.9
+  attackSize: 6.5
+  fused: false
+QDU:
+  id: QDU
+  name: Malachite-Lapis Lazuli
+  legend: Fused jewel of Malachite and Lapis Lazuli
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  agility: 6
+  attackSpeed: 6
+  attackSize: 4
+  fused: true
 ZX9:
   id: ZX9
   name: Malachite-Morenci
@@ -1115,6 +956,29 @@ dWE:
   attackSize: 10
   agility: 6
   fused: true
+sKB:
+  id: sKB
+  name: Morenci
+  legend: Ngl this reminds me of mordecai from the regular show.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectMorenci.jpg?raw=true
+  deleted: false
+  power: 4
+  agility: 6
+  fused: false
+kE3:
+  id: kE3
+  name: Morenci-Lapis Lazuli
+  legend: Fused jewel of Morenci and Lapis Lazuli
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  power: 2
+  agility: 10
+  attackSpeed: 6
+  fused: true
 HER:
   id: HER
   name: Morenci-Painite
@@ -1139,4 +1003,140 @@ q7U:
   power: 2
   agility: 10
   attackSize: 6
+  fused: true
+AAF:
+  id: AAF
+  name: None
+  legend: Shine bright like a NOTHING
+  mainType: Gem
+  rarity: None
+  imageId: https://raw.githubusercontent.com/BobbyNooby/AOGearBuilder/master/static/assets/images/gem/0.jpg
+  deleted: false
+  fused: ~
+9pe:
+  id: 9pe
+  name: Painite
+  legend: The world shall know pain.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectPainite.jpg?raw=true
+  deleted: false
+  defense: 188
+  drawback: 1
+  fused: false
+3NK:
+  id: 3NK
+  name: Painite-Lapis Lazuli
+  legend: Fused jewel of Painite and Lapis Lazuli
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  defense: 112
+  agility: 6
+  attackSpeed: 6
+  drawback: 0.5
+  fused: true
+nca:
+  id: nca
+  name: Perfect Aventurine
+  legend: Its adventure time!!!
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  regeneration: 19
+  fused: false
+CBH:
+  id: CBH
+  name: Perfect Azurite
+  legend: Ultraman Azul
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  resistance: 19
+  fused: false
+DuG:
+  id: DuG
+  name: Perfect Fire Opal
+  legend: Armor Piercing Gem.
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  piercing: 19
+  fused: false
+NU7:
+  id: NU7
+  name: Power Gem
+  legend: Max Power Gem Innit
+  mainType: Gem
+  rarity: Rare
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/gemPowerMaxPlaceholder.jpg?raw=true
+  deleted: false
+  power: 3
+  fused: false
+GYC:
+  id: GYC
+  name: Variscite
+  legend: >-
+    An exotic gem - Xtremev13 was here. Hello xtremev13, Bob here. Please fix
+    this ASAP.
+  mainType: Gem
+  rarity: Exotic
+  imageId: https://github.com/BobbyNooby/AOGearBuilder/blob/typescript/static/assets/images/Gems/perfectVariscite.jpg?raw=true
+  deleted: false
+  agility: 9
+  attackSize: 9
+  fused: false
+k8N:
+  id: k8N
+  name: Variscite-Kyanite
+  legend: Fused jewel of Variscite and Kyanite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 12
+  attackSize: 6
+  intensity: 6
+  fused: true
+n7Q:
+  id: n7Q
+  name: Variscite-Lapis Lazuli
+  legend: Fused jewel of Variscite and Lapis Lazuli
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 12
+  attackSpeed: 6
+  attackSize: 6
+  fused: true
+nIw:
+  id: nIw
+  name: Variscite-Larimar
+  legend: Fused jewel of Variscite and Larimar
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  agility: 6
+  attackSpeed: 6
+  attackSize: 6
+  intensity: 6
+  fused: true
+Aln:
+  id: Aln
+  name: Variscite-Painite
+  legend: Fused jewel of Variscite and Painite
+  mainType: Gem
+  rarity: Exotic
+  imageId: ""
+  deleted: false
+  defense: 112
+  agility: 6
+  attackSize: 6
+  drawback: 0.5
   fused: true
