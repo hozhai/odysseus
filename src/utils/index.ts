@@ -8,3 +8,4 @@ export * from "./leaderboard-diff";
 export * from "./misc";
 export * from "./pagination";
 export * from "./stats";
+export * from "./gearbuilder";
