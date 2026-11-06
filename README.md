@@ -30,4 +30,4 @@ Contributions are welcome! By contributing, you agree that your contributions wi
 
 ## 📜 Credits
 
-I'd like to show great appreciation to [BobbyNooby](https://github.com/BobbyNooby) for the original GearBuilder and the inspiration to create Odysseus. I'd also like to show great appreciation to [WoodyLoody](https://github.com/woodyloody) for sending me over the updated data for all the items in AO.
+I'd like to show great appreciation to [BobbyNooby](https://github.com/BobbyNooby) for the original GearBuilder and the inspiration to create Odysseus. I'd also like to show great appreciation to [WoodyLoody](https://github.com/woodyloody) for sending me over the updated data for all the items in AO. I would like to additionally give credits to the [Arcane Odyssey Fandom Wiki](https://roblox-arcane-odyssey.fandom.com/wiki/Arcane_Odyssey_Wiki) for their images and information.
