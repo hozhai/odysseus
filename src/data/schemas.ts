@@ -40,12 +40,12 @@ export const ItemSchema = z.object({
   imageId: z.string(),
   deleted: z.boolean(),
   subType: z.string().nullable().optional(),
-  gemNo: z.number().int().nullable().optional(),
-  minLevel: z.number().int().nullable().optional(),
-  maxLevel: z.number().int().nullable().optional(),
+  gemNo: z.number().int(),
+  minLevel: z.number().int(),
+  maxLevel: z.number().int(),
   statType: StatTypeSchema.nullable().optional(),
-  validModifiers: z.array(z.string()).nullable().optional(),
-  scaling: ScalingSchema.nullable().optional(),
+  validModifiers: z.array(z.string()),
+  scaling: ScalingSchema.optional(),
 });
 
 export const ItemsSchema = z.record(z.string(), ItemSchema);
