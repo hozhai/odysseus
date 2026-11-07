@@ -9,6 +9,12 @@ import { Formatter } from "seyfert";
 import type { EmojiResolvable } from "seyfert/lib/common";
 import type { Enchant, Gem, Modifier } from "@data";
 import { getEmojis } from "@/data/loadEmojis";
+import {
+  FightingStylesEnum,
+  fsNameToEnum,
+  magicNameToEnum,
+  type MagicsEnum,
+} from "./build";
 
 /**
  * Turns an enchant item type to the corresponding emoji
@@ -145,6 +151,66 @@ export async function emojiToModifier(
   return null;
 }
 
+export async function emojiToMagicEnum(
+  emoji: EmojiResolvable | null
+): Promise<MagicsEnum | null> {
+  if (!emoji) return null;
+
+  const magicEmojis = (await getEmojis()).magics;
+
+  const emojiText =
+    typeof emoji === "string"
+      ? emoji
+      : Formatter.emojiMention(
+          emoji.id ?? "",
+          emoji.name ?? "",
+          emoji.animated
+        );
+
+  for (const [key, value] of Object.entries(magicEmojis)) {
+    if (Formatter.emojiMention(value.id, value.name) === emojiText) {
+      return magicNameToEnum(key);
+    }
+  }
+
+  return null;
+}
+
+export async function emojiToFsEnum(
+  emoji: EmojiResolvable | null
+): Promise<FightingStylesEnum | null> {
+  if (!emoji) return null;
+
+  const fsEmojis = (await getEmojis()).fightingStyles;
+
+  const emojiText =
+    typeof emoji === "string"
+      ? emoji
+      : Formatter.emojiMention(
+          emoji.id ?? "",
+          emoji.name ?? "",
+          emoji.animated
+        );
+
+  for (const [key, value] of Object.entries(fsEmojis)) {
+    if (Formatter.emojiMention(value.id, value.name) === emojiText) {
+      return fsNameToEnum(key);
+    }
+  }
+
+  return null;
+}
+
+export function emojiResolvableToText(emoji: EmojiResolvable): EmojiResolvable {
+  if (typeof emoji === "string") return emoji;
+
+  return Formatter.emojiMention(
+    emoji.id ?? "",
+    emoji.name ?? "",
+    emoji.animated
+  );
+}
+
 /**
  * Turns a APIMessageComponentEmoji into an emoji in string format
  * @param emoji The emoji in APIMessageComponentEmoji format
@@ -179,4 +245,8 @@ export function emojiTextToResolvable(
     name: name,
     id: id,
   };
+}
+
+export function containsEmoji(str: string): boolean {
+  return /\p{Extended_Pictographic}/gu.test(str);
 }
