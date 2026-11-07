@@ -1,9 +1,4 @@
-import type {
-  ParseClient,
-  Client,
-  Message,
-  TopLevelBuilders,
-} from "seyfert";
+import type { ParseClient, Client, Message, TopLevelBuilders } from "seyfert";
 
 declare module "seyfert" {
   interface SeyfertRegistry {
