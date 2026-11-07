@@ -1,5 +1,63 @@
 import { describe, expect, test } from "bun:test";
-import { unhashBuildCode } from "@utils";
+import {
+  FightingStylesEnum,
+  fsNameToEnum,
+  magicNameToEnum,
+  MagicsEnum,
+  unhashBuildCode,
+} from "@utils";
+
+describe("name to enum mappings", () => {
+  test("maps magic names to their enum values", () => {
+    const mappings = [
+      ["Acid", MagicsEnum.Acid],
+      ["Ash", MagicsEnum.Ash],
+      ["Crystal", MagicsEnum.Crystal],
+      ["Earth", MagicsEnum.Earth],
+      ["Explosion", MagicsEnum.Explosion],
+      ["Fire", MagicsEnum.Fire],
+      ["Glass", MagicsEnum.Glass],
+      ["Ice", MagicsEnum.Ice],
+      ["Light", MagicsEnum.Light],
+      ["Lightning", MagicsEnum.Lightning],
+      ["Magma", MagicsEnum.Magma],
+      ["Metal", MagicsEnum.Metal],
+      ["Plasma", MagicsEnum.Plasma],
+      ["Poison", MagicsEnum.Poison],
+      ["Sand", MagicsEnum.Sand],
+      ["Shadow", MagicsEnum.Shadow],
+      ["Snow", MagicsEnum.Snow],
+      ["Water", MagicsEnum.Water],
+      ["Wind", MagicsEnum.Wind],
+      ["Wood", MagicsEnum.Wood],
+    ] as const;
+
+    for (const [name, value] of mappings) {
+      expect(magicNameToEnum(name)).toBe(value);
+    }
+
+    expect(magicNameToEnum("unknown")).toBeUndefined();
+  });
+
+  test("maps fighting style names to their enum values", () => {
+    const mappings = [
+      ["Basic Combat", FightingStylesEnum.BasicCombat],
+      ["Boxing", FightingStylesEnum.Boxing],
+      ["Iron Leg", FightingStylesEnum.IronLeg],
+      ["Cannon Fist", FightingStylesEnum.CannonFist],
+      ["Powder Fist", FightingStylesEnum.PowderFist],
+      ["Sailor Style", FightingStylesEnum.SailorStyle],
+      ["Thermo Fist", FightingStylesEnum.ThermoFist],
+      ["Vanishing Style", FightingStylesEnum.VanishingStyle],
+    ] as const;
+
+    for (const [name, value] of mappings) {
+      expect(fsNameToEnum(name)).toBe(value);
+    }
+
+    expect(fsNameToEnum("unknown")).toBeUndefined();
+  });
+});
 
 describe("unhashBuildCode", () => {
   test("returns an empty player when no build code is provided", () => {

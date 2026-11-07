@@ -308,3 +308,73 @@ function fsEnumToName(fs: FightingStylesEnum): string {
       return "Vanishing Style";
   }
 }
+
+export function magicNameToEnum(name: string): MagicsEnum | null {
+  switch (name) {
+    case "Acid":
+      return MagicsEnum.Acid;
+    case "Ash":
+      return MagicsEnum.Ash;
+    case "Crystal":
+      return MagicsEnum.Crystal;
+    case "Earth":
+      return MagicsEnum.Earth;
+    case "Explosion":
+      return MagicsEnum.Explosion;
+    case "Fire":
+      return MagicsEnum.Fire;
+    case "Glass":
+      return MagicsEnum.Glass;
+    case "Ice":
+      return MagicsEnum.Ice;
+    case "Light":
+      return MagicsEnum.Light;
+    case "Lightning":
+      return MagicsEnum.Lightning;
+    case "Magma":
+      return MagicsEnum.Magma;
+    case "Metal":
+      return MagicsEnum.Metal;
+    case "Plasma":
+      return MagicsEnum.Plasma;
+    case "Poison":
+      return MagicsEnum.Poison;
+    case "Sand":
+      return MagicsEnum.Sand;
+    case "Shadow":
+      return MagicsEnum.Shadow;
+    case "Snow":
+      return MagicsEnum.Snow;
+    case "Water":
+      return MagicsEnum.Water;
+    case "Wind":
+      return MagicsEnum.Wind;
+    case "Wood":
+      return MagicsEnum.Wood;
+    default:
+      return null;
+  }
+}
+
+export function fsNameToEnum(name: string): FightingStylesEnum | null {
+  switch (name) {
+    case "Basic Combat":
+      return FightingStylesEnum.BasicCombat;
+    case "Boxing":
+      return FightingStylesEnum.Boxing;
+    case "Iron Leg":
+      return FightingStylesEnum.IronLeg;
+    case "Cannon Fist":
+      return FightingStylesEnum.CannonFist;
+    case "Powder Fist":
+      return FightingStylesEnum.PowderFist;
+    case "Sailor Style":
+      return FightingStylesEnum.SailorStyle;
+    case "Thermo Fist":
+      return FightingStylesEnum.ThermoFist;
+    case "Vanishing Style":
+      return FightingStylesEnum.VanishingStyle;
+    default:
+      return null;
+  }
+}
