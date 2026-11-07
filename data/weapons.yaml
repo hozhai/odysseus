@@ -195,6 +195,22 @@
   defense: 0
   blockingPower: 0.0
   weight: 0
+- name: Crystal Orb
+  legend:
+    An orb made of seemingly unbreakable crystal. It was blessed by Aether - 
+    the god of light - during the Age Before Magic, allowing its user to control 
+    their spirit energy through it using intent. Since then, it has been passed 
+    from owner to owner, through inheritance or blood. Its previous owner was 
+    Delamere, a warrior from a mysterious order trying to bring peace to the War Seas.
+  rarity: Rare
+  imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/1/1c/Crystal_Orb.png/revision/latest?cb=20260223025453
+  damage: 0.9
+  speed: 1.2
+  size: 1.1
+  specialEffect: None
+  defense: 0
+  blockingPower: 0.0
+  weight: 0
 - name: Cutlass
   legend: A cutlass that is in decent condition, It would serve nicely as a weapon.
   rarity: Common
@@ -254,6 +270,35 @@
   defense: 0
   blockingPower: 0.0
   weight: 0
+- name: Eagle Patrimony
+  legend:
+    Despite having lost the memory of your past, you remember this heirloom 
+    as if it were a part of yourself.
+  rarity: Rare
+  imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/e/ef/Eagle_Patrimony.png/revision/latest?cb=20240609064022
+  damage: 1.0
+  speed: 1.0
+  size: 1.0
+  specialEffect: Paralyzed
+  defense: 0
+  blockingPower: 0.0
+  weight: 0
+- name: Ember Staff
+  legend:
+   A staff made out of the remains of a greathammer. It was blessed by Hephaestus - 
+   the god of fire and blacksmithing - during the Age Before Magic, allowing its user
+   to control their spirit energy through it using intent. Since then, it has been 
+   passed from owner to owner, through inheritance or blood. Its previous owner was 
+   called the Crone, a murderous witch who wandered the Nimbus Sea.
+  rarity: Rare
+  imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/1/1e/Ember-Staff.png/revision/latest?cb=20251230182217
+  damage: 0.95
+  speed: 1.0
+  size: 1.1
+  specialEffect: None
+  defense: 0
+  blockingPower: 0.0
+  weight: 0
 - name: Flintlock
   legend: A decent flintlock pistol decorated with bronze metal.
   rarity: Common
@@ -275,19 +320,6 @@
   speed: 1.1
   size: 1.0
   specialEffect: Bruised
-  defense: 0
-  blockingPower: 0.0
-  weight: 0
-- name: Fossil Spear
-  legend:
-    A spear fashioned out of the bone of some long dead beast, a weapon used
-    by the Grey Ones of the Nimbus Wilds.
-  rarity: Uncommon
-  imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/3/33/Beast_Bone_Cleaver.png/revision/latest?cb=20260103085619
-  damage: 0.9
-  speed: 1.1
-  size: 1.0
-  specialEffect: None
   defense: 0
   blockingPower: 0.0
   weight: 0
@@ -885,6 +917,24 @@
   defense: 0
   blockingPower: 0.0
   weight: 0
+- name: Staff of Night
+  legend: 
+    An aged staff made of some kind of purple stone. It was 
+   blessed by Nyx - the goddess of night - during the Age 
+   Before Magic, allowing its user to control their spirit 
+   energy through it using intent. Since then, it has been 
+   passed from owner to owner, through inheritance or blood. 
+   Its previous owner was Dusk, an assassin who was searching 
+   the Bronze Sea for a target.
+  rarity: Rare
+  imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/a/ac/Staff_of_Night_icon.png/revision/latest?cb=20250318092354
+  damage: 0.9
+  speed: 1.1
+  size: 1.1
+  specialEffect: None
+  defense: 0
+  blockingPower: 0.0
+  weight: 0
 - name: Stormcaller
   legend:
     An ornate bow that was custom-made for the Ravenna noble Lord Elius, but
@@ -975,6 +1025,22 @@
   damage: 1.05
   speed: 0.9
   size: 1.1
+  specialEffect: None
+  defense: 0
+  blockingPower: 0.0
+  weight: 0
+- name: Tidestone Band
+  legend:
+    An armband made out of some kind of blue stone. It was blessed by Poseidon - 
+    the god of the sea - during the Age Before Magic, allowing its user to control 
+    their spirit energy through it using intent. Since then, it has been passed 
+    from owner to owner, through inheritance or blood. Its previous owner was Laelus,
+    a cowardly thief from Ravenna who wandered the Bronze Sea
+  rarity: Rare
+  imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/e/e2/Tidestone-Band.png/revision/latest?cb=20251230182238
+  damage: 1.0
+  speed: 1.1
+  size: 1.0
   specialEffect: None
   defense: 0
   blockingPower: 0.0
