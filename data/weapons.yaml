@@ -291,19 +291,6 @@
   defense: 0
   blockingPower: 0.0
   weight: 0
-- name: Fossil Spear
-  legend:
-    A spear fashioned out of the bone of some long dead beast, a weapon used
-    by the Grey Ones of the Nimbus Wilds.
-  rarity: Uncommon
-  imageId: https://static.wikia.nocookie.net/roblox-arcane-odyssey/images/3/33/Beast_Bone_Cleaver.png/revision/latest?cb=20260103085619
-  damage: 0.9
-  speed: 1.1
-  size: 1.0
-  specialEffect: None
-  defense: 0
-  blockingPower: 0.0
-  weight: 0
 - name: Goldreaver
   legend:
     An enormous cutlass that was forged for ceremonial purposes before it was
