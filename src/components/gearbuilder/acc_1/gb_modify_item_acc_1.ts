@@ -11,7 +11,7 @@ export default class GearbuilderModifyAccesoryOneButton extends ComponentCommand
   componentType = "Button" as const;
 
   override filter(ctx: ComponentContext<typeof this.componentType>) {
-    return ctx.customId === "gb_modify_acc_1";
+    return ctx.customId === "gb_modify_item_acc_1";
   }
 
   async run(ctx: ComponentContext<typeof this.componentType>) {
