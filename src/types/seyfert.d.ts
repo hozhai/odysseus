@@ -1,4 +1,9 @@
-import type { ParseClient, Client } from "seyfert";
+import type {
+  ParseClient,
+  Client,
+  Message,
+  TopLevelBuilders,
+} from "seyfert";
 
 declare module "seyfert" {
   interface SeyfertRegistry {
@@ -14,3 +19,8 @@ export interface Command {
   contexts: (0 | 1 | 2)[];
   integration_types: 0[];
 }
+
+export type ComponentsV2Components = Exclude<
+  NonNullable<Parameters<Message["edit"]>[0]["components"]>,
+  TopLevelBuilders[]
+>;
