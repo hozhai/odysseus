@@ -66,7 +66,7 @@ describe("unhashBuildCode", () => {
     expect(player.level).toBe(0);
     expect(player.magics).toEqual([]);
     expect(player.accessories).toHaveLength(0);
-    expect(player.chestplate.item_id).toBeTruthy();
+    expect(player.chestplate.itemId).toBeTruthy();
   });
 
   test("parses stats, magic/style indexes, and equipment slots", () => {
