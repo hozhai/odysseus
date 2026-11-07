@@ -8,7 +8,7 @@ export const COLOR_EXOTIC = 0xea3323;
 // empty item IDs
 export const EMPTY_ACCESSORY_ID = "AAA";
 export const EMPTY_CHESTPLATE_ID = "AAB";
-export const EMPTY_BOOTS_ID = "AAC";
+export const EMPTY_PANTS_ID = "AAC";
 export const EMPTY_ENCHANTMENT_ID = "AAD";
 export const EMPTY_MODIFIER_ID = "AAE";
 export const EMPTY_GEM_ID = "AAF";
