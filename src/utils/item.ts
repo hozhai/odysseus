@@ -50,10 +50,10 @@ export async function parseEmbedIntoSlot(
   embed: InMessageEmbed | undefined
 ): Promise<Slot> {
   const slot: Slot = {
-    item_id: EMPTY_CHESTPLATE_ID,
-    gem_ids: [],
-    enchant_id: EMPTY_ENCHANTMENT_ID,
-    modifier_id: EMPTY_MODIFIER_ID,
+    itemId: EMPTY_CHESTPLATE_ID,
+    gemIds: [],
+    enchantId: EMPTY_ENCHANTMENT_ID,
+    modifierId: EMPTY_MODIFIER_ID,
     level: 170,
   };
 
@@ -87,19 +87,19 @@ export async function parseEmbedIntoSlot(
   const modifier = await emojiToModifier(emojiTextToResolvable(modifierEmoji));
 
   if (item_id) {
-    slot.item_id = item_id;
+    slot.itemId = item_id;
   }
 
   if (gems.filter((id) => id !== undefined).length !== 0) {
-    slot.gem_ids = gems.filter((id) => id !== undefined);
+    slot.gemIds = gems.filter((id) => id !== undefined);
   }
 
   if (enchant?.id) {
-    slot.enchant_id = enchant.id;
+    slot.enchantId = enchant.id;
   }
 
   if (modifier?.id) {
-    slot.modifier_id = modifier.id;
+    slot.modifierId = modifier.id;
   }
 
   if (Number.isFinite(level)) {
@@ -113,7 +113,7 @@ export async function slotIntoEmbed(
   ctx: ComponentContext,
   slot: Slot
 ): Promise<Embed> {
-  const item = await findItemById(slot.item_id);
+  const item = await findItemById(slot.itemId);
 
   if (!item) {
     return new Embed()
@@ -167,7 +167,7 @@ export async function slotIntoEmbed(
     },
   ];
 
-  const enchant = await findEnchantById(slot.enchant_id);
+  const enchant = await findEnchantById(slot.enchantId);
 
   if (enchant !== null && enchant.id !== EMPTY_ENCHANTMENT_ID) {
     fields.push({
@@ -177,7 +177,7 @@ export async function slotIntoEmbed(
     });
   }
 
-  const modifier = await findModifierById(slot.modifier_id);
+  const modifier = await findModifierById(slot.modifierId);
 
   if (modifier !== null && modifier.id !== EMPTY_MODIFIER_ID) {
     fields.push({
@@ -189,7 +189,7 @@ export async function slotIntoEmbed(
 
   const gems = (
     await Promise.all(
-      slot.gem_ids.map(async (gem_id) => await findGemById(gem_id))
+      slot.gemIds.map(async (gem_id) => await findGemById(gem_id))
     )
   ).filter((gem) => gem !== null);
 

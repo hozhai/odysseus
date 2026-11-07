@@ -44,7 +44,7 @@ export default class ItemSetGemsRegularButton extends ComponentCommand {
 
     const slot = await parseEmbedIntoSlot(oldEmbed);
 
-    const item = await findItemById(slot.item_id);
+    const item = await findItemById(slot.itemId);
 
     if (!item) {
       await ctx.editOrReply({

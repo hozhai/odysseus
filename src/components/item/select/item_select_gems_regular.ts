@@ -38,14 +38,14 @@ export default class ItemSelectGemRegularSelectMenu extends ComponentCommand {
     const gemIds = ctx.interaction.data.values;
 
     if (gemIds.includes(EMPTY_GEM_ID)) {
-      slot.gem_ids = [];
+      slot.gemIds = [];
     } else {
-      slot.gem_ids.push(...gemIds);
+      slot.gemIds.push(...gemIds);
     }
 
     const embed = await slotIntoEmbed(ctx, slot);
 
-    const item = await findItemById(slot.item_id);
+    const item = await findItemById(slot.itemId);
 
     if (!item) {
       await ctx.editOrReply({

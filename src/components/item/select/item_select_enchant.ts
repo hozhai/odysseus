@@ -52,11 +52,11 @@ export default class ItemSelectEnchantSelectMenu extends ComponentCommand {
       return;
     }
 
-    slot.enchant_id = enchant.id;
+    slot.enchantId = enchant.id;
 
     const embed = await slotIntoEmbed(ctx, slot);
 
-    const item = await findItemById(slot.item_id);
+    const item = await findItemById(slot.itemId);
 
     if (!item) {
       await ctx.editOrReply({

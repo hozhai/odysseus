@@ -612,7 +612,7 @@ export async function calculateModifierStats(
 export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {
   const totalStats = createEmptyTotalStats();
 
-  const item = await findItemById(slot.item_id);
+  const item = await findItemById(slot.itemId);
   const itemTotalStats = calculateItemStats(item);
 
   totalStats.power += itemTotalStats.power;
@@ -628,7 +628,7 @@ export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {
   totalStats.warding += itemTotalStats.warding;
   totalStats.drawback += itemTotalStats.drawback;
 
-  const gemsTotalStats = await calculateGemStats(slot.gem_ids);
+  const gemsTotalStats = await calculateGemStats(slot.gemIds);
 
   totalStats.power += gemsTotalStats.power;
   totalStats.defense += gemsTotalStats.defense;
@@ -643,7 +643,7 @@ export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {
   totalStats.warding += gemsTotalStats.warding;
   totalStats.drawback += gemsTotalStats.drawback;
 
-  const enchantTotalStats = await calculateEnchantStats(slot.enchant_id);
+  const enchantTotalStats = await calculateEnchantStats(slot.enchantId);
 
   totalStats.power += enchantTotalStats.power;
   totalStats.defense += enchantTotalStats.defense;
@@ -659,7 +659,7 @@ export async function slotToTotalStats(slot: Slot): Promise<TotalStats> {
   totalStats.drawback += enchantTotalStats.drawback;
 
   const modifierTotalStats = await calculateModifierStats(
-    slot.modifier_id,
+    slot.modifierId,
     totalStats
   );
 

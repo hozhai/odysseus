@@ -52,11 +52,11 @@ export default class ItemSelectModifierSelectMenu extends ComponentCommand {
       return;
     }
 
-    slot.modifier_id = modifier.id;
+    slot.modifierId = modifier.id;
 
     const embed = await slotIntoEmbed(ctx, slot);
 
-    const item = await findItemById(slot.item_id);
+    const item = await findItemById(slot.itemId);
 
     if (!item) {
       await ctx.editOrReply({

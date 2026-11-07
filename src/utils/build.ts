@@ -1,10 +1,10 @@
 import { CommandContext, Embed } from "seyfert";
 import {
   EMBED_COLOR_DEFAULT,
-  EMPTY_BOOTS_ID,
   EMPTY_CHESTPLATE_ID,
   EMPTY_ENCHANTMENT_ID,
   EMPTY_MODIFIER_ID,
+  EMPTY_PANTS_ID,
 } from "@constants";
 import { type Player, type Slot } from "@src-types";
 import type { APIEmbedField } from "seyfert/lib/types";
@@ -56,17 +56,17 @@ export function createEmptyPlayer(): Player {
     fightingStyles: [],
     accessories: [],
     chestplate: {
-      item_id: EMPTY_CHESTPLATE_ID,
-      gem_ids: [],
-      enchant_id: EMPTY_ENCHANTMENT_ID,
-      modifier_id: EMPTY_MODIFIER_ID,
+      itemId: EMPTY_CHESTPLATE_ID,
+      gemIds: [],
+      enchantId: EMPTY_ENCHANTMENT_ID,
+      modifierId: EMPTY_MODIFIER_ID,
       level: 0,
     },
     boots: {
-      item_id: EMPTY_BOOTS_ID,
-      gem_ids: [],
-      enchant_id: EMPTY_ENCHANTMENT_ID,
-      modifier_id: EMPTY_MODIFIER_ID,
+      itemId: EMPTY_PANTS_ID,
+      gemIds: [],
+      enchantId: EMPTY_ENCHANTMENT_ID,
+      modifierId: EMPTY_MODIFIER_ID,
       level: 0,
     },
   };
@@ -183,10 +183,10 @@ function parseItemSlot(values: string[]): Slot {
   }
 
   return {
-    item_id: values[0] ?? "",
-    enchant_id: values[1] || EMPTY_ENCHANTMENT_ID,
-    modifier_id: values[2] || EMPTY_MODIFIER_ID,
-    gem_ids: values.slice(3, -1).filter((id) => id !== ""),
+    itemId: values[0] ?? "",
+    enchantId: values[1] || EMPTY_ENCHANTMENT_ID,
+    modifierId: values[2] || EMPTY_MODIFIER_ID,
+    gemIds: values.slice(3, -1).filter((id) => id !== ""),
     level: Number(levelValue),
   };
 }
