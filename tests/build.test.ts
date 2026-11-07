@@ -36,7 +36,7 @@ describe("name to enum mappings", () => {
       expect(magicNameToEnum(name)).toBe(value);
     }
 
-    expect(magicNameToEnum("unknown")).toBeUndefined();
+    expect(magicNameToEnum("unknown")).toBeNull();
   });
 
   test("maps fighting style names to their enum values", () => {
@@ -55,7 +55,7 @@ describe("name to enum mappings", () => {
       expect(fsNameToEnum(name)).toBe(value);
     }
 
-    expect(fsNameToEnum("unknown")).toBeUndefined();
+    expect(fsNameToEnum("unknown")).toBeNull();
   });
 });
 
@@ -83,16 +83,16 @@ describe("unhashBuildCode", () => {
       magics: [0, 19],
       fightingStyles: [20, 27],
       chestplate: {
-        item_id: "",
-        gem_ids: [],
+        itemId: "",
+        gemIds: [],
         level: 170,
       },
     });
     expect(player.accessories[0]).toMatchObject({
-      item_id: "item-a",
-      enchant_id: "enchant-a",
-      modifier_id: "modifier-a",
-      gem_ids: ["gem-a"],
+      itemId: "item-a",
+      enchantId: "enchant-a",
+      modifierId: "modifier-a",
+      gemIds: ["gem-a"],
       level: 170,
     });
   });

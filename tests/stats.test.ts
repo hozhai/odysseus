@@ -36,6 +36,10 @@ describe("item stat helpers", () => {
       mainType: "Accessory",
       rarity: "Common",
       imageId: "",
+      gemNo: 0,
+      minLevel: 120,
+      maxLevel: 170,
+      validModifiers: ["test-modifier"],
       deleted: false,
       scaling: {
         power: 1,
@@ -66,25 +70,30 @@ describe("item stat helpers", () => {
   });
 
   test("detects imbues by item name and respects piece type", () => {
-    const weapon = ItemSchema.parse({
-      id: "weapon",
-      name: "Lightning Spear",
+    const accessory = ItemSchema.parse({
+      id: "some-imbued-armor",
+      name: "Lightning Armor",
       legend: "",
-      mainType: "Weapon",
+      mainType: "Accessory",
+      gemNo: 0,
+      minLevel: 120,
+      maxLevel: 160,
+      validModifiers: ["modifier-1", "modifier-2"],
       rarity: "Common",
       imageId: "",
       deleted: false,
     });
+
     const chestplate = {
-      ...weapon,
+      ...accessory,
       name: "Basic Combat Chestplate",
       mainType: "Chestplate",
     };
 
-    expect(detectImbue(weapon)).toBe("lightning");
+    expect(detectImbue(accessory)).toBe("lightning");
     expect(detectImbue(chestplate)).toBe("basic");
     expect(getImbuePieceMultiplier(chestplate)).toBe(1);
-    expect(getImbuePieceMultiplier(weapon)).toBe(0.75);
+    expect(getImbuePieceMultiplier(accessory)).toBe(0.75);
     expect(getImbueStatMultiplier("fire", "power")).toBe(1);
     expect(getImbueStatMultiplier("fire", "defense")).toBe(0);
   });
