@@ -55,6 +55,15 @@ export async function findGemById(id: string): Promise<Gem | null> {
   return gem ?? null;
 }
 
+export async function findItemByName(name: string): Promise<Item | null> {
+  const itemData = (await getData()).items;
+  const item = Object.values(itemData).find(
+    (item) => item.name.toLowerCase() === name.toLowerCase()
+  );
+
+  return item ?? null;
+}
+
 /**
  * Find an enchant from the name
  * @param name The name of the enchant to find
