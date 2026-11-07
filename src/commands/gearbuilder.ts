@@ -38,7 +38,7 @@ export default class GearbuilderCommand extends Command {
         .setComponents(
           new TextDisplay().setContent("Accessory:"),
           new TextDisplay().setContent(
-            "Item: Unset\nEnchant: Unset\nModifier: Unset\nGem(s): Unset"
+            "Item: None\nEnchant: None\nModifier: None\nGem(s): None"
           )
         )
         .setAccessory(
@@ -51,7 +51,7 @@ export default class GearbuilderCommand extends Command {
         .setComponents(
           new TextDisplay().setContent("Accessory:"),
           new TextDisplay().setContent(
-            "Item: Unset\nEnchant: Unset\nModifier: Unset\nGem(s): Unset"
+            "Item: None\nEnchant: None\nModifier: None\nGem(s): None"
           )
         )
         .setAccessory(
@@ -64,7 +64,7 @@ export default class GearbuilderCommand extends Command {
         .setComponents(
           new TextDisplay().setContent("Accessory:"),
           new TextDisplay().setContent(
-            "Item: Unset\nEnchant: Unset\nModifier: Unset\nGem(s): Unset"
+            "Item: None\nEnchant: None\nModifier: None\nGem(s): None"
           )
         )
         .setAccessory(
@@ -77,7 +77,7 @@ export default class GearbuilderCommand extends Command {
         .setComponents(
           new TextDisplay().setContent("Chestplate:"),
           new TextDisplay().setContent(
-            "Item: Unset\nEnchant: Unset\nModifier: Unset\nGem(s): Unset"
+            "Item: None\nEnchant: None\nModifier: None\nGem(s): None"
           )
         )
         .setAccessory(
@@ -90,7 +90,7 @@ export default class GearbuilderCommand extends Command {
         .setComponents(
           new TextDisplay().setContent("Pants:"),
           new TextDisplay().setContent(
-            "Item: Unset\nEnchant: Unset\nModifier: Unset\nGem(s): Unset"
+            "Item: None\nEnchant: None\nModifier: None\nGem(s): None"
           )
         )
         .setAccessory(
