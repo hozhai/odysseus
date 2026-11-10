@@ -11,8 +11,15 @@ import {
 import Fuse from "fuse.js/basic";
 import { ComponentType, Formatter, type TopLevelComponents } from "seyfert";
 import type { ComponentsV2Components } from "@/types/seyfert";
-import { createEmptyPlayer, FightingStylesEnum, MagicsEnum } from "@utils";
-import { findEnchantByName, findItemByName, findModifierByName } from "@utils";
+import {
+  createEmptyPlayer,
+  emojiTextToResolvable,
+  emojiToEnchant,
+  emojiToModifier,
+  FightingStylesEnum,
+  MagicsEnum,
+} from "@utils";
+import { findItemByName } from "@utils";
 import {
   EMPTY_ACCESSORY_ID,
   EMPTY_CHESTPLATE_ID,
@@ -111,27 +118,34 @@ async function parseSlotFromComponentRaw(
   emptyItemId: string,
   level: number
 ): Promise<Slot> {
-  const [itemName, enchantName, modifierName, gems] = raw
+  const [itemName, enchantEmoji, modifierEmoji, gemEmojis] = raw
     .split("\n")
     .map((line) => line.split(": ")[1]?.trim());
 
+  const itemId = (await findItemByName(itemName ?? ""))?.id ?? emptyItemId;
+  const gemIds = (
+    await Promise.all(
+      gemEmojis
+        ?.split(" ")
+        .map(
+          async (gemEmoji) =>
+            (await emojiToGem(emojiTextToResolvable(gemEmoji)))?.id ??
+            EMPTY_GEM_ID
+        ) ?? []
+    )
+  ).filter((gem_id) => gem_id !== EMPTY_GEM_ID);
+  const enchantId =
+    (await emojiToEnchant(emojiTextToResolvable(enchantEmoji ?? null)))?.id ??
+    EMPTY_ENCHANTMENT_ID;
+  const modifierId =
+    (await emojiToModifier(emojiTextToResolvable(modifierEmoji ?? null)))?.id ??
+    EMPTY_MODIFIER_ID;
+
   return {
-    itemId: (await findItemByName(itemName ?? ""))?.id ?? emptyItemId,
-    gemIds: (
-      await Promise.all(
-        gems
-          ?.split(" ")
-          .map(
-            async (gemEmoji) => (await emojiToGem(gemEmoji))?.id ?? EMPTY_GEM_ID
-          ) ?? []
-      )
-    ).filter((gem_id) => gem_id !== EMPTY_GEM_ID),
-    enchantId:
-      (await findEnchantByName(enchantName ?? "None"))?.id ??
-      EMPTY_ENCHANTMENT_ID,
-    modifierId:
-      (await findModifierByName(modifierName ?? "None"))?.id ??
-      EMPTY_MODIFIER_ID,
+    itemId,
+    gemIds,
+    enchantId,
+    modifierId,
     level,
   };
 }
@@ -165,7 +179,7 @@ export async function parseGearbuilderComponentsIntoPlayer(
 ): Promise<Player> {
   const emojis = await getEmojis();
   const itemFallbackText =
-    "Item: None\nEnchant: None\nModifier: None\nGem(s): None";
+    "Item: Unset\nEnchant: Unset\nModifier: Unset\nGem(s): Unset";
 
   const player = createEmptyPlayer();
   const container = components[0];
