@@ -29,13 +29,14 @@ export const ScalingSchema = z.object({
   drawback: z.number().optional(),
 });
 
-export const StatTypeSchema = z.enum(["None", "Magic", "Strength", "Vitality"]);
+export const StatTypeEnum = z.enum(["None", "Magic", "Strength", "Vitality"]);
+export const MainTypeEnum = z.enum(["Accessory", "Chestplate", "Pants"]);
 
 export const ItemSchema = z.object({
   id: z.string(),
   name: z.string(),
   legend: z.string(),
-  mainType: z.string(),
+  mainType: MainTypeEnum,
   rarity: RaritySchema,
   imageId: z.string(),
   deleted: z.boolean(),
@@ -43,7 +44,7 @@ export const ItemSchema = z.object({
   gemNo: z.number().int(),
   minLevel: z.number().int(),
   maxLevel: z.number().int(),
-  statType: StatTypeSchema.nullable().optional(),
+  statType: StatTypeEnum.nullable().optional(),
   validModifiers: z.array(z.string()),
   scaling: ScalingSchema.optional(),
 });
@@ -51,6 +52,7 @@ export const ItemSchema = z.object({
 export const ItemsSchema = z.record(z.string(), ItemSchema);
 
 export type Item = z.infer<typeof ItemSchema>;
+export type MainType = z.infer<typeof MainTypeEnum>;
 
 /* === MODIFIER === */
 
