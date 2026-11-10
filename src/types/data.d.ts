@@ -6,7 +6,7 @@ export interface Player {
   weaponPoints: number;
   magics: MagicsEnum[];
   fightingStyles: FightingStylesEnum[];
-  accessories: Slot[];
+  accessories: readonly [Slot, Slot, Slot];
   chestplate: Slot;
   boots: Slot;
 }
@@ -32,10 +32,4 @@ export interface TotalStats {
   insanity: number;
   warding: number;
   drawback: number;
-}
-
-export interface WikiSearchResult {
-  title: string;
-  description: string;
-  url: string;
 }
