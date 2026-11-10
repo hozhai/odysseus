@@ -48,34 +48,22 @@ function createValidData(): BotData {
 }
 
 describe("YAML data validation", () => {
-  test("data is sorted alphabetically", async () => {
-    const data = await getData();
+  test("data is sorted alphabetically", () => {
+    const keyedDataCheck = Bun.spawnSync([
+      "bun",
+      "run",
+      "scripts/sort-keyed-data.ts",
+      "--check",
+    ]);
+    const listDataCheck = Bun.spawnSync([
+      "bun",
+      "run",
+      "scripts/sort-list-data.ts",
+      "--check",
+    ]);
 
-    const itemsData = Object.values(data.items);
-    const enchantsData = Object.values(data.enchants);
-    const modifiersData = Object.values(data.modifiers);
-    const gemsData = Object.values(data.gems);
-    const magicsData = data.magics;
-    const weaponsData = data.weapons;
-
-    expect([...itemsData].sort((a, b) => a.name.localeCompare(b.name))).toBe(
-      itemsData
-    );
-    expect([...enchantsData].sort((a, b) => a.name.localeCompare(b.name))).toBe(
-      enchantsData
-    );
-    expect(
-      [...modifiersData].sort((a, b) => a.name.localeCompare(b.name))
-    ).toBe(modifiersData);
-    expect([...gemsData].sort((a, b) => a.name.localeCompare(b.name))).toBe(
-      gemsData
-    );
-    expect([...magicsData].sort((a, b) => a.name.localeCompare(b.name))).toBe(
-      magicsData
-    );
-    expect([...weaponsData].sort((a, b) => a.name.localeCompare(b.name))).toBe(
-      weaponsData
-    );
+    expect(keyedDataCheck.exitCode).toBe(0);
+    expect(listDataCheck.exitCode).toBe(0);
   });
 
   test("accepts a correctly shaped record and BotData", () => {
