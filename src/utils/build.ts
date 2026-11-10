@@ -1,6 +1,7 @@
 import { CommandContext, Embed } from "seyfert";
 import {
   EMBED_COLOR_DEFAULT,
+  EMPTY_ACCESSORY_ID,
   EMPTY_CHESTPLATE_ID,
   EMPTY_ENCHANTMENT_ID,
   EMPTY_MODIFIER_ID,
@@ -54,7 +55,29 @@ export function createEmptyPlayer(): Player {
     weaponPoints: 0,
     magics: [],
     fightingStyles: [],
-    accessories: [],
+    accessories: [
+      {
+        itemId: EMPTY_ACCESSORY_ID,
+        gemIds: [],
+        enchantId: EMPTY_ENCHANTMENT_ID,
+        modifierId: EMPTY_MODIFIER_ID,
+        level: 0,
+      },
+      {
+        itemId: EMPTY_ACCESSORY_ID,
+        gemIds: [],
+        enchantId: EMPTY_ENCHANTMENT_ID,
+        modifierId: EMPTY_MODIFIER_ID,
+        level: 0,
+      },
+      {
+        itemId: EMPTY_ACCESSORY_ID,
+        gemIds: [],
+        enchantId: EMPTY_ENCHANTMENT_ID,
+        modifierId: EMPTY_MODIFIER_ID,
+        level: 0,
+      },
+    ],
     chestplate: {
       itemId: EMPTY_CHESTPLATE_ID,
       gemIds: [],
