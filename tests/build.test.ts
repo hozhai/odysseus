@@ -2,10 +2,30 @@ import { describe, expect, test } from "bun:test";
 import {
   FightingStylesEnum,
   fsNameToEnum,
+  emojiTextToResolvable,
   magicNameToEnum,
   MagicsEnum,
   unhashBuildCode,
 } from "@utils";
+
+describe("emojiTextToResolvable", () => {
+  test("parses static and animated custom emoji mentions", () => {
+    expect(emojiTextToResolvable("<:enchant:123456789>")).toEqual({
+      animated: false,
+      name: "enchant",
+      id: "123456789",
+    });
+    expect(emojiTextToResolvable("<a:modifier_1:987654321>")).toEqual({
+      animated: true,
+      name: "modifier_1",
+      id: "987654321",
+    });
+  });
+
+  test("returns null when the text contains no custom emoji mention", () => {
+    expect(emojiTextToResolvable("Unset")).toBeNull();
+  });
+});
 
 describe("name to enum mappings", () => {
   test("maps magic names to their enum values", () => {

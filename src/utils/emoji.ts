@@ -15,6 +15,7 @@ import {
   magicNameToEnum,
   type MagicsEnum,
 } from "./build";
+import { findEnchantById, findGemById, findModifierById } from "./find";
 
 /**
  * Turns an enchant item type to the corresponding emoji
@@ -72,7 +73,7 @@ export async function emojiToGem(
   const gemsData = (await getData()).gems;
 
   if (emoji === null) {
-    return gemsData[EMPTY_GEM_ID] ?? null;
+    return (await findGemById(EMPTY_GEM_ID)) ?? null;
   }
 
   const emojiText =
@@ -100,7 +101,7 @@ export async function emojiToEnchant(
   const enchantData = (await getData()).enchants;
 
   if (emoji == null) {
-    return enchantData[EMPTY_ENCHANTMENT_ID] ?? null;
+    return (await findEnchantById(EMPTY_ENCHANTMENT_ID)) ?? null;
   }
 
   const emojiText =
@@ -128,7 +129,7 @@ export async function emojiToModifier(
   const modifierData = (await getData()).modifiers;
 
   if (emoji == null) {
-    return modifierData[EMPTY_MODIFIER_ID] ?? null;
+    return (await findModifierById(EMPTY_MODIFIER_ID)) ?? null;
   }
 
   const emojiText =
@@ -235,7 +236,7 @@ export function emojiTextToResolvable(
 ): EmojiResolvable | null {
   if (!text) return null;
 
-  const match = text.match(/<(a?):([a-zA-Z0-9_]+):([0-9]+)>/g);
+  const match = text.match(/<(a?):([a-zA-Z0-9_]+):([0-9]+)>/);
 
   if (!match) return null;
 
