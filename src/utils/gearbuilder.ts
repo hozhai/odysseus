@@ -1,5 +1,13 @@
 import type { Player, Slot } from "@src-types";
-import { getData, getEmojis, type Item } from "@data";
+import {
+  getData,
+  getEmojis,
+  type Enchant,
+  type Gem,
+  type Item,
+  type MainType,
+  type Modifier,
+} from "@data";
 import Fuse from "fuse.js/basic";
 import { ComponentType, Formatter, type TopLevelComponents } from "seyfert";
 import type { ComponentsV2Components } from "@/types/seyfert";
@@ -20,7 +28,10 @@ import {
   emojiToMagicEnum,
 } from "@utils";
 
-export async function findItemsFromQuery(query: string): Promise<Item[]> {
+export async function findItemsFromQuery(
+  query: string,
+  mainType: MainType
+): Promise<Item[]> {
   const normalizedQuery = query.trim().toLocaleLowerCase();
   if (!normalizedQuery) {
     return [];
@@ -29,6 +40,63 @@ export async function findItemsFromQuery(query: string): Promise<Item[]> {
   const items = (await getData()).items;
 
   const fuse = new Fuse(Object.values(items), {
+    keys: ["name"],
+  });
+
+  return fuse
+    .search(normalizedQuery)
+    .filter((result) => result.item.mainType === mainType)
+    .slice(0, 5)
+    .map(({ item }) => item);
+}
+
+export async function findEnchantsFromQuery(query: string): Promise<Enchant[]> {
+  const normalizedQuery = query.trim().toLocaleLowerCase();
+  if (!normalizedQuery) {
+    return [];
+  }
+
+  const enchants = (await getData()).enchants;
+
+  const fuse = new Fuse(Object.values(enchants), {
+    keys: ["name"],
+  });
+
+  return fuse
+    .search(normalizedQuery)
+    .slice(0, 5)
+    .map(({ item }) => item);
+}
+
+export async function findGemsFromQuery(query: string): Promise<Gem[]> {
+  const normalizedQuery = query.trim().toLocaleLowerCase();
+  if (!normalizedQuery) {
+    return [];
+  }
+
+  const gems = (await getData()).gems;
+
+  const fuse = new Fuse(Object.values(gems), {
+    keys: ["name"],
+  });
+
+  return fuse
+    .search(normalizedQuery)
+    .slice(0, 5)
+    .map(({ item }) => item);
+}
+
+export async function findModifiersFromQuery(
+  query: string
+): Promise<Modifier[]> {
+  const normalizedQuery = query.trim().toLocaleLowerCase();
+  if (!normalizedQuery) {
+    return [];
+  }
+
+  const modifiers = (await getData()).modifiers;
+
+  const fuse = new Fuse(Object.values(modifiers), {
     keys: ["name"],
   });
 
