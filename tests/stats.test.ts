@@ -87,7 +87,7 @@ describe("item stat helpers", () => {
     const chestplate = {
       ...accessory,
       name: "Basic Combat Chestplate",
-      mainType: "Chestplate",
+      mainType: "Chestplate" as const,
     };
 
     expect(detectImbue(accessory)).toBe("lightning");
