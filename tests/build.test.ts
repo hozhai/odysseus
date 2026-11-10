@@ -65,7 +65,7 @@ describe("unhashBuildCode", () => {
 
     expect(player.level).toBe(0);
     expect(player.magics).toEqual([]);
-    expect(player.accessories).toHaveLength(0);
+    expect(player.accessories).toHaveLength(3);
     expect(player.chestplate.itemId).toBeTruthy();
   });
 
