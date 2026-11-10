@@ -16,7 +16,6 @@ import {
   serializeTopLevelComponent,
 } from "@/utils";
 import type { ComponentsV2Components } from "@/types/seyfert";
-import { EMPTY_ACCESSORY_ID, EMPTY_MODIFIER_ID } from "@/constants";
 
 export default class GearbuilderSelectEnchantAccessoryOneIdButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -59,26 +58,14 @@ export default class GearbuilderSelectEnchantAccessoryOneIdButton extends Compon
     );
 
     const player = await parseGearbuilderComponentsIntoPlayer(components);
-    const item = await findItemById(
-      player.accessories[0]?.itemId ?? EMPTY_ACCESSORY_ID
-    );
-    const modifier = await findModifierById(
-      player.accessories[0]?.modifierId ?? EMPTY_MODIFIER_ID
-    );
+    const item = await findItemById(player.accessories[0].itemId);
+    const modifier = await findModifierById(player.accessories[0].modifierId);
 
     const gems = await Promise.all(
       player.accessories[0].gemIds.map(
         async (gemId) => await findGemById(gemId)
       )
     );
-
-    const gemEmojis = (
-      await Promise.all(
-        gems
-          .filter((gem) => gem !== null)
-          .map(async (gem) => (await itemGemToEmoji(gem)) as string)
-      )
-    ).join(" ");
 
     if (!item) {
       await ctx.update({
@@ -98,6 +85,13 @@ export default class GearbuilderSelectEnchantAccessoryOneIdButton extends Compon
       return;
     }
 
+    const gemEmojis = (
+      await Promise.all(
+        gems
+          .filter((gem) => gem !== null)
+          .map(async (gem) => (await itemGemToEmoji(gem)) as string)
+      )
+    ).join(" ");
     const enchantEmoji = await itemEnchantToEmoji(enchant);
     const modifierEmoji = await itemModifierToEmoji(modifier);
 
@@ -116,14 +110,14 @@ export default class GearbuilderSelectEnchantAccessoryOneIdButton extends Compon
       throw new Error("Original Gearbuilder message has no accessory details");
     }
 
-    accessoryDetails.content = `Item: ${item.name}\nEnchant: ${enchantEmoji as string}`;
+    accessoryDetails.content = `Item: ${item.name}\nEnchant: ${(enchantEmoji as string) ?? "Unset"}`;
 
     if (item.validModifiers.length > 0) {
-      accessoryDetails.content += `\nModifier: ${modifierEmoji as string}`;
+      accessoryDetails.content += `\nModifier: ${(modifierEmoji as string) ?? "Unset"}`;
     }
 
     if (item.gemNo > 0) {
-      accessoryDetails.content += `\nGem(s): ${gemEmojis}`;
+      accessoryDetails.content += `\nGem(s): ${gemEmojis.trim().length > 0 ? gemEmojis : "Unset"}`;
     }
 
     await originalMessage.edit({
