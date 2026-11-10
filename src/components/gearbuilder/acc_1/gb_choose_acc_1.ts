@@ -55,16 +55,14 @@ export default class GearbuilderChooseAccessoryOneButton extends ComponentComman
 
     const item = accessoryOne ? await findItemById(accessoryOne?.itemId) : null;
 
-    if (!accessoryOne || accessoryOne?.itemId === EMPTY_ACCESSORY_ID) {
-      enchantButton.setDisabled(true);
-      modifierButton.setDisabled(true);
-      gemButton.setDisabled(true);
-    }
-
-    if (item) {
+    if (item && item.id !== EMPTY_ACCESSORY_ID) {
       enchantButton.setDisabled(false);
       gemButton.setDisabled(item.gemNo === 0);
-      enchantButton.setDisabled(item.validModifiers.length === 0);
+      modifierButton.setDisabled(item.validModifiers.length === 0);
+    } else {
+      enchantButton.setDisabled(true);
+      gemButton.setDisabled(true);
+      modifierButton.setDisabled(true);
     }
 
     row.addComponents(enchantButton, modifierButton, gemButton);
