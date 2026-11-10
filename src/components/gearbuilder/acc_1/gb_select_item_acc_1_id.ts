@@ -1,4 +1,11 @@
-import { ComponentCommand, ComponentContext, MessageFlags } from "seyfert";
+import {
+  ComponentCommand,
+  ComponentContext,
+  ComponentType,
+  MessageFlags,
+} from "seyfert";
+import { findItemById, serializeTopLevelComponent } from "@/utils";
+import type { ComponentsV2Components } from "@/types/seyfert";
 
 export default class GearbuilderSelectItemAccessoryOneIdButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -8,32 +15,70 @@ export default class GearbuilderSelectItemAccessoryOneIdButton extends Component
   }
 
   async run(ctx: ComponentContext<typeof this.componentType>) {
-    const itemId = ctx.customId.split("_")[5];
-    const oldMsgId = ctx.message.content
-      .split("\n")
-      .filter((line) => line.startsWith("-#"))[0]
-      ?.split(" ")[1];
+    const [itemId, originalMessageId] = ctx.customId
+      .slice("gb_select_item_acc_1_".length)
+      .split("_");
 
-    if (!oldMsgId) {
-      await ctx.write({
-        content: "Could not track original message ID",
+    if (!itemId || !originalMessageId) {
+      await ctx.update({
+        content:
+          "Could not identify the selected item or original Gearbuilder message.",
+        components: [],
       });
       return;
     }
 
-    await ctx.write({
-      content: `You selected item ID ${itemId}\n-# ${oldMsgId}`,
-    });
+    const item = await findItemById(itemId);
+    if (!item) {
+      await ctx.update({
+        content:
+          "The selected item could not be found. Please contact the developer and try again.",
+        components: [],
+      });
+      return;
+    }
 
-    const oldMsg = await ctx.client.messages.fetch(oldMsgId, ctx.channelId);
+    const originalMessage = await ctx.client.messages.fetch(
+      originalMessageId,
+      ctx.channelId
+    );
 
-    const oldMsgComponent = oldMsg.components.map((component) =>
-      component.toJSON()
-    ) as NonNullable<Parameters<typeof oldMsg.edit>[0]["components"]>;
+    const components: ComponentsV2Components = originalMessage.components.map(
+      serializeTopLevelComponent
+    );
 
-    await oldMsg.edit({
-      components: oldMsgComponent,
+    const container = components[0];
+    if (container?.type !== ComponentType.Container) {
+      throw new Error(
+        "Original Gearbuilder message has no component container"
+      );
+    }
+
+    const accessorySection = container.components.filter(
+      (component) => component.type === ComponentType.Section
+    )[0];
+    const accessoryDetails = accessorySection?.components[1];
+    if (!accessoryDetails) {
+      throw new Error("Original Gearbuilder message has no accessory details");
+    }
+
+    // keep these as unset here; we want to reset the addons when a new item is chosen
+    accessoryDetails.content = `Item: ${item.name}\nEnchant: Unset`;
+
+    if (item.validModifiers.length > 0)
+      accessoryDetails.content += "\nModifier: Unset";
+    if (item.gemNo > 0) accessoryDetails.content += "\nGem(s): Unset";
+
+    await originalMessage.edit({
+      components,
       flags: MessageFlags.IsComponentsV2,
     });
+
+    await ctx.update({
+      content: `Selected ${item.name}.`,
+      components: [],
+    });
+
+    await ctx.deleteResponse();
   }
 }

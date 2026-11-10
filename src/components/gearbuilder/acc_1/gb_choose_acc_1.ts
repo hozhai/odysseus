@@ -26,7 +26,7 @@ export default class GearbuilderChooseAccessoryOneButton extends ComponentComman
     row.addComponents(
       new Button()
         .setLabel("Item")
-        .setCustomId("gb_modify_item_acc_1")
+        .setCustomId(`gb_modify_item_acc_1_${ctx.message.id}`)
         .setStyle(ButtonStyle.Primary)
     );
 
@@ -36,50 +36,42 @@ export default class GearbuilderChooseAccessoryOneButton extends ComponentComman
 
     const player = await parseGearbuilderComponentsIntoPlayer(components);
 
-    if (
-      player.accessories[0] &&
-      player.accessories[0]?.itemId !== EMPTY_ACCESSORY_ID
-    ) {
-      const item = await findItemById(player.accessories[0]?.itemId);
+    const accessoryOne = player.accessories[0];
 
-      if (item) {
-        row.addComponents(
-          new Button()
-            .setLabel("Enchant")
-            .setCustomId("gb_modify_enchant_acc_1")
-            .setStyle(ButtonStyle.Primary)
-        );
+    const enchantButton = new Button()
+      .setLabel("Enchant")
+      .setCustomId(`gb_modify_enchant_acc_1_${ctx.message.id}`)
+      .setStyle(ButtonStyle.Primary);
 
-        if (item.validModifiers.length > 0) {
-          row.addComponents(
-            new Button()
-              .setLabel("Modifier")
-              .setCustomId("gb_modify_modifier_acc_1")
-              .setStyle(ButtonStyle.Primary)
-          );
-        }
+    const modifierButton = new Button()
+      .setLabel("Modifier")
+      .setCustomId(`gb_modify_modifier_acc_1_${ctx.message.id}`)
+      .setStyle(ButtonStyle.Primary);
 
-        if (item.gemNo > 0) {
-          row.addComponents(
-            new Button()
-              .setLabel("Gem(s)")
-              .setCustomId("gb_modify_gem_acc_1")
-              .setStyle(ButtonStyle.Primary)
-          );
-        }
-      }
+    const gemButton = new Button()
+      .setLabel("Gem(s)")
+      .setCustomId(`gb_modify_gem_acc_1_${ctx.message.id}`)
+      .setStyle(ButtonStyle.Primary);
+
+    const item = accessoryOne ? await findItemById(accessoryOne?.itemId) : null;
+
+    if (!accessoryOne || accessoryOne?.itemId === EMPTY_ACCESSORY_ID) {
+      enchantButton.setDisabled(true);
+      modifierButton.setDisabled(true);
+      gemButton.setDisabled(true);
     }
 
-    if (row.components.length > 0) {
-      await ctx.write({
-        content: "What to modify about Accessory 1?",
-        components: [row],
-      });
-    } else {
-      await ctx.write({
-        content:
-          "An error has occurred when trying to send modify menu for accessory 1. Please contact the developer.",
-      });
+    if (item) {
+      enchantButton.setDisabled(false);
+      gemButton.setDisabled(item.gemNo === 0);
+      enchantButton.setDisabled(item.validModifiers.length === 0);
     }
+
+    row.addComponents(enchantButton, modifierButton, gemButton);
+
+    await ctx.write({
+      content: "What to modify about Accessory 1?",
+      components: [row],
+    });
   }
 }
