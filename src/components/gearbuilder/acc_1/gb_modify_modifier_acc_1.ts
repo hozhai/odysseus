@@ -1,4 +1,10 @@
-import { findModifiersFromQuery } from "@/utils";
+import type { ComponentsV2Components } from "@/types/seyfert";
+import {
+  findItemById,
+  findModifiersFromQuery,
+  parseGearbuilderComponentsIntoPlayer,
+  serializeTopLevelComponent,
+} from "@/utils";
 import {
   ActionRow,
   Button,
@@ -26,6 +32,20 @@ export default class GearbuilderModifyModifierAccessoryOneButton extends Compone
       return;
     }
 
+    const originalMessage = await ctx.client.messages.fetch(
+      originalMessageId,
+      ctx.channelId
+    );
+
+    const components: ComponentsV2Components = originalMessage.components.map(
+      serializeTopLevelComponent
+    );
+
+    const player = await parseGearbuilderComponentsIntoPlayer(components);
+
+    const validModifiers =
+      (await findItemById(player.accessories[0].itemId))?.validModifiers ?? [];
+
     const responseMessage = ctx.message;
 
     await ctx.update({
@@ -43,7 +63,7 @@ export default class GearbuilderModifyModifierAccessoryOneButton extends Compone
         await message.delete();
 
         const query = message.content;
-        const items = await findModifiersFromQuery(query);
+        const items = await findModifiersFromQuery(query, validModifiers);
 
         if (items.length === 0) {
           const retryRow = new ActionRow().addComponents(

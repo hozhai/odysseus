@@ -94,7 +94,8 @@ export async function findGemsFromQuery(query: string): Promise<Gem[]> {
 }
 
 export async function findModifiersFromQuery(
-  query: string
+  query: string,
+  validModifiers: string[]
 ): Promise<Modifier[]> {
   const normalizedQuery = query.trim().toLocaleLowerCase();
   if (!normalizedQuery) {
@@ -110,6 +111,7 @@ export async function findModifiersFromQuery(
   return fuse
     .search(normalizedQuery)
     .slice(0, 5)
+    .filter(({ item }) => validModifiers.includes(item.name))
     .map(({ item }) => item);
 }
 
