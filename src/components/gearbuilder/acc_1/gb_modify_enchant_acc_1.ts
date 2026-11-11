@@ -18,6 +18,7 @@ export default class GearbuilderModifyEnchantAccessoryOneButton extends Componen
     const originalMessageId = ctx.customId.slice(
       "gb_modify_enchant_acc_1_".length
     );
+
     if (!originalMessageId) {
       await ctx.update({
         content: "Could not identify the original Gearbuilder message.",
