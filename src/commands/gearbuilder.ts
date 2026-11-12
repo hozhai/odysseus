@@ -1,24 +1,8 @@
-import { EMBED_FOOTER } from "@/constants";
-import { getEmojis } from "@/data";
 import {
   createEmptyPlayer,
-  parsePlayerIntoEmbed,
   parsePlayerIntoGearbuilderComponents,
 } from "@/utils";
-import {
-  Declare,
-  Command,
-  type CommandContext,
-  MessageFlags,
-  Container,
-  TextDisplay,
-  Section,
-  Separator,
-  Button,
-  ButtonStyle,
-  Formatter,
-  ActionRow,
-} from "seyfert";
+import { Declare, Command, type CommandContext, MessageFlags } from "seyfert";
 
 @Declare({
   name: "gearbuilder",
