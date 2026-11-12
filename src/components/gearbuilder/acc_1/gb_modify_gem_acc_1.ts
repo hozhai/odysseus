@@ -1,11 +1,12 @@
-import { findGemsFromQuery } from "@/utils";
+import { EMPTY_ACCESSORY_ID } from "@/constants";
+import type { ComponentsV2Components } from "@/types/seyfert";
 import {
-  ActionRow,
-  Button,
-  ButtonStyle,
-  ComponentCommand,
-  ComponentContext,
-} from "seyfert";
+  collectGemSearchResults,
+  findItemById,
+  parseGearbuilderComponentsIntoPlayer,
+  serializeTopLevelComponent,
+} from "@/utils";
+import { ComponentCommand, ComponentContext } from "seyfert";
 
 export default class GearbuilderModifyGemAccessoryOneButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -15,9 +16,7 @@ export default class GearbuilderModifyGemAccessoryOneButton extends ComponentCom
   }
 
   async run(ctx: ComponentContext<typeof this.componentType>) {
-    const [gemSlotNo, originalMessageId] = ctx.customId
-      .slice("gb_modify_gem_acc_1_".length)
-      .split("_");
+    const originalMessageId = ctx.customId.slice("gb_modify_gem_acc_1_".length);
 
     if (!originalMessageId) {
       await ctx.update({
@@ -29,62 +28,58 @@ export default class GearbuilderModifyGemAccessoryOneButton extends ComponentCom
 
     const responseMessage = ctx.message;
 
+    const originalMessage = await ctx.client.messages.fetch(
+      originalMessageId,
+      ctx.channelId
+    );
+
+    const components: ComponentsV2Components = originalMessage.components.map(
+      serializeTopLevelComponent
+    );
+
+    const player = await parseGearbuilderComponentsIntoPlayer(components);
+
+    if (player.accessories[0].itemId === EMPTY_ACCESSORY_ID) {
+      await ctx.update({
+        content:
+          "Error: Accessory One item ID is of an empty accessory while running modify gems.",
+        components: [],
+      });
+      return;
+    }
+
+    const accessoryItem = await findItemById(player.accessories[0].itemId);
+
+    if (!accessoryItem) {
+      await ctx.update({
+        content:
+          "Error: Accessory One item returned null while running modify gems.",
+        components: [],
+      });
+
+      return;
+    }
+
+    if (accessoryItem.gemNo === 0) {
+      await ctx.update({
+        content: "This accessory does not have any gem slots.",
+        components: [],
+      });
+      return;
+    }
+
     await ctx.update({
-      content: "Gems for Accessory Slot 1: Type your search query below...",
+      content: `Gem 1/${accessoryItem.gemNo} for Accessory Slot 1: Type your search query below...`,
       components: [],
     });
 
-    ctx.client.collectors.create({
-      event: "messageCreate",
-      filter: (msg) => msg.author.id === ctx.author.id,
-      idle: 1000 * 60,
-      timeout: 1000 * 60 * 10,
-      run: async (message, stop) => {
-        stop();
-        await message.delete();
-
-        const query = message.content;
-        const items = await findGemsFromQuery(query);
-
-        if (items.length === 0) {
-          const retryRow = new ActionRow().addComponents(
-            new Button()
-              .setLabel("Try another search")
-              .setCustomId(`gb_modify_gem_acc_1_${originalMessageId}`)
-              .setStyle(ButtonStyle.Primary)
-          );
-
-          await responseMessage.edit({
-            content: `You searched for \`${query}\`. No item matched your query - please try again.`,
-            components: [retryRow],
-          });
-          return;
-        }
-
-        const row = new ActionRow();
-
-        let i = 1;
-        for (const item of items) {
-          row.addComponents(
-            new Button()
-              .setLabel(`#${i}`)
-              .setCustomId(
-                `gb_select_gem_acc_1_${item.id}_${originalMessageId}`
-              )
-              .setStyle(ButtonStyle.Secondary)
-          );
-          i++;
-        }
-
-        await responseMessage.edit({
-          content: `You searched for \`${query}\`. Select a result:\n${items.map((item, idx) => `#${idx + 1} - ${item.name}`).join("\n")}`,
-          components: [row],
-        });
-      },
-      onRunError: (_arg, error, stop) => {
-        stop();
-        ctx.client.logger.warn(JSON.stringify(error, null, 2));
-      },
-    });
+    collectGemSearchResults(
+      ctx,
+      responseMessage,
+      originalMessageId,
+      1,
+      1,
+      accessoryItem.gemNo
+    );
   }
 }

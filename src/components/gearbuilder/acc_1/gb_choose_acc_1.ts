@@ -50,7 +50,7 @@ export default class GearbuilderChooseAccessoryOneButton extends ComponentComman
 
     const gemButton = new Button()
       .setLabel("Gem(s)")
-      .setCustomId(`gb_choose_gem_acc_1_${ctx.message.id}`)
+      .setCustomId(`gb_modify_gem_acc_1_${ctx.message.id}`)
       .setStyle(ButtonStyle.Primary);
 
     const item = accessoryOne ? await findItemById(accessoryOne?.itemId) : null;
