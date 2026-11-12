@@ -13,7 +13,7 @@ const client = new Client({
     status: PresenceUpdateStatus.Online,
     activities: [
       {
-        name: "💠 https://odysseus.zip",
+        name: "💠 https://odysseus-web.pages.dev",
         type: ActivityType.Playing,
       },
     ],
