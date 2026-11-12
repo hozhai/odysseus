@@ -1,4 +1,5 @@
 enchants:
+  None: { id: "1570473259407773827", name: noenchant }
   Deadeye: { id: "1568022679078830211", name: deadeye }
   Brisk: { id: "1568022673357803613", name: brisk }
   Enhanced: { id: "1568022681129984061", name: enhanced }
@@ -83,6 +84,7 @@ modifiers:
   Atlantean Essence + Stone: { id: "1568023259688075347", name: atlanteanstone }
 
 gems:
+  None: { id: "1570473070747975700", name: nogem }
   Defense Gem: { id: "1568022983430111332", name: defensegem }
   Power Gem: { id: "1568023048240496741", name: powergem }
   Attack Speed Gem: { id: "1568022910558281839", name: dexteritygem }
