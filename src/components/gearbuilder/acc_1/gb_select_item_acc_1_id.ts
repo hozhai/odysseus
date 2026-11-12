@@ -1,11 +1,11 @@
+import { ComponentCommand, ComponentContext, MessageFlags } from "seyfert";
 import {
-  ComponentCommand,
-  ComponentContext,
-  ComponentType,
-  MessageFlags,
-} from "seyfert";
-import { findItemById, serializeTopLevelComponent } from "@/utils";
+  parseGearbuilderComponentsIntoPlayer,
+  parsePlayerIntoGearbuilderComponents,
+  serializeTopLevelComponent,
+} from "@/utils";
 import type { ComponentsV2Components } from "@/types/seyfert";
+import { EMPTY_ENCHANTMENT_ID, EMPTY_MODIFIER_ID } from "@/constants";
 
 export default class GearbuilderSelectItemAccessoryOneIdButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -28,16 +28,6 @@ export default class GearbuilderSelectItemAccessoryOneIdButton extends Component
       return;
     }
 
-    const item = await findItemById(itemId);
-    if (!item) {
-      await ctx.update({
-        content:
-          "The selected item could not be found. Please contact the developer and try again.",
-        components: [],
-      });
-      return;
-    }
-
     const originalMessage = await ctx.client.messages.fetch(
       originalMessageId,
       ctx.channelId
@@ -47,35 +37,26 @@ export default class GearbuilderSelectItemAccessoryOneIdButton extends Component
       serializeTopLevelComponent
     );
 
-    const container = components[0];
-    if (container?.type !== ComponentType.Container) {
-      throw new Error(
-        "Original Gearbuilder message has no component container"
-      );
-    }
+    const player = await parseGearbuilderComponentsIntoPlayer(components);
+    const newPlayer = { ...player };
 
-    const accessorySection = container.components.filter(
-      (component) => component.type === ComponentType.Section
-    )[0];
-    const accessoryDetails = accessorySection?.components[1];
-    if (!accessoryDetails) {
-      throw new Error("Original Gearbuilder message has no accessory details");
-    }
+    newPlayer.accessories[0].itemId = itemId;
+    newPlayer.accessories[0].enchantId = EMPTY_ENCHANTMENT_ID;
+    newPlayer.accessories[0].modifierId = EMPTY_MODIFIER_ID;
+    newPlayer.accessories[0].gemIds = [];
 
-    // keep these as unset here; we want to reset the addons when a new item is chosen
-    accessoryDetails.content = `Item: ${item.name}\nEnchant: Unset`;
-
-    if (item.validModifiers.length > 0)
-      accessoryDetails.content += "\nModifier: Unset";
-    if (item.gemNo > 0) accessoryDetails.content += "\nGem(s): Unset";
+    const newComponents = await parsePlayerIntoGearbuilderComponents(
+      newPlayer,
+      ctx.author.username
+    );
 
     await originalMessage.edit({
-      components,
+      components: [newComponents],
       flags: MessageFlags.IsComponentsV2,
     });
 
     await ctx.update({
-      content: `Selected ${item.name}.`,
+      content: `Selected.`,
       components: [],
     });
 

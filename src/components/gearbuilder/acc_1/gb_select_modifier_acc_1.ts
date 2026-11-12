@@ -1,18 +1,7 @@
+import { ComponentCommand, ComponentContext, MessageFlags } from "seyfert";
 import {
-  ComponentCommand,
-  ComponentContext,
-  ComponentType,
-  MessageFlags,
-} from "seyfert";
-import {
-  findEnchantById,
-  findGemById,
-  findItemById,
-  findModifierById,
-  itemEnchantToEmoji,
-  itemGemToEmoji,
-  itemModifierToEmoji,
   parseGearbuilderComponentsIntoPlayer,
+  parsePlayerIntoGearbuilderComponents,
   serializeTopLevelComponent,
 } from "@/utils";
 import type { ComponentsV2Components } from "@/types/seyfert";
@@ -38,16 +27,6 @@ export default class GearbuilderSelectModifierAccessoryOneIdButton extends Compo
       return;
     }
 
-    const modifier = await findModifierById(modifierId);
-    if (!modifier) {
-      await ctx.update({
-        content:
-          "The selected modifier could not be found. Please contact the developer and try again.",
-        components: [],
-      });
-      return;
-    }
-
     const originalMessage = await ctx.client.messages.fetch(
       originalMessageId,
       ctx.channelId
@@ -58,85 +37,22 @@ export default class GearbuilderSelectModifierAccessoryOneIdButton extends Compo
     );
 
     const player = await parseGearbuilderComponentsIntoPlayer(components);
-    const item = await findItemById(player.accessories[0].itemId);
-    const enchant = await findEnchantById(player.accessories[0].enchantId);
+    const newPlayer = { ...player };
 
-    const gems = await Promise.all(
-      player.accessories[0].gemIds.map(
-        async (gemId) => await findGemById(gemId)
-      )
+    newPlayer.accessories[0].modifierId = modifierId;
+
+    const newComponents = await parsePlayerIntoGearbuilderComponents(
+      newPlayer,
+      ctx.author.username
     );
 
-    if (!item) {
-      await ctx.update({
-        content:
-          "The affected slot's item was not found. Please contact the developer and try again.",
-        components: [],
-      });
-      return;
-    }
-
-    if (!enchant) {
-      await ctx.update({
-        content:
-          "The affected slot's modifier was not found. Please contact the developer and try again.",
-        components: [],
-      });
-      return;
-    }
-
-    const gemEmojis = (
-      await Promise.all(
-        gems
-          .filter((gem) => gem !== null)
-          .map(async (gem) => (await itemGemToEmoji(gem)) as string)
-      )
-    ).join(" ");
-
-    const enchantEmoji = await itemEnchantToEmoji(enchant);
-    const modifierEmoji = await itemModifierToEmoji(modifier);
-
-    if (!item) {
-      await ctx.update({
-        content:
-          "The affected slot's item was not found. Please contact the developer and try again.",
-        components: [],
-      });
-      return;
-    }
-
-    const container = components[0];
-    if (container?.type !== ComponentType.Container) {
-      throw new Error(
-        "Original Gearbuilder message has no component container"
-      );
-    }
-
-    const accessorySection = container.components.filter(
-      (component) => component.type === ComponentType.Section
-    )[0];
-    const accessoryDetails = accessorySection?.components[1];
-    if (!accessoryDetails) {
-      throw new Error("Original Gearbuilder message has no accessory details");
-    }
-
-    accessoryDetails.content = `Item: ${item.name}\nEnchant: ${(enchantEmoji as string) ?? "Unset"}`;
-
-    if (item.validModifiers.length > 0) {
-      accessoryDetails.content += `\nModifier: ${(modifierEmoji as string) ?? "Unset"}`;
-    }
-
-    if (item.gemNo > 0) {
-      accessoryDetails.content += `\nGem(s): ${gemEmojis.trim().length > 0 ? gemEmojis : "Unset"}`;
-    }
-
     await originalMessage.edit({
-      components,
+      components: [newComponents],
       flags: MessageFlags.IsComponentsV2,
     });
 
     await ctx.update({
-      content: `Selected ${item.name}.`,
+      content: `Selected.`,
       components: [],
     });
 
