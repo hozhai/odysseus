@@ -9,7 +9,18 @@ import {
   type Modifier,
 } from "@data";
 import Fuse from "fuse.js/basic";
-import { ComponentType, Formatter, type TopLevelComponents } from "seyfert";
+import {
+  ActionRow,
+  Button,
+  ButtonStyle,
+  ComponentType,
+  Container,
+  Formatter,
+  Section,
+  Separator,
+  TextDisplay,
+  type TopLevelComponents,
+} from "seyfert";
 import type { ComponentsV2Components } from "@/types/seyfert";
 import {
   createEmptyPlayer,
@@ -17,10 +28,20 @@ import {
   emojiToEnchant,
   emojiToModifier,
   FightingStylesEnum,
+  fsToEmoji,
+  findEnchantById,
+  findGemById,
+  findItemById,
+  findModifierById,
+  itemEnchantToEmoji,
+  itemGemToEmoji,
+  itemModifierToEmoji,
+  magicToEmoji,
   MagicsEnum,
 } from "@utils";
 import { findItemByName } from "@utils";
 import {
+  EMBED_FOOTER,
   EMPTY_ACCESSORY_ID,
   EMPTY_CHESTPLATE_ID,
   EMPTY_ENCHANTMENT_ID,
@@ -267,4 +288,185 @@ export function serializeTopLevelComponent(
         `Unsupported top-level message component type: ${component.type}`
       );
   }
+}
+
+async function slotToRaw(slot: Slot): Promise<string> {
+  const item = (await findItemById(slot.itemId)) ?? null;
+  const itemName = item?.name ?? "Unset";
+
+  const enchant = (await findEnchantById(slot.enchantId)) ?? null;
+  const enchantEmoji = enchant ? await itemEnchantToEmoji(enchant) : null;
+
+  const modifier = (await findModifierById(slot.modifierId)) ?? null;
+  const modifierEmoji = modifier ? await itemModifierToEmoji(modifier) : null;
+
+  const gemEmojis = (
+    await Promise.all(
+      slot.gemIds.map(async (gemId) => {
+        const gem = await findGemById(gemId);
+        return gem ? await itemGemToEmoji(gem) : null;
+      })
+    )
+  )
+    .filter((emoji): emoji is string => emoji !== null)
+    .join(" ");
+
+  return [
+    `Item: ${itemName}`,
+    `Enchant: ${(enchantEmoji as string) ?? "Unset"}`,
+    `Modifier: ${(modifierEmoji as string) ?? "Unset"}`,
+    `Gem(s): ${gemEmojis || "Unset"}`,
+  ].join("\n");
+}
+
+export async function parsePlayerIntoGearbuilderComponents(
+  player: Player,
+  authorUsername: string
+) {
+  const magicEmojis = (await getEmojis()).magics;
+  const defaultMagicEmoji = magicEmojis["Acid"];
+
+  if (!defaultMagicEmoji) {
+    throw new Error(
+      "Default Acid emoji not found while parsing player into GearBuilder components."
+    );
+  }
+
+  const accessoryRows = await Promise.all(
+    player.accessories.map(async (accessory) => await slotToRaw(accessory))
+  );
+
+  const magicFsText = (
+    await Promise.all([
+      ...player.magics.map(async (magic: MagicsEnum) =>
+        magicToEmoji(MagicsEnum[magic] ?? "Acid")
+      ),
+      ...player.fightingStyles.map(async (fightingStyle: FightingStylesEnum) =>
+        fsToEmoji(FightingStylesEnum[fightingStyle] ?? "BasicCombat")
+      ),
+    ])
+  )
+    .filter(
+      (emoji): emoji is string => typeof emoji === "string" && emoji.length > 0
+    )
+    .join(" ");
+
+  const component = new Container().addComponents(
+    new TextDisplay().setContent(`## Gearbuilder`),
+    new Section()
+      .setComponents(
+        new TextDisplay().setContent("Accessory:"),
+        new TextDisplay().setContent(
+          accessoryRows[0] ??
+            "Item: Unset\nEnchant: Unset\nModifier: Unset\nGem(s): Unset"
+        )
+      )
+      .setAccessory(
+        new Button()
+          .setLabel("Modify")
+          .setStyle(ButtonStyle.Secondary)
+          .setCustomId("gb_choose_acc_1")
+      ),
+    new Section()
+      .setComponents(
+        new TextDisplay().setContent("Accessory:"),
+        new TextDisplay().setContent(
+          accessoryRows[1] ??
+            "Item: Unset\nEnchant: Unset\nModifier: Unset\nGem(s): Unset"
+        )
+      )
+      .setAccessory(
+        new Button()
+          .setLabel("Modify")
+          .setStyle(ButtonStyle.Secondary)
+          .setCustomId("gb_choose_acc_2")
+      ),
+    new Section()
+      .setComponents(
+        new TextDisplay().setContent("Accessory:"),
+        new TextDisplay().setContent(
+          accessoryRows[2] ??
+            "Item: Unset\nEnchant: Unset\nModifier: Unset\nGem(s): Unset"
+        )
+      )
+      .setAccessory(
+        new Button()
+          .setLabel("Modify")
+          .setStyle(ButtonStyle.Secondary)
+          .setCustomId("gb_choose_acc_3")
+      ),
+    new Section()
+      .setComponents(
+        new TextDisplay().setContent("Chestplate:"),
+        new TextDisplay().setContent(await slotToRaw(player.chestplate))
+      )
+      .setAccessory(
+        new Button()
+          .setLabel("Modify")
+          .setStyle(ButtonStyle.Secondary)
+          .setCustomId("gb_choose_chest")
+      ),
+    new Section()
+      .setComponents(
+        new TextDisplay().setContent("Pants:"),
+        new TextDisplay().setContent(await slotToRaw(player.boots))
+      )
+      .setAccessory(
+        new Button()
+          .setLabel("Modify")
+          .setStyle(ButtonStyle.Secondary)
+          .setCustomId("gb_choose_pants")
+      ),
+    new Separator(),
+    new Section()
+      .setComponents(
+        new TextDisplay().setContent("Magic/Fighting Styles"),
+        new TextDisplay().setContent(
+          magicFsText ||
+            `${Formatter.emojiMention(defaultMagicEmoji.id, defaultMagicEmoji.name)}`
+        )
+      )
+      .setAccessory(
+        new Button()
+          .setLabel("Modify")
+          .setStyle(ButtonStyle.Secondary)
+          .setCustomId("gb_modify_magicfs")
+      ),
+    new Section()
+      .setComponents(
+        new TextDisplay().setContent("Player Level"),
+        new TextDisplay().setContent(String(player.level || 175))
+      )
+      .setAccessory(
+        new Button()
+          .setLabel("Modify")
+          .setStyle(ButtonStyle.Secondary)
+          .setCustomId("gb_modify_level")
+      ),
+    new Section()
+      .setComponents(
+        new TextDisplay().setContent("Stat Allocation"),
+        new TextDisplay().setContent(
+          `🟨 ${player.vitalityPoints} 🟦 ${player.magicPoints} 🟥 ${player.strengthPoints} ⬜️ ${player.weaponPoints}`
+        )
+      )
+      .setAccessory(
+        new Button()
+          .setLabel("Modify")
+          .setStyle(ButtonStyle.Secondary)
+          .setCustomId("gb_modify_statalloc")
+      ),
+    new Separator(),
+    new ActionRow().addComponents(
+      new Button()
+        .setLabel("Get Stats")
+        .setStyle(ButtonStyle.Success)
+        .setCustomId("gb_get")
+    ),
+    new TextDisplay().setContent(
+      `-# ${EMBED_FOOTER} | Command executed by \`${authorUsername}\``
+    )
+  );
+
+  return component;
 }
