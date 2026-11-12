@@ -44,9 +44,9 @@ export default class GearbuilderModifyEnchantAccessoryOneButton extends Componen
         await message.delete();
 
         const query = message.content;
-        const items = await findEnchantsFromQuery(query);
+        const enchants = await findEnchantsFromQuery(query);
 
-        if (items.length === 0) {
+        if (enchants.length === 0) {
           const retryRow = new ActionRow().addComponents(
             new Button()
               .setLabel("Try another search")
@@ -64,12 +64,12 @@ export default class GearbuilderModifyEnchantAccessoryOneButton extends Componen
         const row = new ActionRow();
 
         let i = 1;
-        for (const item of items) {
+        for (const enchant of enchants) {
           row.addComponents(
             new Button()
               .setLabel(`#${i}`)
               .setCustomId(
-                `gb_select_enchant_acc_1_${item.id}_${originalMessageId}`
+                `gb_select_enchant_acc_1_${enchant.id}_${originalMessageId}`
               )
               .setStyle(ButtonStyle.Secondary)
           );
@@ -77,7 +77,7 @@ export default class GearbuilderModifyEnchantAccessoryOneButton extends Componen
         }
 
         await responseMessage.edit({
-          content: `You searched for \`${query}\`. Select a result:\n${items.map((item, idx) => `#${idx + 1} - ${item.name}`).join("\n")}`,
+          content: `You searched for \`${query}\`. Select a result:\n${enchants.map((item, idx) => `#${idx + 1} - ${item.name}`).join("\n")}`,
           components: [row],
         });
       },
