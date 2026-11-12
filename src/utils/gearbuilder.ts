@@ -20,6 +20,7 @@ import {
   Separator,
   TextDisplay,
   type TopLevelComponents,
+  type ComponentContext,
 } from "seyfert";
 import type { ComponentsV2Components } from "@/types/seyfert";
 import {
@@ -295,7 +296,10 @@ async function slotToRaw(slot: Slot): Promise<string> {
   const itemName = item?.name ?? "Unset";
 
   const enchant = (await findEnchantById(slot.enchantId)) ?? null;
-  const enchantEmoji = enchant ? await itemEnchantToEmoji(enchant) : null;
+  const enchantEmoji =
+    enchant && enchant.id !== EMPTY_ENCHANTMENT_ID
+      ? await itemEnchantToEmoji(enchant)
+      : null;
 
   const modifier = (await findModifierById(slot.modifierId)) ?? null;
   const modifierEmoji = modifier ? await itemModifierToEmoji(modifier) : null;
@@ -312,7 +316,7 @@ async function slotToRaw(slot: Slot): Promise<string> {
     .join(" ");
 
   return [
-    `Item: ${itemName}`,
+    `Item: ${itemName === "None" ? "Unset" : itemName}`,
     `Enchant: ${(enchantEmoji as string) ?? "Unset"}`,
     `Modifier: ${(modifierEmoji as string) ?? "Unset"}`,
     `Gem(s): ${gemEmojis || "Unset"}`,
@@ -420,6 +424,19 @@ export async function parsePlayerIntoGearbuilderComponents(
     new Separator(),
     new Section()
       .setComponents(
+        new TextDisplay().setContent("Stat Allocation"),
+        new TextDisplay().setContent(
+          `🟨 ${player.vitalityPoints} 🟦 ${player.magicPoints} 🟥 ${player.strengthPoints} ⬜️ ${player.weaponPoints}`
+        )
+      )
+      .setAccessory(
+        new Button()
+          .setLabel("Modify")
+          .setStyle(ButtonStyle.Secondary)
+          .setCustomId("gb_modify_statalloc")
+      ),
+    new Section()
+      .setComponents(
         new TextDisplay().setContent("Magic/Fighting Styles"),
         new TextDisplay().setContent(
           magicFsText ||
@@ -443,19 +460,6 @@ export async function parsePlayerIntoGearbuilderComponents(
           .setStyle(ButtonStyle.Secondary)
           .setCustomId("gb_modify_level")
       ),
-    new Section()
-      .setComponents(
-        new TextDisplay().setContent("Stat Allocation"),
-        new TextDisplay().setContent(
-          `🟨 ${player.vitalityPoints} 🟦 ${player.magicPoints} 🟥 ${player.strengthPoints} ⬜️ ${player.weaponPoints}`
-        )
-      )
-      .setAccessory(
-        new Button()
-          .setLabel("Modify")
-          .setStyle(ButtonStyle.Secondary)
-          .setCustomId("gb_modify_statalloc")
-      ),
     new Separator(),
     new ActionRow().addComponents(
       new Button()
@@ -469,4 +473,62 @@ export async function parsePlayerIntoGearbuilderComponents(
   );
 
   return component;
+}
+
+export function collectGemSearchResults(
+  ctx: ComponentContext<"Button">,
+  responseMessage: ComponentContext<"Button">["message"],
+  originalMessageId: string,
+  slotId: 1 | 2 | 3 | "chest" | "pants",
+  gemIndex: number,
+  gemCount: number
+) {
+  ctx.client.collectors.create({
+    event: "messageCreate",
+    filter: (message) => message.author.id === ctx.author.id,
+    idle: 1000 * 60,
+    timeout: 1000 * 60 * 10,
+    run: async (message, stop) => {
+      stop();
+      await message.delete();
+
+      const query = message.content;
+      const gems = await findGemsFromQuery(query);
+
+      if (gems.length === 0) {
+        const retryButton = new Button()
+          .setLabel(`Try another search for Gem ${gemIndex}/${gemCount}`)
+          .setCustomId(
+            `gb_retry_gem_${slotId}_${originalMessageId}_${gemIndex}`
+          )
+          .setStyle(ButtonStyle.Primary);
+
+        await responseMessage.edit({
+          content: `You searched for \`${query}\`. No gem matched your query - please try again.`,
+          components: [new ActionRow().addComponents(retryButton)],
+        });
+        return;
+      }
+
+      const resultButtons = gems.map((gem, index) =>
+        new Button()
+          .setLabel(`#${index + 1}`)
+          .setCustomId(
+            `gb_proceed_gem_${slotId}_${originalMessageId}_${gem.id}_${gemIndex}`
+          )
+          .setStyle(ButtonStyle.Secondary)
+      );
+
+      await responseMessage.edit({
+        content: `You searched for \`${query}\`. Select a result:\n${gems
+          .map((gem, index) => `#${index + 1} - ${gem.name}`)
+          .join("\n")}`,
+        components: [new ActionRow().addComponents(...resultButtons)],
+      });
+    },
+    onRunError: (_arg, error, stop) => {
+      stop();
+      ctx.client.logger.warn(JSON.stringify(error, null, 2));
+    },
+  });
 }
