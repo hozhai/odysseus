@@ -55,29 +55,25 @@ export default class GearbuilderModifyEnchantAccessoryOneButton extends Componen
           );
 
           await responseMessage.edit({
-            content: `You searched for \`${query}\`. No item matched your query - please try again.`,
+            content: `You searched for \`${query}\`. No enchant matched your query - please try again.`,
             components: [retryRow],
           });
           return;
         }
 
-        const row = new ActionRow();
-
-        let i = 1;
-        for (const enchant of enchants) {
-          row.addComponents(
+        const row = new ActionRow().addComponents(
+          ...enchants.map((enchant, index) =>
             new Button()
-              .setLabel(`#${i}`)
+              .setLabel(`#${index + 1}`)
               .setCustomId(
                 `gb_select_enchant_acc_1_${enchant.id}_${originalMessageId}`
               )
               .setStyle(ButtonStyle.Secondary)
-          );
-          i++;
-        }
+          )
+        );
 
         await responseMessage.edit({
-          content: `You searched for \`${query}\`. Select a result:\n${enchants.map((item, idx) => `#${idx + 1} - ${item.name}`).join("\n")}`,
+          content: `You searched for \`${query}\`. Select a result:\n${enchants.map((enchant, index) => `#${index + 1} - ${enchant.name}`).join("\n")}`,
           components: [row],
         });
       },

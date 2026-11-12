@@ -63,9 +63,9 @@ export default class GearbuilderModifyModifierAccessoryOneButton extends Compone
         await message.delete();
 
         const query = message.content;
-        const items = await findModifiersFromQuery(query, validModifiers);
+        const modifiers = await findModifiersFromQuery(query, validModifiers);
 
-        if (items.length === 0) {
+        if (modifiers.length === 0) {
           const retryRow = new ActionRow().addComponents(
             new Button()
               .setLabel("Try another search")
@@ -74,29 +74,25 @@ export default class GearbuilderModifyModifierAccessoryOneButton extends Compone
           );
 
           await responseMessage.edit({
-            content: `You searched for \`${query}\`. No item matched your query - please try again.`,
+            content: `You searched for \`${query}\`. No modifier matched your query - please try again.`,
             components: [retryRow],
           });
           return;
         }
 
-        const row = new ActionRow();
-
-        let i = 1;
-        for (const item of items) {
-          row.addComponents(
+        const row = new ActionRow().addComponents(
+          ...modifiers.map((modifier, index) =>
             new Button()
-              .setLabel(`#${i}`)
+              .setLabel(`#${index + 1}`)
               .setCustomId(
-                `gb_select_modifier_acc_1_${item.id}_${originalMessageId}`
+                `gb_select_modifier_acc_1_${modifier.id}_${originalMessageId}`
               )
               .setStyle(ButtonStyle.Secondary)
-          );
-          i++;
-        }
+          )
+        );
 
         await responseMessage.edit({
-          content: `You searched for \`${query}\`. Select a result:\n${items.map((item, idx) => `#${idx + 1} - ${item.name}`).join("\n")}`,
+          content: `You searched for \`${query}\`. Select a result:\n${modifiers.map((modifier, index) => `#${index + 1} - ${modifier.name}`).join("\n")}`,
           components: [row],
         });
       },

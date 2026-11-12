@@ -60,23 +60,19 @@ export default class GearbuilderModifyItemAccessoryOneButton extends ComponentCo
           return;
         }
 
-        const row = new ActionRow();
-
-        let i = 1;
-        for (const item of items) {
-          row.addComponents(
+        const row = new ActionRow().addComponents(
+          ...items.map((item, index) =>
             new Button()
-              .setLabel(`#${i}`)
+              .setLabel(`#${index + 1}`)
               .setCustomId(
                 `gb_select_item_acc_1_${item.id}_${originalMessageId}`
               )
               .setStyle(ButtonStyle.Secondary)
-          );
-          i++;
-        }
+          )
+        );
 
         await responseMessage.edit({
-          content: `You searched for \`${query}\`. Select a result:\n${items.map((item, idx) => `#${idx + 1} - ${item.name}`).join("\n")}`,
+          content: `You searched for \`${query}\`. Select a result:\n${items.map((item, index) => `#${index + 1} - ${item.name}`).join("\n")}`,
           components: [row],
         });
       },
