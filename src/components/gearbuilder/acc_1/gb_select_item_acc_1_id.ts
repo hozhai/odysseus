@@ -7,7 +7,7 @@ import {
 import type { ComponentsV2Components } from "@/types/seyfert";
 import { EMPTY_ENCHANTMENT_ID, EMPTY_MODIFIER_ID } from "@/constants";
 
-export default class GearbuilderSelectItemAccessoryOneIdButton extends ComponentCommand {
+export default class GearbuilderSelectItemAccessoryOneButton extends ComponentCommand {
   componentType = "Button" as const;
 
   override filter(ctx: ComponentContext<typeof this.componentType>) {

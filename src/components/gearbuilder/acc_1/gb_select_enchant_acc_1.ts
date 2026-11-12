@@ -7,7 +7,7 @@ import {
 } from "@/utils";
 import type { ComponentsV2Components } from "@/types/seyfert";
 
-export default class GearbuilderSelectEnchantAccessoryOneIdButton extends ComponentCommand {
+export default class GearbuilderSelectEnchantAccessoryOneButton extends ComponentCommand {
   componentType = "Button" as const;
 
   override filter(ctx: ComponentContext<typeof this.componentType>) {
@@ -53,13 +53,13 @@ export default class GearbuilderSelectEnchantAccessoryOneIdButton extends Compon
 
     newPlayer.accessories[0].enchantId = enchantId;
 
-    const newComponent = await parsePlayerIntoGearbuilderComponents(
+    const newComponents = await parsePlayerIntoGearbuilderComponents(
       newPlayer,
       ctx.author.username
     );
 
     await originalMessage.edit({
-      components: [newComponent],
+      components: [newComponents],
       flags: MessageFlags.IsComponentsV2,
     });
 
