@@ -39,6 +39,8 @@ import {
   itemModifierToEmoji,
   magicToEmoji,
   MagicsEnum,
+  fsEnumToName,
+  magicEnumToName,
 } from "@utils";
 import { findItemByName } from "@utils";
 import {
@@ -200,13 +202,16 @@ export async function findModifiersFromQuery(
 async function parseSlotFromComponentRaw(
   raw: string,
   emptyItemId: string,
-  level: number
+  level: number,
+  mainType: MainType
 ): Promise<Slot> {
   const [itemName, enchantEmoji, modifierEmoji, gemEmojis] = raw
     .split("\n")
     .map((line) => line.split(": ")[1]?.trim());
 
-  const itemId = (await findItemByName(itemName ?? ""))?.id ?? emptyItemId;
+  const item = await findItemByName(itemName ?? "None", mainType);
+
+  const itemId = item?.id ?? emptyItemId;
   const gemIds = (
     await Promise.all(
       gemEmojis
@@ -225,12 +230,14 @@ async function parseSlotFromComponentRaw(
     (await emojiToModifier(emojiTextToResolvable(modifierEmoji ?? null)))?.id ??
     EMPTY_MODIFIER_ID;
 
+  const actualLevel = item ? Math.min(level, item.maxLevel) : level;
+
   return {
     itemId,
     gemIds,
     enchantId,
     modifierId,
-    level,
+    level: actualLevel,
   };
 }
 
@@ -300,19 +307,36 @@ export async function parseGearbuilderComponentsIntoPlayer(
 
   const level = Math.floor(player.level / 10) * 10;
   player.accessories = await Promise.all([
-    parseSlotFromComponentRaw(accessoryOneRaw, EMPTY_ACCESSORY_ID, level),
-    parseSlotFromComponentRaw(accessoryTwoRaw, EMPTY_ACCESSORY_ID, level),
-    parseSlotFromComponentRaw(accessoryThreeRaw, EMPTY_ACCESSORY_ID, level),
+    parseSlotFromComponentRaw(
+      accessoryOneRaw,
+      EMPTY_ACCESSORY_ID,
+      level,
+      "Accessory"
+    ),
+    parseSlotFromComponentRaw(
+      accessoryTwoRaw,
+      EMPTY_ACCESSORY_ID,
+      level,
+      "Accessory"
+    ),
+    parseSlotFromComponentRaw(
+      accessoryThreeRaw,
+      EMPTY_ACCESSORY_ID,
+      level,
+      "Accessory"
+    ),
   ]);
   player.chestplate = await parseSlotFromComponentRaw(
     chestplateRaw,
     EMPTY_CHESTPLATE_ID,
-    level
+    level,
+    "Chestplate"
   );
   player.boots = await parseSlotFromComponentRaw(
     pantsRaw,
     EMPTY_PANTS_ID,
-    level
+    level,
+    "Chestplate"
   );
 
   const [magics, fs] = await parseMagicFsRaw(magicFsRaw);
@@ -403,10 +427,10 @@ export async function parsePlayerIntoGearbuilderComponents(
   const magicFsText = (
     await Promise.all([
       ...player.magics.map(async (magic: MagicsEnum) =>
-        magicToEmoji(MagicsEnum[magic] ?? "Acid")
+        magicToEmoji(magicEnumToName(magic) ?? "Acid")
       ),
       ...player.fightingStyles.map(async (fightingStyle: FightingStylesEnum) =>
-        fsToEmoji(FightingStylesEnum[fightingStyle] ?? "BasicCombat")
+        fsToEmoji(fsEnumToName(fightingStyle) ?? "Basic Combat")
       ),
     ])
   )
