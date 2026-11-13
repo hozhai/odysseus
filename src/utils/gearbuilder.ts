@@ -41,6 +41,7 @@ import {
   MagicsEnum,
   fsEnumToName,
   magicEnumToName,
+  clamp,
 } from "@utils";
 import { findItemByName } from "@utils";
 import {
@@ -230,7 +231,7 @@ async function parseSlotFromComponentRaw(
     (await emojiToModifier(emojiTextToResolvable(modifierEmoji ?? null)))?.id ??
     EMPTY_MODIFIER_ID;
 
-  const actualLevel = item ? Math.min(level, item.maxLevel) : level;
+  const actualLevel = item ? clamp(item.minLevel, level, item.maxLevel) : level;
 
   return {
     itemId,
@@ -292,18 +293,18 @@ export async function parseGearbuilderComponentsIntoPlayer(
   const chestplateRaw = sections[3]?.components[1]?.content ?? itemFallbackText;
   const pantsRaw = sections[4]?.components[1]?.content ?? itemFallbackText;
 
+  const statAllocationRaw =
+    sections[5]?.components[1]?.content ?? "🟨 0 🟦 0 🟥 0 ⬜️ 0";
   const magicFsRaw =
-    sections[5]?.components[1]?.content ??
+    sections[6]?.components[1]?.content ??
     Formatter.emojiMention(
       emojis.magics["Acid"]?.id ?? "",
       emojis.magics["Acid"]?.name ?? ""
     ) ??
     "";
-  const levelRaw = sections[6]?.components[1]?.content;
-  const statAllocationRaw =
-    sections[7]?.components[1]?.content ?? "🟨 0 🟦 0 🟥 0 ⬜️ 0";
+  const levelRaw = sections[7]?.components[1]?.content;
 
-  player.level = Number(levelRaw ?? 175);
+  player.level = Number.isInteger(Number(levelRaw)) ? Number(levelRaw) : 175;
 
   const level = Math.floor(player.level / 10) * 10;
   player.accessories = await Promise.all([
