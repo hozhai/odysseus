@@ -58,7 +58,7 @@ export async function findGemById(id: string): Promise<Gem | null> {
 
 export async function findItemByName(
   name: string,
-  mainType: MainType | null | undefined
+  mainType?: MainType
 ): Promise<Item | null> {
   const itemData = (await getData()).items;
   const item = Object.values(itemData).find((item) => {
