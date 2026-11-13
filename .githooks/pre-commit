@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+bun run lint
+bun run typecheck
+bun run fmt
+bun run test

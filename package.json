@@ -10,6 +10,7 @@
     "lint:fix": "oxlint --fix",
     "typecheck": "tsc",
     "test": "bun test",
+    "hooks:install": "git config core.hooksPath .githooks",
     "start": "bun run src/index"
   },
   "devDependencies": {
