@@ -266,7 +266,7 @@ export async function parsePlayerIntoEmbed(
   return embed;
 }
 
-function magicEnumToName(magic: MagicsEnum): string {
+export function magicEnumToName(magic: MagicsEnum): string {
   switch (magic) {
     case MagicsEnum.Acid:
       return "Acid";
@@ -311,7 +311,7 @@ function magicEnumToName(magic: MagicsEnum): string {
   }
 }
 
-function fsEnumToName(fs: FightingStylesEnum): string {
+export function fsEnumToName(fs: FightingStylesEnum): string {
   switch (fs) {
     case FightingStylesEnum.BasicCombat:
       return "Basic Combat";
