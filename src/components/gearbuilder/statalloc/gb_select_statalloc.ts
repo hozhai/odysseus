@@ -94,9 +94,6 @@ export default class GearbuilderSelectStatAllocModal extends ModalCommand {
       return;
     }
 
-    // FIXME: delete this
-    ctx.client.logger.debug(player.level);
-
     if (
       spiritPoints + magicPoints + strengthPoints + weaponPoints >
       player.level * 2
