@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { MAX_LEVEL } from "@constants";
+import { MAX_LEVEL_ITEM } from "@constants";
 import { getData, ItemSchema } from "@data";
 import {
   calculateGemStats,
@@ -50,7 +50,7 @@ describe("item stat helpers", () => {
 
     const stats = calculateItemStats(item);
 
-    expect(stats.power).toBe(Math.floor(MAX_LEVEL * 0.315 * 10) / 10);
+    expect(stats.power).toBe(Math.floor(MAX_LEVEL_ITEM * 0.315 * 10) / 10);
     expect(stats.warding).toBe(2);
     expect(stats.drawback).toBe(3);
   });

@@ -3,5 +3,6 @@ export const BUILD_URL_PREFIX_BOBBY =
   "https://tools.arcaneodyssey.net/gearBuilder#";
 export const BUILD_URL_PREFIX_WOODY =
   "https://aotools.woodyloody.com/gearBuilder#";
-export const MAX_LEVEL = 170; // max item level
+export const MAX_LEVEL_PLAYER = 175;
+export const MAX_LEVEL_ITEM = Math.floor(MAX_LEVEL_PLAYER / 10) * 10; // 170
 export const WIKI_URL = "https://roblox-arcane-odyssey.fandom.com/";

@@ -1,6 +1,6 @@
 import type { Slot, statType, TotalStats } from "@src-types";
 import {
-  MAX_LEVEL,
+  MAX_LEVEL_ITEM,
   ATL_POWER_CAP,
   ATL_DEFENSE_CAP,
   ATL_AGILITY_CAP,
@@ -287,85 +287,87 @@ export function calculateItemStats(item: Item | null): TotalStats {
   const imbue = detectImbue(item) ?? "None";
 
   totalStats.power += floorTo1(
-    (item?.scaling?.power ?? 0) * MAX_LEVEL * getScalingMultiplier("power") +
+    (item?.scaling?.power ?? 0) *
+      MAX_LEVEL_ITEM *
+      getScalingMultiplier("power") +
       getImbueStatMultiplier(imbue, "power") *
         getScalingMultiplier("power") *
         getImbuePieceMultiplier(item) *
         getImbueMultiplier("power") *
         1.5 *
-        MAX_LEVEL
+        MAX_LEVEL_ITEM
   );
 
   totalStats.defense += floorTo1(
     (item?.scaling?.defense ?? 0) *
-      MAX_LEVEL *
+      MAX_LEVEL_ITEM *
       getScalingMultiplier("defense") +
       getImbueStatMultiplier(imbue, "defense") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("defense") *
         getImbueMultiplier("defense") *
         1.5 *
-        MAX_LEVEL
+        MAX_LEVEL_ITEM
   );
 
   totalStats.agility += floorTo1(
     (item?.scaling?.agility ?? 0) *
-      MAX_LEVEL *
+      MAX_LEVEL_ITEM *
       getScalingMultiplier("agility") +
       getImbueStatMultiplier(imbue, "agility") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("agility") *
         getImbueMultiplier("agility") *
         1.5 *
-        MAX_LEVEL
+        MAX_LEVEL_ITEM
   );
 
   totalStats.attackSpeed += floorTo1(
     (item?.scaling?.attackSpeed ?? 0) *
-      MAX_LEVEL *
+      MAX_LEVEL_ITEM *
       getScalingMultiplier("attackSpeed") +
       getImbueStatMultiplier(imbue, "attackSpeed") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("attackSpeed") *
         getImbueMultiplier("attackSpeed") *
         1.5 *
-        MAX_LEVEL
+        MAX_LEVEL_ITEM
   );
 
   totalStats.attackSize += floorTo1(
     (item?.scaling?.attackSize ?? 0) *
-      MAX_LEVEL *
+      MAX_LEVEL_ITEM *
       getScalingMultiplier("attackSize") +
       getImbueStatMultiplier(imbue, "attackSize") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("attackSize") *
         getImbueMultiplier("attackSize") *
         1.5 *
-        MAX_LEVEL
+        MAX_LEVEL_ITEM
   );
 
   totalStats.intensity += floorTo1(
     (item?.scaling?.intensity ?? 0) *
-      MAX_LEVEL *
+      MAX_LEVEL_ITEM *
       getScalingMultiplier("intensity") +
       getImbueStatMultiplier(imbue, "intensity") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("intensity") *
         getImbueMultiplier("intensity") *
         1.5 *
-        MAX_LEVEL
+        MAX_LEVEL_ITEM
   );
 
   totalStats.regeneration += floorTo1(
     (item?.scaling?.regeneration ?? 0) *
-      MAX_LEVEL *
+      MAX_LEVEL_ITEM *
       getScalingMultiplier("regeneration") +
       getImbueStatMultiplier(imbue, "regeneration") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("regeneration") *
         getImbueMultiplier("regeneration") *
         1.5 *
-        MAX_LEVEL
+        MAX_LEVEL_ITEM
   );
 
   // we skip insanity because there is currently no item
@@ -373,26 +375,26 @@ export function calculateItemStats(item: Item | null): TotalStats {
 
   totalStats.piercing += floorTo1(
     (item?.scaling?.piercing ?? 0) *
-      MAX_LEVEL *
+      MAX_LEVEL_ITEM *
       getScalingMultiplier("piercing") +
       getImbueStatMultiplier(imbue, "piercing") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("piercing") *
         getImbueMultiplier("piercing") *
         1.5 *
-        MAX_LEVEL
+        MAX_LEVEL_ITEM
   );
 
   totalStats.resistance += floorTo1(
     (item?.scaling?.resistance ?? 0) *
-      MAX_LEVEL *
+      MAX_LEVEL_ITEM *
       getScalingMultiplier("resistance") +
       getImbueStatMultiplier(imbue, "resistance") *
         getImbuePieceMultiplier(item) *
         getScalingMultiplier("resistance") *
         getImbueMultiplier("resistance") *
         1.5 *
-        MAX_LEVEL
+        MAX_LEVEL_ITEM
   );
 
   // we do not multiply warding by the scaling multiplier because
@@ -443,7 +445,7 @@ export async function calculateEnchantStats(
     return totalStats;
   }
 
-  const multiplier = MAX_LEVEL / 10;
+  const multiplier = MAX_LEVEL_ITEM / 10;
 
   totalStats.power +=
     (enchant.enchantTypes?.gear?.powerIncrement ?? 0) * multiplier;
@@ -495,7 +497,7 @@ export async function calculateAtlanteanEssence(
   // alt essence always gives 1 insanity regardless
   totalStats.insanity += 1;
 
-  const multiplier = MAX_LEVEL / 10;
+  const multiplier = MAX_LEVEL_ITEM / 10;
 
   if (item_stats.power === 0) {
     totalStats.power += Math.min(
@@ -555,7 +557,7 @@ export async function calculateModifierStats(
     return calculateAtlanteanEssence(itemStats);
   }
 
-  const multiplier = MAX_LEVEL / 10;
+  const multiplier = MAX_LEVEL_ITEM / 10;
 
   totalStats.power += (modifier.powerIncrement ?? 0) * multiplier;
   totalStats.defense += (modifier.defenseIncrement ?? 0) * multiplier;
