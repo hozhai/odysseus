@@ -4,6 +4,7 @@ import {
   type Gem,
   type Item,
   type Magic,
+  type MainType,
   type Modifier,
 } from "@data";
 
@@ -55,11 +56,21 @@ export async function findGemById(id: string): Promise<Gem | null> {
   return gem ?? null;
 }
 
-export async function findItemByName(name: string): Promise<Item | null> {
+export async function findItemByName(
+  name: string,
+  mainType: MainType | null | undefined
+): Promise<Item | null> {
   const itemData = (await getData()).items;
-  const item = Object.values(itemData).find(
-    (item) => item.name.toLowerCase() === name.toLowerCase()
-  );
+  const item = Object.values(itemData).find((item) => {
+    if (mainType) {
+      return (
+        item.name.toLowerCase() === name.toLowerCase() &&
+        item.mainType === mainType
+      );
+    }
+
+    return item.name.toLowerCase() === name.toLowerCase();
+  });
 
   return item ?? null;
 }
