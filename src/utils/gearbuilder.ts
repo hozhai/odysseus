@@ -57,6 +57,66 @@ import {
   emojiToMagicEnum,
 } from "@utils";
 
+export function calculateStatBuild(
+  spiritPoints: number,
+  magicPoints: number,
+  strengthPoints: number,
+  weaponPoints: number
+):
+  | "Oracle"
+  | "Mage"
+  | "Berserker"
+  | "Warrior"
+  | "Warlock"
+  | "Conjurer"
+  | "Warlord"
+  | "Paladin"
+  | "Juggernaut"
+  | "Knight"
+  | "Savant" {
+  const stats = [
+    { points: spiritPoints, pureBuild: "Oracle" },
+    { points: magicPoints, pureBuild: "Mage" },
+    { points: strengthPoints, pureBuild: "Berserker" },
+    { points: weaponPoints, pureBuild: "Warrior" },
+  ] as const;
+  const totalPoints = stats.reduce((total, stat) => total + stat.points, 0);
+
+  if (totalPoints === 0) {
+    return "Savant";
+  }
+
+  const meetsThreshold = (points: number, percentage: number) =>
+    points * 100 >= totalPoints * percentage;
+
+  const pureBuild = stats.find((stat) => meetsThreshold(stat.points, 60));
+  if (pureBuild) {
+    return pureBuild.pureBuild;
+  }
+
+  const hybridBuilds = [
+    { first: 1, second: 2, build: "Warlock" },
+    { first: 1, second: 3, build: "Conjurer" },
+    { first: 2, second: 3, build: "Warlord" },
+    { first: 0, second: 1, build: "Paladin" },
+    { first: 0, second: 2, build: "Juggernaut" },
+    { first: 0, second: 3, build: "Knight" },
+  ] as const;
+  const hybridBuild = hybridBuilds.find(
+    ({ first, second }) =>
+      meetsThreshold(stats[first].points, 40) &&
+      meetsThreshold(stats[second].points, 40)
+  );
+  if (hybridBuild) {
+    return hybridBuild.build;
+  }
+
+  const defaultPureBuild = stats.find((stat) =>
+    meetsThreshold(stat.points, 50)
+  );
+  return defaultPureBuild?.pureBuild ?? "Savant";
+}
+
 export async function findItemsFromQuery(
   query: string,
   mainType: MainType

@@ -5,8 +5,30 @@ import {
   emojiTextToResolvable,
   magicNameToEnum,
   MagicsEnum,
+  calculateStatBuild,
   unhashBuildCode,
 } from "@utils";
+
+describe("calculateStatBuild", () => {
+  test("classifies pure builds at 60% or more", () => {
+    expect(calculateStatBuild(60, 40, 0, 0)).toBe("Oracle");
+    expect(calculateStatBuild(0, 60, 40, 0)).toBe("Mage");
+    expect(calculateStatBuild(0, 0, 60, 40)).toBe("Berserker");
+    expect(calculateStatBuild(0, 0, 40, 60)).toBe("Warrior");
+  });
+
+  test("classifies hybrid builds regardless of the stat order", () => {
+    expect(calculateStatBuild(0, 200, 0, 150)).toBe("Conjurer");
+    expect(calculateStatBuild(0, 150, 0, 200)).toBe("Conjurer");
+    expect(calculateStatBuild(40, 40, 20, 0)).toBe("Paladin");
+  });
+
+  test("uses the dominant pure build as the 50% fallback and otherwise Savant", () => {
+    expect(calculateStatBuild(50, 25, 25, 0)).toBe("Oracle");
+    expect(calculateStatBuild(49, 26, 25, 0)).toBe("Savant");
+    expect(calculateStatBuild(0, 0, 0, 0)).toBe("Savant");
+  });
+});
 
 describe("emojiTextToResolvable", () => {
   test("parses static and animated custom emoji mentions", () => {
