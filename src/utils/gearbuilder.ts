@@ -16,8 +16,14 @@ import {
   ComponentType,
   Container,
   Formatter,
+  Label,
+  Modal,
   Section,
   Separator,
+  StringSelectMenu,
+  StringSelectOption,
+  TextInput,
+  TextInputStyle,
   TextDisplay,
   type TopLevelComponents,
   type ComponentContext,
@@ -34,6 +40,7 @@ import {
   findGemById,
   findItemById,
   findModifierById,
+  findModifierByName,
   itemEnchantToEmoji,
   itemGemToEmoji,
   itemModifierToEmoji,
@@ -140,6 +147,162 @@ export async function findItemsFromQuery(
     .filter((result) => result.item.mainType === mainType)
     .slice(0, 5)
     .map(({ item }) => item);
+}
+
+export async function openGearbuilderItemSearchModal(
+  ctx: ComponentContext<"Button">,
+  slotId: "acc_1" | "acc_2" | "acc_3" | "chest" | "pants",
+  slotLabel: string,
+  originalMessageId: string
+) {
+  await openGearbuilderSearchModal(
+    ctx,
+    "item",
+    slotId,
+    slotLabel,
+    originalMessageId
+  );
+}
+
+export async function openGearbuilderSearchModal(
+  ctx: ComponentContext<"Button">,
+  searchType: "item" | "enchant" | "gem",
+  slotId: "acc_1" | "acc_2" | "acc_3" | "chest" | "pants",
+  slotLabel: string,
+  originalMessageId: string,
+  gemIndex?: number,
+  gemCount?: number
+) {
+  if (
+    searchType === "gem" &&
+    (gemIndex === undefined || gemCount === undefined)
+  ) {
+    throw new Error("Gem search modals require a gem index and gem count.");
+  }
+
+  const queryInput = new TextInput()
+    .setCustomId(`gb_search_${searchType}_query`)
+    .setStyle(TextInputStyle.Short)
+    .setLength({ max: 100, min: 1 });
+
+  const modalTitle =
+    searchType === "gem"
+      ? `Search Gem ${gemIndex}/${gemCount}`
+      : searchType === "item"
+        ? `Search ${slotLabel}`
+        : `Search ${searchType}`;
+  const gemIndexSuffix = searchType === "gem" ? `_${gemIndex}` : "";
+
+  const modal = new Modal()
+    .setTitle(modalTitle)
+    .setCustomId(
+      `gb_search_${searchType}_${slotId}_${originalMessageId}_${ctx.message.id}${gemIndexSuffix}`
+    )
+    .addComponents([
+      new Label()
+        .setLabel(`${searchType === "gem" ? "Gem" : searchType} name`)
+        .setComponent(queryInput),
+    ]);
+
+  await ctx.interaction.modal(modal);
+}
+
+export type GearbuilderSlotId = "acc_1" | "acc_2" | "acc_3" | "chest" | "pants";
+
+export function getGearbuilderSlotItemId(
+  player: Player,
+  slotId: GearbuilderSlotId
+) {
+  switch (slotId) {
+    case "acc_1":
+      return player.accessories[0].itemId;
+    case "acc_2":
+      return player.accessories[1].itemId;
+    case "acc_3":
+      return player.accessories[2].itemId;
+    case "chest":
+      return player.chestplate.itemId;
+    case "pants":
+      return player.boots.itemId;
+  }
+}
+
+export async function openGearbuilderModifierSelectMenu(
+  ctx: ComponentContext<"Button">,
+  slotId: GearbuilderSlotId,
+  slotLabel: string,
+  originalMessageId: string
+) {
+  const originalMessage = await ctx.client.messages.fetch(
+    originalMessageId,
+    ctx.channelId
+  );
+  const components: ComponentsV2Components = originalMessage.components.map(
+    serializeTopLevelComponent
+  );
+  const player = await parseGearbuilderComponentsIntoPlayer(components);
+  const item = await findItemById(getGearbuilderSlotItemId(player, slotId));
+
+  if (!item) {
+    await ctx.update({
+      content: `The item for ${slotLabel} could not be found.`,
+      components: [],
+    });
+    await ctx.deleteResponse();
+    return;
+  }
+
+  if (item.validModifiers.length === 0) {
+    await ctx.update({
+      content: `No modifiers are valid for ${slotLabel}.`,
+      components: [],
+    });
+    await ctx.deleteResponse();
+    return;
+  }
+
+  if (item.validModifiers.length > 25) {
+    throw new Error(
+      `Item "${item.name}" has more valid modifiers than a select menu supports.`
+    );
+  }
+
+  const modifiers = await Promise.all(
+    item.validModifiers.map(async (modifierName) => {
+      const modifier = await findModifierByName(modifierName);
+      if (!modifier) {
+        throw new Error(
+          `Valid modifier "${modifierName}" for item "${item.name}" was not found.`
+        );
+      }
+      return modifier;
+    })
+  );
+
+  const selectMenu = new StringSelectMenu()
+    .setCustomId(`gb_select_modifier_${slotId}_${originalMessageId}`)
+    .setPlaceholder("Select a modifier...")
+    .setRequired(true)
+    .setValuesLength({ max: 1, min: 1 })
+    .setOptions(
+      ...(await Promise.all(
+        modifiers.map(async (modifier) => {
+          const emoji = await itemModifierToEmoji(modifier);
+          const option = new StringSelectOption()
+            .setLabel(modifier.name)
+            .setValue(modifier.id);
+
+          if (emoji) option.setEmoji(emoji);
+
+          return option;
+        })
+      ))
+    );
+
+  await ctx.update({
+    content: `Select a modifier for ${slotLabel}:`,
+    components: [new ActionRow().addComponents(selectMenu)],
+  });
 }
 
 export async function findEnchantsFromQuery(query: string): Promise<Enchant[]> {
@@ -560,60 +723,27 @@ export async function parsePlayerIntoGearbuilderComponents(
   return component;
 }
 
-export function collectGemSearchResults(
+export async function openGearbuilderGemSearchModal(
   ctx: ComponentContext<"Button">,
-  responseMessage: ComponentContext<"Button">["message"],
   originalMessageId: string,
-  slotId: 1 | 2 | 3 | "chest" | "pants",
+  slotId: "acc_1" | "acc_2" | "acc_3" | "chest" | "pants",
   gemIndex: number,
   gemCount: number
 ) {
-  ctx.client.collectors.create({
-    event: "messageCreate",
-    filter: (message) => message.author.id === ctx.author.id,
-    idle: 1000 * 60,
-    timeout: 1000 * 60 * 10,
-    run: async (message, stop) => {
-      stop();
-      await message.delete();
+  const slotLabel =
+    slotId === "chest"
+      ? "Chestplate"
+      : slotId === "pants"
+        ? "Pants"
+        : `Accessory ${slotId.slice(-1)}`;
 
-      const query = message.content;
-      const gems = await findGemsFromQuery(query);
-
-      if (gems.length === 0) {
-        const retryButton = new Button()
-          .setLabel(`Try another search for Gem ${gemIndex}/${gemCount}`)
-          .setCustomId(
-            `gb_retry_gem_${slotId}_${originalMessageId}_${gemIndex}`
-          )
-          .setStyle(ButtonStyle.Primary);
-
-        await responseMessage.edit({
-          content: `You searched for \`${query}\`. No gem matched your query - please try again.`,
-          components: [new ActionRow().addComponents(retryButton)],
-        });
-        return;
-      }
-
-      const resultButtons = gems.map((gem, index) =>
-        new Button()
-          .setLabel(`#${index + 1}`)
-          .setCustomId(
-            `gb_proceed_gem_${slotId}_${originalMessageId}_${gem.id}_${gemIndex}`
-          )
-          .setStyle(ButtonStyle.Secondary)
-      );
-
-      await responseMessage.edit({
-        content: `You searched for \`${query}\`. Select a result:\n${gems
-          .map((gem, index) => `#${index + 1} - ${gem.name}`)
-          .join("\n")}`,
-        components: [new ActionRow().addComponents(...resultButtons)],
-      });
-    },
-    onRunError: (_arg, error, stop) => {
-      stop();
-      ctx.client.logger.warn(JSON.stringify(error, null, 2));
-    },
-  });
+  await openGearbuilderSearchModal(
+    ctx,
+    "gem",
+    slotId,
+    slotLabel,
+    originalMessageId,
+    gemIndex,
+    gemCount
+  );
 }
