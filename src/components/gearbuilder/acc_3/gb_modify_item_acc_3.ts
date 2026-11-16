@@ -1,11 +1,5 @@
-import { findItemsFromQuery } from "@/utils";
-import {
-  ActionRow,
-  Button,
-  ButtonStyle,
-  ComponentCommand,
-  ComponentContext,
-} from "seyfert";
+import { openGearbuilderItemSearchModal } from "@/utils";
+import { ComponentCommand, ComponentContext } from "seyfert";
 
 export default class GearbuilderModifyItemAccessoryThreeButton extends ComponentCommand {
   componentType = "Button" as const;
@@ -18,6 +12,7 @@ export default class GearbuilderModifyItemAccessoryThreeButton extends Component
     const originalMessageId = ctx.customId.slice(
       "gb_modify_item_acc_3_".length
     );
+
     if (!originalMessageId) {
       await ctx.update({
         content: "Could not identify the original Gearbuilder message.",
@@ -26,60 +21,11 @@ export default class GearbuilderModifyItemAccessoryThreeButton extends Component
       return;
     }
 
-    const responseMessage = ctx.message;
-
-    await ctx.update({
-      content: "Item for Accessory Slot 3: Type your search query below...",
-      components: [],
-    });
-
-    ctx.client.collectors.create({
-      event: "messageCreate",
-      filter: (message) => message.author.id === ctx.author.id,
-      idle: 1000 * 60,
-      timeout: 1000 * 60 * 10,
-      run: async (message, stop) => {
-        stop();
-        await message.delete();
-
-        const query = message.content;
-        const items = await findItemsFromQuery(query, "Accessory");
-
-        if (items.length === 0) {
-          const retryRow = new ActionRow().addComponents(
-            new Button()
-              .setLabel("Try another search")
-              .setCustomId(`gb_modify_item_acc_3_${originalMessageId}`)
-              .setStyle(ButtonStyle.Primary)
-          );
-
-          await responseMessage.edit({
-            content: `You searched for \`${query}\`. No item matched your query - please try again.`,
-            components: [retryRow],
-          });
-          return;
-        }
-
-        const row = new ActionRow().addComponents(
-          ...items.map((item, index) =>
-            new Button()
-              .setLabel(`#${index + 1}`)
-              .setCustomId(
-                `gb_select_item_acc_3_${item.id}_${originalMessageId}`
-              )
-              .setStyle(ButtonStyle.Secondary)
-          )
-        );
-
-        await responseMessage.edit({
-          content: `You searched for \`${query}\`. Select a result:\n${items.map((item, index) => `#${index + 1} - ${item.name}`).join("\n")}`,
-          components: [row],
-        });
-      },
-      onRunError: (_arg, error, stop) => {
-        stop();
-        ctx.client.logger.warn(JSON.stringify(error, null, 2));
-      },
-    });
+    await openGearbuilderItemSearchModal(
+      ctx,
+      "acc_3",
+      "Accessory 3",
+      originalMessageId
+    );
   }
 }

@@ -1,8 +1,8 @@
 import { EMPTY_PANTS_ID } from "@/constants";
 import type { ComponentsV2Components } from "@/types/seyfert";
 import {
-  collectGemSearchResults,
   findItemById,
+  openGearbuilderGemSearchModal,
   parseGearbuilderComponentsIntoPlayer,
   serializeTopLevelComponent,
 } from "@/utils";
@@ -37,7 +37,6 @@ export default class GearbuilderRetryGemPantsButton extends ComponentCommand {
       return;
     }
 
-    const responseMessage = ctx.message;
     const originalMessage = await ctx.client.messages.fetch(
       originalMessageId,
       ctx.channelId
@@ -73,14 +72,8 @@ export default class GearbuilderRetryGemPantsButton extends ComponentCommand {
       return;
     }
 
-    await ctx.update({
-      content: `Gem ${gemIndex}/${pantsItem.gemNo} for the Pants: Type your search query below...`,
-      components: [],
-    });
-
-    collectGemSearchResults(
+    await openGearbuilderGemSearchModal(
       ctx,
-      responseMessage,
       originalMessageId,
       "pants",
       gemIndex,

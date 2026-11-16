@@ -1,8 +1,8 @@
 import { EMPTY_ACCESSORY_ID } from "@/constants";
 import type { ComponentsV2Components } from "@/types/seyfert";
 import {
-  collectGemSearchResults,
   findItemById,
+  openGearbuilderGemSearchModal,
   parseGearbuilderComponentsIntoPlayer,
   serializeTopLevelComponent,
 } from "@/utils";
@@ -36,8 +36,6 @@ export default class GearbuilderRetryGemAccessoryOneButton extends ComponentComm
       });
       return;
     }
-
-    const responseMessage = ctx.message;
 
     const originalMessage = await ctx.client.messages.fetch(
       originalMessageId,
@@ -79,16 +77,10 @@ export default class GearbuilderRetryGemAccessoryOneButton extends ComponentComm
       return;
     }
 
-    await ctx.update({
-      content: `Gem ${gemIndex}/${accessoryItem.gemNo} for Accessory Slot 1: Type your search query below...`,
-      components: [],
-    });
-
-    collectGemSearchResults(
+    await openGearbuilderGemSearchModal(
       ctx,
-      responseMessage,
       originalMessageId,
-      1,
+      "acc_1",
       gemIndex,
       accessoryItem.gemNo
     );

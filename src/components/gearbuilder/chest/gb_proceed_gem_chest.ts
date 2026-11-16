@@ -1,9 +1,9 @@
 import { EMPTY_CHESTPLATE_ID } from "@/constants";
 import type { ComponentsV2Components } from "@/types/seyfert";
 import {
-  collectGemSearchResults,
   findGemById,
   findItemById,
+  openGearbuilderGemSearchModal,
   parseGearbuilderComponentsIntoPlayer,
   parsePlayerIntoGearbuilderComponents,
   serializeTopLevelComponent,
@@ -47,7 +47,6 @@ export default class GearbuilderProceedGemChestButton extends ComponentCommand {
       return;
     }
 
-    const responseMessage = ctx.message;
     const originalMessage = await ctx.client.messages.fetch(
       originalMessageId,
       ctx.channelId
@@ -113,14 +112,8 @@ export default class GearbuilderProceedGemChestButton extends ComponentCommand {
 
     const nextGemIndex = gemIndex + 1;
 
-    await ctx.update({
-      content: `Gem ${nextGemIndex}/${chestplateItem.gemNo} for the Chestplate: Type your search query below...`,
-      components: [],
-    });
-
-    collectGemSearchResults(
+    await openGearbuilderGemSearchModal(
       ctx,
-      responseMessage,
       originalMessageId,
       "chest",
       nextGemIndex,
